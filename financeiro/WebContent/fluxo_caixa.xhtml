@@ -1,540 +1,521 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <f:view xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:o="http://omnifaces.org/ui"
-	xmlns:of="http://omnifaces.org/functions"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
-	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<!-- Meta, title, CSS, favicons, etc. -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Tabelas | Contas a receber</title>
-		<!-- Bootstrap -->
-		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
-			rel="stylesheet" />
-		<!-- Font Awesome -->
-		<link href="resources/font-awesome/css/font-awesome.min.css"
-			rel="stylesheet" />
-		<!-- NProgress -->
-		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
-		<!-- iCheck -->
-		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
-		<!-- Datatables -->
-		<link
-			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-			rel="stylesheet" />
-		<!-- Custom Theme Style -->
-		<link href="build/css/custom.min.css" rel="stylesheet" />
-	</h:head>
-	<h:body>
-		<div class="nav-md">
-			<div class="container body">
-				<div class="main_container">
-					<div class="col-md-3 left_col">
-						<div class="left_col scroll-view">
-							<div class="navbar nav_title" style="border: 0px;">
-								<a href="index.xhtml" class="site_title"><i
-									class="fa fa-paw" /> <span>Financeiro</span></a>
-							</div>
-							<div class="clearfix" />
-							<!-- menu profile quick info -->
-							<div class="profile clearfix">
-								<div class="profile_pic">
-									<img src="images/img.jpg" alt="..."
-										class="img-circle profile_img" />
-								</div>
-								<div class="profile_info">
-									<span>Bem-vindo,</span>
-									<h2>John Doe</h2>
-								</div>
-							</div>
-							<!-- /menu profile quick info -->
-							<br />
-							<!-- sidebar menu -->
-							<div id="sidebar-menu"
-								class="main_menu_side hidden-print main_menu">
-								<div class="menu_section">
-									<h3>General</h3>
-									<ul class="nav side-menu">
-										<li><a><i class="fa fa-home" /> In�cio <span
-												class="fa fa-chevron-down" /></a>
-											<ul class="nav child_menu">
-												<li><a href="index.xhtml">Dashboard</a></li>
-												<li><a href="index2.xhtml">Dashboard2</a></li>
-												<li><a href="index3.xhtml">Dashboard3</a></li>
-											</ul></li>
-										<li><a><i class="fa fa-edit" /> Contas a Pagar <span
-												class="fa fa-chevron-down" /></a>
-											<ul class="nav child_menu">
-												<li><a href="despesas.xhtml">Despesas</a></li>
-												<li><a>Comiss�es<span class="fa fa-chevron-down" /></a>
-													<ul class="nav child_menu">
-														<li class="sub_menu"><a
-															href="abertura_conntas_cp.xhtml">Abertura de Contas</a></li>
-														<li><a href="emprestimo_consignado_cp.xhtml">Empr�stimo
-																Consignado</a></li>
-														<li><a href="consorcio_cp.xhtml">Cons�rcio</a></li>
-													</ul></li>
-												<!--   <li><a href="form_validation.xhtml">Form Validation</a></li>
-                                          <li><a href="form_wizards.xhtml">Form Wizard</a></li>
-                                          <li><a href="form_upload.xhtml">Form Upload</a></li>
-                                          <li><a href="form_buttons.xhtml">Form Buttons</a></li> -->
-											</ul></li>
-										<!--  <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><a href="general_elements.xhtml">General Elements</a></li>
-                                      <li><a href="media_gallery.xhtml">Media Gallery</a></li>
-                                      <li><a href="typography.xhtml">Typography</a></li>
-                                      <li><a href="icons.xhtml">Icons</a></li>
-                                      <li><a href="glyphicons.xhtml">Glyphicons</a></li>
-                                      <li><a href="widgets.xhtml">Widgets</a></li>
-                                      <li><a href="invoice.xhtml">Invoice</a></li>
-                                      <li><a href="inbox.xhtml">Inbox</a></li>
-                                      <li><a href="calendar.xhtml">Calendar</a></li>
-                                    </ul>
-                                    </li>-->
-										<li><a><i class="fa fa-table" /> Contas a Receber <span
-												class="fa fa-chevron-down" /></a>
-											<ul class="nav child_menu">
-												<li><a href="abertura_contas_cr.xhtml">Abertura de
-														Contas</a></li>
-												<li><a href="consorcio_cr.xhtml">Cons�rcio</a></li>
-												<li><a href="emprestimo_cr.xhtml">Empr�stimo
-														Consignado</a></li>
-												<li><a href="imobiliario_cr.xhtml">Imobili�rio</a></li>
-												<li><a href="pronaf_cr.xhtml">Pronaf</a></li>
-											</ul></li>
-										<li><a href="chartjs.xhtml"><i
-												class="fa fa-bar-chart-o" /> Fluxo de Caixa </a></li>
-									</ul>
-								</div>
-							</div>
-							<!-- /sidebar menu -->
-							<!-- /menu footer buttons -->
-							<div class="sidebar-footer hidden-small">
-								<a data-toggle="tooltip" data-placement="top" title="Settings">
-									<span class="glyphicon glyphicon-cog" aria-hidden="true" />
-								</a> <a data-toggle="tooltip" data-placement="top"
-									title="FullScreen"> <span
-									class="glyphicon glyphicon-fullscreen" aria-hidden="true" />
-								</a> <a data-toggle="tooltip" data-placement="top" title="Lock">
-									<span class="glyphicon glyphicon-eye-close" aria-hidden="true" />
-								</a> <a data-toggle="tooltip" data-placement="top" title="Logout"
-									href="login.xhtml"> <span class="glyphicon glyphicon-off"
-									aria-hidden="true" />
-								</a>
-							</div>
-							<!-- /menu footer buttons -->
-						</div>
-					</div>
-					<!-- top navigation -->
-					<div class="top_nav">
-						<div class="nav_menu">
-							<nav>
-							<div class="nav toggle">
-								<a id="menu_toggle"><i class="fa fa-bars" /></a>
-							</div>
-							<ul class="nav navbar-nav navbar-right">
-								<li class=""><a href="javascript:;"
-									class="user-profile dropdown-toggle" data-toggle="dropdown"
-									aria-expanded="false"> <img src="images/img.jpg" alt="" />John
-										Doe <span class=" fa fa-angle-down" />
-								</a>
-									<ul class="dropdown-menu dropdown-usermenu pull-right">
-										<li><a href="javascript:;"> Profile</a></li>
-										<li><a href="javascript:;"> <span
-												class="badge bg-red pull-right">50%</span> <span>Settings</span>
-										</a></li>
-										<li><a href="javascript:;">Help</a></li>
-										<li><a href="login.xhtml"><i
-												class="fa fa-sign-out pull-right" /> Log Out</a></li>
-									</ul></li>
-								<li role="presentation" class="dropdown"><a
-									href="javascript:;" class="dropdown-toggle info-number"
-									data-toggle="dropdown" aria-expanded="false"> <i
-										class="fa fa-envelope-o" /> <span class="badge bg-green">6</span>
-								</a>
-									<ul id="menu1" class="dropdown-menu list-unstyled msg_list"
-										role="menu">
-										<li><a> <span class="image"><img
-													src="images/img.jpg" alt="Profile Image" /></span> <span>
-													<span>John Smith</span> <span class="time">3 mins
-														ago</span>
-											</span> <span class="message"> Film festivals used to be
-													do-or-die moments for movie makers. They were where... </span>
-										</a></li>
-										<li><a> <span class="image"><img
-													src="images/img.jpg" alt="Profile Image" /></span> <span>
-													<span>John Smith</span> <span class="time">3 mins
-														ago</span>
-											</span> <span class="message"> Film festivals used to be
-													do-or-die moments for movie makers. They were where... </span>
-										</a></li>
-										<li><a> <span class="image"><img
-													src="images/img.jpg" alt="Profile Image" /></span> <span>
-													<span>John Smith</span> <span class="time">3 mins
-														ago</span>
-											</span> <span class="message"> Film festivals used to be
-													do-or-die moments for movie makers. They were where... </span>
-										</a></li>
-										<li><a> <span class="image"><img
-													src="images/img.jpg" alt="Profile Image" /></span> <span>
-													<span>John Smith</span> <span class="time">3 mins
-														ago</span>
-											</span> <span class="message"> Film festivals used to be
-													do-or-die moments for movie makers. They were where... </span>
-										</a></li>
-										<li>
-											<div class="text-center">
-												<a> <strong>See All Alerts</strong> <i
-													class="fa fa-angle-right" />
-												</a>
-											</div>
-										</li>
-									</ul></li>
-							</ul>
-							</nav>
-						</div>
-					</div>
-					<!-- /top navigation -->
-					<!-- page content -->
-					<div class="right_col" role="main">
-						<div class="">
-							<div class="page-title">
-								<div class="title_left">
-									<h3>
-										Fluxo de Caixa di�rio
-										<!--<small>Some examples to get you started</small>-->
-									</h3>
-								</div>
-								<table id="datatable-responsive"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									cellspacing="0" width="100%">
-									<thead>
-										<tr>
-											<th>Dia</th>
-											<th>Receita</th>
-											<th>Despesas</th>
-											<th>Contas a Pagar</th>
-											<th>Contas a Receber</th>
-											<th>Saldo do Dia</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>01</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>02</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>03</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>04</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>05</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>06</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>07</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>08</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>09</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>10</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>11</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>12</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>13</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>14</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>15</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>16</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>17</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>18</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>19</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>20</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>21</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>22</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>23</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>24</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>25</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>26</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>27</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>28</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>29</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-										<tr>
-											<td>30</td>
-											<td>R$92.000,00</td>
-											<td>R$92,00</td>
-											<td>R$920,00</td>
-											<td>R$9200,00</td>
-											<td>R$100.188,00</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /page content -->
-		<!-- footer content -->
-		<footer>
-		<div class="pull-right">
-			Gentelella - Bootstrap Admin Template by <a
-				href="https://colorlib.com">Colorlib</a>
-		</div>
-		<div class="clearfix" />
-		</footer>
-		<!-- /footer content -->
-		</div>
-		</div>
-		<!-- jQuery -->
-		<script src="resources/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- FastClick -->
-		<script src="resources/fastclick/lib/fastclick.js"></script>
-		<!-- NProgress -->
-		<script src="resources/nprogress/nprogress.js"></script>
-		<!-- iCheck -->
-		<script src="resources/iCheck/icheck.min.js"></script>
-		<!-- Datatables -->
-		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script
-			src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
-		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
-		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script
-			src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script
-			src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script
-			src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-		<script src="resources/jszip/dist/jszip.min.js"></script>
-		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
-		<script src="resources/pdfmake/build/vfs_fonts.js"></script>
-		<!-- Custom Theme Scripts -->
-		<script src="build/js/custom.min.js"></script>
-		</div>
-	</h:body>
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:c="http://java.sun.com/jsp/jstl/core"
+   xmlns:o="http://omnifaces.org/ui"
+   xmlns:of="http://omnifaces.org/functions"
+   xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+   <h:head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <!-- Meta, title, CSS, favicons, etc. -->
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Tabelas | Contas a receber</title>
+      <!-- Bootstrap -->
+      <link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <!-- Font Awesome -->
+      <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+      <!-- NProgress -->
+      <link href="resources/nprogress/nprogress.css" rel="stylesheet" />
+      <!-- iCheck -->
+      <link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
+      <!-- Datatables -->
+      <link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+      <link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+      <link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+      <link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" />
+      <link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+      <!-- Custom Theme Style -->
+      <link href="build/css/custom.min.css" rel="stylesheet" />
+   </h:head>
+   <h:body>
+      <div class="nav-md">
+      <div class="container body">
+      <div class="main_container">
+      <div class="col-md-3 left_col">
+         <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0px;">
+               <a href="index.xhtml" class="site_title"><i class="fa fa-paw" />
+               <span>Financeiro</span></a>
+            </div>
+            <div class="clearfix" />
+               <!-- menu profile quick info -->
+               <div class="profile clearfix">
+                  <div class="profile_pic">
+                     <img src="images/img.jpg" alt="..."
+                        class="img-circle profile_img" />
+                  </div>
+                  <div class="profile_info">
+                     <span>Bem-vindo,</span>
+                     <h2>John Doe</h2>
+                  </div>
+               </div>
+               <!-- /menu profile quick info -->
+               <br />
+               <!-- sidebar menu -->
+               <div id="sidebar-menu"
+                  class="main_menu_side hidden-print main_menu">
+                  <div class="menu_section">
+                     <h3>General</h3>
+                     <ul class="nav side-menu">
+                        <li>
+                           <a><i class="fa fa-home" /> In�cio <span
+                              class="fa fa-chevron-down" /></a>
+                           <ul class="nav child_menu">
+                              <li><a href="index.xhtml">Dashboard</a></li>
+                              <li><a href="index2.xhtml">Dashboard2</a></li>
+                              <li><a href="index3.xhtml">Dashboard3</a></li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a><i class="fa fa-edit" /> Contas a Pagar <span
+                              class="fa fa-chevron-down" /></a>
+                           <ul class="nav child_menu">
+                              <li><a href="despesas.xhtml">Despesas</a></li>
+                              <li>
+                                 <a>Comiss�es<span class="fa fa-chevron-down" /></a>
+                                 <ul class="nav child_menu">
+                                    <li class="sub_menu"><a
+                                       href="abertura_conntas_cp.xhtml">Abertura de Contas</a></li>
+                                    <li><a href="emprestimo_consignado_cp.xhtml">Empr�stimo
+                                       Consignado</a>
+                                    </li>
+                                    <li><a href="consorcio_cp.xhtml">Cons�rcio</a></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a><i class="fa fa-table" /> Contas a Receber <span
+                              class="fa fa-chevron-down" /></a>
+                           <ul class="nav child_menu">
+                              <li><a href="abertura_contas_cr.xhtml">Abertura de
+                                 Contas</a>
+                              </li>
+                              <li><a href="consorcio_cr.xhtml">Cons�rcio</a></li>
+                              <li><a href="emprestimo_cr.xhtml">Empr�stimo
+                                 Consignado</a>
+                              </li>
+                              <li><a href="imobiliario_cr.xhtml">Imobili�rio</a></li>
+                              <li><a href="pronaf_cr.xhtml">Pronaf</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="fluxo_caixa.xhtml"><i
+                           class="fa fa-bar-chart-o" /> Fluxo de Caixa </a></li>
+                     </ul>
+                  </div>
+               </div>
+               <!-- /sidebar menu -->
+               <!-- /menu footer buttons -->
+               <div class="sidebar-footer hidden-small">
+                  <a data-toggle="tooltip" data-placement="top" title="Settings">
+                  <span class="glyphicon glyphicon-cog" aria-hidden="true" />
+                  </a> <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                  <span class="glyphicon glyphicon-fullscreen" aria-hidden="true" />
+                  </a> <a data-toggle="tooltip" data-placement="top" title="Lock"> <span
+                     class="glyphicon glyphicon-eye-close" aria-hidden="true" />
+                  </a> <a data-toggle="tooltip" data-placement="top" title="Logout"
+                     href="login.xhtml"> <span class="glyphicon glyphicon-off"
+                     aria-hidden="true" />
+                  </a>
+               </div>
+               <!-- /menu footer buttons -->
+            </div>
+         </div>
+         <!-- top navigation -->
+         <div class="top_nav">
+            <div class="nav_menu">
+               <nav>
+                  <div class="nav toggle">
+                     <a id="menu_toggle"><i class="fa fa-bars" /></a>
+                  </div>
+                  <ul class="nav navbar-nav navbar-right">
+                     <li class="">
+                        <a href="javascript:;"
+                           class="user-profile dropdown-toggle" data-toggle="dropdown"
+                           aria-expanded="false"> <img src="images/img.jpg" alt="" />John
+                        Doe <span class=" fa fa-angle-down" />
+                        </a>
+                        <ul class="dropdown-menu dropdown-usermenu pull-right">
+                           <li><a href="javascript:;"> Profile</a></li>
+                           <li><a href="javascript:;"> <span
+                              class="badge bg-red pull-right">50%</span> <span>Settings</span>
+                              </a>
+                           </li>
+                           <li><a href="javascript:;">Help</a></li>
+                           <li><a href="login.xhtml"><i
+                              class="fa fa-sign-out pull-right" /> Log Out</a></li>
+                        </ul>
+                     </li>
+                     <li role="presentation" class="dropdown">
+                        <a
+                           href="javascript:;" class="dropdown-toggle info-number"
+                           data-toggle="dropdown" aria-expanded="false"> <i
+                           class="fa fa-envelope-o" /> <span class="badge bg-green">6</span>
+                        </a>
+                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list"
+                           role="menu">
+                           <li><a> <span class="image"><img
+                              src="images/img.jpg" alt="Profile Image" /></span> <span> <span>John
+                              Smith</span> <span class="time">3 mins ago</span>
+                              </span> <span class="message"> Film festivals used to be
+                              do-or-die moments for movie makers. They were where... </span>
+                              </a>
+                           </li>
+                           <li><a> <span class="image"><img
+                              src="images/img.jpg" alt="Profile Image" /></span> <span> <span>John
+                              Smith</span> <span class="time">3 mins ago</span>
+                              </span> <span class="message"> Film festivals used to be
+                              do-or-die moments for movie makers. They were where... </span>
+                              </a>
+                           </li>
+                           <li><a> <span class="image"><img
+                              src="images/img.jpg" alt="Profile Image" /></span> <span> <span>John
+                              Smith</span> <span class="time">3 mins ago</span>
+                              </span> <span class="message"> Film festivals used to be
+                              do-or-die moments for movie makers. They were where... </span>
+                              </a>
+                           </li>
+                           <li><a> <span class="image"><img
+                              src="images/img.jpg" alt="Profile Image" /></span> <span> <span>John
+                              Smith</span> <span class="time">3 mins ago</span>
+                              </span> <span class="message"> Film festivals used to be
+                              do-or-die moments for movie makers. They were where... </span>
+                              </a>
+                           </li>
+                           <li>
+                              <div class="text-center">
+                                 <a> <strong>See All Alerts</strong> <i
+                                    class="fa fa-angle-right" />
+                                 </a>
+                              </div>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
+         </div>
+         <!-- /top navigation -->
+         <!-- page content -->
+         <div class="right_col" role="main">
+            <div class="">
+               <div class="page-title">
+                  <div class="title_left">
+                     <h3>
+                        Fluxo de Caixa diário
+                     </h3>
+                  </div>
+                  <div class="clearfix" />
+                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                           <div class="x_title">
+                              <table id="datatable-responsive"
+                                 class="table table-striped table-bordered dt-responsive nowrap"
+                                 cellspacing="0" width="100%">
+                                 <thead>
+                                    <tr>
+                                       <th>Dia</th>
+                                       <th>Receita</th>
+                                       <th>Despesas</th>
+                                       <th>Contas a Pagar</th>
+                                       <th>Contas a Receber</th>
+                                       <th>Saldo do Dia</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>01</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>02</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>03</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>04</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>05</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>06</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>07</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>08</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>09</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>10</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>11</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>12</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>13</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>14</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>15</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>16</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>17</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>18</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>19</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>20</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>21</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>22</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>23</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>24</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>25</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>26</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>27</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>28</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>29</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>30</td>
+                                       <td>R$92.000,00</td>
+                                       <td>R$92,00</td>
+                                       <td>R$920,00</td>
+                                       <td>R$9200,00</td>
+                                       <td>R$100.188,00</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+               <div class="pull-right">
+                  Gentelella - Bootstrap Admin Template by <a
+                     href="https://colorlib.com">Colorlib</a>
+               </div>
+               <div class="clearfix" />
+            </footer>
+            <!-- /footer content -->
+            </div>
+         </div>
+         <!-- jQuery -->
+         <script src="resources/jquery/dist/jquery.min.js"></script>
+         <!-- Bootstrap -->
+         <script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
+         <!-- FastClick -->
+         <script src="resources/fastclick/lib/fastclick.js"></script>
+         <!-- NProgress -->
+         <script src="resources/nprogress/nprogress.js"></script>
+         <!-- iCheck -->
+         <script src="resources/iCheck/icheck.min.js"></script>
+         <!-- Datatables -->
+         <script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
+         <script src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+         <script src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+         <script src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+         <script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
+         <script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
+         <script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
+         <script src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+         <script src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+         <script src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+         <script src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+         <script src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+         <script src="resources/jszip/dist/jszip.min.js"></script>
+         <script src="resources/pdfmake/build/pdfmake.min.js"></script>
+         <script src="resources/pdfmake/build/vfs_fonts.js"></script>
+         <!-- Custom Theme Scripts -->
+         <script src="build/js/custom.min.js"></script>
+      </div>
+   </h:body>
 </f:view>
