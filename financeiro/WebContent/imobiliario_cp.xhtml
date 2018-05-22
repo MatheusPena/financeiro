@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <f:view xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -14,7 +14,7 @@
 		<!-- Meta, title, CSS, favicons, etc. -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Tabelas | Contas a receber</title>
+		<title>Tabelas | Contas a pagar</title>
 		<!-- Bootstrap -->
 		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
 			rel="stylesheet" />
@@ -74,7 +74,7 @@
 								<div class="menu_section">
 									<h3>General</h3>
 									<ul class="nav side-menu">
-										<li><a><i class="fa fa-home" /> In�cio <span
+										<li><a><i class="fa fa-home" /> Início <span
 												class="fa fa-chevron-down" /></a>
 											<ul class="nav child_menu">
 												<li><a href="index.xhtml">Dashboard</a></li>
@@ -85,14 +85,14 @@
 												class="fa fa-chevron-down" /></a>
 											<ul class="nav child_menu">
 												<li><a href="despesas.xhtml">Despesas</a></li>
-												<li><a>Comiss�es<span class="fa fa-chevron-down" /></a>
+												<li><a>Comissões<span class="fa fa-chevron-down" /></a>
 													<ul class="nav child_menu">
 														<li class="sub_menu"><a
 															href="abertura_contas_cp.xhtml">Abertura de Contas</a></li>
-														<li><a href="emprestimo_consignado_cp.xhtml">Empr�stimo
+														<li><a href="emprestimo_consignado_cp.xhtml">Empréstimo
 																Consignado</a></li>
-														<li><a href="consorcio_cp.xhtml">Cons�rcio</a></li>
-														<li><a href="imobiliario_cp.xhtml">Imobili�rio</a></li>
+														<li><a href="consorcio_cp.xhtml">Consórcio</a></li>
+														<li><a href="imobiliario_cp.xhtml">Imobiliário</a></li>
 													</ul></li>
 											</ul></li>
 										<li><a><i class="fa fa-table" /> Contas a Receber <span
@@ -100,10 +100,10 @@
 											<ul class="nav child_menu">
 												<li><a href="abertura_contas_cr.xhtml">Abertura de
 														Contas</a></li>
-												<li><a href="consorcio_cr.xhtml">Cons�rcio</a></li>
-												<li><a href="emprestimo_cr.xhtml">Empr�stimo
+												<li><a href="consorcio_cr.xhtml">Consórcio</a></li>
+												<li><a href="emprestimo_cr.xhtml">Empréstimo
 														Consignado</a></li>
-												<li><a href="imobiliario_cr.xhtml">Imobili�rio</a></li>
+												<li><a href="imobiliario_cr.xhtml">Imobiliário</a></li>
 												<li><a href="pronaf_cr.xhtml">Pronaf</a></li>
 											</ul></li>
 										<li><a href="fluxo_caixa.xhtml"><i
@@ -204,197 +204,203 @@
 						<div class="">
 							<div class="page-title">
 								<div class="title_left">
-									<h3>Imobili�rio</h3>
+									<h3>Imobiliário</h3>
 								</div>
 								<div class="clearfix" />
-								<table id="datatable-responsive"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									cellspacing="0" width="100%">
-									<thead>
-										<tr>
-											<th>Conta</th>
-											<th>Fornecedor</th>
-											<th>Data</th>
-											<th>Recebimento</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>5331</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>19/06/2011</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5429</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/05/2016</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>6891</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/04/2010</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5447</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/02/2009</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5433</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/06/2010</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5481</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>04/05/2018</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5429</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/05/2020</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>8221</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>10/02/2011</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5347</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>10/04/2014</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5461</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>16/06/2011</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5449</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>15/09/2012</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5021</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>20/04/2011</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>3421</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/04/2010</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>6421</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/10/2010</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5920</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/04/2015</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>2421</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/05/2017</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5551</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>18/08/2011</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5421</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>14/04/2018</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5021</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>17/04/2011</td>
-											<td>R$25,00</td>
-										</tr>
-										<tr>
-											<td>5621</td>
-											<td>Banco do Brasil S.A.</td>
-											<td>04/04/2011</td>
-											<td>R$25,00</td>
-										</tr>
-									</tbody>
-								</table>
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="x_panel">
+										<div class="x_title">
+											<table id="datatable-responsive"
+												class="table table-striped table-bordered dt-responsive nowrap"
+												cellspacing="0" width="100%">
+												<thead>
+													<tr>
+														<th>Contrato</th>
+														<th>Fornecedor</th>
+														<th>Data</th>
+														<th>Recebimento</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>5331</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>19/06/2011</td>
+														<td>R$12.500,00</td>
+													</tr>
+													<tr>
+														<td>5429</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/05/2016</td>
+														<td>R$16.000,00</td>
+													</tr>
+													<tr>
+														<td>6891</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/04/2010</td>
+														<td>R$10.000,00</td>
+													</tr>
+													<tr>
+														<td>5447</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/02/2009</td>
+														<td>R$27.000,00</td>
+													</tr>
+													<tr>
+														<td>5433</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/06/2010</td>
+														<td>R$26.000,00</td>
+													</tr>
+													<tr>
+														<td>5481</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>04/05/2018</td>
+														<td>R$25.000,00</td>
+													</tr>
+													<tr>
+														<td>5429</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/05/2020</td>
+														<td>R$15.750,00</td>
+													</tr>
+													<tr>
+														<td>8221</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>10/02/2011</td>
+														<td>R$5.600,00</td>
+													</tr>
+													<tr>
+														<td>5347</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>10/04/2014</td>
+														<td>R$6.000,00</td>
+													</tr>
+													<tr>
+														<td>5461</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>16/06/2011</td>
+														<td>R$45.000,00</td>
+													</tr>
+													<tr>
+														<td>5449</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>15/09/2012</td>
+														<td>R$45.000,00</td>
+													</tr>
+													<tr>
+														<td>5021</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>20/04/2011</td>
+														<td>R$50.000,00</td>
+													</tr>
+													<tr>
+														<td>3421</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/04/2010</td>
+														<td>R$25.000,00</td>
+													</tr>
+													<tr>
+														<td>6421</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/10/2010</td>
+														<td>R$20.000,00</td>
+													</tr>
+													<tr>
+														<td>5920</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/04/2015</td>
+														<td>R$20.000,00</td>
+													</tr>
+													<tr>
+														<td>2421</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/05/2017</td>
+														<td>R$19.000,00</td>
+													</tr>
+													<tr>
+														<td>5551</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>18/08/2011</td>
+														<td>R$18.000,00</td>
+													</tr>
+													<tr>
+														<td>5421</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>14/04/2018</td>
+														<td>R$17.000,00</td>
+													</tr>
+													<tr>
+														<td>5021</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>17/04/2011</td>
+														<td>R$25.000,00</td>
+													</tr>
+													<tr>
+														<td>5621</td>
+														<td>Banco do Brasil S.A.</td>
+														<td>04/04/2011</td>
+														<td>R$15.500,00</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
+					<!-- /page content -->
+					<!-- footer content -->
+					<footer>
+					<div class="pull-right">
+						Gentelella - Bootstrap Admin Template by <a
+							href="https://colorlib.com">Colorlib</a>
+					</div>
+					<div class="clearfix" />
+					</footer>
+					<!-- /footer content -->
 				</div>
 			</div>
-		</div>
-		<!-- /page content -->
-		<!-- footer content -->
-		<footer>
-		<div class="pull-right">
-			Gentelella - Bootstrap Admin Template by <a
-				href="https://colorlib.com">Colorlib</a>
-		</div>
-		<div class="clearfix" />
-		</footer>
-		<!-- /footer content -->
-		</div>
-		</div>
-		<!-- jQuery -->
-		<script src="resources/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- FastClick -->
-		<script src="resources/fastclick/lib/fastclick.js"></script>
-		<!-- NProgress -->
-		<script src="resources/nprogress/nprogress.js"></script>
-		<!-- iCheck -->
-		<script src="resources/iCheck/icheck.min.js"></script>
-		<!-- Datatables -->
-		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script
-			src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
-		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
-		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script
-			src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script
-			src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script
-			src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-		<script src="resources/jszip/dist/jszip.min.js"></script>
-		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
-		<script src="resources/pdfmake/build/vfs_fonts.js"></script>
-		<!-- Custom Theme Scripts -->
-		<script src="build/js/custom.min.js"></script>
+			<!-- jQuery -->
+			<script src="resources/jquery/dist/jquery.min.js"></script>
+			<!-- Bootstrap -->
+			<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
+			<!-- FastClick -->
+			<script src="resources/fastclick/lib/fastclick.js"></script>
+			<!-- NProgress -->
+			<script src="resources/nprogress/nprogress.js"></script>
+			<!-- iCheck -->
+			<script src="resources/iCheck/icheck.min.js"></script>
+			<!-- Datatables -->
+			<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
+			<script
+				src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+			<script
+				src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+			<script
+				src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+			<script
+				src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
+			<script
+				src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
+			<script
+				src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
+			<script
+				src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+			<script
+				src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+			<script
+				src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+			<script
+				src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+			<script
+				src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+			<script src="resources/jszip/dist/jszip.min.js"></script>
+			<script src="resources/pdfmake/build/pdfmake.min.js"></script>
+			<script src="resources/pdfmake/build/vfs_fonts.js"></script>
+			<!-- Custom Theme Scripts -->
+			<script src="build/js/custom.min.js"></script>
 		</div>
 	</h:body>
 </f:view>
