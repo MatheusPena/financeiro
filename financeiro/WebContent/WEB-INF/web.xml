@@ -57,12 +57,12 @@
     <param-value>true</param-value>
   </context-param>
   <session-config>
-    <session-timeout>3600</session-timeout>
+    <session-timeout>-1</session-timeout>
   </session-config>
-  <error-page>
+  <!--  <error-page>
     <exception-type>javax.faces.application.ViewExpiredException</exception-type>
     <location>/index.xhtml</location>
-  </error-page>
+  </error-page>-->
   <filter>
     <filter-name>gzipResponseFilter</filter-name>
     <filter-class>org.omnifaces.filter.GzipResponseFilter</filter-class>

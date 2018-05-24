@@ -12,6 +12,35 @@
    
 
 <ui:composition>
+<h:head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <!-- Meta, title, CSS, favicons, etc. -->
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="images/favicon.ico" type="image/ico" />
+      <title>Gentelella Alela! |</title>
+      <!-- Bootstrap -->
+      <link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <!-- Font Awesome -->
+      <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+      <!-- NProgress -->
+      <link href="resources/nprogress/nprogress.css" rel="stylesheet" />
+      <!-- iCheck -->
+      <link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
+      <!-- bootstrap-progressbar -->
+      <link href="resources/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" />
+      <!-- JQVMap -->
+      <link href="resources/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+      <!-- bootstrap-daterangepicker -->
+      <link href="resources/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+      <!-- Custom Theme Style -->
+      <link href="build/css/custom.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" 
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" 
+      crossorigin="anonymous" />
+      
+   </h:head>
+
 <div class="nav-md">	
   <div class="container body">
   <div class="main_container">
@@ -43,23 +72,68 @@
                   <h3>General</h3>
                   <ul class="nav side-menu">
                      <li>
-                        <a><i class="fa fa-home" /> Início <span
-                           class="fa fa-chevron-down" /></a>
+                        <a><i class="fa fa-home" /> Início <span class="fa fa-chevron-down" /></a>
                         <ul class="nav child_menu">
                            <li><a href="index.xhtml">Dashboard</a></li>
-                           <li><a href="index3.xhtml">Dashboard3</a></li>
+                           <li><a href="index3.xhtml">Dashboard 2</a></li>
+                        </ul>
+                     </li>
+                      <li>
+                        <a><i class="fa fa-edit"></i>Cadastros<span class="fa fa-chevron-down" /></a>
+                        <ul class="nav child_menu">
+                          <li><a href="cadastro_cliente">Cadastro de Clientes</a></li>
+                           <li><a href="cadastro_vendedores">Cadastro de Vendedores</a></li>
+                           <li><a href="cadastro_fornecedores">Cadastro de Fornecedores</a></li>   
+                           <li><a href="cadastro_plano">Cadastro do Plano de contas</a></li>
+                           <li><a href="cadastro_estabelecimento">Cadastro de Estabelecimento</a></li>
+                           <li><a href="cadastro_rateio">Cadastro de Rateio</a></li>
+                           <li><a href="cadastro_documentos">Cadastro de Documentos</a></li>               
                         </ul>
                      </li>
                      <li>
-                        <a><i class="fa fa-edit" /> Contas a Pagar <span
-                           class="fa fa-chevron-down" /></a>
+                        <a><i class="far fa-address-book" style="font-size:17px;margin-right:7px;">
+                        </i> Grupos<span class="fa fa-chevron-down" /></a>
+                         <ul class="nav child_menu">
+                           <li><a href="grupo_cliente">Grupo de Clientes</a></li>
+                           <li><a href="grupo_vendedores">Grupo de Vendedores</a></li>  
+                           <li><a href="grupo_fornecedores">Grupo de Fornecedores</a></li> 
+                           <li><a href="grupo_estabelecimento">Grupo de Estabelecimentos</a></li>           
+                        </ul>
+                     </li>
+                     <li>
+                        <a><i class="fas fa-book" style="font-size:17px;margin-right:7px;">
+                        </i>Histórico Padrão</a>
+                     </li>
+                     <li>
+                        <a><i class="fas fa-book-open" style="font-size:17px;margin-right:7px;">
+                        </i>Contas Financeiras</a>
+                     </li>
+                     <li>
+                        <a><i class="fas fa-calculator" style="font-size:17px;margin-right:7px;">
+                        </i>Plano Contábil</a>
+                     </li>
+                     <li>
+                        <a><i class="fas fa-chalkboard-teacher" style="font-size:17px;margin-right:7px;">
+                        </i>Conciliação Bancária</a>
+                     </li>
+                     <li>
+                        <a><i class="far fa-calendar-alt" style="font-size:17px;margin-right:7px;">
+                        </i>Adiantamentos</a>
+                     </li>
+                     <li>
+                        <a><i class="far fa-chart-bar" style="font-size:17px;margin-right:7px;">
+                        </i>Estorno de Comissão</a>
+                     </li>
+                     <li>
+                        <a><i class="fa fa-desktop" /> Contas a Pagar
+                        <span class="fa fa-chevron-down" /></a>
                         <ul class="nav child_menu">
-                           <li><a href="despesas.xhtml">Despesas</a></li>
-                           <li>
-                              <a>Comissões<span class="fa fa-chevron-down" /></a>
-                              <ul class="nav child_menu">
-                                 <li class="sub_menu"><a href="abertura_contas_cp.xhtml">Abertura
-                                    de Contas</a>
+                          <li><a href="despesas.xhtml">Despesas</a></li>
+                          <li>
+                             <a>Comissões<span class="fa fa-chevron-down" /></a>
+                             <ul class="nav child_menu">
+                                <li class="sub_menu"><a href="abertura_contas_cp.xhtml">Abertura
+                                   de Contas</a>
                                  </li>
                                  <li><a href="emprestimo_consignado_cp.xhtml">Empréstimo
                                     Consignado</a>
