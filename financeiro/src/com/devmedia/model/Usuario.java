@@ -11,6 +11,7 @@ public class Usuario implements Serializable {
 	private String nome;
 	private String cpf;
 	private Date dataCadastro;
+	private String nascimento;
 	private String descricao;
 	private String logradouro;
 	private String num;
@@ -45,6 +46,7 @@ public class Usuario implements Serializable {
 	private String inss;
 	private String iss;
 	private String indicadorie;
+
 	
 
 	public String getExterior() {
@@ -349,6 +351,14 @@ public class Usuario implements Serializable {
 
 	public void setIndicadorie(String indicadorie) {
 		this.indicadorie = indicadorie;
+	}
+	
+	public String getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(String nascimento) {
+		this.nascimento = nascimento;
 	}
 	
 
