@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Formulário | Vendedores</title>
+		<!-- Bootstrap -->
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<!-- Font Awesome -->
+		<link href="resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" />
+		<!-- NProgress -->
+		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
+		<!-- iCheck -->
+		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
+		<!-- Datatables -->
+		<link
+			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+			rel="stylesheet" />
+		<!-- Custom Theme Style -->
+		<link href="build/css/custom.min.css" rel="stylesheet" />
+	</h:head>
+	<h:body>
+		<!-- /top navigation -->
+		<ui:composition template="template.xhtml">
+			<ui:define name="topnav" />
+			<ui:define name="body">
+				<!-- page content -->
+				<div class="right_col" role="main">
+					<div class="">
+						<div class="clearfix" />
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											Cadastro de Vendedores <small>Cadastre aqui os
+												vendedores</small>
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up" /></a></li>
+										</ul>
+										<div class="clearfix" />
+									</div>
+									<div class="x_content">
+										<br />
+										<h:form id="demo-form2" data-parsley-validate=""
+											class="form-horizontal form-label-left">
+
+											<!-- Dados iniciais -->
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="pessoa2" value="Pessoa" />
+												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:selectOneRadio id="pessoa2"
+														value="#{vendedoresBean.vendedores.pessoa2}">
+														<f:selectItems
+															value="#{vendedoresBean.vendedores.pessoas}" var="pessoa"
+															itemLabel="#{pessoa}&nbsp;&nbsp;" itemValue="#{pessoa}" />
+													</h:selectOneRadio>
+												</label>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputLabel for="cpf" value="CPF/CNPJ *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="cpf"
+														value="#{vendedoresBean.vendedores.cpf}"
+														styleClass="form-control col-md-7 col-xs-12"></p:inputText>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="nome" value="Nome *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="nome"
+														value="#{vendedoresBean.vendedores.nome}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="data" value="Data de nascimento" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputMask mask="99/99/9999" id="data"
+														value="#{vendedoresBean.vendedores.data}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="chave" value="Chave" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="chave"
+														value="#{vendedoresBean.vendedores.chave}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="rg" value="RG" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputMask mask="999999999999-9" id="rg"
+														value="#{vendedoresBean.vendedores.rg}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="emissor" value="Orgão emissor" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="emissor"
+														styleClass="form-control col-md-7 col-xs-12"
+														value="#{vendedoresBean.vendedores.emissor}">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItems
+															value="#{vendedoresBean.vendedores.emissores}" />
+													</h:selectOneMenu>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="sexo" value="Sexo" />
+												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:selectOneRadio id="sexo"
+														value="#{vendedoresBean.vendedores.sexo}">
+														<f:selectItem itemLabel="Masculino&nbsp;&nbsp;"
+															itemValue="Masculino" />
+														<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+													</h:selectOneRadio>
+												</label>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="estado_civil" value="Estado civil" />
+												</label> <label class="control-label col-md-6 col-sm-3 col-xs-12">
+													<h:selectOneRadio id="estado_civil"
+														value="#{vendedoresBean.vendedores.estado_civil}">
+														<f:selectItem itemLabel="Solteiro(a)&nbsp;&nbsp;"
+															itemValue="Solteiro" />
+														<f:selectItem itemLabel="Casado(a)&nbsp;&nbsp;"
+															itemValue="Casado" />
+														<f:selectItem itemLabel="Separado(a)&nbsp;&nbsp;"
+															itemValue="Separado" />
+														<f:selectItem itemLabel="Divorciado(a)&nbsp;&nbsp;"
+															itemValue="Divorciado" />
+														<f:selectItem itemLabel="Viúvo(a)" itemValue="Viúvo" />
+													</h:selectOneRadio>
+												</label>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="agencia" value="Agência *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="agencia"
+														value="#{vendedoresBean.vendedores.agencia}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<!-- Endereço -->
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="rua" value="Rua" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="rua"
+														value="#{vendedoresBean.vendedores.rua}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="cep" value="CEP" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputMask mask="99999-999" id="cep"
+														value="#{vendedoresBean.vendedores.cep}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="numero" value="Número" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="numero"
+														value="#{vendedoresBean.vendedores.numero}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="bairro" value="Bairro" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="bairro"
+														value="#{vendedoresBean.vendedores.bairro}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="cidade" value="Cidade" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="cidade"
+														value="#{vendedoresBean.vendedores.cidade}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="uf" value="UF" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="uf"
+														value="#{vendedoresBean.vendedores.uf}"
+														style="width:120px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItems value="#{vendedoresBean.vendedores.ufs}" />
+													</h:selectOneMenu>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="complemento" value="Complemento" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="complemento"
+														value="#{vendedoresBean.vendedores.complemento}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<!-- Contato -->
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="email" value="E-mail" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="email"
+														value="#{vendedoresBean.vendedores.email}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="telefone" value="Telefone residencial" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputMask mask="(99) 9999-9999" id="telefone"
+														value="#{vendedoresBean.vendedores.telefone}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="cel1" value="Celular" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputMask mask="(99) 99999-9999" id="cel1"
+														value="#{vendedoresBean.vendedores.cel1}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="cel2" value="Outro telefone" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputMask mask="(99) 99999-9999" id="cel2"
+														value="#{vendedoresBean.vendedores.cel2}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<!-- Dados bancários -->
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="banco" value="Banco" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="banco"
+														value="#{vendedoresBean.vendedores.banco}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItem itemLabel="BANCO DO BRASIL"
+															itemValue="BANCO DO BRASIL" />
+														<f:selectItem itemLabel="BANCO DO NORDESTE DO BRASIL S.A."
+															itemValue="BANCO DO NORDESTE DO BRASIL S.A." />
+														<f:selectItem itemLabel="CAIXA ECONÔMICA FEDERAL"
+															itemValue="CAIXA ECONÔMICA FEDERAL" />
+														<f:selectItem itemLabel="BRADESCO" itemValue="BRADESCO" />
+														<f:selectItem itemLabel="BANCO ITAU S.A."
+															itemValue="BANCO ITAU S.A." />
+													</h:selectOneMenu>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="tipo_conta" value="Tipo conta" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="tipo_conta"
+														value="#{vendedoresBean.vendedores.tipo_conta}"
+														style="width:160px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItem itemLabel="Conta corrente"
+															itemValue="Conta corrente" />
+														<f:selectItem itemLabel="Conta poupança"
+															itemValue="Conta poupança" />
+													</h:selectOneMenu>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="agenciabanco" value="Agência bancária" />
+												</label>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<p:inputText id="agenciabanco"
+														value="#{vendedoresBean.vendedores.agenciabanco}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+												<label class="control-label col-md-2 col-sm-3 col-xs-12">
+													<h:outputText for="digagencia" value="Dig. agência" />
+												</label>
+												<div class="col-md-1 col-sm-6 col-xs-12">
+													<p:inputText id="digagencia"
+														value="#{vendedoresBean.vendedores.digagencia}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="conta" value="Conta" />
+												</label>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<p:inputText id="conta"
+														value="#{vendedoresBean.vendedores.conta}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+												<label class="control-label col-md-2 col-sm-3 col-xs-12">
+													<h:outputText for="digconta" value="Dig. conta" />
+												</label>
+												<div class="col-md-1 col-sm-6 col-xs-12">
+													<p:inputText id="digconta"
+														value="#{vendedoresBean.vendedores.digconta}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="ln_solid" />
+											<div class="form-group">
+												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+													<p:commandButton value="Resetar" class="btn btn-primary"
+														type="reset"></p:commandButton>
+													<p:commandButton value="Cadastrar" type="submit"
+														class="btn btn-success"
+														action="#{vendedoresBean.cadastrar()}" update="@form"></p:commandButton>
+												</div>
+											</div>
+										</h:form>
+									</div>
+								</div>
+								<h:form>
+									<div class="row">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<div class="x_panel">
+												<div class="x_title">
+													<h2>
+														Tabela dos Vendedores <small>Exibe os vendedores
+															cadastrados</small>
+													</h2>
+													<ul class="nav navbar-right panel_toolbox">
+														<li><a class="collapse-link"><i
+																class="fa fa-chevron-up" /></a></li>
+													</ul>
+													<div class="clearfix" />
+												</div>
+												<div class="x_content">
+													<table id="datatable-responsive" cellspacing="0"
+														width="100%"
+														class="table table-striped table-bordered dt-responsive nowrap ">
+														<thead>
+															<tr>
+																<th>Pessoa</th>
+																<th>CPF/CNPJ</th>
+																<th>Nome</th>
+																<th>Data de nascimento</th>
+																<th>Chave</th>
+																<th>RG</th>
+																<th>Orgão emissor</th>
+																<th>Sexo</th>
+																<th>Estado civil</th>
+																<th>Agência</th>
+																<th>Rua</th>
+																<th>CEP</th>
+																<th>Número</th>
+																<th>Bairro</th>
+																<th>Cidade</th>
+																<th>UF</th>
+																<th>Complemento</th>
+																<th>E-mail</th>
+																<th>Telefone residencial</th>
+																<th>Celular</th>
+																<th>outro telefone</th>
+																<th>Banco</th>
+																<th>Tipo conta</th>
+																<th>Agência bancária</th>
+																<th>Dig. agência</th>
+																<th>Conta</th>
+																<th>Díg. conta</th>
+															</tr>
+														</thead>
+														<tbody>
+															<c:forEach items="#{vendedoresBean.getVendedor()}"
+																var="usuario" cellspacing="0" width="100%">
+																<tr>
+																	<td>#{vendedoresBean.vendedores.pessoa}</td>
+																	<td>#{vendedoresBean.vendedores.cpf}</td>
+																	<td>#{vendedoresBean.vendedores.nome}</td>
+																	<td>#{vendedoresBean.vendedores.data}</td>
+																	<td>#{vendedoresBean.vendedores.chave}</td>
+																	<td>#{vendedoresBean.vendedores.rg}</td>
+																	<td>#{vendedoresBean.vendedores.emissor}</td>
+																	<td>#{vendedoresBean.vendedores.sexo}</td>
+																	<td>#{vendedoresBean.vendedores.estado_civil}</td>
+																	<td>#{vendedoresBean.vendedores.agencia}</td>
+																	<td>#{vendedoresBean.vendedores.rua}</td>
+																	<td>#{vendedoresBean.vendedores.cep}</td>
+																	<td>#{vendedoresBean.vendedores.numero}</td>
+																	<td>#{vendedoresBean.vendedores.bairro}</td>
+																	<td>#{vendedoresBean.vendedores.cidade}</td>
+																	<td>#{vendedoresBean.vendedores.uf}</td>
+																	<td>#{vendedoresBean.vendedores.complemento}</td>
+																	<td>#{vendedoresBean.vendedores.email}</td>
+																	<td>#{vendedoresBean.vendedores.telefone}</td>
+																	<td>#{vendedoresBean.vendedores.cel1}</td>
+																	<td>#{vendedoresBean.vendedores.cel2}</td>
+																	<td>#{vendedoresBean.vendedores.banco}</td>
+																	<td>#{vendedoresBean.vendedores.tipo_conta}</td>
+																	<td>#{vendedoresBean.vendedores.agenciabanco}</td>
+																	<td>#{vendedoresBean.vendedores.digagencia}</td>
+																	<td>#{vendedoresBean.vendedores.conta}</td>
+																	<td>#{vendedoresBean.vendedores.digconta}</td>
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /page content -->
+			</ui:define>
+		</ui:composition>
+
+		<!-- jQuery -->
+		<script src="resources/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="resources/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="resources/nprogress/nprogress.js"></script>
+		<!-- iCheck -->
+		<script src="resources/iCheck/icheck.min.js"></script>
+		<!-- Datatables -->
+		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script
+			src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script
+			src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script
+			src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script
+			src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script
+			src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script
+			src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script
+			src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script
+			src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="resources/jszip/dist/jszip.min.js"></script>
+		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
+		<script src="resources/pdfmake/build/vfs_fonts.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="build/js/custom.min.js"></script>
+
+	</h:body>
+</f:view>

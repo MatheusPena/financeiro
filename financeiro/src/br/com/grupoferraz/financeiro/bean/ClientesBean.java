@@ -1,6 +1,7 @@
-package controle;
+package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,25 +10,26 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import com.devmedia.model.Connect;
-import com.devmedia.model.Usuario;
+import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.dao.ClientesDAO;
+import br.com.grupoferraz.financeiro.entity.Clientes;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class UsuarioManagedBean implements Serializable {
+public class ClientesBean implements Serializable {
 
-	private Usuario usuario;
+	private Clientes usuario;
 
-	public UsuarioManagedBean() {
-		usuario = new Usuario();
+	public ClientesBean() {
+		usuario = new Clientes();
 	}
 
 	public String cadastraUsuario() throws SQLException {
 
-		Connect con = new Connect();
-
-		if (con.insertUsuario(usuario)) {
+		Connection conexao = ConexaoBD.getConexao();
+		ClientesDAO usuarios = new ClientesDAO ();
+		if (usuarios.insertUsuario(usuario)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Usuário cadastrado com sucesso!"));
 		} else {
@@ -35,24 +37,23 @@ public class UsuarioManagedBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Erro no cadastro de usuário!"));
 
 		}
-		con.closeConnection();
+		conexao.close();
 
 		return "";
 	}
 
-	public List<Usuario> getUsuarios() throws SQLException {
-
-		Connect con = new Connect();
-		List<Usuario> listaUsuarios = con.listUsuarios();
+	public List<Clientes> getUsuarios() throws SQLException {
+		ClientesDAO usuarios = new ClientesDAO ();
+		List<Clientes> listaUsuarios = usuarios.listUsuarios();
 
 		return listaUsuarios;
 	}
 
-	public Usuario getUsuario() {
+	public Clientes getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(Clientes usuario) {
 		this.usuario = usuario;
 	}
 }

@@ -103,14 +103,14 @@ table.dataTable > tbody > tr.child ul li {
   padding: 0.5em 0;
 }
 table.dataTable > tbody > tr.child ul li:first-child {
-  padding-right: 0;
+  padding-top: 0;
 }
 table.dataTable > tbody > tr.child ul li:last-child {
   border-bottom: none;
 }
 table.dataTable > tbody > tr.child span.dtr-title {
   display: inline-block;
-  min-width: 300px;
+  min-width: 75px;
   font-weight: bold;
 }
 

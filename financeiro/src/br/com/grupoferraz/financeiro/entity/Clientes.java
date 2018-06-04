@@ -1,11 +1,11 @@
-package com.devmedia.model;
+package br.com.grupoferraz.financeiro.entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean
 @SuppressWarnings("serial")
-public class Usuario implements Serializable {
+public class Clientes implements Serializable {
  
 	private int id;
 	private String nome;
