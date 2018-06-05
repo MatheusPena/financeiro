@@ -71,7 +71,7 @@
 										<br />
 										<h:form id="demo-form2" data-parsley-validate=""
 											class="form-horizontal form-label-left">
-
+											<p:messages id="messages" />
 											<!-- Dados iniciais -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -92,7 +92,8 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf"
 														value="#{vendedoresBean.vendedores.cpf}"
-														styleClass="form-control col-md-7 col-xs-12"></p:inputText>
+														styleClass="form-control col-md-7 col-xs-12"
+														required="true"></p:inputText>
 												</div>
 											</div>
 											<div class="form-group">
@@ -102,7 +103,8 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome"
 														value="#{vendedoresBean.vendedores.nome}"
-														styleClass="form-control col-md-7 col-xs-12" />
+														styleClass="form-control col-md-7 col-xs-12"
+														required="true" />
 												</div>
 											</div>
 											<div class="form-group">
@@ -186,7 +188,8 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="agencia"
 														value="#{vendedoresBean.vendedores.agencia}"
-														styleClass="form-control col-md-7 col-xs-12" />
+														styleClass="form-control col-md-7 col-xs-12"
+														required="true" />
 												</div>
 											</div>
 											<!-- Endereço -->
@@ -387,8 +390,8 @@
 													<p:commandButton value="Resetar" class="btn btn-primary"
 														type="reset"></p:commandButton>
 													<p:commandButton value="Cadastrar" type="submit"
-														class="btn btn-success"
-														action="#{vendedoresBean.cadastrar()}" update="@form"></p:commandButton>
+														update="messages" class="btn btn-success"
+														action="#{vendedoresBean.cadastrar()}"></p:commandButton>
 												</div>
 											</div>
 										</h:form>

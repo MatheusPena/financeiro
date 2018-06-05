@@ -1,7 +1,6 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,19 +24,19 @@ public class ClientesBean implements Serializable {
 		usuario = new Clientes();
 	}
 
-	public String cadastraUsuario() throws SQLException {
+	public String cadastraUsuario() {
 
-		Connection conexao = ConexaoBD.getConexao();
+		ConexaoBD.getConexao();
 		ClientesDAO usuarios = new ClientesDAO ();
 		if (usuarios.insertUsuario(usuario)) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso!", "Usuário cadastrado com sucesso!"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente cadastrado com sucesso", "Sucesso!"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Erro no cadastro de usuário!"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do cliente!", "Erro!"));
 
 		}
-		conexao.close();
+		ConexaoBD.fecharConexao();
 
 		return "";
 	}

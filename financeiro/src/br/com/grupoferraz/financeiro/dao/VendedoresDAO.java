@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class VendedoresDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public void salvar(Vendedores vendedores) {
+	public boolean salvar(Vendedores vendedores) {
 		try {
 			PreparedStatement ps = conexao.prepareCall(
 					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,`cel1`,`cel2`,`banco`,`tipoconta`,`agenciabanco`,`digagencia`,`conta`,`digconta`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
@@ -47,9 +47,13 @@ public class VendedoresDAO {
 			ps.setInt(26, vendedores.getConta());
 			ps.setInt(27, vendedores.getDigconta());
 			ps.execute();
-			ConexaoBD.fecharConexao();
-		} catch (SQLException e) {
-			e.printStackTrace();
+			return true;
+			
+		}  catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+			return false;
+
 		}
 	}
 
