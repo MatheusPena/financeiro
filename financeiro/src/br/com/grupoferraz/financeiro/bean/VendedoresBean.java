@@ -22,6 +22,7 @@ public class VendedoresBean implements Serializable {
 
 	public VendedoresBean() {
 		vendedores = new Vendedores();
+		getVendedorr();
 	}
 
 	public String cadastrar() {
@@ -30,10 +31,10 @@ public class VendedoresBean implements Serializable {
 		VendedoresDAO vendedoresDAO = new VendedoresDAO();
 		if (vendedoresDAO.salvar(vendedores)) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário cadastrado com sucesso!", "Sucesso!"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Vendedor cadastrado com sucesso!", "Sucesso!"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro de usuário!", "Erro!"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do vendedor!", "Erro!"));
 
 		}
 		ConexaoBD.fecharConexao();
@@ -41,6 +42,11 @@ public class VendedoresBean implements Serializable {
 		return "";
 	}
 
+	public void getVendedorr()  {
+		VendedoresDAO vendedoresDAO = new VendedoresDAO ();
+		vendedor = vendedoresDAO.listVendedores();
+	}
+	
 	public Vendedores getVendedores() {
 		return vendedores;
 	}
