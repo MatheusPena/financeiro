@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoBD {
-	private static final String usuario = "root";
-	private static final String senha = "1234567";
+	private static final String user = "root";
+	private static final String password = "1234567";
 	private static final String url = "jdbc:mysql://localhost:3306/financeiro";
 	
 	public static Connection conexao;
@@ -20,7 +20,7 @@ public class ConexaoBD {
 				e.printStackTrace();
 			}
 			try {
-				conexao = DriverManager.getConnection(url,usuario,senha);
+				conexao = DriverManager.getConnection(url,user,password);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -1,7 +1,6 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -9,9 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.dao.ClientesDAO;
 import br.com.grupoferraz.financeiro.entity.Clientes;
+import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -19,9 +18,11 @@ import br.com.grupoferraz.financeiro.entity.Clientes;
 public class ClientesBean implements Serializable {
 
 	private Clientes usuario;
+	private List<Clientes> clientes;
 
 	public ClientesBean() {
 		usuario = new Clientes();
+		getUsuarios();
 	}
 
 	public String cadastraUsuario() {
@@ -41,11 +42,9 @@ public class ClientesBean implements Serializable {
 		return "";
 	}
 
-	public List<Clientes> getUsuarios() throws SQLException {
+	public void getUsuarios()  {
 		ClientesDAO usuarios = new ClientesDAO ();
-		List<Clientes> listaUsuarios = usuarios.listUsuarios();
-
-		return listaUsuarios;
+		clientes = usuarios.listUsuarios();
 	}
 
 	public Clientes getUsuario() {
@@ -54,5 +53,13 @@ public class ClientesBean implements Serializable {
 
 	public void setUsuario(Clientes usuario) {
 		this.usuario = usuario;
+	}
+
+	public List<Clientes> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Clientes> clientes) {
+		this.clientes = clientes;
 	}
 }

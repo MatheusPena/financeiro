@@ -26,16 +26,21 @@ public class ClientesDAO {
 			// st = con.createStatement();
 
 			PreparedStatement preparedStatement = conexao
-					.prepareStatement("insert into usuario (id, nome, cpf, logradouro, num, com, bairro, cep,"
+					.prepareStatement("insert into usuario (id, nome, cpf, nascimento, descricao,"
+							+ "data_cadastro, logradouro, num, com, bairro, cep,"
 							+ "cidade, estado, ie, telefone, celular, fax, email, "
-							+ "site, contato, codigorec, codigogc, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior, "
-							+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, indicadorie,"
-							+ "descricao, data_cadastro, nascimento)"
+							+ "site, contato, codigorec, codigogc, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"
+							+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, indicadorie)"
 							+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			preparedStatement.setInt(1, usuario.getId());
 			preparedStatement.setString(2, usuario.getNome());
 			preparedStatement.setString(3, usuario.getCpf());
-			preparedStatement.setString(4, usuario.getNascimento());
+			Date dataNascimento = usuario.getNascimento();
+			long t = 0;
+			if (dataNascimento != null ) {
+				t = dataNascimento.getTime();	
+			}
+			preparedStatement.setDate(4, new java.sql.Date(t));
 			preparedStatement.setString(5, "" + usuario.getDescricao());
 			preparedStatement.setDate(6, new java.sql.Date(new Date().getTime()));
 			preparedStatement.setString(7, usuario.getLogradouro());
@@ -59,7 +64,7 @@ public class ClientesDAO {
 			preparedStatement.setString(25, usuario.getNomefantasia());
 			preparedStatement.setString(26, usuario.getRg());
 			preparedStatement.setString(27, usuario.getCpfcp());
-			preparedStatement.setString(28, usuario.getExterior());
+			preparedStatement.setByte(28, usuario.getExterior());
 			preparedStatement.setString(29, usuario.getContabil());
 			preparedStatement.setString(30, usuario.getDebito());
 			preparedStatement.setString(31, usuario.getNf());
@@ -92,74 +97,64 @@ public class ClientesDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from usuario ";
+			String sql = "select id, nome, cpf, nascimento, descricao," 
+			+ "data_cadastro, logradouro, num, com, bairro, cep,"  
+			+ "cidade, estado, ie, telefone, celular, fax, email,"  
+			+ "site, contato, codigorec, codigogc, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"  
+			+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, indicadorie from usuario ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
 				Clientes usuario = new Clientes();
-				usuario.setId(rs.getInt(1));
-				usuario.setNome(rs.getString(2));
-				usuario.setCpf(rs.getString(3));
-				usuario.setNascimento(rs.getString(4));
-				usuario.setDescricao(rs.getString(5));
-				usuario.setDataCadastro(rs.getDate(6));
-				usuario.setLogradouro(rs.getString(7));
-				usuario.setNum(rs.getString(8));
-				usuario.setCom(rs.getString(9));
-				usuario.setBairro(rs.getString(10));
-				usuario.setCep(rs.getString(11));
-				usuario.setCidade(rs.getString(12));
-				usuario.setEstado(rs.getString(13));
-				usuario.setIe(rs.getString(14));
-				usuario.setTelefone(rs.getString(15));
-				usuario.setCelular(rs.getString(16));
-				usuario.setFax(rs.getString(17));
-				usuario.setEmail(rs.getString(18));
-				usuario.setSite(rs.getString(19));
-				usuario.setContato(rs.getString(20));
-				usuario.setCodigorec(rs.getString(21));
-				usuario.setCodigogc(rs.getString(22));
-				usuario.setCodigoac(rs.getString(23));
-				usuario.setCodigorep(rs.getString(24));
-				usuario.setNomefantasia(rs.getString(25));
-				usuario.setRg(rs.getString(26));
-				usuario.setCpfcp(rs.getString(27));
-				usuario.setExterior(rs.getString(28));
-				usuario.setContabil(rs.getString(29));
-				usuario.setDebito(rs.getString(30));
-				usuario.setNf(rs.getString(31));
-				usuario.setIdent(rs.getString(32));
-				usuario.setDocidex(rs.getString(33));
-				usuario.setInsc(rs.getString(34));
-				usuario.setCodigopais(rs.getString(35));
-				usuario.setIseninscr(rs.getString(36));
-				usuario.setInss(rs.getString(37));
-				usuario.setIss(rs.getString(38));
-				usuario.setIndicadorie(rs.getString(39));
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setCpf(rs.getString("cpf"));
+				usuario.setNascimento(rs.getDate("nascimento"));
+				usuario.setDescricao(rs.getString("descricao"));
+				usuario.setDataCadastro(rs.getDate("data_cadastro"));
+				usuario.setLogradouro(rs.getString("logradouro"));
+				usuario.setNum(rs.getString("num"));
+				usuario.setCom(rs.getString("com"));
+				usuario.setBairro(rs.getString("bairro"));
+				usuario.setCep(rs.getString("cep"));
+				usuario.setCidade(rs.getString("cidade"));
+				usuario.setEstado(rs.getString("estado"));
+				usuario.setIe(rs.getString("ie"));
+				usuario.setTelefone(rs.getString("telefone"));
+				usuario.setCelular(rs.getString("celular"));
+				usuario.setFax(rs.getString("fax"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setSite(rs.getString("site"));
+				usuario.setContato(rs.getString("contato"));
+				usuario.setCodigorec(rs.getString("codigorec"));
+				usuario.setCodigogc(rs.getString("codigogc"));
+				usuario.setCodigoac(rs.getString("codigoac"));
+				usuario.setCodigorep(rs.getString("codigorep"));
+				usuario.setNomefantasia(rs.getString("nomefantasia"));
+				usuario.setRg(rs.getString("rg"));
+				usuario.setCpfcp(rs.getString("cpfcp"));
+				usuario.setExterior(rs.getByte("exterior"));
+				usuario.setContabil(rs.getString("contabil"));
+				usuario.setDebito(rs.getString("debito"));
+				usuario.setNf(rs.getString("nf"));
+				usuario.setIdent(rs.getString("ident"));
+				usuario.setDocidex(rs.getString("docidex"));
+				usuario.setInsc(rs.getString("insc"));
+				usuario.setCodigopais(rs.getString("codigopais"));
+				usuario.setIseninscr(rs.getString("iseninscr"));
+				usuario.setInss(rs.getString("inss"));
+				usuario.setIss(rs.getString("iss"));
+				usuario.setIndicadorie(rs.getString("indicadorie"));
 				lista.add(usuario);
 			}
+			
 
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());
 			lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
 		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (st != null) {
-					st.close();
-				}
-				if (conexao != null) {
-					conexao.close();
-				}
-
-			} catch (SQLException ex) {
-				Logger lgr = Logger.getLogger(Connection.class.getName());
-				lgr.log(Level.WARNING, ex.getMessage(), ex);
-			}
 		}
 		return lista;
 	}
