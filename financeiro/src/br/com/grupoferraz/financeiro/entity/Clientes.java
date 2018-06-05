@@ -11,7 +11,7 @@ public class Clientes implements Serializable {
 	private String nome;
 	private String cpf;
 	private Date dataCadastro;
-	private String nascimento;
+	private Date nascimento;
 	private String descricao;
 	private String logradouro;
 	private String num;
@@ -34,7 +34,7 @@ public class Clientes implements Serializable {
 	private String nomefantasia;
 	private String rg;
 	private String cpfcp;
-	private String exterior;
+	private byte exterior;
 	private String contabil; 
 	private String debito;
 	private String nf;
@@ -49,11 +49,11 @@ public class Clientes implements Serializable {
 
 	
 
-	public String getExterior() {
+	public byte getExterior() {
         return exterior;
     }
  
-    public void setExterior(String exterior) {
+    public void setExterior(byte exterior) {
         this.exterior = exterior;
     }
 	
@@ -353,11 +353,11 @@ public class Clientes implements Serializable {
 		this.indicadorie = indicadorie;
 	}
 	
-	public String getNascimento() {
+	public Date getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(String nascimento) {
+	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
 	
