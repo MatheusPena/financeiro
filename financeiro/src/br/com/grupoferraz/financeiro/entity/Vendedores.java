@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class Vendedores {
 	private String pessoa;
-	private String pessoa2;
 	private List<String> pessoas;
 	private String cpf;
 	private String nome;
@@ -119,14 +118,6 @@ public class Vendedores {
 
 	public void setPessoa(String pessoa) {
 		this.pessoa = pessoa;
-	}
-
-	public String getPessoa2() {
-		return pessoa2;
-	}
-
-	public void setPessoa2(String pessoa2) {
-		this.pessoa2 = pessoa2;
 	}
 
 	public List<String> getPessoas() {

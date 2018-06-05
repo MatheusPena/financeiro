@@ -19,7 +19,7 @@ public class VendedoresDAO {
 			PreparedStatement ps = conexao.prepareCall(
 					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,`cel1`,`cel2`,`banco`,`tipoconta`,`agenciabanco`,`digagencia`,`conta`,`digconta`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
 							+ "");
-			ps.setString(1, vendedores.getPessoa2());
+			ps.setString(1, vendedores.getPessoa());
 			ps.setString(2, vendedores.getCpf());
 			ps.setString(3, vendedores.getNome());
 			ps.setString(4, vendedores.getData());
@@ -73,7 +73,7 @@ public class VendedoresDAO {
 			while (rs.next()) {
 
 				Vendedores vendedores = new Vendedores();
-				vendedores.setPessoa2(rs.getString(1));
+				vendedores.setPessoa(rs.getString(1));
 				vendedores.setCpf(rs.getString(2));
 				vendedores.setNome(rs.getString(3));
 				vendedores.setData(rs.getString(4));
@@ -115,9 +115,9 @@ public class VendedoresDAO {
 				if (st != null) {
 					st.close();
 				}
-				if (conexao != null) {
-					conexao.close();
-				}
+//				if (conexao != null) {
+//					conexao.close();
+//				}
 
 			} catch (SQLException ex) {
 				Logger lgr = Logger.getLogger(Connection.class.getName());

@@ -75,10 +75,10 @@
 											<!-- Dados iniciais -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="pessoa2" value="Pessoa" />
+													<h:outputText for="pessoa" value="Pessoa" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:selectOneRadio id="pessoa2"
-														value="#{vendedoresBean.vendedores.pessoa2}">
+													<h:selectOneRadio id="pessoa"
+														value="#{vendedoresBean.vendedores.pessoa}">
 														<f:selectItems
 															value="#{vendedoresBean.vendedores.pessoas}" var="pessoa"
 															itemLabel="#{pessoa}&nbsp;&nbsp;" itemValue="#{pessoa}" />
@@ -390,7 +390,7 @@
 													<p:commandButton value="Resetar" class="btn btn-primary"
 														type="reset"></p:commandButton>
 													<p:commandButton value="Cadastrar" type="submit"
-														update="messages" class="btn btn-success"
+														update="messages @form" class="btn btn-success"
 														action="#{vendedoresBean.cadastrar()}" onclick="window.location='#Campo'"></p:commandButton>
 												</div>
 											</div>
@@ -451,33 +451,33 @@
 															<c:forEach items="#{vendedoresBean.vendedor}"
 																var="vendedor" cellspacing="0" width="100%">
 																<tr>
-																	<td>#{vendedores.pessoa}</td>
-																	<td>#{vendedores.cpf}</td>
-																	<td>#{vendedores.nome}</td>
-																	<td>#{vendedores.data}</td>
-																	<td>#{vendedores.chave}</td>
-																	<td>#{vendedores.rg}</td>
-																	<td>#{vendedores.emissor}</td>
-																	<td>#{vendedores.sexo}</td>
-																	<td>#{vendedores.estado_civil}</td>
-																	<td>#{vendedores.agencia}</td>
-																	<td>#{vendedores.rua}</td>
-																	<td>#{vendedores.cep}</td>
-																	<td>#{vendedores.numero}</td>
-																	<td>#{vendedores.bairro}</td>
-																	<td>#{vendedores.cidade}</td>
-																	<td>#{vendedores.uf}</td>
-																	<td>#{vendedores.complemento}</td>
-																	<td>#{vendedores.email}</td>
-																	<td>#{vendedores.telefone}</td>
-																	<td>#{vendedores.cel1}</td>
-																	<td>#{vendedores.cel2}</td>
-																	<td>#{vendedores.banco}</td>
-																	<td>#{vendedores.tipo_conta}</td>
-																	<td>#{vendedores.agenciabanco}</td>
-																	<td>#{vendedores.digagencia}</td>
-																	<td>#{vendedores.conta}</td>
-																	<td>#{vendedores.digconta}</td>
+																	<td>#{vendedor.pessoa}</td>
+																	<td>#{vendedor.cpf}</td>
+																	<td>#{vendedor.nome}</td>
+																	<td>#{vendedor.data}</td>
+																	<td>#{vendedor.chave}</td>
+																	<td>#{vendedor.rg}</td>
+																	<td>#{vendedor.emissor}</td>
+																	<td>#{vendedor.sexo}</td>
+																	<td>#{vendedor.estado_civil}</td>
+																	<td>#{vendedor.agencia}</td>
+																	<td>#{vendedor.rua}</td>
+																	<td>#{vendedor.cep}</td>
+																	<td>#{vendedor.numero}</td>
+																	<td>#{vendedor.bairro}</td>
+																	<td>#{vendedor.cidade}</td>
+																	<td>#{vendedor.uf}</td>
+																	<td>#{vendedor.complemento}</td>
+																	<td>#{vendedor.email}</td>
+																	<td>#{vendedor.telefone}</td>
+																	<td>#{vendedor.cel1}</td>
+																	<td>#{vendedor.cel2}</td>
+																	<td>#{vendedor.banco}</td>
+																	<td>#{vendedor.tipo_conta}</td>
+																	<td>#{vendedor.agenciabanco}</td>
+																	<td>#{vendedor.digagencia}</td>
+																	<td>#{vendedor.conta}</td>
+																	<td>#{vendedor.digconta}</td>
 																</tr>
 															</c:forEach>
 														</tbody>
