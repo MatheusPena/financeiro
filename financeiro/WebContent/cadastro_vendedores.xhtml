@@ -69,7 +69,7 @@
 									</div>
 									<div class="x_content">
 										<br />
-										<h:form id="demo-form2" data-parsley-validate=""
+										<h:form id="Campo" data-parsley-validate=""
 											class="form-horizontal form-label-left">
 											<p:messages id="messages" />
 											<!-- Dados iniciais -->
@@ -391,7 +391,7 @@
 														type="reset"></p:commandButton>
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
-														action="#{vendedoresBean.cadastrar()}"></p:commandButton>
+														action="#{vendedoresBean.cadastrar()}" onclick="window.location='#Campo'"></p:commandButton>
 												</div>
 											</div>
 										</h:form>
@@ -449,7 +449,7 @@
 														</thead>
 														<tbody>
 															<c:forEach items="#{vendedoresBean.getVendedor()}"
-																var="usuario" cellspacing="0" width="100%">
+																var="vendedor" cellspacing="0" width="100%">
 																<tr>
 																	<td>#{vendedoresBean.vendedores.pessoa}</td>
 																	<td>#{vendedoresBean.vendedores.cpf}</td>
