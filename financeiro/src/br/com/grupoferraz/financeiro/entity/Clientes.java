@@ -1,5 +1,6 @@
 package br.com.grupoferraz.financeiro.entity;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 
@@ -7,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 @SuppressWarnings("serial")
 public class Clientes implements Serializable {
  
-	private int id;
+	//private int id;
 	private String nome;
 	private String cpf;
 	private Date dataCadastro;
@@ -45,6 +46,7 @@ public class Clientes implements Serializable {
 	private String iseninscr;
 	private String inss;
 	private String iss;
+	private BigDecimal aliquota;
 	private String indicadorie;
 
 	
@@ -56,14 +58,6 @@ public class Clientes implements Serializable {
     public void setExterior(byte exterior) {
         this.exterior = exterior;
     }
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getNome() {
 		return nome;
@@ -343,6 +337,14 @@ public class Clientes implements Serializable {
 
 	public void setIss(String iss) {
 		this.iss = iss;
+	}
+
+	public BigDecimal getAliquota() {
+		return aliquota;
+	}
+
+	public void setAliquota(BigDecimal aliquota) {
+		this.aliquota = aliquota;
 	}
 
 	public String getIndicadorie() {

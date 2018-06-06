@@ -26,55 +26,55 @@ public class ClientesDAO {
 			// st = con.createStatement();
 
 			PreparedStatement preparedStatement = conexao
-					.prepareStatement("insert into usuario (id, nome, cpf, nascimento, descricao,"
+					.prepareStatement("insert into usuario (nome, cpf, nascimento, descricao,"
 							+ "data_cadastro, logradouro, num, com, bairro, cep,"
 							+ "cidade, estado, ie, telefone, celular, fax, email, "
 							+ "site, contato, codigorec, codigogc, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"
-							+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, indicadorie)"
+							+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, aliquota,indicadorie)"
 							+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			preparedStatement.setInt(1, usuario.getId());
-			preparedStatement.setString(2, usuario.getNome());
-			preparedStatement.setString(3, usuario.getCpf());
+			preparedStatement.setString(1, usuario.getNome());
+			preparedStatement.setString(2, usuario.getCpf());
 			Date dataNascimento = usuario.getNascimento();
 			long t = 0;
 			if (dataNascimento != null ) {
 				t = dataNascimento.getTime();	
 			}
-			preparedStatement.setDate(4, new java.sql.Date(t));
-			preparedStatement.setString(5, "" + usuario.getDescricao());
-			preparedStatement.setDate(6, new java.sql.Date(new Date().getTime()));
-			preparedStatement.setString(7, usuario.getLogradouro());
-			preparedStatement.setString(8, usuario.getNum());
-			preparedStatement.setString(9, usuario.getCom());
-			preparedStatement.setString(10, usuario.getBairro());
-			preparedStatement.setString(11, usuario.getCep());
-			preparedStatement.setString(12, usuario.getCidade());
-			preparedStatement.setString(13, usuario.getEstado());
-			preparedStatement.setString(14, usuario.getIe());
-			preparedStatement.setString(15, usuario.getTelefone());
-			preparedStatement.setString(16, usuario.getCelular());
-			preparedStatement.setString(17, usuario.getFax());
-			preparedStatement.setString(18, usuario.getEmail());
-			preparedStatement.setString(19, usuario.getSite());
-			preparedStatement.setString(20, usuario.getContato());
-			preparedStatement.setString(21, usuario.getCodigorec());
-			preparedStatement.setString(22, usuario.getCodigogc());
-			preparedStatement.setString(23, usuario.getCodigoac());
-			preparedStatement.setString(24, usuario.getCodigorep());
-			preparedStatement.setString(25, usuario.getNomefantasia());
-			preparedStatement.setString(26, usuario.getRg());
-			preparedStatement.setString(27, usuario.getCpfcp());
-			preparedStatement.setByte(28, usuario.getExterior());
-			preparedStatement.setString(29, usuario.getContabil());
-			preparedStatement.setString(30, usuario.getDebito());
-			preparedStatement.setString(31, usuario.getNf());
-			preparedStatement.setString(32, usuario.getIdent());
-			preparedStatement.setString(33, usuario.getDocidex());
-			preparedStatement.setString(34, usuario.getInsc());
-			preparedStatement.setString(35, usuario.getCodigopais());
-			preparedStatement.setString(36, usuario.getIseninscr());
-			preparedStatement.setString(37, usuario.getInss());
-			preparedStatement.setString(38, usuario.getIss());
+			preparedStatement.setDate(3, new java.sql.Date(t));
+			preparedStatement.setString(4, "" + usuario.getDescricao());
+			preparedStatement.setDate(5, new java.sql.Date(new Date().getTime()));
+			preparedStatement.setString(6, usuario.getLogradouro());
+			preparedStatement.setString(7, usuario.getNum());
+			preparedStatement.setString(8, usuario.getCom());
+			preparedStatement.setString(9, usuario.getBairro());
+			preparedStatement.setString(10, usuario.getCep());
+			preparedStatement.setString(11, usuario.getCidade());
+			preparedStatement.setString(12, usuario.getEstado());
+			preparedStatement.setString(13, usuario.getIe());
+			preparedStatement.setString(14, usuario.getTelefone());
+			preparedStatement.setString(15, usuario.getCelular());
+			preparedStatement.setString(16, usuario.getFax());
+			preparedStatement.setString(17, usuario.getEmail());
+			preparedStatement.setString(18, usuario.getSite());
+			preparedStatement.setString(19, usuario.getContato());
+			preparedStatement.setString(20, usuario.getCodigorec());
+			preparedStatement.setString(21, usuario.getCodigogc());
+			preparedStatement.setString(22, usuario.getCodigoac());
+			preparedStatement.setString(23, usuario.getCodigorep());
+			preparedStatement.setString(24, usuario.getNomefantasia());
+			preparedStatement.setString(25, usuario.getRg());
+			preparedStatement.setString(26, usuario.getCpfcp());
+			preparedStatement.setByte(27, usuario.getExterior());
+			preparedStatement.setString(28, usuario.getContabil());
+			preparedStatement.setString(29, usuario.getDebito());
+			preparedStatement.setString(30, usuario.getNf());
+			preparedStatement.setString(31, usuario.getIdent());
+			preparedStatement.setString(32, usuario.getDocidex());
+			preparedStatement.setString(33, usuario.getInsc());
+			preparedStatement.setString(34, usuario.getCodigopais());
+			preparedStatement.setString(35, usuario.getIseninscr());
+			preparedStatement.setString(36, usuario.getInss());
+			preparedStatement.setString(37, usuario.getIss());
+			preparedStatement.setBigDecimal(38, usuario.getAliquota());
 			preparedStatement.setString(39, usuario.getIndicadorie());
 
 			preparedStatement.execute();
@@ -97,17 +97,16 @@ public class ClientesDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select id, nome, cpf, nascimento, descricao," 
+			String sql = "select nome, cpf, nascimento, descricao," 
 			+ "data_cadastro, logradouro, num, com, bairro, cep,"  
 			+ "cidade, estado, ie, telefone, celular, fax, email,"  
 			+ "site, contato, codigorec, codigogc, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"  
-			+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, indicadorie from usuario ";
+			+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, aliquota, indicadorie from usuario ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
 				Clientes usuario = new Clientes();
-				usuario.setId(rs.getInt("id"));
 				usuario.setNome(rs.getString("nome"));
 				usuario.setCpf(rs.getString("cpf"));
 				usuario.setNascimento(rs.getDate("nascimento"));
@@ -145,6 +144,7 @@ public class ClientesDAO {
 				usuario.setIseninscr(rs.getString("iseninscr"));
 				usuario.setInss(rs.getString("inss"));
 				usuario.setIss(rs.getString("iss"));
+				usuario.setAliquota(rs.getBigDecimal("aliquota"));
 				usuario.setIndicadorie(rs.getString("indicadorie"));
 				lista.add(usuario);
 			}
