@@ -1,11 +1,12 @@
 package br.com.grupoferraz.financeiro.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class Fornecedores {
 	private String nome;
 	private String cpf;
-	private String dtnascimento;
+	private Date dtnascimento;
 	private String logradouro;
 	private String num;
 	private String com;
@@ -54,10 +55,10 @@ public class Fornecedores {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public String getDtnascimento() {
+	public Date getDtnascimento() {
 		return dtnascimento;
 	}
-	public void setDtnascimento(String dtnascimento) {
+	public void setDtnascimento(Date dtnascimento) {
 		this.dtnascimento = dtnascimento;
 	}
 	public String getLogradouro() {

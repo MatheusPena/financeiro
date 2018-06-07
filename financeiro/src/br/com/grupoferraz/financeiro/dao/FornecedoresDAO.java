@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,12 @@ public class FornecedoresDAO {
 					+ "");
 			ps.setString(1, fornecedores.getNome());
 			ps.setString(2, fornecedores.getCpf());
-			ps.setString(3, fornecedores.getDtnascimento());
+			Date dataNascimento = fornecedores.getDtnascimento();
+			long t = 0;
+			if (dataNascimento != null ) {
+				t = dataNascimento.getTime();	
+			}
+			ps.setDate(3, new java.sql.Date(t));
 			ps.setString(4, fornecedores.getLogradouro());
 			ps.setString(5, fornecedores.getNum());
 			ps.setString(6, fornecedores.getCom());
@@ -94,7 +100,7 @@ public class FornecedoresDAO {
 				Fornecedores fornecedores = new Fornecedores();
 				fornecedores.setNome(rs.getString(1));
 				fornecedores.setCpf(rs.getString(2));
-				fornecedores.setDtnascimento(rs.getString(3));
+				fornecedores.setDtnascimento(rs.getDate(3));
 				fornecedores.setLogradouro(rs.getString(4));
 				fornecedores.setNum(rs.getString(5));
 				fornecedores.setCom(rs.getString(6));

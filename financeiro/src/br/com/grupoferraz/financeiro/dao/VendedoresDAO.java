@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,12 +18,17 @@ public class VendedoresDAO {
 	public boolean salvar(Vendedores vendedores) {
 		try {
 			PreparedStatement ps = conexao.prepareCall(
-					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,`cel1`,`cel2`,`banco`,`tipoconta`,`agenciabanco`,`digagencia`,`conta`,`digconta`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
+					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`data`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,`cel1`,`cel2`,`banco`,`tipoconta`,`agenciabanco`,`digagencia`,`conta`,`digconta`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
 							+ "");
 			ps.setString(1, vendedores.getPessoa());
 			ps.setString(2, vendedores.getCpf());
 			ps.setString(3, vendedores.getNome());
-			ps.setString(4, vendedores.getData());
+			Date data = vendedores.getData();
+			long t = 0;
+			if (data != null ) {
+				t = data.getTime();	
+			}
+			ps.setDate(4,new java.sql.Date(t));
 			ps.setString(5, vendedores.getChave());
 			ps.setString(6, vendedores.getRg());
 			ps.setString(7, vendedores.getEmissor());
@@ -76,7 +82,7 @@ public class VendedoresDAO {
 				vendedores.setPessoa(rs.getString(1));
 				vendedores.setCpf(rs.getString(2));
 				vendedores.setNome(rs.getString(3));
-				vendedores.setData(rs.getString(4));
+				vendedores.setData(rs.getDate(4));
 				vendedores.setChave(rs.getString(5));
 				vendedores.setRg(rs.getString(6));
 				vendedores.setEmissor(rs.getString(7));

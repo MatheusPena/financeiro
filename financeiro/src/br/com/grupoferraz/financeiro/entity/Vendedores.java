@@ -1,6 +1,7 @@
 package br.com.grupoferraz.financeiro.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ public class Vendedores {
 	private List<String> pessoas;
 	private String cpf;
 	private String nome;
-	private String data;
+	private Date data;
 	private String chave;
 	private String rg;
 	private String emissor;
@@ -144,11 +145,11 @@ public class Vendedores {
 		this.nome = nome;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
