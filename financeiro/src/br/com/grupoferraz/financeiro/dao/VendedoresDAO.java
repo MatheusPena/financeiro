@@ -41,7 +41,7 @@ public class VendedoresDAO {
 			ps.setString(20, vendedores.getCel1());
 			ps.setString(21, vendedores.getCel2());
 			ps.setString(22, vendedores.getBanco());
-			ps.setInt(23, vendedores.getConta());
+			ps.setString(23, vendedores.getTipo_conta());
 			ps.setInt(24, vendedores.getAgenciabanco());
 			ps.setInt(25, vendedores.getDigagencia());
 			ps.setInt(26, vendedores.getConta());

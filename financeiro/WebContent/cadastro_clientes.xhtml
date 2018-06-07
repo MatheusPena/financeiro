@@ -168,7 +168,8 @@
 													<p:outputLabel for="cep" value="CEP:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="cep" value="#{clientesBean.usuario.cep}"
+													<p:inputMask mask="99999-999" id="cep"
+														value="#{clientesBean.usuario.cep}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -200,7 +201,7 @@
 													<p:outputLabel for="ie" value="IE:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="ie" value="#{clientesBean.usuario.ie}"
+													<p:inputMask mask="99.999.999-9" id="ie" value="#{clientesBean.usuario.ie}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -210,7 +211,7 @@
 													<p:outputLabel for="telefone" value="Telefone:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="telefone"
+													<p:inputMask mask="(99) 9999-9999" id="telefone"
 														value="#{clientesBean.usuario.telefone}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
@@ -221,7 +222,7 @@
 													<p:outputLabel for="celular" value="Celular:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="celular"
+													<p:inputMask mask="(99) 99999-9999" id="celular"
 														value="#{clientesBean.usuario.celular}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
@@ -332,7 +333,8 @@
 													<p:outputLabel for="rg" value="RG:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="rg" value="#{clientesBean.usuario.rg}"
+													<p:inputMask mask="999999999999-9" id="rg"
+														value="#{clientesBean.usuario.rg}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -484,7 +486,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="iss" value="ISS:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:selectOneRadio id="iss"
+													<h:selectOneRadio id="iss" 
 														value="#{clientesBean.usuario.iss}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
 															itemValue="0" />
@@ -497,8 +499,7 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="aliquota"
-														value="Alíquota de ISS:" />
+													<p:outputLabel for="aliquota" value="Alíquota de ISS:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="aliquota"
@@ -604,7 +605,7 @@
 														<th>ISS</th>
 														<th>Indicador IE Destinatário</th>
 														<th>Alíquota de ISS</th>
-														<th>Descrição</th>
+														<th>Observação</th>
 														<th>Data de Cadastro</th>
 													</tr>
 												</thead>
@@ -615,7 +616,8 @@
 
 															<td>#{usuario.nome}</td>
 															<td>#{usuario.cpf}</td>
-															<td>#{usuario.nascimento}</td>
+															<td><h:outputText value = "#{usuario.nascimento}">
+															<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="long"/></h:outputText></td>
 															<td>#{usuario.logradouro}</td>
 															<td>#{usuario.num}</td>
 															<td>#{usuario.com}</td>
@@ -637,17 +639,17 @@
 															<td>#{usuario.nomefantasia}</td>
 															<td>#{usuario.rg}</td>
 															<td>#{usuario.cpfcp}</td>
-															<td>#{usuario.exterior==1?'Sim':'Não'}</td>
+															<td>#{usuario.exterior==0?'Sim':'Não'}</td>
 															<td>#{usuario.contabil}</td>
-															<td>#{usuario.debito==1?'Sim':'Não'}</td>
-															<td>#{usuario.nf==1?'Sim':'Não'}</td>
+															<td>#{usuario.debito==0?'Sim':'Não'}</td>
+															<td>#{usuario.nf==0?'Sim':'Não'}</td>
 															<td>#{usuario.ident}</td>
 															<td>#{usuario.docidex}</td>
 															<td>#{usuario.insc}</td>
 															<td>#{usuario.codigopais}</td>
-															<td>#{usuario.iseninscr==1?'Sim':'Não'}</td>
-															<td>#{usuario.inss==1?'Sim':'Não'}</td>
-															<td>#{usuario.iss==1?'Sim':'Não'}</td>
+															<td>#{usuario.iseninscr==0?'Sim':'Não'}</td>
+															<td>#{usuario.inss==0?'Sim':'Não'}</td>
+															<td>#{usuario.iss==0?'Sim':'Não'}</td>
 															<td>#{usuario.indicadorie}</td>
 															<td>#{usuario.aliquota}</td>
 															<td>#{usuario.descricao}</td>
