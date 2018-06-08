@@ -597,7 +597,8 @@
 
 															<td>#{fornecedor.nome}</td>
 															<td>#{fornecedor.cpf}</td>
-															<td>#{fornecedor.dtnascimento}</td>
+															<td><h:outputText value = "#{fornecedor.dtnascimento}">
+															<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="long"/></h:outputText></td>
 															<td>#{fornecedor.logradouro}</td>
 															<td>#{fornecedor.num}</td>
 															<td>#{fornecedor.com}</td>
