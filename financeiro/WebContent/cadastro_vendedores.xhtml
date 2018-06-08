@@ -109,12 +109,13 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data" value="Data de nascimento" />
+													<h:outputText for="data" value="Data de Nascimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputMask mask="99/99/9999" id="data"
-														value="#{vendedoresBean.vendedores.data}"
-														styleClass="form-control col-md-7 col-xs-12" />
+													<p:calendar mask="true" pattern="dd/MM/yyyy"
+														inputStyleClass="form-control col-md-7 col-xs-12"
+														id="nascimento" required="true"
+														value="#{vendedoresBean.vendedores.data}" />
 												</div>
 											</div>
 											<div class="form-group">
