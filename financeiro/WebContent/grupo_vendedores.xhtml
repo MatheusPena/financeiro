@@ -98,7 +98,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{grupoClientesBean.cadastraGrupoCliente}" update="messages"
+														action="#{grupoVendedoresBean.cadastraGrupoVendedores}" update="messages"
 														styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
@@ -134,11 +134,11 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{grupoClientesBean.grupoclientes}" var="grupocliente"
+													<c:forEach items="#{grupoVendedoresBean.listagrupovendedores}" var="grupovendedores"
 														cellspacing="0" width="100%">
 														<tr>
-															<td>#{grupocliente.codigo}</td>
-															<td>#{grupocliente.nome}</td>
+															<td>#{grupovendedores.codigo}</td>
+															<td>#{grupovendedores.nome}</td>
 														</tr>
 													</c:forEach>
 												</tbody>
