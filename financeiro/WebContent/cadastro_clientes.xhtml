@@ -16,19 +16,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Formulário | Clientes</title>
 		<!-- Bootstrap -->
-		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
 		<!-- Font Awesome -->
-		<link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" />
 		<!-- NProgress -->
 		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
 		<!-- iCheck -->
 		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
 		<!-- Datatables -->
-		<link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet" />
-		<link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+		<link
+			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+			rel="stylesheet" />
 		<!-- Primeface DataTable Style -->
 		<h:outputStylesheet library="css" name="table-style.css" />
 		<!-- Custom Theme Style -->
@@ -189,7 +201,8 @@
 													<p:outputLabel for="ie" value="IE:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputMask mask="99.999.999-9" id="ie" value="#{clientesBean.usuario.ie}"
+													<p:inputMask mask="99.999.999-9" id="ie"
+														value="#{clientesBean.usuario.ie}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -271,13 +284,27 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigogc"
-														value="Código do Grupo do Cliente:" />
+													<p:outputLabel for="codigogc" value="Grupo do Cliente:" />
 												</label>
+												<!--  
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigogc" required="true"
 														value="#{clientesBean.usuario.codigogc}"
 														styleClass="form-control col-md-7 col-xs-12" />
+												</div>-->
+												<div class="col-md-6 col-sm-6 col-xs-12">
+
+													<h:selectOneMenu id="codigogc" required="true"
+														value="#{clientesBean.usuario.codigogc}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach items="#{grupoClientesBean.grupoclientes}"
+															var="grupocliente" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{grupocliente.nome}"
+																itemValue="#{grupocliente.nome}" />
+														</c:forEach>
+													</h:selectOneMenu>
 												</div>
 											</div>
 
@@ -474,7 +501,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="iss" value="ISS:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:selectOneRadio id="iss" 
+													<h:selectOneRadio id="iss"
 														value="#{clientesBean.usuario.iss}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
 															itemValue="0" />
@@ -574,7 +601,7 @@
 														<th>Site</th>
 														<th>Contato</th>
 														<th>Código da Receita</th>
-														<th>Código do Grupo do Cliente</th>
+														<th>Grupo do Cliente</th>
 														<th>Código do Agente Colaborador</th>
 														<th>Código do Representante</th>
 														<th>Nome Fantasia</th>
@@ -603,8 +630,10 @@
 
 															<td>#{usuario.nome}</td>
 															<td>#{usuario.cpf}</td>
-															<td><h:outputText value = "#{usuario.nascimento}">
-															<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="long"/></h:outputText></td>
+															<td><h:outputText value="#{usuario.nascimento}">
+																	<f:convertDateTime pattern="dd/MM/yyyy"
+																		dateStyle="long" />
+																</h:outputText></td>
 															<td>#{usuario.logradouro}</td>
 															<td>#{usuario.num}</td>
 															<td>#{usuario.com}</td>

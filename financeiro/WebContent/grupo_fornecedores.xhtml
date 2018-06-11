@@ -14,7 +14,7 @@
 		<!-- Meta, title, CSS, favicons, etc. -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Formulário | Clientes</title>
+		<title>Formulário | Fornecedores</title>
 		<!-- Bootstrap -->
 		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
 			rel="stylesheet" />
@@ -60,8 +60,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Clientes <small>Cadastre aqui os grupos
-												de clientes</small>
+											Formulário de Fornecedores <small>Cadastre aqui os grupos
+												de fornecedores</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -90,7 +90,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo" required="true"
-														value="#{grupoClientesBean.grupocliente.codigo}"
+														value="#{grupoFornecedoresBean.grupofornecedor.codigo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -100,7 +100,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-														value="#{grupoClientesBean.grupocliente.nome}"
+														value="#{grupoFornecedoresBean.grupofornecedor.nome}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -110,7 +110,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{grupoClientesBean.cadastraGrupoCliente}"
+														action="#{grupoFornecedoresBean.cadastraGrupofornecedor}"
 														update="messages" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
@@ -126,7 +126,7 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Tabela de Clientes <small>Exibe os grupos de clientes
+											Tabela de Fornecedores <small>Exibe os grupos de fornecedores
 												cadastrados</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
@@ -142,20 +142,15 @@
 												<thead>
 													<tr>
 														<th>Código</th>
-														<th>Nome do Grupo</th>
-														<th>Nome do Cliente</th>
+														<th>Nome</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{grupoClientesBean.grupoclientes}"
-														var="grupocliente" cellspacing="0" width="100%">
+													<c:forEach items="#{grupoFornecedoresBean.grupofornecedores}"
+														var="grupofornecedor" cellspacing="0" width="100%">
 														<tr>
-															<td>#{grupocliente.codigo}</td>
-															<td>#{grupocliente.nome}</td>
-															<c:forEach items="#{clientesBean.clientes}"
-																var="usuario" cellspacing="0" width="100%">
-																<td>#{usuario.nome}</td>
-															</c:forEach>
+															<td>#{grupofornecedor.codigo}</td>
+															<td>#{grupofornecedor.nome}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

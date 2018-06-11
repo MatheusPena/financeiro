@@ -26,7 +26,7 @@ public class ClientesDAO {
 			// st = con.createStatement();
 
 			PreparedStatement preparedStatement = conexao
-					.prepareStatement("insert into usuario (nome, cpf, nascimento, descricao,"
+					.prepareStatement("insert into clientes (nome, cpf, nascimento, descricao,"
 							+ "data_cadastro, logradouro, num, com, bairro, cep,"
 							+ "cidade, estado, ie, telefone, celular, fax, email, "
 							+ "site, contato, codigorec, codigogc, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"
@@ -101,7 +101,7 @@ public class ClientesDAO {
 			+ "data_cadastro, logradouro, num, com, bairro, cep,"  
 			+ "cidade, estado, ie, telefone, celular, fax, email,"  
 			+ "site, contato, codigorec, codigogc, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"  
-			+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, aliquota, indicadorie from usuario ";
+			+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, aliquota, indicadorie from clientes ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
