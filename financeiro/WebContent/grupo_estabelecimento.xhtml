@@ -14,11 +14,13 @@
 		<!-- Meta, title, CSS, favicons, etc. -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Formulário | Clientes</title>
+		<title>Grupos | Estabelecimento</title>
 		<!-- Bootstrap -->
-		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
 		<!-- Font Awesome -->
-		<link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" />
 		<!-- NProgress -->
 		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
 		<!-- iCheck -->
@@ -48,8 +50,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Vendedores <small>Cadastre aqui os grupos
-												de vendedores</small>
+											Formulário de Estabelecimentos <small>Cadastre aqui os grupos
+												de estabelecimentos</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -78,7 +80,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo" required="true"
-														value="#{grupoVendedoresBean.grupovendedores.codigo}"
+														value="#{grupoEstabelecimentoBean.grupoestabelecimento.codigo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -88,18 +90,17 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-														value="#{grupoVendedoresBean.grupovendedores.nomegrupovendedores}"
-														styleClass="form-control col-md-7 col-xs-12" /> 
+														value="#{grupoEstabelecimentoBean.grupoestabelecimento.nomegrupoestabelecimento}"
+														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
 											<div class="ln_solid" />
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{grupoVendedoresBean.cadastraGrupoVendedores}" update="messages"
-														styleClass="btn btn-success"
+														action="#{grupoEstabelecimentoBean.cadastraGrupoEstabelecimento}"
+														update="messages" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
 												</div>
@@ -114,7 +115,7 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Tabela de Vendedores <small>Exibe os grupos de vendedores
+											Tabela de Estabelecimentos <small>Exibe os grupos de estabelecimentos
 												cadastrados</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
@@ -130,16 +131,16 @@
 												<thead>
 													<tr>
 														<th>Código</th>
-														<th>Nome</th>
+														<th>Nome do Grupo</th>
+													
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{grupoVendedoresBean.listagrupovendedores}" var="grupovendedores"
-														cellspacing="0" width="100%">
+													<c:forEach items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
+														var="grupoestabelecimento" cellspacing="0" width="100%">
 														<tr>
-															<td>#{grupovendedores.codigo}</td>
-															<td>#{grupovendedores.nomegrupovendedores}</td>
-															
+															<td>#{grupoestabelecimento.codigo}</td>
+															<td>#{grupoestabelecimento.nomegrupoestabelecimento}</td>
 														</tr>
 													</c:forEach>
 												</tbody>
