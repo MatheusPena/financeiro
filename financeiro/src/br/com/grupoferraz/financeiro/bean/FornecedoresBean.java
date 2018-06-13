@@ -31,10 +31,10 @@ public class FornecedoresBean implements Serializable {
 		FornecedoresDAO fornecedoresDAO = new FornecedoresDAO();
 		if (fornecedoresDAO.salvar(fornecedores)) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Vendedor cadastrado com sucesso!", "Sucesso!"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Fornecedor cadastrado com sucesso!", "Sucesso!"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do vendedor!", "Erro!"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do fornecedor !", "Erro!"));
 
 		}
 		ConexaoBD.fecharConexao();

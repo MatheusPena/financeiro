@@ -17,25 +17,24 @@ public class FornecedoresDAO {
 
 	public boolean salvar(Fornecedores fornecedores) {
 		try {
-			PreparedStatement ps = conexao.prepareCall("INSERT INTO `financeiro`.`fornecedores`\r\n" + "(`nome`,\r\n"
-					+ "`cpf`,\r\n" + "`dtnascimento`,\r\n" + "`logradouro`,\r\n" + "`num`,\r\n" + "`com`,\r\n"
-					+ "`bairro`,\r\n" + "`cep`,\r\n" + "`cidade`,\r\n" + "`estado`,\r\n" + "`ie`,\r\n"
-					+ "`telefone`,\r\n" + "`celular`,\r\n" + "`fax`,\r\n" + "`email`,\r\n" + "`site`,\r\n"
-					+ "`contato`,\r\n" + "`codigodes`,\r\n" + "`grupofornecedores_codigo`,\r\n" + "`rg`,\r\n" + "`contabil`,\r\n"
-					+ "`banco`,\r\n" + "`tipoconta`,\r\n" + "`agenciabanco`,\r\n" + "`digagencia`,\r\n" + "`conta`,\r\n"
-					+ "`digconta`,\r\n" + "`nomefantasiaf`,\r\n" + "`febraban`,\r\n" + "`inscmunicipio`,\r\n"
-					+ "`prestadorserv`,\r\n" + "`icms`,\r\n" + "`ipi`,\r\n" + "`codigopais`,\r\n" + "`inss`,\r\n"
-					+ "`aliquota`,\r\n" + "`docidex`,\r\n"
-					+ "`descricao`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
-					+ "");
+			PreparedStatement ps = conexao.prepareCall("INSERT INTO fornecedores (nome, cpf, dtnascimento, "
+					+ "logradouro, num, com, bairro, cep," 
+					+ "cidade, estado, ie, telefone, celular, fax, email, " 
+					+ "site, contato, codigodes, grupofornecedores_codigo,  rg," 
+					+ "contabil, banco, tipoconta, agenciabanco, digagencia, conta, digconta, nomefantasia, febraban, inscmunicipio,"
+					+ "prestadorserv, icms, ipi, codigopais, inss, aliquota, docidex, descricao, data_cadastro)"
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, fornecedores.getNome());
 			ps.setString(2, fornecedores.getCpf());
 			Date dataNascimento = fornecedores.getDtnascimento();
 			long t = 0;
 			if (dataNascimento != null ) {
 				t = dataNascimento.getTime();	
+				ps.setDate(3, new java.sql.Date(t));
+			}else {
+				ps.setDate(3, null);
 			}
-			ps.setDate(3, new java.sql.Date(t));
+			
 			ps.setString(4, fornecedores.getLogradouro());
 			ps.setString(5, fornecedores.getNum());
 			ps.setString(6, fornecedores.getCom());
@@ -138,6 +137,7 @@ public class FornecedoresDAO {
 				fornecedores.setDescricao(rs.getString(37));
 				fornecedores.setData_cadastro(rs.getDate(38));
 				fornecedores.setGrupofornecedores_codigo(rs.getInt(39));
+				
 				lista.add(fornecedores);
 			}
 

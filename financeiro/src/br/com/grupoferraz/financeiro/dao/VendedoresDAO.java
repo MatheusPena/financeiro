@@ -18,7 +18,11 @@ public class VendedoresDAO {
 	public boolean salvar(Vendedores vendedores) {
 		try {
 			PreparedStatement ps = conexao.prepareCall(
-					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,`cel1`,`cel2`,`grupovendedores_codigo`,`banco`,`tipoconta`,`agenciabanco`,`digagencia`,`conta`,`digconta`,`data_cadastro`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
+					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,"
+					+ "`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,"
+					+ "`cel1`,`cel2`,`grupovendedores_codigo`,`banco`,`tipoconta`,`agenciabanco`,"
+					+ "`digagencia`,`conta`,`digconta`,`data_cadastro`) "
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
 							+ "");
 			ps.setString(1, vendedores.getPessoa());
 			ps.setString(2, vendedores.getCpf());

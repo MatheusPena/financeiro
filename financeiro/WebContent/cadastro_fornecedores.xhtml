@@ -580,7 +580,6 @@
 														<th>Site</th>
 														<th>Contato</th>
 														<th>Código da Despesa</th>
-														<th>Grupo do Fornecedor</th>
 														<th>RG</th>
 														<th>Conta Contábil</th>
 														<th>Banco</th>
@@ -600,8 +599,8 @@
 														<th>Alíquota INSS</th>
 														<th>Doc. Identificação de Estrangeiro</th>
 														<th>Observação</th>
-														<!--  
-														<th>Data do Cadastro</th>-->
+														<th>Data do Cadastro</th>
+														<th>Grupo do Fornecedor</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -629,14 +628,7 @@
 															<td>#{fornecedor.email}</td>
 															<td>#{fornecedor.site}</td>
 															<td>#{fornecedor.contato}</td>
-															<td>#{fornecedor.codigodes}</td>
-															<c:forEach
-																items="#{grupoFornecedoresBean.grupofornecedores}"
-																var="grupofornecedor" cellspacing="0" width="100%">
-																<td>#{grupofornecedor.nome}</td>
-															</c:forEach>
-															<!--  
-															<td>#{fornecedor.grupofornecedores_codigo}</td>-->
+															<td>#{fornecedor.codigodes}</td>	
 															<td>#{fornecedor.rg}</td>
 															<td>#{fornecedor.contabil}</td>
 															<td>#{fornecedor.banco}</td>
@@ -655,9 +647,9 @@
 															<td>#{fornecedor.inss}</td>
 															<td>#{fornecedor.aliquota}</td>
 															<td>#{fornecedor.docidex}</td>
-															<td>#{fornecedor.descricao}</td>
-															<!--  
-															<td>#{fornecedor.data_cadastro}</td>-->
+															<td>#{fornecedor.descricao}</td> 
+															<td>#{fornecedor.data_cadastro}</td>
+															<td>#{fornecedor.grupofornecedores_codigo}</td>
 														</tr>
 													</c:forEach>
 												</tbody>
