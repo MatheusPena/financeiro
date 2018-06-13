@@ -21,7 +21,7 @@ public class FornecedoresDAO {
 					+ "`cpf`,\r\n" + "`dtnascimento`,\r\n" + "`logradouro`,\r\n" + "`num`,\r\n" + "`com`,\r\n"
 					+ "`bairro`,\r\n" + "`cep`,\r\n" + "`cidade`,\r\n" + "`estado`,\r\n" + "`ie`,\r\n"
 					+ "`telefone`,\r\n" + "`celular`,\r\n" + "`fax`,\r\n" + "`email`,\r\n" + "`site`,\r\n"
-					+ "`contato`,\r\n" + "`codigodes`,\r\n" + "`codigogf`,\r\n" + "`rg`,\r\n" + "`contabil`,\r\n"
+					+ "`contato`,\r\n" + "`codigodes`,\r\n" + "`grupofornecedores_codigo`,\r\n" + "`rg`,\r\n" + "`contabil`,\r\n"
 					+ "`banco`,\r\n" + "`tipoconta`,\r\n" + "`agenciabanco`,\r\n" + "`digagencia`,\r\n" + "`conta`,\r\n"
 					+ "`digconta`,\r\n" + "`nomefantasiaf`,\r\n" + "`febraban`,\r\n" + "`inscmunicipio`,\r\n"
 					+ "`prestadorserv`,\r\n" + "`icms`,\r\n" + "`ipi`,\r\n" + "`codigopais`,\r\n" + "`inss`,\r\n"
@@ -51,7 +51,7 @@ public class FornecedoresDAO {
 			ps.setString(16, fornecedores.getSite());
 			ps.setString(17, fornecedores.getContato());
 			ps.setString(18, fornecedores.getCodigodes());
-			ps.setString(19, fornecedores.getCodigogf());
+			ps.setInt(19, fornecedores.getGrupofornecedores_codigo());
 			ps.setString(20, fornecedores.getRg());
 			ps.setString(21, fornecedores.getContabil());
 			ps.setString(22, fornecedores.getBanco());
@@ -71,6 +71,7 @@ public class FornecedoresDAO {
 			ps.setBigDecimal(36, fornecedores.getAliquota());
 			ps.setString(37, fornecedores.getDocidex());
 			ps.setString(38, fornecedores.getDescricao());
+			ps.setDate(39, new java.sql.Date(new Date().getTime()));
 			ps.execute();
 			return true;
 
@@ -116,26 +117,27 @@ public class FornecedoresDAO {
 				fornecedores.setSite(rs.getString(16));
 				fornecedores.setContato(rs.getString(17));
 				fornecedores.setCodigodes(rs.getString(18));
-				fornecedores.setCodigogf(rs.getString(19));
-				fornecedores.setRg(rs.getString(20));
-				fornecedores.setContabil(rs.getString(21));
-				fornecedores.setBanco(rs.getString(22));
-				fornecedores.setTipoconta(rs.getString(23));
-				fornecedores.setAgenciabanco(rs.getInt(24));
-				fornecedores.setDigagencia(rs.getInt(25));
-				fornecedores.setConta(rs.getInt(26));
-				fornecedores.setDigconta(rs.getInt(27));
-				fornecedores.setNomefantasia(rs.getString(28));
-				fornecedores.setFebraban(rs.getInt(29));
-				fornecedores.setInscmunicipio(rs.getInt(30));
-				fornecedores.setPrestadorserv(rs.getString(31));
-				fornecedores.setIcms(rs.getString(32));
-				fornecedores.setIpi(rs.getString(33));
-				fornecedores.setCodigopais(rs.getInt(34));
-				fornecedores.setInss(rs.getString(35));
-				fornecedores.setAliquota(rs.getBigDecimal(36));
-				fornecedores.setDocidex(rs.getString(37));
-				fornecedores.setDescricao(rs.getString(38));
+				fornecedores.setRg(rs.getString(19));
+				fornecedores.setContabil(rs.getString(20));
+				fornecedores.setBanco(rs.getString(21));
+				fornecedores.setTipoconta(rs.getString(22));
+				fornecedores.setAgenciabanco(rs.getInt(23));
+				fornecedores.setDigagencia(rs.getInt(24));
+				fornecedores.setConta(rs.getInt(25));
+				fornecedores.setDigconta(rs.getInt(26));
+				fornecedores.setNomefantasia(rs.getString(27));
+				fornecedores.setFebraban(rs.getInt(28));
+				fornecedores.setInscmunicipio(rs.getInt(29));
+				fornecedores.setPrestadorserv(rs.getString(30));
+				fornecedores.setIcms(rs.getString(31));
+				fornecedores.setIpi(rs.getString(32));
+				fornecedores.setCodigopais(rs.getInt(33));
+				fornecedores.setInss(rs.getString(34));
+				fornecedores.setAliquota(rs.getBigDecimal(35));
+				fornecedores.setDocidex(rs.getString(36));
+				fornecedores.setDescricao(rs.getString(37));
+				fornecedores.setData_cadastro(rs.getDate(38));
+				fornecedores.setGrupofornecedores_codigo(rs.getInt(39));
 				lista.add(fornecedores);
 			}
 

@@ -2,7 +2,7 @@ package br.com.grupoferraz.financeiro.entity;
 
 public class GrupoVendedores {
 	private int codigo;
-	private String nome;
+	private String nomegrupovendedores;
 	
 	public int getCodigo() {
 		return codigo;
@@ -10,11 +10,11 @@ public class GrupoVendedores {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	public String getNome() {
-		return nome;
+	public String getnomegrupovendedores() {
+		return nomegrupovendedores;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setnomegrupovendedores(String nomegrupovendedores) {
+		this.nomegrupovendedores = nomegrupovendedores;
 	}
 	
 	

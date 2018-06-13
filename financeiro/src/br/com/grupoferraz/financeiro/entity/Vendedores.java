@@ -31,12 +31,14 @@ public class Vendedores {
 	private String telefone;
 	private String cel1;
 	private String cel2;
+	private Integer grupovendedores_codigo;
 	private String banco;
 	private String tipo_conta;
 	private int agenciabanco;
 	private int digagencia;
 	private int conta;
 	private int digconta;
+	private Date dataCadastro;
 
 	public Vendedores() {
 		initPessoa();
@@ -305,6 +307,14 @@ public class Vendedores {
 		this.cel2 = cel2;
 	}
 
+	public Integer getGrupovendedores_codigo() {
+		return grupovendedores_codigo;
+	}
+
+	public void setGrupovendedores_codigo(Integer grupovendedores_codigo) {
+		this.grupovendedores_codigo = grupovendedores_codigo;
+	}
+
 	public String getBanco() {
 		return banco;
 	}
@@ -351,6 +361,14 @@ public class Vendedores {
 
 	public void setDigconta(int digconta) {
 		this.digconta = digconta;
+	}
+
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 	
 }

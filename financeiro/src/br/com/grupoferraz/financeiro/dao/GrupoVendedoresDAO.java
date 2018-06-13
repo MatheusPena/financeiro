@@ -25,10 +25,10 @@ public class GrupoVendedoresDAO {
 			// st = con.createStatement();
 
 			PreparedStatement preparedStatement = conexao
-					.prepareStatement("insert into grupovendedores (codigo, nome)"
+					.prepareStatement("insert into grupovendedores (codigo, nomegrupovendedores)"
 							+ "values (?,?)");
 			preparedStatement.setInt(1, grupovendedores.getCodigo());
-			preparedStatement.setString(2, grupovendedores.getNome());
+			preparedStatement.setString(2, grupovendedores.getnomegrupovendedores());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -57,7 +57,7 @@ public class GrupoVendedoresDAO {
 
 				GrupoVendedores grupovendedores = new GrupoVendedores();
 				grupovendedores.setCodigo(rs.getInt(1));
-				grupovendedores.setNome(rs.getString(2));
+				grupovendedores.setnomegrupovendedores(rs.getString(2));
 				lista.add(grupovendedores);
 			}
 			

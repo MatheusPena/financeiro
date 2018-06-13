@@ -29,7 +29,7 @@ public class Clientes implements Serializable {
 	private String site;
 	private String contato;
 	private String codigorec;
-	private String codigogc;
+	private Integer grupoclientes_codigo;
 	private String codigorep;
 	private String codigoac;
 	private String nomefantasia;
@@ -211,12 +211,12 @@ public class Clientes implements Serializable {
 		this.codigorec = codigorec;
 	}
 
-	public String getCodigogc() {
-		return codigogc;
+	public Integer getGrupoclientes_codigo() {
+		return grupoclientes_codigo;
 	}
 
-	public void setCodigogc(String codigogc) {
-		this.codigogc = codigogc;
+	public void setGrupoclientes_codigo(Integer grupoclientes_codigo) {
+		this.grupoclientes_codigo = grupoclientes_codigo;
 	}
 
 	public String getCodigorep() {
