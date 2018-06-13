@@ -403,7 +403,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nomefantasiaf"
-														value="#{fornecedoresBean.fornecedores.docidex}"
+														value="#{fornecedoresBean.fornecedores.nomefantasia}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -580,6 +580,7 @@
 														<th>Site</th>
 														<th>Contato</th>
 														<th>Código da Despesa</th>
+														<th>Grupo do Fornecedor</th>
 														<th>RG</th>
 														<th>Conta Contábil</th>
 														<th>Banco</th>
@@ -599,8 +600,7 @@
 														<th>Alíquota INSS</th>
 														<th>Doc. Identificação de Estrangeiro</th>
 														<th>Observação</th>
-														<th>Data do Cadastro</th>
-														<th>Grupo do Fornecedor</th>
+														<!--<th>Data do Cadastro</th>-->
 													</tr>
 												</thead>
 												<tbody>
@@ -628,7 +628,8 @@
 															<td>#{fornecedor.email}</td>
 															<td>#{fornecedor.site}</td>
 															<td>#{fornecedor.contato}</td>
-															<td>#{fornecedor.codigodes}</td>	
+															<td>#{fornecedor.codigodes}</td>
+															<td>#{fornecedor.grupofornecedores_codigo}</td>
 															<td>#{fornecedor.rg}</td>
 															<td>#{fornecedor.contabil}</td>
 															<td>#{fornecedor.banco}</td>
@@ -648,8 +649,7 @@
 															<td>#{fornecedor.aliquota}</td>
 															<td>#{fornecedor.docidex}</td>
 															<td>#{fornecedor.descricao}</td> 
-															<td>#{fornecedor.data_cadastro}</td>
-															<td>#{fornecedor.grupofornecedores_codigo}</td>
+															<!-- <td>#{fornecedor.data_cadastro}</td>-->
 														</tr>
 													</c:forEach>
 												</tbody>
