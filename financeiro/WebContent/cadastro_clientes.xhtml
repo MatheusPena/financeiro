@@ -284,7 +284,8 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigogc" value="Grupo do Cliente:" />
+													<p:outputLabel for="grupoclientes_codigo"
+														value="Grupo do Cliente:" />
 												</label>
 												<!--  
 												<div class="col-md-6 col-sm-6 col-xs-12">
@@ -293,16 +294,15 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>-->
 												<div class="col-md-6 col-sm-6 col-xs-12">
-
-													<h:selectOneMenu id="codigogc" required="true"
-														value="#{clientesBean.usuario.codigogc}"
+													<h:selectOneMenu id="grupoclientes_codigo" required="true"
+														value="#{clientesBean.usuario.grupoclientes_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach items="#{grupoClientesBean.grupoclientes}"
 															var="grupocliente" cellspacing="0" width="100%">
 															<f:selectItem itemLabel="#{grupocliente.nome}"
-																itemValue="#{grupocliente.nome}" />
+																itemValue="#{grupocliente.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
@@ -511,15 +511,15 @@
 													</h:selectOneRadio>
 												</label>
 											</div>
-
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="aliquota" value="Alíquota de ISS:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="aliquota"
-														value="#{clientesBean.usuario.aliquota}"
-														styleClass="form-control col-md-7 col-xs-12" />
+													<p:inputText id="aliquota" value="#{clientesBean.usuario.aliquota}"
+														decimalSeparator=","
+														decimalPlaces="2" styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 
@@ -649,23 +649,26 @@
 															<td>#{usuario.site}</td>
 															<td>#{usuario.contato}</td>
 															<td>#{usuario.codigorec}</td>
-															<td>#{usuario.codigogc}</td>
+															<c:forEach items="#{grupoClientesBean.grupoclientes}"
+																var="grupocliente" cellspacing="0" width="100%">
+																<td>#{grupocliente.nome}</td>
+															</c:forEach>
 															<td>#{usuario.codigoac}</td>
 															<td>#{usuario.codigorep}</td>
 															<td>#{usuario.nomefantasia}</td>
 															<td>#{usuario.rg}</td>
 															<td>#{usuario.cpfcp}</td>
-															<td>#{usuario.exterior==0?'Sim':'Não'}</td>
+															<td>#{usuario.exterior}</td>
 															<td>#{usuario.contabil}</td>
-															<td>#{usuario.debito==0?'Sim':'Não'}</td>
-															<td>#{usuario.nf==0?'Sim':'Não'}</td>
+															<td>#{usuario.debito}</td>
+															<td>#{usuario.nf}</td>
 															<td>#{usuario.ident}</td>
 															<td>#{usuario.docidex}</td>
 															<td>#{usuario.insc}</td>
 															<td>#{usuario.codigopais}</td>
-															<td>#{usuario.iseninscr==0?'Sim':'Não'}</td>
-															<td>#{usuario.inss==0?'Sim':'Não'}</td>
-															<td>#{usuario.iss==0?'Sim':'Não'}</td>
+															<td>#{usuario.iseninscr}</td>
+															<td>#{usuario.inss}</td>
+															<td>#{usuario.iss}</td>
 															<td>#{usuario.indicadorie}</td>
 															<td>#{usuario.aliquota}</td>
 															<td>#{usuario.descricao}</td>

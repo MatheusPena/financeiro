@@ -276,13 +276,25 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigogf"
-														value="Código do Grupo do Fornecedor:" />
+													<p:outputLabel for="codigogf" value="Grupo do Fornecedor:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
+													<!--
 													<p:inputText id="codigogf" required="true"
 														value="#{fornecedoresBean.fornecedores.codigogf}"
-														styleClass="form-control col-md-7 col-xs-12" />
+														styleClass="form-control col-md-7 col-xs-12" />-->
+													<h:selectOneMenu id="codigogf" required="true"
+														value="#{fornecedoresBean.fornecedores.grupofornecedores_codigo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach
+															items="#{grupoFornecedoresBean.grupofornecedores}"
+															var="grupofornecedor" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{grupofornecedor.nome}"
+																itemValue="#{grupofornecedor.codigo}" />
+														</c:forEach>
+													</h:selectOneMenu>
 												</div>
 											</div>
 
@@ -568,7 +580,7 @@
 														<th>Site</th>
 														<th>Contato</th>
 														<th>Código da Despesa</th>
-														<th>Código do Grupo do Fornecedor</th>
+														<th>Grupo do Fornecedor</th>
 														<th>RG</th>
 														<th>Conta Contábil</th>
 														<th>Banco</th>
@@ -588,6 +600,8 @@
 														<th>Alíquota INSS</th>
 														<th>Doc. Identificação de Estrangeiro</th>
 														<th>Observação</th>
+														<!--  
+														<th>Data do Cadastro</th>-->
 													</tr>
 												</thead>
 												<tbody>
@@ -597,8 +611,10 @@
 
 															<td>#{fornecedor.nome}</td>
 															<td>#{fornecedor.cpf}</td>
-															<td><h:outputText value = "#{fornecedor.dtnascimento}">
-															<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="long"/></h:outputText></td>
+															<td><h:outputText value="#{fornecedor.dtnascimento}">
+																	<f:convertDateTime pattern="dd/MM/yyyy"
+																		dateStyle="long" />
+																</h:outputText></td>
 															<td>#{fornecedor.logradouro}</td>
 															<td>#{fornecedor.num}</td>
 															<td>#{fornecedor.com}</td>
@@ -614,7 +630,13 @@
 															<td>#{fornecedor.site}</td>
 															<td>#{fornecedor.contato}</td>
 															<td>#{fornecedor.codigodes}</td>
-															<td>#{fornecedor.codigogf}</td>
+															<c:forEach
+																items="#{grupoFornecedoresBean.grupofornecedores}"
+																var="grupofornecedor" cellspacing="0" width="100%">
+																<td>#{grupofornecedor.nome}</td>
+															</c:forEach>
+															<!--  
+															<td>#{fornecedor.grupofornecedores_codigo}</td>-->
 															<td>#{fornecedor.rg}</td>
 															<td>#{fornecedor.contabil}</td>
 															<td>#{fornecedor.banco}</td>
@@ -634,6 +656,8 @@
 															<td>#{fornecedor.aliquota}</td>
 															<td>#{fornecedor.docidex}</td>
 															<td>#{fornecedor.descricao}</td>
+															<!--  
+															<td>#{fornecedor.data_cadastro}</td>-->
 														</tr>
 													</c:forEach>
 												</tbody>

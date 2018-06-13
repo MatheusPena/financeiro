@@ -22,7 +22,7 @@ public class Fornecedores {
 	private String site;
 	private String contato;
 	private String codigodes;
-	private String codigogf;
+	private Integer grupofornecedores_codigo;
 	private String rg;
 	private String contabil;
 	private String banco;
@@ -42,6 +42,7 @@ public class Fornecedores {
 	private BigDecimal aliquota;
 	private String docidex;
 	private String descricao;
+	private Date data_cadastro;
 	
 	public String getNome() {
 		return nome;
@@ -151,11 +152,11 @@ public class Fornecedores {
 	public void setCodigodes(String codigodes) {
 		this.codigodes = codigodes;
 	}
-	public String getCodigogf() {
-		return codigogf;
+	public Integer getGrupofornecedores_codigo() {
+		return grupofornecedores_codigo;
 	}
-	public void setCodigogf(String codigogf) {
-		this.codigogf = codigogf;
+	public void setGrupofornecedores_codigo(Integer grupofornecedores_codigo) {
+		this.grupofornecedores_codigo = grupofornecedores_codigo;
 	}
 	public String getRg() {
 		return rg;
@@ -271,6 +272,11 @@ public class Fornecedores {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+	public Date getData_cadastro() {
+		return data_cadastro;
+	}
+	public void setData_cadastro(Date data_cadastro) {
+		this.data_cadastro = data_cadastro;
+	}
 	
 }

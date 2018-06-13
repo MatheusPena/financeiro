@@ -29,7 +29,7 @@ public class ClientesDAO {
 					.prepareStatement("insert into clientes (nome, cpf, nascimento, descricao,"
 							+ "data_cadastro, logradouro, num, com, bairro, cep,"
 							+ "cidade, estado, ie, telefone, celular, fax, email, "
-							+ "site, contato, codigorec, codigogc, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"
+							+ "site, contato, codigorec, grupoclientes_codigo, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"
 							+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, aliquota,indicadorie)"
 							+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			preparedStatement.setString(1, usuario.getNome());
@@ -57,7 +57,7 @@ public class ClientesDAO {
 			preparedStatement.setString(18, usuario.getSite());
 			preparedStatement.setString(19, usuario.getContato());
 			preparedStatement.setString(20, usuario.getCodigorec());
-			preparedStatement.setString(21, usuario.getCodigogc());
+			preparedStatement.setInt(21, usuario.getGrupoclientes_codigo());
 			preparedStatement.setString(22, usuario.getCodigoac());
 			preparedStatement.setString(23, usuario.getCodigorep());
 			preparedStatement.setString(24, usuario.getNomefantasia());
@@ -100,7 +100,7 @@ public class ClientesDAO {
 			String sql = "select nome, cpf, nascimento, descricao," 
 			+ "data_cadastro, logradouro, num, com, bairro, cep,"  
 			+ "cidade, estado, ie, telefone, celular, fax, email,"  
-			+ "site, contato, codigorec, codigogc, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"  
+			+ "site, contato, codigorec, grupoclientes_codigo, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"  
 			+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, aliquota, indicadorie from clientes ";
 			rs = st.executeQuery(sql);
 
@@ -127,7 +127,7 @@ public class ClientesDAO {
 				usuario.setSite(rs.getString("site"));
 				usuario.setContato(rs.getString("contato"));
 				usuario.setCodigorec(rs.getString("codigorec"));
-				usuario.setCodigogc(rs.getString("codigogc"));
+				usuario.setGrupoclientes_codigo(rs.getInt("grupoclientes_codigo"));
 				usuario.setCodigoac(rs.getString("codigoac"));
 				usuario.setCodigorep(rs.getString("codigorep"));
 				usuario.setNomefantasia(rs.getString("nomefantasia"));

@@ -142,7 +142,8 @@
 												<thead>
 													<tr>
 														<th>Código</th>
-														<th>Nome</th>
+														<th>Nome do Grupo</th>
+														<th>Nome do Fornecedor</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -151,6 +152,10 @@
 														<tr>
 															<td>#{grupofornecedor.codigo}</td>
 															<td>#{grupofornecedor.nome}</td>
+															<c:forEach items="#{fornecedoresBean.fornecedor}"
+																var="fornecedor" cellspacing="0" width="100%">
+																<td>#{fornecedor.nome}</td>
+															</c:forEach>
 														</tr>
 													</c:forEach>
 												</tbody>

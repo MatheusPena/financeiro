@@ -18,7 +18,7 @@ public class VendedoresDAO {
 	public boolean salvar(Vendedores vendedores) {
 		try {
 			PreparedStatement ps = conexao.prepareCall(
-					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,`cel1`,`cel2`,`banco`,`tipoconta`,`agenciabanco`,`digagencia`,`conta`,`digconta`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
+					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,`cel1`,`cel2`,`grupovendedores_codigo`,`banco`,`tipoconta`,`agenciabanco`,`digagencia`,`conta`,`digconta`,`data_cadastro`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
 							+ "");
 			ps.setString(1, vendedores.getPessoa());
 			ps.setString(2, vendedores.getCpf());
@@ -46,12 +46,14 @@ public class VendedoresDAO {
 			ps.setString(19, vendedores.getTelefone());
 			ps.setString(20, vendedores.getCel1());
 			ps.setString(21, vendedores.getCel2());
-			ps.setString(22, vendedores.getBanco());
-			ps.setString(23, vendedores.getTipo_conta());
-			ps.setInt(24, vendedores.getAgenciabanco());
-			ps.setInt(25, vendedores.getDigagencia());
-			ps.setInt(26, vendedores.getConta());
-			ps.setInt(27, vendedores.getDigconta());
+			ps.setInt(22, vendedores.getGrupovendedores_codigo());
+			ps.setString(23, vendedores.getBanco());
+			ps.setString(24, vendedores.getTipo_conta());
+			ps.setInt(25, vendedores.getAgenciabanco());
+			ps.setInt(26, vendedores.getDigagencia());
+			ps.setInt(27, vendedores.getConta());
+			ps.setInt(28, vendedores.getDigconta());
+			ps.setDate(29, new java.sql.Date(new Date().getTime()));
 			ps.execute();
 			return true;
 			
@@ -106,6 +108,8 @@ public class VendedoresDAO {
 				vendedores.setDigagencia(rs.getInt(25));
 				vendedores.setConta(rs.getInt(26));
 				vendedores.setDigconta(rs.getInt(27));
+				vendedores.setDataCadastro(rs.getDate(28));
+				vendedores.setGrupovendedores_codigo(rs.getInt(29));
 				lista.add(vendedores);
 			}
 
