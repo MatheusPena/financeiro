@@ -22,7 +22,7 @@ public class EstabelecimentoBean implements Serializable {
 
 	public EstabelecimentoBean() {
 		estabelecimento = new Estabelecimento();
-		getEstabelecimentos();
+		listarEstabelecimentos();
 	}
 
 	public String cadastraEstabelecimentos() {

@@ -25,11 +25,11 @@ public class EstabelecimentoDAO {
 			// st = con.createStatement();
 
 			PreparedStatement preparedStatement = conexao
-					.prepareStatement("insert into estabelecimentos (codigo, nome, grupo) "
+					.prepareStatement("insert into estabelecimentos (codigo, nome, grupoestabelecimento_codigo) "
 							+ "values (?,?,?)");
 			preparedStatement.setString(1, estabelecimentos.getCodigo());
 			preparedStatement.setString(2, estabelecimentos.getNome());
-			preparedStatement.setString(3, estabelecimentos.getGrupo());
+			preparedStatement.setString(3, estabelecimentos.getGrupoestabelecimento_codigo());
 			
 
 			preparedStatement.execute();
@@ -52,7 +52,7 @@ public class EstabelecimentoDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select codigo, nome, grupo from estabelecimentos ";
+			String sql = "select codigo, nome, grupoestabelecimento_codigo from estabelecimentos ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -60,7 +60,7 @@ public class EstabelecimentoDAO {
 				Estabelecimento estabelecimentos = new Estabelecimento();
 				estabelecimentos.setCodigo(rs.getString("codigo"));
 				estabelecimentos.setNome(rs.getString("nome"));
-				estabelecimentos.setGrupo(rs.getString("grupo"));
+				estabelecimentos.setGrupoestabelecimento_codigo(rs.getString("grupoestabelecimento_codigo"));
 				
 				lista.add(estabelecimentos);
 			}

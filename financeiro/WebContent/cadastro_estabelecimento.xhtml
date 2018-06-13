@@ -16,19 +16,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Formulário | Estabelecimento</title>
 		<!-- Bootstrap -->
-		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
 		<!-- Font Awesome -->
-		<link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" />
 		<!-- NProgress -->
 		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
 		<!-- iCheck -->
 		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
 		<!-- Datatables -->
-		<link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet" />
-		<link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+		<link
+			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+			rel="stylesheet" />
 		<!-- Primeface DataTable Style -->
 		<h:outputStylesheet library="css" name="table-style.css" />
 		<!-- Custom Theme Style -->
@@ -65,10 +77,10 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigo" value="codigo:" />
+													<p:outputLabel for="codigo" value="Código:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigo" required="true" 
+													<p:inputText id="codigo" required="true"
 														value="#{estabelecimentoBean.estabelecimento.codigo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
@@ -84,15 +96,24 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-								
+
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="grupo" value="Grupo de estabelecimento:" />
+													<p:outputLabel for="grupo"
+														value="Grupo do Estabelecimento:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="grupo"
-														value="#{estabelecimentoBean.estabelecimento.grupo}"
-														styleClass="form-control col-md-7 col-xs-12" />
+													<h:selectOneMenu id="grupo" required="true"
+														value="#{estabelecimentoBean.estabelecimento.grupoestabelecimento_codigo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
+															var="grupoestabelecimento" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{grupoestabelecimento.nomegrupoestabelecimento}"
+																itemValue="#{grupoestabelecimento.codigo}" />
+														</c:forEach>
+													</h:selectOneMenu>
 												</div>
 											</div>
 
@@ -101,8 +122,8 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{estabelecimentoBean.cadastraEstabelecimento}" update="messages"
-														styleClass="btn btn-success"
+														action="#{estabelecimentoBean.cadastraEstabelecimentos}"
+														update="messages" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
 												</div>
@@ -117,8 +138,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Tabela de Estabelecimento <small>Exibe os estabelecimentos
-												cadastrados</small>
+											Tabela de Estabelecimento <small>Exibe os
+												estabelecimentos cadastrados</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -133,21 +154,24 @@
 												<thead>
 													<tr>
 
-														<th>codigo</th>
+														<th>Código</th>
 														<th>Nome</th>
 														<th>Grupo de Estabelecimento</th>
-								
+
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{clientesBean.clientes}" var="usuario"
+													<c:forEach items="#{estabelecimentoBean.estabelecimentos}" var="estabelecimento"
 														cellspacing="0" width="100%">
 														<tr>
 
-															<td>#{usuario.codigo}</td>
-															<td>#{usuario.nome}</td>
-															<td>#{usuario.grupo}</td>
-															
+															<td>#{estabelecimento.codigo}</td>
+															<td>#{estabelecimento.nome}</td>
+															<c:forEach items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
+																var="grupoestabelecimento" cellspacing="0" width="100%">
+																<td>#{grupoestabelecimento.nomegrupoestabelecimento}</td>
+															</c:forEach>
+
 														</tr>
 													</c:forEach>
 												</tbody>

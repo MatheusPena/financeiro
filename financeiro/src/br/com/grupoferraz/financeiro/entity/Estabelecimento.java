@@ -9,7 +9,7 @@ public class Estabelecimento implements Serializable {
 	//private int id;
 	private String codigo;
 	private String nome;
-	private String grupo;
+	private String grupoestabelecimento_codigo;
 	
 	public String getCodigo() {
 		return codigo;
@@ -23,16 +23,11 @@ public class Estabelecimento implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getGrupo() {
-		return grupo;
+	public String getGrupoestabelecimento_codigo() {
+		return grupoestabelecimento_codigo;
 	}
-	public void setGrupo(String grupo) {
-		this.grupo = grupo;
+	public void setGrupoestabelecimento_codigo(String grupoestabelecimento_codigo) {
+		this.grupoestabelecimento_codigo = grupoestabelecimento_codigo;
 	}
-	
-	
-
-
-	
 
 }
