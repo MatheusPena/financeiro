@@ -12,6 +12,7 @@
    
 
 <ui:composition>
+
 <h:head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <!-- Meta, title, CSS, favicons, etc. -->
@@ -41,7 +42,8 @@
       
    </h:head>
 
-<div class="nav-md">	
+
+<body class="nav-md">	
   <div class="container body">
   <div class="main_container">
 	<ui:insert name="topnav"/>
@@ -129,32 +131,18 @@
                         <span class="fa fa-chevron-down" /></a>
                         <ul class="nav child_menu">
                           <li><a href="despesas.xhtml">Despesas</a></li>
-                          <li>
-                             <a>Comissões<span class="fa fa-chevron-down" /></a>
-                             <ul class="nav child_menu">
-                                <li class="sub_menu"><a href="abertura_contas_cp.xhtml">Abertura
-                                   de Contas</a>
-                                 </li>
-                                 <li><a href="emprestimo_consignado_cp.xhtml">Empréstimo
-                                    Consignado</a>
-                                 </li>
-                                 <li><a href="consorcio_cp.xhtml">Consórcio</a></li>
-                                 <li><a href="imobiliario_cp.xhtml">Imobiliário</a></li>
-                              </ul>
-                           </li>
+                          <li><a href="abertura_contas_cp.xhtml">Abertura de Contas</a></li>
+                          <li><a href="emprestimo_consignado_cp.xhtml">Empréstimo Consignado</a></li>
+                          <li><a href="consorcio_cp.xhtml">Consórcio</a></li>
+                          <li><a href="imobiliario_cp.xhtml">Imobiliário</a></li>
                         </ul>
                      </li>
                      <li>
-                        <a><i class="fa fa-table" /> Contas a Receber <span
-                           class="fa fa-chevron-down" /></a>
+                        <a><i class="fa fa-table" /> Contas a Receber <span class="fa fa-chevron-down" /></a>
                         <ul class="nav child_menu">
-                           <li><a href="abertura_contas_cr.xhtml">Abertura de
-                              Contas</a>
-                           </li>
+                           <li><a href="abertura_contas_cr.xhtml">Abertura de Contas</a></li>
                            <li><a href="consorcio_cr.xhtml">Consórcio</a></li>
-                           <li><a href="emprestimo_cr.xhtml">Empréstimo
-                              Consignado</a>
-                           </li>
+                           <li><a href="emprestimo_cr.xhtml">Empréstimo Consignado</a></li>
                            <li><a href="imobiliario_cr.xhtml">Imobiliário</a></li>
                            <li><a href="pronaf_cr.xhtml">Pronaf</a></li>
                         </ul>
@@ -268,7 +256,7 @@
 
 </div>
 </div>
-</div>
+</body>
  <!-- jQuery -->
       <script src="resources/jquery/dist/jquery.min.js"></script>
       <!-- Bootstrap -->
