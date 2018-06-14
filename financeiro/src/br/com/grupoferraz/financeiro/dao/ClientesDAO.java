@@ -182,10 +182,7 @@ public class ClientesDAO {
 
 			e.printStackTrace();
 		}
-						
-	
-		
-		
+							
 		
 		return grupoClientes;
 	}

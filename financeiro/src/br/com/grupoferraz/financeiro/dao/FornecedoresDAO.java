@@ -1,6 +1,7 @@
 package br.com.grupoferraz.financeiro.dao;
 
 import br.com.grupoferraz.financeiro.entity.Fornecedores;
+import br.com.grupoferraz.financeiro.entity.GrupoFornecedores;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -137,6 +138,8 @@ public class FornecedoresDAO {
 				fornecedores.setDescricao(rs.getString(37));
 				fornecedores.setData_cadastro(rs.getDate(38));
 				fornecedores.setGrupofornecedores_codigo(rs.getInt(39));
+				Integer codigo = fornecedores.getGrupofornecedores_codigo();
+				fornecedores.setGrupofornecedores(getFornecedores(codigo)); 
 				
 				lista.add(fornecedores);
 			}
@@ -164,4 +167,30 @@ public class FornecedoresDAO {
 		}
 		return lista;
 	}
+	
+	public GrupoFornecedores getFornecedores(Integer codigo) {
+		GrupoFornecedores grupoFornecedores = new GrupoFornecedores();
+		
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		try {
+			preparedStatement = conexao
+					.prepareStatement ("select codigo, nome from grupofornecedores where codigo = ?");
+			preparedStatement.setInt(1, codigo);
+			rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				Integer cod = rs.getInt("codigo");
+				String nome = rs.getString("nome");
+				grupoFornecedores.setCodigo(cod);
+				grupoFornecedores.setNome(nome);
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+							
+		
+		return grupoFornecedores;
+	}
+	
 }

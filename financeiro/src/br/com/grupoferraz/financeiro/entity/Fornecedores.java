@@ -43,6 +43,7 @@ public class Fornecedores {
 	private String docidex;
 	private String descricao;
 	private Date data_cadastro;
+	private GrupoFornecedores grupofornecedores;
 	
 	public String getNome() {
 		return nome;
@@ -277,6 +278,13 @@ public class Fornecedores {
 	}
 	public void setData_cadastro(Date data_cadastro) {
 		this.data_cadastro = data_cadastro;
+	}
+	
+	public GrupoFornecedores getGrupofornecedores() {
+		return grupofornecedores;
+	}
+	public void setGrupofornecedores(GrupoFornecedores grupofornecedores) {
+		this.grupofornecedores = grupofornecedores;
 	}
 	
 }
