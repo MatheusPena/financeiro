@@ -98,9 +98,11 @@
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
+														<c:forEach
+															items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
 															var="grupoestabelecimento" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{grupoestabelecimento.nomegrupoestabelecimento}"
+															<f:selectItem
+																itemLabel="#{grupoestabelecimento.nomegrupoestabelecimento}"
 																itemValue="#{grupoestabelecimento.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
@@ -146,22 +148,18 @@
 
 														<th>Código</th>
 														<th>Nome</th>
-														<th>Grupo de Estabelecimento</th>
+														<th>Grupo do Estabelecimento</th>
 
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{estabelecimentoBean.estabelecimentos}" var="estabelecimento"
-														cellspacing="0" width="100%">
+													<c:forEach items="#{estabelecimentoBean.estabelecimentos}"
+														var="estabelecimento" cellspacing="0" width="100%">
 														<tr>
 
 															<td>#{estabelecimento.codigo}</td>
 															<td>#{estabelecimento.nome}</td>
-															<c:forEach items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
-																var="grupoestabelecimento" cellspacing="0" width="100%">
-																<td>#{grupoestabelecimento.nomegrupoestabelecimento}</td>
-															</c:forEach>
-
+															<td>#{estabelecimento.grupoestabalecimento}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

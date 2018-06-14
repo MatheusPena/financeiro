@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
+import br.com.grupoferraz.financeiro.entity.GrupoEstabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class EstabelecimentoDAO {
@@ -24,13 +25,11 @@ public class EstabelecimentoDAO {
 		try {
 			// st = con.createStatement();
 
-			PreparedStatement preparedStatement = conexao
-					.prepareStatement("insert into estabelecimentos (codigo, nome, grupoestabelecimento_codigo) "
-							+ "values (?,?,?)");
-			preparedStatement.setString(1, estabelecimentos.getCodigo());
+			PreparedStatement preparedStatement = conexao.prepareStatement(
+					"insert into estabelecimentos (codigo, nome, grupoestabelecimento_codigo) " + "values (?,?,?)");
+			preparedStatement.setInt(1, estabelecimentos.getCodigo());
 			preparedStatement.setString(2, estabelecimentos.getNome());
-			preparedStatement.setString(3, estabelecimentos.getGrupoestabelecimento_codigo());
-			
+			preparedStatement.setInt(3, estabelecimentos.getGrupoestabelecimento_codigo());
 
 			preparedStatement.execute();
 			return true;
@@ -58,13 +57,14 @@ public class EstabelecimentoDAO {
 			while (rs.next()) {
 
 				Estabelecimento estabelecimentos = new Estabelecimento();
-				estabelecimentos.setCodigo(rs.getString("codigo"));
+				estabelecimentos.setCodigo(rs.getInt("codigo"));
 				estabelecimentos.setNome(rs.getString("nome"));
-				estabelecimentos.setGrupoestabelecimento_codigo(rs.getString("grupoestabelecimento_codigo"));
-				
+				estabelecimentos.setGrupoestabelecimento_codigo(rs.getInt("grupoestabelecimento_codigo"));
+				int idGrupo = estabelecimentos.getGrupoestabelecimento_codigo();
+				GrupoEstabelecimento grupoEstabelecimento = getGrupoEstabelecimento(idGrupo);
+				estabelecimentos.setGrupoestabalecimento(grupoEstabelecimento);
 				lista.add(estabelecimentos);
 			}
-			
 
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());
@@ -75,4 +75,18 @@ public class EstabelecimentoDAO {
 		return lista;
 	}
 
+	public GrupoEstabelecimento getGrupoEstabelecimento(int idGrupo) throws SQLException {
+		GrupoEstabelecimento grupo = new GrupoEstabelecimento();
+		Statement st = null;
+		ResultSet rs = null;
+		st = conexao.createStatement();
+		String sql = "SELECT codigo,nomegrupoestabelecimento from financeiro.grupoestabelecimento";
+		rs = st.executeQuery(sql);
+
+		while (rs.next()) {
+			grupo.setCodigo(rs.getInt("codigo"));
+			grupo.setNomegrupoestabelecimento(rs.getString("nomegrupoestabelecimento"));
+		}
+		return grupo;
+	}
 }

@@ -17,6 +17,10 @@ public class GrupoEstabelecimento {
 		this.nomegrupoestabelecimento = nomegrupoestabelecimento;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nomegrupoestabelecimento;
+	}
 	
 }

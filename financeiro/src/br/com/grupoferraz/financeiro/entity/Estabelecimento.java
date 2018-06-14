@@ -7,14 +7,15 @@ import javax.faces.bean.ManagedBean;
 public class Estabelecimento implements Serializable {
  
 	//private int id;
-	private String codigo;
+	private int codigo;
 	private String nome;
-	private String grupoestabelecimento_codigo;
+	private int grupoestabelecimento_codigo;
+	private GrupoEstabelecimento grupoestabalecimento;
 	
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 	public String getNome() {
@@ -23,11 +24,17 @@ public class Estabelecimento implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getGrupoestabelecimento_codigo() {
+	public int getGrupoestabelecimento_codigo() {
 		return grupoestabelecimento_codigo;
 	}
-	public void setGrupoestabelecimento_codigo(String grupoestabelecimento_codigo) {
+	public void setGrupoestabelecimento_codigo(int grupoestabelecimento_codigo) {
 		this.grupoestabelecimento_codigo = grupoestabelecimento_codigo;
 	}
-
+	public GrupoEstabelecimento getGrupoestabalecimento() {
+		return grupoestabalecimento;
+	}
+	public void setGrupoestabalecimento(GrupoEstabelecimento grupoestabalecimento) {
+		this.grupoestabalecimento = grupoestabalecimento;
+	}
+	
 }
