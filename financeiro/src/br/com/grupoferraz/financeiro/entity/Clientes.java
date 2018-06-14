@@ -48,7 +48,7 @@ public class Clientes implements Serializable {
 	private String iss;
 	private BigDecimal aliquota;
 	private String indicadorie;
-
+	private GrupoClientes grupoClientes;
 	
 
 	public byte getExterior() {
@@ -361,6 +361,14 @@ public class Clientes implements Serializable {
 
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
+	}
+
+	public GrupoClientes getGrupoClientes() {
+		return grupoClientes;
+	}
+
+	public void setGrupoClientes(GrupoClientes grupoClientes) {
+		this.grupoClientes = grupoClientes;
 	}
 	
 

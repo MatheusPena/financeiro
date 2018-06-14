@@ -26,21 +26,11 @@
 		<!-- iCheck -->
 		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
 		<!-- Datatables -->
-		<link
-			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-			rel="stylesheet" />
+		<link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet" />
+		<link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />	
 		<!-- Primeface DataTable Style -->
 		<h:outputStylesheet library="css" name="table-style.css" />
 		<!-- Custom Theme Style -->
@@ -143,7 +133,6 @@
 													<tr>
 														<th>Código</th>
 														<th>Nome do Grupo</th>
-														<th>Nome do Fornecedor</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -152,10 +141,6 @@
 														<tr>
 															<td>#{grupofornecedor.codigo}</td>
 															<td>#{grupofornecedor.nome}</td>
-															<c:forEach items="#{fornecedoresBean.fornecedor}"
-																var="fornecedor" cellspacing="0" width="100%">
-																<td>#{fornecedor.nome}</td>
-															</c:forEach>
 														</tr>
 													</c:forEach>
 												</tbody>

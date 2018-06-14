@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.Clientes;
+import br.com.grupoferraz.financeiro.entity.GrupoClientes;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class ClientesDAO {
@@ -128,6 +129,8 @@ public class ClientesDAO {
 				usuario.setContato(rs.getString("contato"));
 				usuario.setCodigorec(rs.getString("codigorec"));
 				usuario.setGrupoclientes_codigo(rs.getInt("grupoclientes_codigo"));
+				Integer codigo = usuario.getGrupoclientes_codigo();
+				usuario.setGrupoClientes(getGrupoCliente(codigo)); 
 				usuario.setCodigoac(rs.getString("codigoac"));
 				usuario.setCodigorep(rs.getString("codigorep"));
 				usuario.setNomefantasia(rs.getString("nomefantasia"));
@@ -159,4 +162,31 @@ public class ClientesDAO {
 		return lista;
 	}
 
+	public GrupoClientes getGrupoCliente(Integer codigo) {
+		GrupoClientes grupoClientes = new GrupoClientes();
+		
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		try {
+			preparedStatement = conexao
+					.prepareStatement ("select codigo, nome from grupoclientes where codigo = ?");
+			preparedStatement.setInt(1, codigo);
+			rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				Integer cod = rs.getInt("codigo");
+				String nome = rs.getString("nome");
+				grupoClientes.setCodigo(cod);
+				grupoClientes.setNome(nome);
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+						
+	
+		
+		
+		
+		return grupoClientes;
+	}
 }

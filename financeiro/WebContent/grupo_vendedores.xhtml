@@ -131,7 +131,6 @@
 													<tr>
 														<th>Código</th>
 														<th>Nome do Grupo</th>
-														<th>Nome do Vendedor</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -140,10 +139,6 @@
 														<tr>
 															<td>#{grupovendedores.codigo}</td>
 															<td>#{grupovendedores.nomegrupovendedores}</td>
-															<c:forEach items="#{vendedoresBean.vendedor}"
-																var="vendedor" cellspacing="0" width="100%">
-																<td>#{vendedor.nome}</td>
-															</c:forEach>
 														</tr>
 													</c:forEach>
 												</tbody>
