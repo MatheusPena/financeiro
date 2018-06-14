@@ -1,11 +1,13 @@
 package br.com.grupoferraz.financeiro.dao;
 
+import br.com.grupoferraz.financeiro.entity.GrupoVendedores;
 import br.com.grupoferraz.financeiro.entity.Vendedores;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -140,5 +142,19 @@ public class VendedoresDAO {
 		}
 		return lista;
 	}
+	
+	public GrupoVendedores getGrupoVendedor(int idGrupo) throws SQLException {
+		GrupoVendedores grupo = new GrupoVendedores();
+		Statement st = null;
+		ResultSet rs = null;
+		st = conexao.createStatement();
+		String sql = ("select codigo, nomegrupovendedores from grupovendedores where codigo = ?");
+		rs = st.executeQuery(sql);
 
+		while (rs.next()) {
+			grupo.setCodigo(rs.getInt("codigo"));
+			grupo.setNomegrupovendedores(rs.getString("nomegrupovendedores"));
+		}
+		return grupo;
+	}
 }

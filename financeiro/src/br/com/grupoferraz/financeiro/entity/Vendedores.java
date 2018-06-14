@@ -39,7 +39,8 @@ public class Vendedores {
 	private int conta;
 	private int digconta;
 	private Date dataCadastro;
-
+	private GrupoVendedores grupovendedores;
+	
 	public Vendedores() {
 		initPessoa();
 		initEmissor();
@@ -369,6 +370,14 @@ public class Vendedores {
 
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
+	}
+
+	public GrupoVendedores getGrupovendedores() {
+		return grupovendedores;
+	}
+
+	public void setGrupovendedores(GrupoVendedores grupovendedores) {
+		this.grupovendedores = grupovendedores;
 	}
 	
 }
