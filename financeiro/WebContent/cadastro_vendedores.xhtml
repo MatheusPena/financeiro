@@ -26,21 +26,11 @@
 		<!-- iCheck -->
 		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
 		<!-- Datatables -->
-		<link
-			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-			rel="stylesheet" />
+		<link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet" />
+		<link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />	
 		<!-- Custom Theme Style -->
 		<link href="build/css/custom.min.css" rel="stylesheet" />
 	</h:head>
@@ -77,7 +67,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:outputText for="pessoa" value="Pessoa" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:selectOneRadio id="pessoa"
+													<h:selectOneRadio id="pessoa" required="true"
 														value="#{vendedoresBean.vendedores.pessoa}">
 														<f:selectItems
 															value="#{vendedoresBean.vendedores.pessoas}" var="pessoa"
@@ -445,9 +435,9 @@
 														class="table table-striped table-bordered dt-responsive nowrap ">
 														<thead>
 															<tr>
+																<th>Nome</th>																
 																<th>Pessoa</th>
-																<th>CPF/CNPJ</th>
-																<th>Nome</th>
+																<th>CPF/CNPJ</th>	
 																<th>Data de nascimento</th>
 																<th>Chave</th>
 																<th>RG</th>
@@ -479,9 +469,9 @@
 															<c:forEach items="#{vendedoresBean.vendedor}"
 																var="vendedor" cellspacing="0" width="100%">
 																<tr>
-																	<td>#{vendedor.pessoa}</td>
-																	<td>#{vendedor.cpf}</td>
 																	<td>#{vendedor.nome}</td>
+																	<td>#{vendedor.pessoa}</td>
+																	<td>#{vendedor.cpf}</td>			
 																	<td><h:outputText value="#{vendedor.data}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"
 																				dateStyle="long" />
