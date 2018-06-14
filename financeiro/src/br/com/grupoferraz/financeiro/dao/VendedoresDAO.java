@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -116,6 +115,8 @@ public class VendedoresDAO {
 				vendedores.setDigconta(rs.getInt(27));
 				vendedores.setDataCadastro(rs.getDate(28));
 				vendedores.setGrupovendedores_codigo(rs.getInt(29));
+				GrupoVendedores obj = getGrupoVendedor(vendedores.getGrupovendedores_codigo());
+				vendedores.setGrupovendedores(obj);
 				lista.add(vendedores);
 			}
 
@@ -145,11 +146,12 @@ public class VendedoresDAO {
 	
 	public GrupoVendedores getGrupoVendedor(int idGrupo) throws SQLException {
 		GrupoVendedores grupo = new GrupoVendedores();
-		Statement st = null;
+		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		st = conexao.createStatement();
-		String sql = ("select codigo, nomegrupovendedores from grupovendedores where codigo = ?");
-		rs = st.executeQuery(sql);
+			preparedStatement = conexao
+					.prepareStatement ("select codigo, nomegrupovendedores from grupovendedores where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));

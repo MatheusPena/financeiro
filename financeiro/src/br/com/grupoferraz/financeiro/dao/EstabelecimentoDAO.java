@@ -77,11 +77,12 @@ public class EstabelecimentoDAO {
 
 	public GrupoEstabelecimento getGrupoEstabelecimento(int idGrupo) throws SQLException {
 		GrupoEstabelecimento grupo = new GrupoEstabelecimento();
-		Statement st = null;
+		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		st = conexao.createStatement();
-		String sql = "SELECT codigo,nomegrupoestabelecimento from financeiro.grupoestabelecimento";
-		rs = st.executeQuery(sql);
+			preparedStatement = conexao
+					.prepareStatement ("select codigo, nomegrupoestabelecimento from grupoestabelecimento where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
