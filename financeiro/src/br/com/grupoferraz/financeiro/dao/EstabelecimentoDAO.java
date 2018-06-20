@@ -24,13 +24,17 @@ public class EstabelecimentoDAO {
 
 		try {
 			// st = con.createStatement();
-
-			PreparedStatement preparedStatement = conexao.prepareStatement(
-					"insert into estabelecimentos (codigo, nome, grupoestabelecimento_codigo) " + "values (?,?,?)");
+			StringBuilder str = new StringBuilder();
+			str.append("insert into estabelecimentos (codigo, nome, grupoestabelecimento_codigo) values (?,?,?) ");
+			str.append("on duplicate key update codigo = ?, nome = ?, grupoestabelecimento_codigo = ?");
+			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, estabelecimentos.getCodigo());
 			preparedStatement.setString(2, estabelecimentos.getNome());
 			preparedStatement.setInt(3, estabelecimentos.getGrupoestabelecimento_codigo());
-
+			
+			preparedStatement.setInt(4, estabelecimentos.getCodigo());
+			preparedStatement.setString(5, estabelecimentos.getNome());
+			preparedStatement.setInt(6, estabelecimentos.getGrupoestabelecimento_codigo());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {

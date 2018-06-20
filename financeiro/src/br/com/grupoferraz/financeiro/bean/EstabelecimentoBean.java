@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -30,14 +31,16 @@ public class EstabelecimentoBean implements Serializable {
 		ConexaoBD.getConexao();
 		EstabelecimentoDAO estabelecimentos = new EstabelecimentoDAO ();
 		if (estabelecimentos.insertEstabelecimentos(this.estabelecimento)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Estabelecimento cadastrado com sucesso", "Sucesso!"));
+			//FacesContext.getCurrentInstance().addMessage(null,
+				//	new FacesMessage(FacesMessage.SEVERITY_INFO, "Estabelecimento cadastrado com sucesso", "Sucesso!"));
+			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Estabelecimento cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do estabelecimento!", "Erro!"));
 
 		}
 		ConexaoBD.fecharConexao();
+		estabelecimento = new Estabelecimento();
 
 		return "";
 	}
