@@ -60,7 +60,7 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Estabelecimento <small>Cadastre aqui os
+											Formulário de Estabelecimentos <small>Cadastre aqui os
 												estabelecimentos</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
@@ -128,7 +128,8 @@
 													<p:commandButton value="Cadastrar" oncomplete="temp();"
 														action="#{estabelecimentoBean.cadastraEstabelecimentos}"
 														update="messages @(.form_control)"
-														styleClass="btn btn-success">
+														styleClass="btn btn-success"
+														onclick="window.location='#demo-form2'">
 													</p:commandButton>
 													<script>
 														function temp() {
