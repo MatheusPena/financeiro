@@ -409,7 +409,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="febraban"
-														value="#{fornecedoresBean.fornecedores.docidex}"
+														value="#{fornecedoresBean.fornecedores.febraban}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -421,7 +421,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="inscricaom"
-														value="#{fornecedoresBean.fornecedores.docidex}"
+														value="#{fornecedoresBean.fornecedores.inscmunicipio}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -469,7 +469,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codepais"
-														value="#{fornecedoresBean.fornecedores.docidex}"
+														value="#{fornecedoresBean.fornecedores.codigopais}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -594,7 +594,8 @@
 														<th>Alíquota INSS</th>
 														<th>Doc. Identificação de Estrangeiro</th>
 														<th>Observação</th>
-														<!--<th>Data do Cadastro</th>-->
+														<th class="text-center">Editar</th>
+												<!--  		<th>Data do Cadastro</th>	-->
 													</tr>
 												</thead>
 												<tbody>
@@ -642,7 +643,14 @@
 															<td>#{fornecedor.inss}</td>
 															<td>#{fornecedor.aliquota}</td>
 															<td>#{fornecedor.docidex}</td>
-															<td>#{fornecedor.descricao}</td> 
+															<td>#{fornecedor.descricao}</td>
+															<td class="text-center"><p:commandButton value=""
+															 style="font-size:10px; "
+															styleClass="fas fa-edit btn btn-primary" 
+															update="@(.form-control) demo-form2">
+															<f:setPropertyActionListener value="#{fornecedor}" 
+															target="#{fornecedoresBean.fornecedores}"/>
+															</p:commandButton></td> 
 														</tr>
 													</c:forEach>
 												</tbody>

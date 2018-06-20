@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,69 +17,116 @@ import java.util.logging.Logger;
 public class FornecedoresDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean salvar(Fornecedores fornecedores) {
+	public boolean insertFornecedores(Fornecedores fornecedores) {
 		try {
-			PreparedStatement ps = conexao.prepareCall("INSERT INTO fornecedores (nome, cpf, dtnascimento, "
-					+ "logradouro, num, com, bairro, cep," 
-					+ "cidade, estado, ie, telefone, celular, fax, email, " 
-					+ "site, contato, codigodes, grupofornecedores_codigo,  rg," 
-					+ "contabil, banco, tipoconta, agenciabanco, digagencia, conta, digconta, nomefantasia, febraban, inscmunicipio,"
+			StringBuilder str = new StringBuilder();
+			str.append("insert into fornecedores (nome, cpf, dtnascimento,"
+					+ "logradouro, num, com, bairro, cep, "
+					+ "cidade, estado, ie, telefone, celular, fax, email, "
+					+ "site, contato, codigodes, grupofornecedores_codigo,  rg,"
+					+ "contabil, banco, tipoconta, agenciabanco, digagencia, conta, "
+					+ "digconta, nomefantasia, febraban, inscmunicipio,"
 					+ "prestadorserv, icms, ipi, codigopais, inss, aliquota, docidex, descricao, data_cadastro)"
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			ps.setString(1, fornecedores.getNome());
-			ps.setString(2, fornecedores.getCpf());
+			str.append("on duplicate key update nome = ?, cpf = ?, dtnascimento = ?, "
+					+ "logradouro = ?, num = ?, com = ?, bairro = ?, cep = ?, cidade = ?, estado = ?, ie = ?, "
+					+ "telefone = ?, celular = ?, fax = ?, email = ?,  site = ?, contato = ?, codigodes = ?, "
+					+ "grupofornecedores_codigo = ?, rg = ?, contabil = ?, banco = ?, tipoconta = ?, agenciabanco = ?, "
+					+ "digagencia = ?, conta = ?, digconta = ?, nomefantasia = ?, "
+					+ "febraban = ?, inscmunicipio = ?, prestadorserv = ?, "
+					+ "icms = ?, ipi = ?, codigopais = ?, inss = ?, aliquota = ?, docidex = ?, descricao = ?, data_cadastro = ?");
+			
+			PreparedStatement PreparedStatement = conexao.prepareStatement(str.toString());
+			PreparedStatement.setString(1, fornecedores.getNome());
+			PreparedStatement.setString(2, fornecedores.getCpf());
 			Date dataNascimento = fornecedores.getDtnascimento();
 			long t = 0;
 			if (dataNascimento != null ) {
 				t = dataNascimento.getTime();	
-				ps.setDate(3, new java.sql.Date(t));
-			}else {
-				ps.setDate(3, null);
+				PreparedStatement.setDate(3, new java.sql.Date(t));
 			}
+			PreparedStatement.setString(4, fornecedores.getLogradouro());
+			PreparedStatement.setString(5, fornecedores.getNum());
+			PreparedStatement.setString(6, fornecedores.getCom());
+			PreparedStatement.setString(7, fornecedores.getBairro());
+			PreparedStatement.setString(8, fornecedores.getCep());
+			PreparedStatement.setString(9, fornecedores.getCidade());
+			PreparedStatement.setString(10, fornecedores.getEstado());
+			PreparedStatement.setString(11, fornecedores.getIe());
+			PreparedStatement.setString(12, fornecedores.getTelefone());
+			PreparedStatement.setString(13, fornecedores.getCelular());
+			PreparedStatement.setString(14, fornecedores.getFax());
+			PreparedStatement.setString(15, fornecedores.getEmail());
+			PreparedStatement.setString(16, fornecedores.getSite());
+			PreparedStatement.setString(17, fornecedores.getContato());
+			PreparedStatement.setString(18, fornecedores.getCodigodes());
+			PreparedStatement.setInt(19, fornecedores.getGrupofornecedores_codigo());
+			PreparedStatement.setString(20, fornecedores.getRg());
+			PreparedStatement.setString(21, fornecedores.getContabil());
+			PreparedStatement.setString(22, fornecedores.getBanco());
+			PreparedStatement.setString(23, fornecedores.getTipoconta());
+			PreparedStatement.setInt(24, fornecedores.getAgenciabanco());
+			PreparedStatement.setInt(25, fornecedores.getDigagencia());
+			PreparedStatement.setInt(26, fornecedores.getConta());
+			PreparedStatement.setInt(27, fornecedores.getDigconta());
+			PreparedStatement.setString(28, fornecedores.getNomefantasia());
+			PreparedStatement.setInt(29, fornecedores.getFebraban());
+			PreparedStatement.setInt(30, fornecedores.getInscmunicipio());
+			PreparedStatement.setString(31, fornecedores.getPrestadorserv());
+			PreparedStatement.setString(32, fornecedores.getIcms());
+			PreparedStatement.setString(33, fornecedores.getIpi());
+			PreparedStatement.setInt(34, fornecedores.getCodigopais());
+			PreparedStatement.setString(35, fornecedores.getInss());
+			PreparedStatement.setBigDecimal(36, fornecedores.getAliquota());
+			PreparedStatement.setString(37, fornecedores.getDocidex());
+			PreparedStatement.setString(38, fornecedores.getDescricao());
+			PreparedStatement.setDate(39, new java.sql.Date(new Date().getTime()));
 			
-			ps.setString(4, fornecedores.getLogradouro());
-			ps.setString(5, fornecedores.getNum());
-			ps.setString(6, fornecedores.getCom());
-			ps.setString(7, fornecedores.getBairro());
-			ps.setString(8, fornecedores.getCep());
-			ps.setString(9, fornecedores.getCidade());
-			ps.setString(10, fornecedores.getEstado());
-			ps.setString(11, fornecedores.getIe());
-			ps.setString(12, fornecedores.getTelefone());
-			ps.setString(13, fornecedores.getCelular());
-			ps.setString(14, fornecedores.getFax());
-			ps.setString(15, fornecedores.getEmail());
-			ps.setString(16, fornecedores.getSite());
-			ps.setString(17, fornecedores.getContato());
-			ps.setString(18, fornecedores.getCodigodes());
-			ps.setInt(19, fornecedores.getGrupofornecedores_codigo());
-			ps.setString(20, fornecedores.getRg());
-			ps.setString(21, fornecedores.getContabil());
-			ps.setString(22, fornecedores.getBanco());
-			ps.setString(23, fornecedores.getTipoconta());
-			ps.setInt(24, fornecedores.getAgenciabanco());
-			ps.setInt(25, fornecedores.getDigagencia());
-			ps.setInt(26, fornecedores.getConta());
-			ps.setInt(27, fornecedores.getDigconta());
-			ps.setString(28, fornecedores.getNomefantasia());
-			ps.setInt(29, fornecedores.getFebraban());
-			ps.setInt(30, fornecedores.getInscmunicipio());
-			ps.setString(31, fornecedores.getPrestadorserv());
-			ps.setString(32, fornecedores.getIcms());
-			ps.setString(33, fornecedores.getIpi());
-			ps.setInt(34, fornecedores.getCodigopais());
-			ps.setString(35, fornecedores.getInss());
-			ps.setBigDecimal(36, fornecedores.getAliquota());
-			ps.setString(37, fornecedores.getDocidex());
-			ps.setString(38, fornecedores.getDescricao());
-			ps.setDate(39, new java.sql.Date(new Date().getTime()));
-			ps.execute();
+			PreparedStatement.setString(40, fornecedores.getNome());
+			PreparedStatement.setString(41, fornecedores.getCpf());
+			PreparedStatement.setDate(42, new java.sql.Date(t));
+			PreparedStatement.setString(43, fornecedores.getLogradouro());
+			PreparedStatement.setString(44, fornecedores.getNum());
+			PreparedStatement.setString(45, fornecedores.getCom());
+			PreparedStatement.setString(46, fornecedores.getBairro());
+			PreparedStatement.setString(47, fornecedores.getCep());
+			PreparedStatement.setString(48, fornecedores.getCidade());
+			PreparedStatement.setString(49, fornecedores.getEstado());
+			PreparedStatement.setString(50, fornecedores.getIe());
+			PreparedStatement.setString(51, fornecedores.getTelefone());
+			PreparedStatement.setString(52, fornecedores.getCelular());
+			PreparedStatement.setString(53, fornecedores.getFax());
+			PreparedStatement.setString(54, fornecedores.getEmail());
+			PreparedStatement.setString(55, fornecedores.getSite());
+			PreparedStatement.setString(56, fornecedores.getContato());
+			PreparedStatement.setString(57, fornecedores.getCodigodes());
+			PreparedStatement.setInt(58, fornecedores.getGrupofornecedores_codigo());
+			PreparedStatement.setString(59, fornecedores.getRg());
+			PreparedStatement.setString(60, fornecedores.getContabil());
+			PreparedStatement.setString(61, fornecedores.getBanco());
+			PreparedStatement.setString(62, fornecedores.getTipoconta());
+			PreparedStatement.setInt(63, fornecedores.getAgenciabanco());
+			PreparedStatement.setInt(64, fornecedores.getDigagencia());
+			PreparedStatement.setInt(65, fornecedores.getConta());
+			PreparedStatement.setInt(66, fornecedores.getDigconta());
+			PreparedStatement.setString(67, fornecedores.getNomefantasia());
+			PreparedStatement.setInt(68, fornecedores.getFebraban());
+			PreparedStatement.setInt(69, fornecedores.getInscmunicipio());
+			PreparedStatement.setString(70, fornecedores.getPrestadorserv());
+			PreparedStatement.setString(71, fornecedores.getIcms());
+			PreparedStatement.setString(72, fornecedores.getIpi());
+			PreparedStatement.setInt(73, fornecedores.getCodigopais());
+			PreparedStatement.setString(74, fornecedores.getInss());
+			PreparedStatement.setBigDecimal(75, fornecedores.getAliquota());
+			PreparedStatement.setString(76, fornecedores.getDocidex());
+			PreparedStatement.setString(77, fornecedores.getDescricao());
+			PreparedStatement.setDate(78, new java.sql.Date(new Date().getTime()));
+			PreparedStatement.execute();
 			return true;
-
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());
 			lgr.log(Level.SEVERE, ex.getMessage(), ex);
-			return false;
+		return false;
 
 		}
 	}
@@ -88,16 +136,23 @@ public class FornecedoresDAO {
 
 		ArrayList<Fornecedores> lista = new ArrayList<Fornecedores>();
 
-		java.sql.Statement st = null;
+		Statement st = null;
 		ResultSet rs = null;
-
+		
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from fornecedores ";
+			String sql = "select nome, cpf, dtnascimento,"
+					+ "logradouro, num, com, bairro, cep, "
+					+ "cidade, estado, ie, telefone, celular, fax, email,"
+					+ "site, contato, codigodes, grupofornecedores_codigo, rg,  "
+					+ "contabil, banco, tipoconta, agenciabanco, digagencia, conta, "
+					+ "digconta, nomefantasia, febraban, inscmunicipio," 
+					+ "prestadorserv, icms, ipi, codigopais, inss, aliquota, "
+					+ "docidex, descricao, data_cadastro from fornecedores";
 			rs = st.executeQuery(sql);
 
-			while (rs.next()) {
-
+			while (rs.next()) {			
+				
 				Fornecedores fornecedores = new Fornecedores();
 				fornecedores.setNome(rs.getString(1));
 				fornecedores.setCpf(rs.getString(2));
@@ -117,29 +172,30 @@ public class FornecedoresDAO {
 				fornecedores.setSite(rs.getString(16));
 				fornecedores.setContato(rs.getString(17));
 				fornecedores.setCodigodes(rs.getString(18));
-				fornecedores.setRg(rs.getString(19));
-				fornecedores.setContabil(rs.getString(20));
-				fornecedores.setBanco(rs.getString(21));
-				fornecedores.setTipoconta(rs.getString(22));
-				fornecedores.setAgenciabanco(rs.getInt(23));
-				fornecedores.setDigagencia(rs.getInt(24));
-				fornecedores.setConta(rs.getInt(25));
-				fornecedores.setDigconta(rs.getInt(26));
-				fornecedores.setNomefantasia(rs.getString(27));
-				fornecedores.setFebraban(rs.getInt(28));
-				fornecedores.setInscmunicipio(rs.getInt(29));
-				fornecedores.setPrestadorserv(rs.getString(30));
-				fornecedores.setIcms(rs.getString(31));
-				fornecedores.setIpi(rs.getString(32));
-				fornecedores.setCodigopais(rs.getInt(33));
-				fornecedores.setInss(rs.getString(34));
-				fornecedores.setAliquota(rs.getBigDecimal(35));
-				fornecedores.setDocidex(rs.getString(36));
-				fornecedores.setDescricao(rs.getString(37));
-				fornecedores.setData_cadastro(rs.getDate(38));
-				fornecedores.setGrupofornecedores_codigo(rs.getInt(39));
+				fornecedores.setGrupofornecedores_codigo(rs.getInt(19));
 				Integer codigo = fornecedores.getGrupofornecedores_codigo();
 				fornecedores.setGrupofornecedores(getFornecedores(codigo)); 
+				fornecedores.setRg(rs.getString(20));
+				fornecedores.setContabil(rs.getString(21));
+				fornecedores.setBanco(rs.getString(22));
+				fornecedores.setTipoconta(rs.getString(23));
+				fornecedores.setAgenciabanco(rs.getInt(24));
+				fornecedores.setDigagencia(rs.getInt(25));
+				fornecedores.setConta(rs.getInt(26));
+				fornecedores.setDigconta(rs.getInt(27));
+				fornecedores.setNomefantasia(rs.getString(28));
+				fornecedores.setFebraban(rs.getInt(29));
+				fornecedores.setInscmunicipio(rs.getInt(30));
+				fornecedores.setPrestadorserv(rs.getString(31));
+				fornecedores.setIcms(rs.getString(32));
+				fornecedores.setIpi(rs.getString(33));
+				fornecedores.setCodigopais(rs.getInt(34));
+				fornecedores.setInss(rs.getString(35));
+				fornecedores.setAliquota(rs.getBigDecimal(36));
+				fornecedores.setDocidex(rs.getString(37));
+				fornecedores.setDescricao(rs.getString(38));
+				fornecedores.setData_cadastro(rs.getDate(39));
+				
 				
 				lista.add(fornecedores);
 			}
@@ -149,24 +205,10 @@ public class FornecedoresDAO {
 			lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
 		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (st != null) {
-					st.close();
-				}
-				// if (conexao != null) {
-				// conexao.close();
-				// }
-
-			} catch (SQLException ex) {
-				Logger lgr = Logger.getLogger(Connection.class.getName());
-				lgr.log(Level.WARNING, ex.getMessage(), ex);
-			}
 		}
 		return lista;
 	}
+		
 	
 	public GrupoFornecedores getFornecedores(Integer codigo) {
 		GrupoFornecedores grupoFornecedores = new GrupoFornecedores();

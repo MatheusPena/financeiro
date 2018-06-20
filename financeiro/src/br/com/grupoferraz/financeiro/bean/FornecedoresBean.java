@@ -3,15 +3,15 @@ package br.com.grupoferraz.financeiro.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import br.com.grupoferraz.financeiro.dao.FornecedoresDAO;
 import br.com.grupoferraz.financeiro.entity.Fornecedores;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
+
+
 
 @SuppressWarnings("serial")
 @ViewScoped
@@ -29,7 +29,7 @@ public class FornecedoresBean implements Serializable {
 		fornecedor.add(fornecedores);
 		ConexaoBD.getConexao();
 		FornecedoresDAO fornecedoresDAO = new FornecedoresDAO();
-		if (fornecedoresDAO.salvar(fornecedores)) {
+		if (fornecedoresDAO.insertFornecedores(fornecedores)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Fornecedor cadastrado com sucesso!", "Sucesso!"));
 		} else {
@@ -65,3 +65,4 @@ public class FornecedoresBean implements Serializable {
 	
 	
 }
+	

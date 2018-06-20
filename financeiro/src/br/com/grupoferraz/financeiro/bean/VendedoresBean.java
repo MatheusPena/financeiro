@@ -1,7 +1,6 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -12,48 +11,44 @@ import javax.faces.context.FacesContext;
 import br.com.grupoferraz.financeiro.dao.VendedoresDAO;
 import br.com.grupoferraz.financeiro.entity.Vendedores;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ViewScoped
 @ManagedBean
 public class VendedoresBean implements Serializable {
-	private Vendedores vendedores = new Vendedores();
-	private List<Vendedores> vendedor = new ArrayList<>();
+
+	private Vendedores vendedores;
+	private List<Vendedores> vendedor;
 
 	public VendedoresBean() {
 		vendedores = new Vendedores();
-		getVendedorr();
+		listarVendedor();
 	}
 
-	public String cadastrar() {
-		vendedor.add(vendedores);
+	public String cadastraVendedor() {
+
 		ConexaoBD.getConexao();
-		VendedoresDAO vendedoresDAO = new VendedoresDAO();
-		if (vendedoresDAO.salvar(vendedores)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Vendedor cadastrado com sucesso!", "Sucesso!"));
+		VendedoresDAO vendedor = new VendedoresDAO ();
+		if (vendedor.insertVendedores(this.vendedores)) {
+
+			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Vendedor cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do vendedor!", "Erro!"));
 
 		}
 		ConexaoBD.fecharConexao();
+		vendedores = new Vendedores();
 
 		return "";
 	}
 
-	public void getVendedorr()  {
-		VendedoresDAO vendedoresDAO = new VendedoresDAO ();
-		vendedor = vendedoresDAO.listVendedores();
-	}
-	
-	public Vendedores getVendedores() {
-		return vendedores;
+	public void listarVendedor()  {
+		VendedoresDAO vendedor = new VendedoresDAO ();
+		setVendedor(vendedor.listVendedores());
 	}
 
-	public void setVendedores(Vendedores vendedores) {
-		this.vendedores = vendedores;
-	}
 
 	public List<Vendedores> getVendedor() {
 		return vendedor;
@@ -63,4 +58,13 @@ public class VendedoresBean implements Serializable {
 		this.vendedor = vendedor;
 	}
 
+	public Vendedores getVendedores() {
+		return vendedores;
+	}
+
+	public void setVendedores(Vendedores vendedores) {
+		this.vendedores = vendedores;
+	}
+
+	
 }

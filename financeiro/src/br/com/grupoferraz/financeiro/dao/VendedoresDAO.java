@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,53 +17,89 @@ import java.util.logging.Logger;
 public class VendedoresDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean salvar(Vendedores vendedores) {
+	public boolean insertVendedores(Vendedores vendedores) {
 		try {
-			PreparedStatement ps = conexao.prepareCall(
-					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,"
-					+ "`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,"
-					+ "`cel1`,`cel2`,`grupovendedores_codigo`,`banco`,`tipoconta`,`agenciabanco`,"
+			StringBuilder str = new StringBuilder();
+			str.append("insert into vendedores (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,"
+					+ "`sexo`,`estadocivil`,`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,"
+					+ "`email`,`telefone`,`cel1`,`cel2`,`grupovendedores_codigo`,`banco`,`tipoconta`,`agenciabanco`,"
 					+ "`digagencia`,`conta`,`digconta`,`data_cadastro`) "
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\r\n"
-							+ "");
-			ps.setString(1, vendedores.getPessoa());
-			ps.setString(2, vendedores.getCpf());
-			ps.setString(3, vendedores.getNome());
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			str.append("on duplicate key update pessoa = ?, cpfcnpj = ?, nome = ?, dtnascimento = ?, chave = ?,"
+					+ "rg = ?, emissor = ?, sexo = ?, estadocivil = ?, agencia = ?, rua = ?, cep = ?, numero = ?, "
+					+ "bairro = ?, cidade = ?, uf = ?, complemento = ?, email = ?, telefone = ?, cel1 = ?, cel2 = ?,"
+					+ "grupovendedores_codigo = ?, banco = ?, tipoconta = ?, agenciabanco = ?, digagencia = ?,"
+					+ "conta = ?, digconta = ?, data_cadastro = ? ");
+			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
+			preparedStatement.setString(1, vendedores.getPessoa());
+			preparedStatement.setString(2, vendedores.getCpf());
+			preparedStatement.setString(3, vendedores.getNome());
 			Date data = vendedores.getData();
 			long t = 0;
 			if (data != null ) {
 				t = data.getTime();	
 			}
-			ps.setDate(4,new java.sql.Date(t));
-			ps.setString(5, vendedores.getChave());
-			ps.setString(6, vendedores.getRg());
-			ps.setString(7, vendedores.getEmissor());
-			ps.setString(8, vendedores.getSexo());
-			ps.setString(9, vendedores.getEstado_civil());
-			ps.setString(10, vendedores.getAgencia());
-			ps.setString(11, vendedores.getRua());
-			ps.setString(12, vendedores.getCep());
-			ps.setInt(13, vendedores.getNumero());
-			ps.setString(14, vendedores.getBairro());
-			ps.setString(15, vendedores.getCidade());
-			ps.setString(16, vendedores.getUf());
-			ps.setString(17, vendedores.getComplemento());
-			ps.setString(18, vendedores.getEmail());
-			ps.setString(19, vendedores.getTelefone());
-			ps.setString(20, vendedores.getCel1());
-			ps.setString(21, vendedores.getCel2());
-			ps.setInt(22, vendedores.getGrupovendedores_codigo());
-			ps.setString(23, vendedores.getBanco());
-			ps.setString(24, vendedores.getTipo_conta());
-			ps.setInt(25, vendedores.getAgenciabanco());
-			ps.setInt(26, vendedores.getDigagencia());
-			ps.setInt(27, vendedores.getConta());
-			ps.setInt(28, vendedores.getDigconta());
-			ps.setDate(29, new java.sql.Date(new Date().getTime()));
-			ps.execute();
-			return true;
+			preparedStatement.setDate(4,new java.sql.Date(t));
+			preparedStatement.setString(5, vendedores.getChave());
+			preparedStatement.setString(6, vendedores.getRg());
+			preparedStatement.setString(7, vendedores.getEmissor());
+			preparedStatement.setString(8, vendedores.getSexo());
+			preparedStatement.setString(9, vendedores.getEstado_civil());
+			preparedStatement.setString(10, vendedores.getAgencia());
+			preparedStatement.setString(11, vendedores.getRua());
+			preparedStatement.setString(12, vendedores.getCep());
+			preparedStatement.setInt(13, vendedores.getNumero());
+			preparedStatement.setString(14, vendedores.getBairro());
+			preparedStatement.setString(15, vendedores.getCidade());
+			preparedStatement.setString(16, vendedores.getUf());
+			preparedStatement.setString(17, vendedores.getComplemento());
+			preparedStatement.setString(18, vendedores.getEmail());
+			preparedStatement.setString(19, vendedores.getTelefone());
+			preparedStatement.setString(20, vendedores.getCel1());
+			preparedStatement.setString(21, vendedores.getCel2());
+			preparedStatement.setInt(22, vendedores.getGrupovendedores_codigo());
+			preparedStatement.setString(23, vendedores.getBanco());
+			preparedStatement.setString(24, vendedores.getTipo_conta());
+			preparedStatement.setInt(25, vendedores.getAgenciabanco());
+			preparedStatement.setInt(26, vendedores.getDigagencia());
+			preparedStatement.setInt(27, vendedores.getConta());
+			preparedStatement.setInt(28, vendedores.getDigconta());
+			preparedStatement.setDate(29, new java.sql.Date(new Date().getTime()));
 			
-		}  catch (SQLException ex) {
+			preparedStatement.setString(30, vendedores.getPessoa());
+			preparedStatement.setString(31, vendedores.getCpf());
+			preparedStatement.setString(32, vendedores.getNome());
+			preparedStatement.setDate(33,new java.sql.Date(t));
+			preparedStatement.setString(34, vendedores.getChave());
+			preparedStatement.setString(35, vendedores.getRg());
+			preparedStatement.setString(36, vendedores.getEmissor());
+			preparedStatement.setString(37, vendedores.getSexo());
+			preparedStatement.setString(38, vendedores.getEstado_civil());
+			preparedStatement.setString(39, vendedores.getAgencia());
+			preparedStatement.setString(40, vendedores.getRua());
+			preparedStatement.setString(41, vendedores.getCep());
+			preparedStatement.setInt(42, vendedores.getNumero());
+			preparedStatement.setString(43, vendedores.getBairro());
+			preparedStatement.setString(44, vendedores.getCidade());
+			preparedStatement.setString(45, vendedores.getUf());
+			preparedStatement.setString(46, vendedores.getComplemento());
+			preparedStatement.setString(47, vendedores.getEmail());
+			preparedStatement.setString(48, vendedores.getTelefone());
+			preparedStatement.setString(49, vendedores.getCel1());
+			preparedStatement.setString(50, vendedores.getCel2());
+			preparedStatement.setInt(51, vendedores.getGrupovendedores_codigo());
+			preparedStatement.setString(52, vendedores.getBanco());
+			preparedStatement.setString(53, vendedores.getTipo_conta());
+			preparedStatement.setInt(54, vendedores.getAgenciabanco());
+			preparedStatement.setInt(55, vendedores.getDigagencia());
+			preparedStatement.setInt(56, vendedores.getConta());
+			preparedStatement.setInt(57, vendedores.getDigconta());
+			preparedStatement.setDate(58, new java.sql.Date(new Date().getTime()));
+			
+			preparedStatement.execute();
+			
+			return true;
+		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());
 			lgr.log(Level.SEVERE, ex.getMessage(), ex);
 			return false;
@@ -75,7 +112,7 @@ public class VendedoresDAO {
 
 		ArrayList<Vendedores> lista = new ArrayList<Vendedores>();
 
-		java.sql.Statement st = null;
+		Statement st = null;
 		ResultSet rs = null;
 
 		try {
@@ -125,24 +162,10 @@ public class VendedoresDAO {
 			lgr.log(Level.SEVERE, ex.getMessage(), ex);
 
 		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (st != null) {
-					st.close();
-				}
-//				if (conexao != null) {
-//					conexao.close();
-//				}
-
-			} catch (SQLException ex) {
-				Logger lgr = Logger.getLogger(Connection.class.getName());
-				lgr.log(Level.WARNING, ex.getMessage(), ex);
-			}
 		}
 		return lista;
 	}
+	
 	
 	public GrupoVendedores getGrupoVendedor(int idGrupo) throws SQLException {
 		GrupoVendedores grupo = new GrupoVendedores();

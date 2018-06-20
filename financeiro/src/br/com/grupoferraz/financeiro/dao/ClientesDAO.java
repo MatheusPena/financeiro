@@ -25,14 +25,19 @@ public class ClientesDAO {
 
 		try {
 			// st = con.createStatement();
-
-			PreparedStatement preparedStatement = conexao
-					.prepareStatement("insert into clientes (nome, cpf, nascimento, descricao,"
-							+ "data_cadastro, logradouro, num, com, bairro, cep,"
-							+ "cidade, estado, ie, telefone, celular, fax, email, "
-							+ "site, contato, codigorec, grupoclientes_codigo, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,"
-							+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, aliquota,indicadorie)"
-							+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			StringBuilder str = new StringBuilder();
+			str.append("insert into clientes (nome, cpf, nascimento, descricao, data_cadastro, logradouro, num, com, bairro, cep,"
+					+ "cidade, estado, ie, telefone, celular, fax, email, "
+					+ "site, contato, codigorec, grupoclientes_codigo, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,  "
+					+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, aliquota, indicadorie) "
+					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
+			str.append("on duplicate key update nome = ?, cpf = ?, nascimento = ?, descricao = ?, data_cadastro = ?, "
+					+ "logradouro = ?, num = ?, com = ?, bairro = ?, cep = ?, cidade = ?, estado = ?, ie = ?, "
+					+ "telefone = ?, celular = ?, fax = ?, email = ?, site = ?, contato = ?, codigorec = ?, grupoclientes_codigo = ?, "
+					+ "codigoac = ?, codigorep = ?, nomefantasia = ?, rg = ?, cpfcp = ?, exterior = ?, contabil = ?, "
+					+ "debito = ?, nf = ?, ident = ?, docidex = ?, insc = ?, codigopais = ?, iseninscr = ?, "
+					+ "inss = ?, iss = ?, aliquota = ?, indicadorie = ?");
+			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setString(1, usuario.getNome());
 			preparedStatement.setString(2, usuario.getCpf());
 			Date dataNascimento = usuario.getNascimento();
@@ -77,6 +82,46 @@ public class ClientesDAO {
 			preparedStatement.setString(37, usuario.getIss());
 			preparedStatement.setBigDecimal(38, usuario.getAliquota());
 			preparedStatement.setString(39, usuario.getIndicadorie());
+			
+			preparedStatement.setString(40, usuario.getNome());
+			preparedStatement.setString(41, usuario.getCpf());	
+			preparedStatement.setDate(42, new java.sql.Date(t));
+			preparedStatement.setString(43, "" + usuario.getDescricao());
+			preparedStatement.setDate(44, new java.sql.Date(new Date().getTime()));
+			preparedStatement.setString(45, usuario.getLogradouro());
+			preparedStatement.setString(46, usuario.getNum());
+			preparedStatement.setString(47, usuario.getCom());
+			preparedStatement.setString(48, usuario.getBairro());
+			preparedStatement.setString(49, usuario.getCep());
+			preparedStatement.setString(50, usuario.getCidade());
+			preparedStatement.setString(51, usuario.getEstado());
+			preparedStatement.setString(52, usuario.getIe());
+			preparedStatement.setString(53, usuario.getTelefone());
+			preparedStatement.setString(54, usuario.getCelular());
+			preparedStatement.setString(55, usuario.getFax());
+			preparedStatement.setString(56, usuario.getEmail());
+			preparedStatement.setString(57, usuario.getSite());
+			preparedStatement.setString(58, usuario.getContato());
+			preparedStatement.setString(59, usuario.getCodigorec());
+			preparedStatement.setInt(60, usuario.getGrupoclientes_codigo());
+			preparedStatement.setString(61, usuario.getCodigoac());
+			preparedStatement.setString(62, usuario.getCodigorep());
+			preparedStatement.setString(63, usuario.getNomefantasia());
+			preparedStatement.setString(64, usuario.getRg());
+			preparedStatement.setString(65, usuario.getCpfcp());
+			preparedStatement.setByte(66, usuario.getExterior());
+			preparedStatement.setString(67, usuario.getContabil());
+			preparedStatement.setString(68, usuario.getDebito());
+			preparedStatement.setString(69, usuario.getNf());
+			preparedStatement.setString(70, usuario.getIdent());
+			preparedStatement.setString(71, usuario.getDocidex());
+			preparedStatement.setString(72, usuario.getInsc());
+			preparedStatement.setString(73, usuario.getCodigopais());
+			preparedStatement.setString(74, usuario.getIseninscr());
+			preparedStatement.setString(75, usuario.getInss());
+			preparedStatement.setString(76, usuario.getIss());
+			preparedStatement.setBigDecimal(77, usuario.getAliquota());
+			preparedStatement.setString(78, usuario.getIndicadorie());
 
 			preparedStatement.execute();
 			return true;

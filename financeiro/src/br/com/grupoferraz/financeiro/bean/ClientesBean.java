@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import br.com.grupoferraz.financeiro.dao.ClientesDAO;
 import br.com.grupoferraz.financeiro.entity.Clientes;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -30,14 +31,14 @@ public class ClientesBean implements Serializable {
 		ConexaoBD.getConexao();
 		ClientesDAO usuarios = new ClientesDAO ();
 		if (usuarios.insertUsuario(usuario)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente cadastrado com sucesso", "Sucesso!"));
+			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "cliente cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do cliente!", "Erro!"));
 
 		}
 		ConexaoBD.fecharConexao();
+		usuario = new Clientes();
 
 		return "";
 	}
