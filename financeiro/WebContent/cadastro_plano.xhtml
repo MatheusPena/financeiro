@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Formulário | Plano de Contas</title>
+		<!-- Bootstrap -->
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<!-- Font Awesome -->
+		<link href="resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" />
+		<!-- NProgress -->
+		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
+		<!-- iCheck -->
+		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
+		<!-- Datatables -->
+		<link
+			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+			rel="stylesheet" />
+		<!-- Primeface DataTable Style -->
+		<h:outputStylesheet library="css" name="table-style.css" />
+		<!-- Custom Theme Style -->
+		<link href="build/css/custom.min.css" rel="stylesheet" />
+	</h:head>
+	<h:body>
+		<!-- /top navigation -->
+		<ui:composition template="template.xhtml">
+			<ui:define name="topnav" />
+			<ui:define name="body">
+				<!-- page content -->
+				<div class="right_col">
+					<div class="">
+						<div class="clearfix" />
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											Formulário de Plano de Contas <small>Cadastre aqui o
+												plano de contas</small>
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up" /></a></li>
+										</ul>
+										<div class="clearfix" />
+									</div>
+									<div class="x_content">
+										<br />
+										<h:form id="demo-form2" data-parsley-validate=""
+											styleClass="form-horizontal form-label-left">
+											<p:messages id="messages" />
+
+											<!--  <div class="form-group">
+				                  <label class="control-label col-md-3 col-sm-3 col-xs-12">
+				                  	<p:outputLabel for="id" value="ID:" />
+				                  </label>
+				                  <div class="col-md-6 col-sm-6 col-xs-12">
+				                    <p:inputText id="id" value="#{clientesBean.usuario.id}"
+				                    styleClass="form-control col-md-7 col-xs-12" />
+				   				  </div>
+				   				</div>-->
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="codigo" value="Código:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="codigo" required="true"
+														value="#{planoContasBean.planoContas.codigo}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="nome" value="Nome:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="nome" required="true"
+														value="#{planoContasBean.planoContas.nome}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="tipo" value="Tipo: *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="tipo" required="true"
+														value="#{planoContasBean.planoContas.tipo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItem itemLabel="Sintético" itemValue="Sintético" />
+														<f:selectItem itemLabel="Analítico" itemValue="Analítico" />
+													</h:selectOneMenu>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="natureza" value="Natureza: " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="natureza"
+														value="#{planoContasBean.planoContas.natureza}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItem itemLabel="Entrada" itemValue="Entrada" />
+														<f:selectItem itemLabel="Saída" itemValue="Saída" />
+													</h:selectOneMenu>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="grupo"
+														value="Grupo das Receitas/Despesas:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<!--
+													<p:inputText id="codigogf" required="true"
+														value="#{fornecedoresBean.fornecedores.codigogf}"
+														styleClass="form-control col-md-7 col-xs-12" />-->
+													<h:selectOneMenu id="grupo"
+														value="#{planoContasBean.planoContas.grupoplanocontas_codigo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach
+															items="#{grupoPlanoContasBean.listagrupoPlanoContas}"
+															var="grupoplanocontas" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{grupoplanocontas.nome}"
+																itemValue="#{grupoplanocontas.codigo}" />
+														</c:forEach>
+													</h:selectOneMenu>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="iss" value="Retém ISS:" />
+												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:selectOneRadio id="iss" required="true"
+														value="#{planoContasBean.planoContas.iss}">
+														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
+															itemValue="Sim" />
+														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
+															itemValue="Não" />
+													</h:selectOneRadio>
+												</label>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="contabil" value="Conta Contábil:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="contabil" required="true"
+														value="#{planoContasBean.planoContas.conta_contabil}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="contabilestoque"
+														value="Conta Contábil do Estoque:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="contabilestoque"
+														value="#{planoContasBean.planoContas.contabil_estoque}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="inss" value="Retém INSS:" />
+												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:selectOneRadio id="inss" required="true"
+														value="#{planoContasBean.planoContas.inss}">
+														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
+															itemValue="Sim" />
+														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
+															itemValue="Não" />
+													</h:selectOneRadio>
+												</label>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="irpf" value="Retém IRPF:" />
+												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:selectOneRadio id="irpf" required="true"
+														value="#{planoContasBean.planoContas.irpf}">
+														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
+															itemValue="Sim" />
+														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
+															itemValue="Não" />
+													</h:selectOneRadio>
+												</label>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="pis" value="Retém PIS/COFINS/CSLL:" />
+												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:selectOneRadio id="pis" required="true"
+														value="#{planoContasBean.planoContas.pis}">
+														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
+															itemValue="Sim" />
+														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
+															itemValue="Não" />
+													</h:selectOneRadio>
+												</label>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="tipo_conta" value="Tipo da Conta:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="tipo_conta"
+														value="#{planoContasBean.planoContas.conta}"
+														style="width:160px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItem itemLabel="Conta corrente"
+															itemValue="Conta corrente" />
+														<f:selectItem itemLabel="Conta poupança"
+															itemValue="Conta poupança" />
+													</h:selectOneMenu>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="atividade" value="Inativo:" />
+												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:selectOneRadio id="atividade" required="true"
+														value="#{planoContasBean.planoContas.atividade}">
+														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
+															itemValue="Sim" />
+														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
+															itemValue="Não" />
+													</h:selectOneRadio>
+												</label>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="icms" value="Retém ICMS:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="icms" required="true"
+														value="#{planoContasBean.planoContas.icms}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="descricao" value="Observação:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputTextarea id="descricao"
+														value="#{planoContasBean.planoContas.observacao}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+
+											<div class="ln_solid" />
+											<div class="form-group">
+												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+													<button class="btn btn-primary" type="reset">Resetar</button>
+													<p:commandButton value="Cadastrar" type="submit"
+														action="#{planoContasBean.cadastraPlanoContass}"
+														update="messages" styleClass="btn btn-success"
+														onclick="window.location='#demo-form2'">
+													</p:commandButton>
+												</div>
+											</div>
+										</h:form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											Tabela de Plano de Contas <small>Exibe o plano de
+												contas cadastrado</small>
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up" /></a></li>
+										</ul>
+										<div class="clearfix" />
+									</div>
+									<div class="x_content">
+										<h:form>
+											<table id="datatable-responsive" cellspacing="0" width="100%"
+												class="table table-striped table-bordered dt-responsive nowrap ">
+												<thead>
+													<tr>
+
+														<th>Código</th>
+														<th>Nome</th>
+														<th>Tipo</th>
+														<th>Natureza</th>
+														<th>Grupo das Receitas/Despesas</th>
+														<th>Retém ISS</th>
+														<th>Conta Contábil</th>
+														<th>Conta Contábil do Estoque</th>
+														<th>Retém INSS</th>
+														<th>Retém IRPF</th>
+														<th>Retém PIS/COFINS/COFINS/CSLL</th>
+														<th>Tipo da Conta</th>
+														<th>Inativo</th>
+														<th>Retém ICMS</th>
+														<th>Observação</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="#{planoContasBean.planoContass}"
+														var="plano" cellspacing="0" width="100%">
+														<tr>
+															<td>#{plano.codigo}</td>
+															<td>#{plano.nome}</td>
+															<td>#{plano.tipo}</td>
+															<td>#{plano.natureza}</td>
+															<td>#{plano.grupoplanocontas}</td>
+															<td>#{plano.iss}</td>
+															<td>#{plano.conta_contabil}</td>
+															<td>#{plano.contabil_estoque}</td>
+															<td>#{plano.inss}</td>
+															<td>#{plano.irpf}</td>
+															<td>#{plano.pis}</td>
+															<td>#{plano.conta}</td>
+															<td>#{plano.atividade}</td>
+															<td>#{plano.icms}</td>
+															<td>#{plano.observacao}</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</h:form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /page content -->
+			</ui:define>
+		</ui:composition>
+
+		<!-- jQuery -->
+		<script src="resources/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="resources/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="resources/nprogress/nprogress.js"></script>
+		<!-- iCheck -->
+		<script src="resources/iCheck/icheck.min.js"></script>
+		<!-- Datatables -->
+		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script
+			src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script
+			src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script
+			src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script
+			src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script
+			src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script
+			src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script
+			src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script
+			src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="resources/jszip/dist/jszip.min.js"></script>
+		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
+		<script src="resources/pdfmake/build/vfs_fonts.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="build/js/custom.min.js"></script>
+
+	</h:body>
+</f:view>
