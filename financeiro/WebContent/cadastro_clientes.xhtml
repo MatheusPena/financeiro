@@ -586,6 +586,7 @@
 													<tr>
 														
 														<th>Nome</th>
+														<th>Editar</th>
 														<th>CPF/CNPJ</th>
 														<th>Data de Nascimento</th>
 														<th>Logradouro</th>
@@ -623,7 +624,7 @@
 														<th>Indicador IE Destinatário</th>
 														<th>Alíquota de ISS</th>
 														<th>Observação</th>
-														<th>Editar</th>
+														
 													</tr>
 												</thead>
 												<tbody>
@@ -632,6 +633,13 @@
 														<tr>
 															
 															<td>#{usuario.nome}</td>
+															<td class="text-center"><p:commandButton value="" style="font-size:10px;"
+															styleClass="fas fa-edit btn btn-primary" 
+															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
+															<f:setPropertyActionListener value="#{usuario}" 
+															target="#{clientesBean.usuario}"/>
+															</p:commandButton>
+															</td>
 															<td>#{usuario.cpf}</td>
 															<td><h:outputText value="#{usuario.nascimento}">
 																	<f:convertDateTime pattern="dd/MM/yyyy"
@@ -672,12 +680,7 @@
 															<td>#{usuario.indicadorie}</td>
 															<td>#{usuario.aliquota}</td>
 															<td>#{usuario.descricao}</td>
-															<td class="text-center"><p:commandButton value="" style="font-size:10px;"
-															styleClass="fas fa-edit btn btn-primary" 
-															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
-															<f:setPropertyActionListener value="#{usuario}" 
-															target="#{clientesBean.usuario}"/>
-															</p:commandButton></td>
+															
 														</tr>
 													</c:forEach>
 												</tbody>

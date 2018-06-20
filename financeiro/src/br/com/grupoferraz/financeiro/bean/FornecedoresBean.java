@@ -25,6 +25,11 @@ public class FornecedoresBean implements Serializable {
 		getFornecedorr();
 	}
 	
+	public void editar(Fornecedores fornecedores) {
+		this.fornecedores = fornecedores;
+		System.out.println(fornecedores);
+	}
+	
 	public String cadastrar() {
 		fornecedor.add(fornecedores);
 		ConexaoBD.getConexao();

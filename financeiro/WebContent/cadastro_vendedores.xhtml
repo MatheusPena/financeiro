@@ -57,7 +57,7 @@
 									</div>
 									<div class="x_content">
 										<br />
-										<h:form id="Campo" data-parsley-validate=""
+										<h:form id="Campo" 
 											class="form-horizontal form-label-left">
 											<p:messages id="messages" />
 											<!-- Dados iniciais -->
@@ -438,6 +438,7 @@
 														<thead>
 															<tr>
 																<th>Nome</th>
+																<th class="text-center">Editar</th>
 																<th>Pessoa</th>
 																<th>CPF/CNPJ</th>
 																<th>Data de nascimento</th>
@@ -465,7 +466,7 @@
 																<th>Dig. agência</th>
 																<th>Conta</th>
 																<th>Díg. conta</th>
-																<th class="text-center">Editar</th>
+																
 															</tr>
 														</thead>
 														<tbody>
@@ -473,6 +474,14 @@
 																var="vendedor" cellspacing="0" width="100%">
 																<tr>
 																	<td>#{vendedor.nome}</td>
+																	<td class="text-center"><p:commandButton value=""
+																	style="font-size:10px; "
+																	styleClass="fas fa-edit btn btn-primary" 
+																	update="@(.form-control) Campo">
+																	<f:setPropertyActionListener value="#{vendedor}" 
+																	target="#{vendedoresBean.vendedores}"/>
+																	</p:commandButton>
+																	</td>
 																	<td>#{vendedor.pessoa}</td>
 																	<td>#{vendedor.cpf}</td>
 																	<td><h:outputText value="#{vendedor.data}">
@@ -503,13 +512,7 @@
 																	<td>#{vendedor.digagencia}</td>
 																	<td>#{vendedor.conta}</td>
 																	<td>#{vendedor.digconta}</td>
-																	<td class="text-center"><p:commandButton value=""
-																	style="font-size:10px; "
-																	styleClass="fas fa-edit btn btn-primary" 
-																	update="@(.form-control)">
-																	<f:setPropertyActionListener value="#{vendedor}" 
-																	target="#{vendedoresBean.vendedores}"/>
-																	</p:commandButton></td>
+																	
 																</tr>
 															</c:forEach>
 														</tbody>

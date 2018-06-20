@@ -61,7 +61,7 @@
 									</div>
 									<div class="x_content">
 										<br />
-										<h:form id="demo-form2" data-parsley-validate=""
+										<h:form id="demo-form2"
 											styleClass="form-horizontal form-label-left">
 											<p:messages id="messages" />
 
@@ -86,7 +86,7 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nascimento" value="Data de Nascimento:" />
@@ -98,7 +98,7 @@
 														value="#{fornecedoresBean.fornecedores.dtnascimento}" />
 												</div>
 											</div>
-
+																					
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="logradouro" value="Logradouro:" />
@@ -142,7 +142,7 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="cep" value="CEP:" />
@@ -152,7 +152,7 @@
 														value="#{fornecedoresBean.fornecedores.cep}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
-											</div>
+											</div>									
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -175,8 +175,8 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
-											<div class="form-group">
+											
+											 <div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="ie" value="IE:" />
 												</label>
@@ -185,9 +185,9 @@
 														value="#{fornecedoresBean.fornecedores.ie}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
-											</div>
-
-											<div class="form-group">
+											</div> 
+							
+ 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="telefone" value="Telefone:" />
 												</label>
@@ -196,8 +196,8 @@
 														value="#{fornecedoresBean.fornecedores.telefone}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
-											</div>
-
+											</div> 
+																			
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="celular" value="Celular:" />
@@ -208,7 +208,7 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
+														
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="fax" value="FAX:" />
@@ -263,7 +263,7 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
+																
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="codigogf" value="Grupo do Fornecedor:" />
@@ -286,9 +286,9 @@
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
-											</div>
+											</div> 
 
-											<div class="form-group">
+											 <div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="rg" value="RG:" />
 												</label>
@@ -298,7 +298,7 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="contabil" value="Conta Contábil:" />
@@ -308,7 +308,7 @@
 														value="#{fornecedoresBean.fornecedores.contabil}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
-											</div>
+											</div>	
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -557,6 +557,7 @@
 												<thead>
 													<tr>
 														<th>Nome</th>
+														<th class="text-center">Editar</th>
 														<th>CPF/CNPJ</th>
 														<th>Data de Nascimento</th>
 														<th>Logradouro</th>
@@ -594,7 +595,7 @@
 														<th>Alíquota INSS</th>
 														<th>Doc. Identificação de Estrangeiro</th>
 														<th>Observação</th>
-														<th class="text-center">Editar</th>
+														
 												<!--  		<th>Data do Cadastro</th>	-->
 													</tr>
 												</thead>
@@ -602,8 +603,17 @@
 													<c:forEach items="#{fornecedoresBean.fornecedor}"
 														var="fornecedor" cellspacing="0" width="100%">
 														<tr>
-
+									
 															<td>#{fornecedor.nome}</td>
+																<td class="text-center">
+															<p:commandButton value="" style="font-size:10px; "
+															styleClass="fas fa-edit btn btn-primary" 
+															update="demo-form2" process="@this" 
+															action="#{fornecedoresBean.editar(fornecedor)}">
+															<!-- 	<f:setPropertyActionListener value="#{fornecedor}" 
+															target="#{fornecedoresBean.fornecedores}"/> -->
+															</p:commandButton>
+															</td> 
 															<td>#{fornecedor.cpf}</td>
 															<td><h:outputText value="#{fornecedor.dtnascimento}">
 																	<f:convertDateTime pattern="dd/MM/yyyy"
@@ -644,13 +654,7 @@
 															<td>#{fornecedor.aliquota}</td>
 															<td>#{fornecedor.docidex}</td>
 															<td>#{fornecedor.descricao}</td>
-															<td class="text-center"><p:commandButton value=""
-															 style="font-size:10px; "
-															styleClass="fas fa-edit btn btn-primary" 
-															update="@(.form-control) demo-form2">
-															<f:setPropertyActionListener value="#{fornecedor}" 
-															target="#{fornecedoresBean.fornecedores}"/>
-															</p:commandButton></td> 
+														
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -666,42 +670,37 @@
 			</ui:define>
 		</ui:composition>
 
-		<!-- jQuery -->
-		<script src="resources/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- FastClick -->
-		<script src="resources/fastclick/lib/fastclick.js"></script>
-		<!-- NProgress -->
-		<script src="resources/nprogress/nprogress.js"></script>
-		<!-- iCheck -->
-		<script src="resources/iCheck/icheck.min.js"></script>
-		<!-- Datatables -->
+		<!-- jQuery <script src="resources/jquery/dist/jquery.min.js"></script> -->
+		
+		<!-- Bootstrap <script src="resources/bootstrap/dist/js/bootstrap.min.js"></script> -->
+		
+		<!-- FastClick <script src="resources/fastclick/lib/fastclick.js"></script>-->
+		
+		<!-- NProgress <script src="resources/nprogress/nprogress.js"></script>-->
+		
+		<!-- iCheck <script src="resources/iCheck/icheck.min.js"></script>-->
+		
+		<!-- Datatables 	
 		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script
-			src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script
-			src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script
-			src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script
-			src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		
+		
 		<script src="resources/jszip/dist/jszip.min.js"></script>
 		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
-		<script src="resources/pdfmake/build/vfs_fonts.js"></script>
-		<!-- Custom Theme Scripts -->
-		<script src="build/js/custom.min.js"></script>
+		<script src="resources/pdfmake/build/vfs_fonts.js"></script>-->
+	
+		<!-- Custom Theme Scripts  <script src="build/js/custom.min.js"></script>-->
+		
 
 	</h:body>
 </f:view>
