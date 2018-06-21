@@ -31,7 +31,7 @@ public class EstabelecimentoBean implements Serializable {
 		EstabelecimentoDAO estabelecimentos = new EstabelecimentoDAO();
 		if (estabelecimentos.insertEstabelecimentos(this.estabelecimento)) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Estabelecimento cadastrado com sucesso", "Sucesso!"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Estabelecimento cadastrado com sucesso!", "Sucesso!"));
 			// JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Estabelecimento
 			// cadastrado com sucesso!");
 		} else {

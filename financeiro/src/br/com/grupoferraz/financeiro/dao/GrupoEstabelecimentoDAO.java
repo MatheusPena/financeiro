@@ -24,11 +24,18 @@ public class GrupoEstabelecimentoDAO {
 		try {
 			// st = con.createStatement();
 
-			PreparedStatement preparedStatement = conexao
-					.prepareStatement("insert into grupoestabelecimento (codigo, nomegrupoestabelecimento)"
-							+ "values (?,?)");
+			StringBuilder str = new StringBuilder();
+			str.append("insert into grupoestabelecimento (codigo, nomegrupoestabelecimento, unidade_nome)"
+					+ "values (?,?,?)");
+			str.append("on duplicate key update codigo = ?, nomegrupoestabelecimento = ?, unidade_nome = ?");
+			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupoestabelecimento.getCodigo());
 			preparedStatement.setString(2, grupoestabelecimento.getNomegrupoestabelecimento());
+			preparedStatement.setString(3, grupoestabelecimento.getUnidade_nome());
+
+			preparedStatement.setInt(4, grupoestabelecimento.getCodigo());
+			preparedStatement.setString(5, grupoestabelecimento.getNomegrupoestabelecimento());
+			preparedStatement.setString(6, grupoestabelecimento.getUnidade_nome());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -49,8 +56,7 @@ public class GrupoEstabelecimentoDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select *" 
-			+  "from grupoestabelecimento";
+			String sql = "select *" + "from grupoestabelecimento";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -58,9 +64,9 @@ public class GrupoEstabelecimentoDAO {
 				GrupoEstabelecimento grupoestabelecimento = new GrupoEstabelecimento();
 				grupoestabelecimento.setCodigo(rs.getInt(1));
 				grupoestabelecimento.setNomegrupoestabelecimento(rs.getString(2));
+				grupoestabelecimento.setUnidade_nome(rs.getString(3));
 				lista.add(grupoestabelecimento);
 			}
-			
 
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());
