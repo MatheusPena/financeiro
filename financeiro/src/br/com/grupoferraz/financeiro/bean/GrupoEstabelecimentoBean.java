@@ -66,8 +66,4 @@ public class GrupoEstabelecimentoBean implements Serializable {
 		this.listagrupoestabelecimento = listagrupoestabelecimento;
 	}
 
-
-
-
-	
 }

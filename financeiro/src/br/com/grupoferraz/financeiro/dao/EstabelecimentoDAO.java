@@ -31,7 +31,7 @@ public class EstabelecimentoDAO {
 			preparedStatement.setInt(1, estabelecimentos.getCodigo());
 			preparedStatement.setString(2, estabelecimentos.getNome());
 			preparedStatement.setInt(3, estabelecimentos.getGrupoestabelecimento_codigo());
-			
+
 			preparedStatement.setInt(4, estabelecimentos.getCodigo());
 			preparedStatement.setString(5, estabelecimentos.getNome());
 			preparedStatement.setInt(6, estabelecimentos.getGrupoestabelecimento_codigo());
@@ -83,14 +83,15 @@ public class EstabelecimentoDAO {
 		GrupoEstabelecimento grupo = new GrupoEstabelecimento();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-			preparedStatement = conexao
-					.prepareStatement ("select codigo, nomegrupoestabelecimento from grupoestabelecimento where codigo = ?");
-			preparedStatement.setInt(1, idGrupo);
-			rs = preparedStatement.executeQuery();
+		preparedStatement = conexao.prepareStatement(
+				"select codigo, nomegrupoestabelecimento, unidade_nome from grupoestabelecimento where codigo = ?");
+		preparedStatement.setInt(1, idGrupo);
+		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNomegrupoestabelecimento(rs.getString("nomegrupoestabelecimento"));
+			grupo.setUnidade_nome(rs.getString("unidade_nome"));
 		}
 		return grupo;
 	}
