@@ -20,15 +20,16 @@ public class CentroResultadosDAO {
 
 	public boolean insertCentroResultadoss(CentroResultados CentroResultadoss) {
 
-		// Statement st = null;
-		// ResultSet rs = null;
-
 		try {
-			// st = con.createStatement();
-
-			PreparedStatement preparedStatement = conexao.prepareStatement(
-					"insert into centroresultados (codigo, nome, atividade, crcontabil, peso, grupocentroresultados_codigo) "
-							+ "values (?,?,?,?,?,?)");
+			
+			StringBuilder str = new StringBuilder();
+			str.append("insert into centroresultados (codigo, nome, atividade, crcontabil, peso, grupocentroresultados_codigo)"
+					+ "values (?,?,?,?,?,?)");
+			str.append("on duplicate key update codigo = ?, nome = ?, atividade = ?, "
+					+ "crcontabil = ?, peso = ?, grupocentroresultados_codigo = ? ");
+			
+			
+			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, CentroResultadoss.getCodigo());
 			preparedStatement.setString(2, CentroResultadoss.getNome());
 			preparedStatement.setString(3, CentroResultadoss.getAtividade());
@@ -40,8 +41,20 @@ public class CentroResultadosDAO {
 			else {
 				preparedStatement.setNull(6, Types.INTEGER);
 			}
+			preparedStatement.setInt(7, CentroResultadoss.getCodigo());
+			preparedStatement.setString(8, CentroResultadoss.getNome());
+			preparedStatement.setString(9, CentroResultadoss.getAtividade());
+			preparedStatement.setString(10, CentroResultadoss.getCrcontabil());
+			preparedStatement.setFloat(11, CentroResultadoss.getPeso());
+			if (CentroResultadoss.getGrupocentroresultados_codigo() != null) {
+				preparedStatement.setInt(12, CentroResultadoss.getGrupocentroresultados_codigo());
+			}
+			else {
+				preparedStatement.setNull(12, Types.INTEGER);
+			}
 
 			preparedStatement.execute();
+			
 			return true;
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());

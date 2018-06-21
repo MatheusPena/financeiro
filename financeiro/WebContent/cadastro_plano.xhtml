@@ -141,14 +141,10 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="grupo"
-														value="Grupo das Receitas/Despesas:" />
+														value="Grupo das Receitas/Despesas: " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<!--
-													<p:inputText id="codigogf" required="true"
-														value="#{fornecedoresBean.fornecedores.codigogf}"
-														styleClass="form-control col-md-7 col-xs-12" />-->
-													<h:selectOneMenu id="grupo"
+													<h:selectOneMenu id="grupo" required="true"
 														value="#{planoContasBean.planoContas.grupoplanocontas_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
@@ -334,6 +330,7 @@
 													<tr>
 
 														<th>Código</th>
+														<th class="text-center">Editar</th>
 														<th>Nome</th>
 														<th>Tipo</th>
 														<th>Natureza</th>
@@ -355,6 +352,14 @@
 														var="plano" cellspacing="0" width="100%">
 														<tr>
 															<td>#{plano.codigo}</td>
+															<td class="text-center"><p:commandButton value="" 
+															style="font-size:10px;"
+															styleClass="fas fa-edit btn btn-primary" 
+															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
+															<f:setPropertyActionListener value="#{plano}" 
+															target="#{planoContasBean.planoContas}"/>
+															</p:commandButton>
+															</td>
 															<td>#{plano.nome}</td>
 															<td>#{plano.tipo}</td>
 															<td>#{plano.natureza}</td>

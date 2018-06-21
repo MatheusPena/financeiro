@@ -16,11 +16,11 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 @ManagedBean
 @ViewScoped
 public class CentroResultadosBean implements Serializable {
-	private CentroResultados CentroResultados;
-	private List<CentroResultados> CentroResultadoss;
+	private CentroResultados centroResultados;
+	private List<CentroResultados> centroResultadoss;
 
 	public CentroResultadosBean() {
-		CentroResultados = new CentroResultados();
+		centroResultados = new CentroResultados();
 		listarCentroResultadoss();
 	}
 
@@ -28,7 +28,7 @@ public class CentroResultadosBean implements Serializable {
 
 		ConexaoBD.getConexao();
 		CentroResultadosDAO CentroResultadoss = new CentroResultadosDAO();
-		if (CentroResultadoss.insertCentroResultadoss(this.CentroResultados)) {
+		if (CentroResultadoss.insertCentroResultadoss(this.centroResultados)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Centro de Resultados cadastrado com sucesso!", "Sucesso!"));
 		} else {
@@ -46,20 +46,22 @@ public class CentroResultadosBean implements Serializable {
 		setCentroResultadoss(CentroResultadoss.listCentroResultadoss());
 	}
 
-	public List<CentroResultados> getCentroResultadoss() {
-		return CentroResultadoss;
-	}
-
-	public void setCentroResultadoss(List<CentroResultados> CentroResultadoss) {
-		this.CentroResultadoss = CentroResultadoss;
-	}
-
 	public CentroResultados getCentroResultados() {
-		return CentroResultados;
+		return centroResultados;
 	}
 
-	public void setCentroResultados(CentroResultados CentroResultados) {
-		this.CentroResultados = CentroResultados;
+	public void setCentroResultados(CentroResultados centroResultados) {
+		this.centroResultados = centroResultados;
 	}
+
+	public List<CentroResultados> getCentroResultadoss() {
+		return centroResultadoss;
+	}
+
+	public void setCentroResultadoss(List<CentroResultados> centroResultadoss) {
+		this.centroResultadoss = centroResultadoss;
+	}
+
+	
 
 }

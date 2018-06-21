@@ -16,11 +16,11 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 @ManagedBean
 @ViewScoped
 public class PlanoContasBean implements Serializable {
-	private PlanoContas PlanoContas;
-	private List<PlanoContas> PlanoContass;
+	private PlanoContas planoContas;
+	private List<PlanoContas> planoContass;
 
 	public PlanoContasBean() {
-		PlanoContas = new PlanoContas();
+		planoContas = new PlanoContas();
 		listarPlanoContass();
 	}
 
@@ -28,7 +28,7 @@ public class PlanoContasBean implements Serializable {
 
 		ConexaoBD.getConexao();
 		PlanoContasDAO PlanoContass = new PlanoContasDAO();
-		if (PlanoContass.insertPlanoContas(this.PlanoContas)) {
+		if (PlanoContass.insertPlanoContas(this.planoContas)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Plano de Contas cadastrado com sucesso!", "Sucesso!"));
 		} else {
@@ -46,19 +46,21 @@ public class PlanoContasBean implements Serializable {
 		setPlanoContass(PlanoContass.listPlanoContas());
 	}
 
-	public List<PlanoContas> getPlanoContass() {
-		return PlanoContass;
-	}
-
-	public void setPlanoContass(List<PlanoContas> PlanoContass) {
-		this.PlanoContass = PlanoContass;
-	}
-
 	public PlanoContas getPlanoContas() {
-		return PlanoContas;
+		return planoContas;
 	}
 
-	public void setPlanoContas(PlanoContas PlanoContas) {
-		this.PlanoContas = PlanoContas;
+	public void setPlanoContas(PlanoContas planoContas) {
+		this.planoContas = planoContas;
 	}
+
+	public List<PlanoContas> getPlanoContass() {
+		return planoContass;
+	}
+
+	public void setPlanoContass(List<PlanoContas> planoContass) {
+		this.planoContass = planoContass;
+	}
+
+
 }
