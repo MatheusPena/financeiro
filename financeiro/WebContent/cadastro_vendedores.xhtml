@@ -175,10 +175,19 @@
 													<h:outputText for="agencia" value="Agência *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="agencia"
-														value="#{vendedoresBean.vendedores.agencia}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true" />
+													<h:selectOneMenu id="agencia" required="true"
+														value="#{vendedoresBean.vendedores.estabelecimentos_codigo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach
+															items="#{estabelecimentoBean.estabelecimentos}"
+															var="estabelecimento" cellspacing="0" width="100%">
+															<f:selectItem
+																itemLabel="#{estabelecimento.nome}"
+																itemValue="#{estabelecimento.codigo}" />
+														</c:forEach>
+													</h:selectOneMenu>
 												</div>
 											</div>
 											<!-- Endereço -->
@@ -493,7 +502,7 @@
 																	<td>#{vendedor.emissor}</td>
 																	<td>#{vendedor.sexo}</td>
 																	<td>#{vendedor.estado_civil}</td>
-																	<td>#{vendedor.agencia}</td>
+																	<td>#{vendedor.estabelecimento}</td>
 																	<td>#{vendedor.rua}</td>
 																	<td>#{vendedor.cep}</td>
 																	<td>#{vendedor.numero}</td>

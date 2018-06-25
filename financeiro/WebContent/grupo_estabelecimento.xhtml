@@ -156,10 +156,10 @@
 												class="table table-striped table-bordered dt-responsive nowrap ">
 												<thead>
 													<tr>
-														<th class="text-center">Código</th>
-														<th class="text-center">Editar</th>
-														<th class="text-center">Nome do Grupo</th>
-														<th class="text-center">Unidade</th>
+														<th>Código</th>
+														<th>Editar</th>
+														<th>Nome do Grupo</th>
+														<th>Unidade</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -167,8 +167,8 @@
 														items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
 														var="grupoestabelecimento" cellspacing="0" width="100%">
 														<tr>
-															<td class="text-center">#{grupoestabelecimento.codigo}</td>
-															<td class="text-center"><p:commandButton value=""
+															<td>#{grupoestabelecimento.codigo}</td>
+															<td><p:commandButton value=""
 																	style="font-size:10px; "
 																	styleClass="fas fa-edit btn btn-primary"
 																	onclick="window.location='#demo-form2'"
@@ -177,8 +177,8 @@
 																		value="#{grupoestabelecimento}"
 																		target="#{grupoEstabelecimentoBean.grupoestabelecimento}" />
 																</p:commandButton></td>
-															<td class="text-center">#{grupoestabelecimento.nomegrupoestabelecimento}</td>
-															<td class="text-center">#{grupoestabelecimento.unidade_nome}</td>
+															<td>#{grupoestabelecimento.nomegrupoestabelecimento}</td>
+															<td>#{grupoestabelecimento.unidade_nome}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

@@ -18,7 +18,6 @@ public class Vendedores {
 	private Map<String, String> emissores = new HashMap<String, String>();
 	private String sexo;
 	private String estado_civil;
-	private String agencia;
 	private String rua;
 	private String cep;
 	private int numero;
@@ -31,7 +30,6 @@ public class Vendedores {
 	private String telefone;
 	private String cel1;
 	private String cel2;
-	private Integer grupovendedores_codigo;
 	private String banco;
 	private String tipo_conta;
 	private int agenciabanco;
@@ -39,8 +37,11 @@ public class Vendedores {
 	private int conta;
 	private int digconta;
 	private Date dataCadastro;
+	private Integer grupovendedores_codigo;
+	private int estabelecimentos_codigo;
 	private GrupoVendedores grupovendedores;
-	
+	private Estabelecimento estabelecimento;
+
 	public Vendedores() {
 		initPessoa();
 		initEmissor();
@@ -204,14 +205,6 @@ public class Vendedores {
 		this.estado_civil = estado_civil;
 	}
 
-	public String getAgencia() {
-		return agencia;
-	}
-
-	public void setAgencia(String agencia) {
-		this.agencia = agencia;
-	}
-
 	public String getRua() {
 		return rua;
 	}
@@ -368,6 +361,14 @@ public class Vendedores {
 		return dataCadastro;
 	}
 
+	public int getEstabelecimentos_codigo() {
+		return estabelecimentos_codigo;
+	}
+
+	public void setEstabelecimentos_codigo(int estabelecimentos_codigo) {
+		this.estabelecimentos_codigo = estabelecimentos_codigo;
+	}
+
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
@@ -379,5 +380,13 @@ public class Vendedores {
 	public void setGrupovendedores(GrupoVendedores grupovendedores) {
 		this.grupovendedores = grupovendedores;
 	}
-	
+
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
+	}
+
+	public void setEstabelecimento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
+	}
+
 }

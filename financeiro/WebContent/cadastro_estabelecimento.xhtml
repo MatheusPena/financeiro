@@ -60,8 +60,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Estabelecimentos <small>Cadastre aqui os
-												estabelecimentos</small>
+											Formulário de Estabelecimentos <small>Cadastre aqui
+												os estabelecimentos</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -174,10 +174,10 @@
 												<thead>
 													<tr>
 
-														<th class="text-center">Código</th>
-														<th class="text-center">Nome</th>
-														<th class="text-center">Grupo do Estabelecimento</th>
-														<th class="text-center">Editar</th>
+														<th>Código</th>
+														<th>Editar</th>
+														<th>Nome</th>
+														<th>Grupo do Estabelecimento</th>
 
 													</tr>
 												</thead>
@@ -186,10 +186,8 @@
 														var="estabelecimento" cellspacing="0" width="100%">
 														<tr>
 
-															<td class="text-center">#{estabelecimento.codigo}</td>
-															<td class="text-center">#{estabelecimento.nome}</td>
-															<td class="text-center">#{estabelecimento.grupoestabalecimento}</td>
-															<td class="text-center"><p:commandButton value=""
+															<td>#{estabelecimento.codigo}</td>
+															<td><p:commandButton value=""
 																	style="font-size:10px; "
 																	styleClass="fas fa-edit btn btn-primary"
 																	onclick="window.location='#demo-form2'"
@@ -197,6 +195,8 @@
 																	<f:setPropertyActionListener value="#{estabelecimento}"
 																		target="#{estabelecimentoBean.estabelecimento}" />
 																</p:commandButton></td>
+															<td>#{estabelecimento.nome}</td>
+															<td>#{estabelecimento.grupoestabalecimento}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

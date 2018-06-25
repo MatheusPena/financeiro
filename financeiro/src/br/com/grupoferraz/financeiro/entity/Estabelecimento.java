@@ -45,4 +45,9 @@ public class Estabelecimento implements Serializable {
 		this.grupoestabalecimento = grupoestabalecimento;
 	}
 
+	@Override
+	public String toString() {
+
+		return nome;
+	}
 }

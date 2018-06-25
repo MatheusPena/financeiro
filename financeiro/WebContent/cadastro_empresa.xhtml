@@ -81,8 +81,8 @@
 													<p:outputLabel for="cnpj" value="CNPJ:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputMask mask="99.999.999/9999-99" id="cnpj" required="true"
-														value="#{empresaBean.empresa.cnpj}"
+													<p:inputMask mask="99.999.999/9999-99" id="cnpj"
+														required="true" value="#{empresaBean.empresa.cnpj}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -152,20 +152,19 @@
 												<thead>
 													<tr>
 
-														<th class="text-center">CNPJ</th>
-														<th class="text-center">Nome</th>
-														<th class="text-center">Editar</th>
+														<th>CNPJ</th>
+														<th>Editar</th>
+														<th>Nome</th>
 
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{empresaBean.empresas}"
-														var="empresa" cellspacing="0" width="100%">
+													<c:forEach items="#{empresaBean.empresas}" var="empresa"
+														cellspacing="0" width="100%">
 														<tr>
 
-															<td class="text-center">#{empresa.cnpj}</td>
-															<td class="text-center">#{empresa.nome}</td>
-															<td class="text-center"><p:commandButton value=""
+															<td>#{empresa.cnpj}</td>
+															<td><p:commandButton value=""
 																	style="font-size:10px; "
 																	styleClass="fas fa-edit btn btn-primary"
 																	onclick="window.location='#demo-form2'"
@@ -173,6 +172,8 @@
 																	<f:setPropertyActionListener value="#{empresa}"
 																		target="#{empresaBean.empresa}" />
 																</p:commandButton></td>
+															<td>#{empresa.nome}</td>
+
 														</tr>
 													</c:forEach>
 												</tbody>
