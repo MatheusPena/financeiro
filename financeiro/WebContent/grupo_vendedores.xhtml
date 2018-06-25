@@ -130,15 +130,25 @@
 												<thead>
 													<tr>
 														<th>Código</th>
+														<th class="text-center">Editar</th>
 														<th>Nome do Grupo</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{grupoVendedoresBean.listagrupovendedores}" var="grupovendedores"
-														cellspacing="0" width="100%">
+													<c:forEach items="#{grupoVendedoresBean.listagrupovendedores}" 
+													var="grupovendedores"
+													cellspacing="0" width="100%">
 														<tr>
 															<td>#{grupovendedores.codigo}</td>
-															<td>#{grupovendedores.nomegrupovendedores}</td>
+															<td class="text-center">
+															<p:commandButton value="" style="font-size:10px;"
+															styleClass="fas fa-edit btn btn-primary" 
+															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
+															<f:setPropertyActionListener value="#{grupovendedores}" 
+															target="#{grupoVendedoresBean.grupovendedores}"/>
+															</p:commandButton>
+															</td>
+															<td>#{grupovendedores.nomegrupovendedores}</td>					
 														</tr>
 													</c:forEach>
 												</tbody>

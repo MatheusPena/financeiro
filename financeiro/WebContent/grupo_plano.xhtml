@@ -141,6 +141,7 @@
 												<thead>
 													<tr>
 														<th>Código</th>
+														<th class="text-center">Editar</th>
 														<th>Nome do Grupo</th>
 													</tr>
 												</thead>
@@ -150,6 +151,14 @@
 														var="grupoplanocontas" cellspacing="0" width="100%">
 														<tr>
 															<td>#{grupoplanocontas.codigo}</td>
+															<td class="text-center">
+															<p:commandButton value="" style="font-size:10px;"
+															styleClass="fas fa-edit btn btn-primary" 
+															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
+															<f:setPropertyActionListener value="#{grupoplanocontas}" 
+															target="#{grupoPlanoContasBean.grupoPlanoContas}"/>
+															</p:commandButton>
+															</td>
 															<td>#{grupoplanocontas.nome}</td>
 														</tr>
 													</c:forEach>

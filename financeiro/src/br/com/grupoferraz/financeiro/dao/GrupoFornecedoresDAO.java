@@ -23,12 +23,17 @@ public class GrupoFornecedoresDAO {
 
 		try {
 			// st = con.createStatement();
-
-			PreparedStatement preparedStatement = conexao
-					.prepareStatement("insert into grupofornecedores (codigo, nome)"
-							+ "values (?,?)");
+			StringBuilder str = new StringBuilder();	
+			str.append("insert into grupofornecedores (codigo, nome)"
+					+ " values (?,?)");
+			str.append("on duplicate key update codigo = ?, nome = ?");
+			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupofornecedores.getCodigo());
 			preparedStatement.setString(2, grupofornecedores.getNome());
+			
+			preparedStatement.setInt(3, grupofornecedores.getCodigo());
+			preparedStatement.setString(4, grupofornecedores.getNome());
+			
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
