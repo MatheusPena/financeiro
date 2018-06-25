@@ -20,21 +20,15 @@ public class VendedoresDAO {
 
 	public boolean insertVendedores(Vendedores vendedores) {
 		try {
-<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
 			StringBuilder str = new StringBuilder();
-			str.append("insert into vendedores (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,"
-					+ "`sexo`,`estadocivil`,`agencia`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,"
-					+ "`email`,`telefone`,`cel1`,`cel2`,`grupovendedores_codigo`,`banco`,`tipoconta`,`agenciabanco`,"
-=======
-			PreparedStatement ps = conexao.prepareCall(
+			str.append(
 					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,"
 					+ "`estabelecimentos_codigo`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,"
 					+ "`cel1`,`cel2`,`grupovendedores_codigo`,`banco`,`tipoconta`,`agenciabanco`,"
->>>>>>> 74f08fe Opcao editar, criacao da page rateio e modificacao da classe cliente
 					+ "`digagencia`,`conta`,`digconta`,`data_cadastro`) "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			str.append("on duplicate key update pessoa = ?, cpfcnpj = ?, nome = ?, dtnascimento = ?, chave = ?,"
-					+ "rg = ?, emissor = ?, sexo = ?, estadocivil = ?, agencia = ?, rua = ?, cep = ?, numero = ?, "
+					+ "rg = ?, emissor = ?, sexo = ?, estadocivil = ?, estabelecimentos_codigo = ?, rua = ?, cep = ?, numero = ?, "
 					+ "bairro = ?, cidade = ?, uf = ?, complemento = ?, email = ?, telefone = ?, cel1 = ?, cel2 = ?,"
 					+ "grupovendedores_codigo = ?, banco = ?, tipoconta = ?, agenciabanco = ?, digagencia = ?,"
 					+ "conta = ?, digconta = ?, data_cadastro = ? ");
@@ -47,14 +41,13 @@ public class VendedoresDAO {
 			if (data != null ) {
 				t = data.getTime();	
 			}
-<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
 			preparedStatement.setDate(4,new java.sql.Date(t));
 			preparedStatement.setString(5, vendedores.getChave());
 			preparedStatement.setString(6, vendedores.getRg());
 			preparedStatement.setString(7, vendedores.getEmissor());
 			preparedStatement.setString(8, vendedores.getSexo());
 			preparedStatement.setString(9, vendedores.getEstado_civil());
-			preparedStatement.setString(10, vendedores.getAgencia());
+			preparedStatement.setInt(10, vendedores.getEstabelecimentos_codigo());
 			preparedStatement.setString(11, vendedores.getRua());
 			preparedStatement.setString(12, vendedores.getCep());
 			preparedStatement.setInt(13, vendedores.getNumero());
@@ -74,36 +67,6 @@ public class VendedoresDAO {
 			preparedStatement.setInt(27, vendedores.getConta());
 			preparedStatement.setInt(28, vendedores.getDigconta());
 			preparedStatement.setDate(29, new java.sql.Date(new Date().getTime()));
-=======
-			ps.setDate(4,new java.sql.Date(t));
-			ps.setString(5, vendedores.getChave());
-			ps.setString(6, vendedores.getRg());
-			ps.setString(7, vendedores.getEmissor());
-			ps.setString(8, vendedores.getSexo());
-			ps.setString(9, vendedores.getEstado_civil());
-			ps.setInt(10, vendedores.getEstabelecimentos_codigo());
-			ps.setString(11, vendedores.getRua());
-			ps.setString(12, vendedores.getCep());
-			ps.setInt(13, vendedores.getNumero());
-			ps.setString(14, vendedores.getBairro());
-			ps.setString(15, vendedores.getCidade());
-			ps.setString(16, vendedores.getUf());
-			ps.setString(17, vendedores.getComplemento());
-			ps.setString(18, vendedores.getEmail());
-			ps.setString(19, vendedores.getTelefone());
-			ps.setString(20, vendedores.getCel1());
-			ps.setString(21, vendedores.getCel2());
-			ps.setInt(22, vendedores.getGrupovendedores_codigo());
-			ps.setString(23, vendedores.getBanco());
-			ps.setString(24, vendedores.getTipo_conta());
-			ps.setInt(25, vendedores.getAgenciabanco());
-			ps.setInt(26, vendedores.getDigagencia());
-			ps.setInt(27, vendedores.getConta());
-			ps.setInt(28, vendedores.getDigconta());
-			ps.setDate(29, new java.sql.Date(new Date().getTime()));
-			ps.execute();
-			return true;
->>>>>>> 74f08fe Opcao editar, criacao da page rateio e modificacao da classe cliente
 			
 			preparedStatement.setString(30, vendedores.getPessoa());
 			preparedStatement.setString(31, vendedores.getCpf());
@@ -114,7 +77,7 @@ public class VendedoresDAO {
 			preparedStatement.setString(36, vendedores.getEmissor());
 			preparedStatement.setString(37, vendedores.getSexo());
 			preparedStatement.setString(38, vendedores.getEstado_civil());
-			preparedStatement.setString(39, vendedores.getAgencia());
+			preparedStatement.setInt(39, vendedores.getEstabelecimentos_codigo());
 			preparedStatement.setString(40, vendedores.getRua());
 			preparedStatement.setString(41, vendedores.getCep());
 			preparedStatement.setInt(42, vendedores.getNumero());
@@ -206,12 +169,8 @@ public class VendedoresDAO {
 		}
 		return lista;
 	}
-	
-<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
-	
-=======
+
 	//Exibe o nome do grupo em vez do código na tela
->>>>>>> 74f08fe Opcao editar, criacao da page rateio e modificacao da classe cliente
 	public GrupoVendedores getGrupoVendedor(int idGrupo) throws SQLException {
 		GrupoVendedores grupo = new GrupoVendedores();
 		PreparedStatement preparedStatement;
