@@ -2,42 +2,35 @@ package br.com.grupoferraz.financeiro.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.Login;
-import br.com.grupoferraz.financeiro.util.JPAUtilAux;
+import br.com.grupoferraz.financeiro.util.ConexaoBD;
+
 public class LoginDAO {
 
-	private EntityManager em = new JPAUtilAux().getEntityManager();
+	Connection conexao = ConexaoBD.getConexao();
 
 	public LoginDAO() {
 
 	}
 
 	public boolean ok(Login login) {
-
 		boolean ok = false;
 		try {
-
 			String senhaAux = login.getSenha();
-			
 			String usuario = login.getUsuario();
-					
-			Login loginAux = em.find(Login.class, usuario);
-			
-			if(loginAux==null) {
+			Login loginAux = getLogin(usuario);
+			if (loginAux == null) {
 				return false;
 			}
-			
 			String senhaUsuario = loginAux.getSenha();
 			ok = senhaUsuario.equals(senhaAux);
-
 		} catch (Exception ex) {
-			em = new JPAUtilAux().getEntityManager();
+			conexao = ConexaoBD.getConexao();
 			ok = ok(login);
 			ex.printStackTrace();
 		}
@@ -45,16 +38,27 @@ public class LoginDAO {
 	}
 
 	public Login getLogin(String usuario) {
-		Query query = em.createQuery("from Login l where l.usuario = :usuario").setParameter("usuario", usuario);
-		Login login = (Login) query.getSingleResult();
-		em.merge(login);
-		return login;
-	}
 
-	@SuppressWarnings("unchecked")
-	public List<String> listarUsuarios() {
-		Query query = em.createQuery("select l.usuario from Login l");
-		return query.getResultList();
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		Login login = new Login();
+		try {
+			String sql = "select usuario, senha, tipo from login where usuario = ?";
+			st = conexao.prepareStatement(sql);
+			st.setString(1, usuario);
+			rs = st.executeQuery();
+			while (rs.next()) {
+				login.setUsuario(rs.getString("usuario"));
+				login.setSenha(rs.getString("senha"));
+				// login.setTipo(rs.getString("tipo"));
+			}
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		return login;
 	}
 
 	public boolean salvarLogin(Connection con, Login l) throws Exception {
@@ -68,7 +72,6 @@ public class LoginDAO {
 
 		String usuario;
 		String senha;
-		
 
 		try {
 
@@ -78,14 +81,13 @@ public class LoginDAO {
 
 				usuario = l.getUsuario();
 				senha = l.getSenha();
-					
 
 				preparedStatement.setString(1, usuario);
 				preparedStatement.setString(2, senha);
-				
+
 				preparedStatement.setString(3, usuario);
 				preparedStatement.setString(4, senha);
-				
+
 			}
 
 			preparedStatement.executeUpdate();
@@ -94,12 +96,11 @@ public class LoginDAO {
 			e.printStackTrace();
 			con.rollback();
 			ok = false;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			con.rollback();
 			ok = false;
-		} 
-		
-		
+		}
+
 		finally {
 			if (preparedStatement != null) {
 				preparedStatement.close();
