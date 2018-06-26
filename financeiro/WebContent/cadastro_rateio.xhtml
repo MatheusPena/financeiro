@@ -81,7 +81,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo" required="true"
-														value="#{centroResultadosBean.centroResultados.codigo}"
+														value="#{rateioBean.rateio.codigo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -92,15 +92,15 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="receita" required="true"
-														value="#{centroResultadosBean.centroResultados.grupocentroresultados_codigo}"
+														value="#{rateioBean.rateio.receita}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{grupoCResultadosBean.listagrupoCResultados}"
-															var="grupocentroResultadoss" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{grupocentroResultadoss.nome}"
-																itemValue="#{grupocentroResultadoss.codigo}" />
+															items="#{planoContasBean.planoContass}"
+															var="planocontas" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{planocontas.nome}"
+																itemValue="#{planocontas.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
@@ -113,15 +113,15 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="estabelecimento" required="true"
-														value="#{centroResultadosBean.centroResultados.grupocentroresultados_codigo}"
+														value="#{rateioBean.rateio.estabelecimento}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{grupoCResultadosBean.listagrupoCResultados}"
-															var="grupocentroResultadoss" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{grupocentroResultadoss.nome}"
-																itemValue="#{grupocentroResultadoss.codigo}" />
+															items="#{estabelecimentoBean.estabelecimentos}"
+															var="estabelecimento" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{estabelecimento.nome}"
+																itemValue="#{estabelecimento.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
@@ -129,19 +129,19 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="crcontabil" value="Centro de Resultado:" />
+													<p:outputLabel for="cr" value="Centro de Resultado:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="crcontabil" required="true"
-														value="#{centroResultadosBean.centroResultados.grupocentroresultados_codigo}"
+													<h:selectOneMenu id="cr" required="true"
+														value="#{rateioBean.rateio.centro_resultados}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{grupoCResultadosBean.listagrupoCResultados}"
-															var="grupocentroResultadoss" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{grupocentroResultadoss.nome}"
-																itemValue="#{grupocentroResultadoss.codigo}" />
+															items="#{centroResultadosBean.centroResultadoss}"
+															var="centroresultados" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{centroresultados.nome}"
+																itemValue="#{centroresultados.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
@@ -153,7 +153,7 @@
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="percentual" required="true"
-														value="#{centroResultadosBean.centroResultados.peso}"
+														value="#{rateioBean.rateio.percentual}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -163,10 +163,25 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{centroResultadosBean.cadastraCentroResultadoss}"
+														action="#{rateioBean.cadastraRateio}"
 														update="messages" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
+													<script>
+														function temp() {
+
+															setTimeout(
+																	function() {
+
+																		$(
+																				'.messages')
+																				.html(
+																						'');
+
+																	}, 5000);
+
+														}
+													</script>
 												</div>
 											</div>
 										</h:form>
@@ -195,25 +210,32 @@
 													<tr>
 
 														<th>Código</th>
-														<th>Nome</th>
-														<th>Grupo do centroResultados</th>
-														<th>Inativo</th>
-														<th>CR Contábil</th>
-														<th>Peso</th>
+														<th>Editar</th>
+														<th>Receita/Despesa</th>
+														<th>Estabelecimento</th>
+														<th>Centro de Resultado</th>
+														<th>Percentual</th>
 
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{centroResultadosBean.centroResultadoss}"
-														var="centroResultados" cellspacing="0" width="100%">
+													<c:forEach items="#{rateioBean.listaRateio}"
+														var="rateio" cellspacing="0" width="100%">
 														<tr>
 
-															<td>#{centroResultados.codigo}</td>
-															<td>#{centroResultados.nome}</td>
-															<td>#{centroResultados.gruporesultados}</td>
-															<td>#{centroResultados.atividade}</td>
-															<td>#{centroResultados.crcontabil}</td>
-															<td>#{centroResultados.peso}</td>
+															<td>#{rateio.codigo}</td>
+															<td><p:commandButton value=""
+																	style="font-size:10px; "
+																	styleClass="fas fa-edit btn btn-primary"
+																	onclick="window.location='#demo-form2'"
+																	update="@(.form-control)">
+																	<f:setPropertyActionListener value="#{rateio}"
+																		target="#{rateioBean.rateio}" />
+																</p:commandButton></td>
+															<td>#{rateio.planocontas}</td>
+															<td>#{rateio.estabelecimentos}</td>
+															<td>#{rateio.centroresultados}</td>
+															<td>#{rateio.percentual}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

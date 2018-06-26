@@ -6,6 +6,9 @@ public class Rateio {
 	private int estabelecimento;
 	private int centro_resultados;
 	private float percentual;
+	private PlanoContas planocontas;
+	private Estabelecimento estabelecimentos;
+	private CentroResultados centroresultados;
 
 	public int getCodigo() {
 		return codigo;
@@ -45,6 +48,30 @@ public class Rateio {
 
 	public void setPercentual(float percentual) {
 		this.percentual = percentual;
+	}
+
+	public PlanoContas getPlanocontas() {
+		return planocontas;
+	}
+
+	public void setPlanocontas(PlanoContas planocontas) {
+		this.planocontas = planocontas;
+	}
+
+	public Estabelecimento getEstabelecimentos() {
+		return estabelecimentos;
+	}
+
+	public void setEstabelecimentos(Estabelecimento estabelecimentos) {
+		this.estabelecimentos = estabelecimentos;
+	}
+
+	public CentroResultados getCentroresultados() {
+		return centroresultados;
+	}
+
+	public void setCentroresultados(CentroResultados centroresultados) {
+		this.centroresultados = centroresultados;
 	}
 
 }

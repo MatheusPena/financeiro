@@ -58,5 +58,9 @@ public class CentroResultados implements Serializable {
 		this.gruporesultados = gruporesultados;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nome;
+	}
 }

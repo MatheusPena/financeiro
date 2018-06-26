@@ -122,5 +122,9 @@ public class PlanoContas {
 		this.grupoplanocontas = grupoplanocontas;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nome;
+	}	
 }
