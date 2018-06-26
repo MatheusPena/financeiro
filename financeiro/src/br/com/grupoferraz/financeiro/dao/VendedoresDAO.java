@@ -22,13 +22,15 @@ public class VendedoresDAO {
 		try {
 			StringBuilder str = new StringBuilder();
 			str.append(
-					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`,"
+					"INSERT INTO `financeiro`.`vendedores` (`pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,"
+					+ "`rg`,`emissor`,`sexo`,`estadocivil`,"
 					+ "`estabelecimentos_codigo`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`,"
 					+ "`cel1`,`cel2`,`grupovendedores_codigo`,`banco`,`tipoconta`,`agenciabanco`,"
 					+ "`digagencia`,`conta`,`digconta`,`data_cadastro`) "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			str.append("on duplicate key update pessoa = ?, cpfcnpj = ?, nome = ?, dtnascimento = ?, chave = ?,"
-					+ "rg = ?, emissor = ?, sexo = ?, estadocivil = ?, estabelecimentos_codigo = ?, rua = ?, cep = ?, numero = ?, "
+					+ "rg = ?, emissor = ?, sexo = ?, estadocivil = ?, estabelecimentos_codigo = ?, "
+					+ "rua = ?, cep = ?, numero = ?, "
 					+ "bairro = ?, cidade = ?, uf = ?, complemento = ?, email = ?, telefone = ?, cel1 = ?, cel2 = ?,"
 					+ "grupovendedores_codigo = ?, banco = ?, tipoconta = ?, agenciabanco = ?, digagencia = ?,"
 					+ "conta = ?, digconta = ?, data_cadastro = ? ");
@@ -119,45 +121,50 @@ public class VendedoresDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from vendedores ";
+			String sql = "select `pessoa`,`cpfcnpj`,`nome`,`dtnascimento`,`chave`,`rg`,`emissor`,`sexo`,`estadocivil`, "
+					+ "`estabelecimentos_codigo`,`rua`,`cep`,`numero`,`bairro`,`cidade`,`uf`,`complemento`,`email`,`telefone`," 
+					+ "`cel1`,`cel2`,`grupovendedores_codigo`,`banco`,`tipoconta`,`agenciabanco`,"
+					+ "`digagencia`,`conta`,`digconta`,`data_cadastro`   from vendedores ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
 				Vendedores vendedores = new Vendedores();
-				vendedores.setPessoa(rs.getString(1));
-				vendedores.setCpf(rs.getString(2));
-				vendedores.setNome(rs.getString(3));
-				vendedores.setData(rs.getDate(4));
-				vendedores.setChave(rs.getString(5));
-				vendedores.setRg(rs.getString(6));
-				vendedores.setEmissor(rs.getString(7));
-				vendedores.setSexo(rs.getString(8));
-				vendedores.setEstado_civil(rs.getString(9));
-				vendedores.setRua(rs.getString(10));
-				vendedores.setCep(rs.getString(11));
-				vendedores.setNumero(rs.getInt(12));
-				vendedores.setBairro(rs.getString(13));
-				vendedores.setCidade(rs.getString(14));
-				vendedores.setUf(rs.getString(15));
-				vendedores.setComplemento(rs.getString(16));
-				vendedores.setEmail(rs.getString(17));
-				vendedores.setTelefone(rs.getString(18));
-				vendedores.setCel1(rs.getString(19));
-				vendedores.setCel2(rs.getString(20));
-				vendedores.setBanco(rs.getString(21));
-				vendedores.setTipo_conta(rs.getString(22));
-				vendedores.setAgenciabanco(rs.getInt(23));
-				vendedores.setDigagencia(rs.getInt(24));
-				vendedores.setConta(rs.getInt(25));
-				vendedores.setDigconta(rs.getInt(26));
-				vendedores.setDataCadastro(rs.getDate(27));
-				vendedores.setGrupovendedores_codigo(rs.getInt(28));
-				GrupoVendedores obj = getGrupoVendedor(vendedores.getGrupovendedores_codigo());
-				vendedores.setGrupovendedores(obj);
-				vendedores.setEstabelecimentos_codigo(rs.getInt(29));
+				vendedores.setPessoa(rs.getString("pessoa"));
+				vendedores.setCpf(rs.getString("cpfcnpj"));
+				vendedores.setNome(rs.getString("nome"));
+				vendedores.setData(rs.getDate("dtnascimento"));
+				vendedores.setChave(rs.getString("chave"));
+				vendedores.setRg(rs.getString("rg"));
+				vendedores.setEmissor(rs.getString("emissor"));
+				vendedores.setSexo(rs.getString("sexo"));
+				vendedores.setEstado_civil(rs.getString("estadocivil"));
+				vendedores.setEstabelecimentos_codigo(rs.getInt("estabelecimentos_codigo"));
 				Estabelecimento obj2 = getEstabelecimento(vendedores.getEstabelecimentos_codigo());
 				vendedores.setEstabelecimento(obj2);
+				vendedores.setRua(rs.getString("rua"));
+				vendedores.setCep(rs.getString("cep"));
+				vendedores.setNumero(rs.getInt("numero"));
+				vendedores.setBairro(rs.getString("bairro"));
+				vendedores.setCidade(rs.getString("cidade"));
+				vendedores.setUf(rs.getString("uf"));
+				vendedores.setComplemento(rs.getString("complemento"));
+				vendedores.setEmail(rs.getString("email"));
+				vendedores.setTelefone(rs.getString("telefone"));
+				vendedores.setCel1(rs.getString("cel1"));
+				vendedores.setCel2(rs.getString("cel2"));
+				vendedores.setGrupovendedores_codigo(rs.getInt("grupovendedores_codigo"));
+				GrupoVendedores obj = getGrupoVendedor(vendedores.getGrupovendedores_codigo());
+				vendedores.setGrupovendedores(obj);
+				vendedores.setBanco(rs.getString("banco"));
+				vendedores.setTipo_conta(rs.getString("tipoconta"));
+				vendedores.setAgenciabanco(rs.getInt("agenciabanco"));
+				vendedores.setDigagencia(rs.getInt("digagencia"));
+				vendedores.setConta(rs.getInt("conta"));
+				vendedores.setDigconta(rs.getInt("digconta"));
+				vendedores.setDataCadastro(rs.getDate("data_cadastro"));
+				
+				
 				lista.add(vendedores);
 			}
 
