@@ -14,7 +14,7 @@
 		<!-- Meta, title, CSS, favicons, etc. -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Formulário | Contas Financeiras</title>
+		<title>Formulário | Planos Contábeis</title>
 		<!-- Bootstrap -->
 		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
 			rel="stylesheet" />
@@ -58,8 +58,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Contas Financeiras <small>Cadastre aqui
-												as contas financeiras</small>
+											Formulário de Plano Contábil <small>Cadastre aqui
+												os planos contábeis</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -78,7 +78,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo"
-														value="#{contasFinanceirasBean.contasFinanceiras.codigo}"
+														value="#{planoContabilBean.planoContabil.codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"></p:inputText>
 												</div>
@@ -89,7 +89,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome"
-														value="#{contasFinanceirasBean.contasFinanceiras.nome}"
+														value="#{planoContabilBean.planoContabil.nome}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true" />
 												</div>
@@ -105,15 +105,15 @@
 														value="#{fornecedoresBean.fornecedores.codigogf}"
 														styleClass="form-control col-md-7 col-xs-12" />-->
 													<h:selectOneMenu id="grupo" required="true"
-														value="#{contasFinanceirasBean.contasFinanceiras.grupocontasfinanceiras_codigo}"
+														value="#{planoContabilBean.planoContabil.grupoplanocontabil_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{grupoContasFinanceirasBean.listaGrupoContasFinanceiras}"
-															var="contasfinanceiras" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{contasfinanceiras.nome}"
-																itemValue="#{contasfinanceiras.codigo}" />
+															items="#{grupoPlanoContabilBean.listaGrupoPlanoContabil}"
+															var="planoContabil" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{planoContabil.nome}"
+																itemValue="#{planoContabil.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
@@ -126,7 +126,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="banco" required="true"
-														value="#{contasFinanceirasBean.contasFinanceiras.banco}"
+														value="#{planoContabilBean.planoContabil.banco}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -148,7 +148,7 @@
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="agenciabanco" required="true"
-														value="#{contasFinanceirasBean.contasFinanceiras.agenciabanco}"
+														value="#{planoContabilBean.planoContabil.agenciabanco}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -158,7 +158,7 @@
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="digagencia" required="true"
-														value="#{contasFinanceirasBean.contasFinanceiras.digagencia}"
+														value="#{planoContabilBean.planoContabil.digagencia}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -168,7 +168,7 @@
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="conta" required="true"
-														value="#{contasFinanceirasBean.contasFinanceiras.conta}"
+														value="#{planoContabilBean.planoContabil.conta}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -178,7 +178,7 @@
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="digconta" required="true"
-														value="#{contasFinanceirasBean.contasFinanceiras.digconta}"
+														value="#{planoContabilBean.planoContabil.digconta}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -188,7 +188,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="contabil"
-														value="#{contasFinanceirasBean.contasFinanceiras.conta_contabil}"
+														value="#{planoContabilBean.planoContabil.conta_contabil}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true" />
 												</div>
@@ -199,7 +199,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputTextarea id="descricao"
-														value="#{contasFinanceirasBean.contasFinanceiras.observacao}"
+														value="#{planoContabilBean.planoContabil.observacao}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -209,7 +209,7 @@
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
-														action="#{contasFinanceirasBean.cadastracontafinanceira}"
+														action="#{planoContabilBean.cadastraPlanoContabil}"
 														onclick="window.location='#Campo'"></p:commandButton>
 												</div>
 											</div>
@@ -222,8 +222,8 @@
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														Tabela das Contas Financeiras <small>Exibe as
-															contas financeiras cadastradas</small>
+														Tabela dos Planos Contábeis <small>Exibe os
+															planos contábeis cadastrados</small>
 													</h2>
 													<ul class="nav navbar-right panel_toolbox">
 														<li><a class="collapse-link"><i
@@ -251,27 +251,27 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach items="#{contasFinanceirasBean.contafinanceira}"
-																var="contaFinanceira" cellspacing="0" width="100%">
+															<c:forEach items="#{planoContabilBean.listaPlanoContabil}"
+																var="planoContabil" cellspacing="0" width="100%">
 																<tr>
-																	<td>#{contaFinanceira.codigo}</td>
+																	<td>#{planoContabil.codigo}</td>
 																	<td class="text-center"><p:commandButton value=""
 																			style="font-size:10px; "
 																			styleClass="fas fa-edit btn btn-primary"
 																			onclick="window.location='#Campo'"
 																			update="@(.form-control) Campo">
-																			<f:setPropertyActionListener value="#{contaFinanceira}"
-																				target="#{contasFinanceirasBean.contasFinanceiras}" />
+																			<f:setPropertyActionListener value="#{planoContabil}"
+																				target="#{planoContabilBean.planoContabil}" />
 																		</p:commandButton></td>
-																	<td>#{contaFinanceira.nome}</td>
-																	<td>#{contaFinanceira.grupocontasfinanceiras}</td>
-																	<td>#{contaFinanceira.banco}</td>
-																	<td>#{contaFinanceira.agenciabanco}</td>
-																	<td>#{contaFinanceira.digagencia}</td>
-																	<td>#{contaFinanceira.conta}</td>
-																	<td>#{contaFinanceira.digconta}</td>
-																	<td>#{contaFinanceira.conta_contabil}</td>
-																	<td>#{contaFinanceira.observacao}</td>
+																	<td>#{planoContabil.nome}</td>
+																	<td>#{planoContabil.grupoplanocontabil}</td>
+																	<td>#{planoContabil.banco}</td>
+																	<td>#{planoContabil.agenciabanco}</td>
+																	<td>#{planoContabil.digagencia}</td>
+																	<td>#{planoContabil.conta}</td>
+																	<td>#{planoContabil.digconta}</td>
+																	<td>#{planoContabil.conta_contabil}</td>
+																	<td>#{planoContabil.observacao}</td>
 
 																</tr>
 															</c:forEach>

@@ -14,7 +14,7 @@
 		<!-- Meta, title, CSS, favicons, etc. -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Formulário | Grupo de Contas Financeiras</title>
+		<title>Formulário | Grupos de Plano Contábil</title>
 		<!-- Bootstrap -->
 		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
 			rel="stylesheet" />
@@ -60,8 +60,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Contas Financeiras <small>Cadastre aqui
-												os grupos de contas financeiras</small>
+											Formulário de Plano Contábil <small>Cadastre aqui os
+												grupos de planos contábeis</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -90,7 +90,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo" required="true"
-														value="#{grupoContasFinanceirasBean.grupoContasFinanceiras.codigo}"
+														value="#{grupoPlanoContabilBean.grupoPlanoContabil.codigo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -100,7 +100,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-														value="#{grupoContasFinanceirasBean.grupoContasFinanceiras.nome}"
+														value="#{grupoPlanoContabilBean.grupoPlanoContabil.nome}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -110,7 +110,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{grupoContasFinanceirasBean.cadastraGrupoContasFinanceiras}"
+														action="#{grupoPlanoContabilBean.cadastraGrupoPlanoContabil()}"
 														update="messages" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
@@ -126,8 +126,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Tabela de Contas Financeiras <small>Exibe os grupos
-												de contas financeiras cadastrados</small>
+											Tabela de Conta Contábil <small>Exibe os grupos de
+												contas contábeis cadastrados</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -148,20 +148,20 @@
 												</thead>
 												<tbody>
 													<c:forEach
-														items="#{grupoContasFinanceirasBean.listaGrupoContasFinanceiras}"
-														var="grupoContasFinanceiras" cellspacing="0" width="100%">
+														items="#{grupoPlanoContabilBean.listaGrupoPlanoContabil}"
+														var="grupoPlanoContabil" cellspacing="0" width="100%">
 														<tr>
-															<td>#{grupoContasFinanceiras.codigo}</td>
+															<td>#{grupoPlanoContabil.codigo}</td>
 															<td class="text-center"><p:commandButton value=""
 																	style="font-size:10px;"
 																	styleClass="fas fa-edit btn btn-primary"
 																	onclick="window.location='#demo-form2'"
 																	update="@(.form-control) @(.rd) @(.calendar) demo-form2">
 																	<f:setPropertyActionListener
-																		value="#{grupoContasFinanceiras}"
-																		target="#{grupoContasFinanceirasBean.grupoContasFinanceiras}" />
+																		value="#{grupoPlanoContabil}"
+																		target="#{grupoPlanoContabilBean.grupoPlanoContabil}" />
 																</p:commandButton></td>
-															<td>#{grupoContasFinanceiras.nome}</td>
+															<td>#{grupoPlanoContabil.nome}</td>
 														</tr>
 													</c:forEach>
 												</tbody>
