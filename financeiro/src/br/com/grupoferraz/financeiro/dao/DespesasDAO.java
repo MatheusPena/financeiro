@@ -83,7 +83,7 @@ public class DespesasDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nomegrupodespesas from grupodespesas where codigo = ?");
+				"select codigo, nomegrupodespesa from grupodespesas where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
