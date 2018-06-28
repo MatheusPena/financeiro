@@ -31,7 +31,7 @@ public class LoginDAO {
 			ok = senhaUsuario.equals(senhaAux);
 		} catch (Exception ex) {
 			conexao = ConexaoBD.getConexao();
-			ok = ok(login);
+			//ok = ok(login);
 			ex.printStackTrace();
 		}
 		return ok;

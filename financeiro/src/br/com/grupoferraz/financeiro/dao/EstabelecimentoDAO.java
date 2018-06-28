@@ -95,4 +95,35 @@ public class EstabelecimentoDAO {
 		}
 		return grupo;
 	}
+	
+	public List<Estabelecimento> getEstabelecimento(String idEmpresa) throws SQLException {
+
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		
+		StringBuilder str = new StringBuilder();
+		str.append("select e.codigo, e.nome, e.grupoestabelecimento_codigo from estabelecimentos e");
+		str.append(" inner join grupoestabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
+		str.append(" inner join unidade u on ge.unidade_nome = u.nome");
+		str.append(" inner join empresas emp on emp.cnpj = u.empresas_cnpj");
+		str.append(" and emp.cnpj = ?");
+		
+		List<Estabelecimento> lista = new ArrayList<>();
+		preparedStatement = conexao.prepareStatement(
+				str.toString());
+		preparedStatement.setString(1, idEmpresa);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			Estabelecimento estabelecimentos = new Estabelecimento();
+			estabelecimentos.setCodigo(rs.getInt("codigo"));
+			estabelecimentos.setNome(rs.getString("nome"));
+			estabelecimentos.setGrupoestabelecimento_codigo(rs.getInt("grupoestabelecimento_codigo"));
+			int idGrupo = estabelecimentos.getGrupoestabelecimento_codigo();
+			GrupoEstabelecimento grupoEstabelecimento = getGrupoEstabelecimento(idGrupo);
+			estabelecimentos.setGrupoestabalecimento(grupoEstabelecimento);
+			lista.add(estabelecimentos);
+		}
+		return lista;
+	}
 }
