@@ -1,6 +1,8 @@
 package br.com.grupoferraz.financeiro.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean
@@ -16,137 +18,118 @@ public class Despesas implements Serializable {
 	private String empresa_cnpj;
 	private Empresa empresa;
 	private Estabelecimento estabelecimento;
+	private Date emissao;
+	private Date validade;
 	
 	public Despesas() {
 		
 	}
 
 	
-	/**
-	 * @return the codigo
-	 */
 	public int getCodigo() {
 		return codigo;
 	}
 
-	/**
-	 * @param codigo the codigo to set
-	 */
+
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
-	/**
-	 * @return the nome
-	 */
+	
 	public String getNome() {
 		return nome;
 	}
 
-	/**
-	 * @param nome the nome to set
-	 */
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	/**
-	 * @return the valor
-	 */
+	
 	public String getValor() {
 		return valor;
 	}
 
-	/**
-	 * @param valor the valor to set
-	 */
+	
 	public void setValor(String valor) {
 		this.valor = valor;
 	}
 
-	/**
-	 * @return the estabelecimentos_codigo
-	 */
 	public int getEstabelecimentos_codigo() {
 		return estabelecimentos_codigo;
 	}
 
-	/**
-	 * @param estabelecimentos_codigo the estabelecimentos_codigo to set
-	 */
 	public void setEstabelecimentos_codigo(int estabelecimentos_codigo) {
 		this.estabelecimentos_codigo = estabelecimentos_codigo;
 	}
 
-	/**
-	 * @return the grupodespesas_codigo
-	 */
 	public int getGrupodespesas_codigo() {
 		return grupodespesas_codigo;
 	}
 
-	/**
-	 * @param grupodespesas_codigo the grupodespesas_codigo to set
-	 */
+
 	public void setGrupodespesas_codigo(int grupodespesas_codigo) {
 		this.grupodespesas_codigo = grupodespesas_codigo;
 	}
 
-	/**
-	 * @return the grupodespesas
-	 */
+	
 	public GrupoDespesas getGrupodespesas() {
 		return grupodespesas;
 	}
 
-	/**
-	 * @param grupodespesas the grupodespesas to set
-	 */
+	
 	public void setGrupodespesas(GrupoDespesas grupodespesas) {
 		this.grupodespesas = grupodespesas;
 	}
 
-	/**
-	 * @return the empresa_cnpj
-	 */
+	
 	public String getEmpresa_cnpj() {
 		return empresa_cnpj;
 	}
 
-	/**
-	 * @param empresa_cnpj the empresa_cnpj to set
-	 */
+	
 	public void setEmpresa_cnpj(String empresa_cnpj) {
 		this.empresa_cnpj = empresa_cnpj;
 	}
 
-	/**
-	 * @return the empresa
-	 */
+	
 	public Empresa getEmpresa() {
 		return empresa;
 	}
 
-	/**
-	 * @param empresa the empresa to set
-	 */
+	
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
 
-	/**
-	 * @return the estabelecimento
-	 */
+	
 	public Estabelecimento getEstabelecimento() {
 		return estabelecimento;
 	}
 
 
-	/**
-	 * @param estabelecimento the estabelecimento to set
-	 */
 	public void setEstabelecimento(Estabelecimento estabelecimento) {
 		this.estabelecimento = estabelecimento;
+	}
+
+
+	public Date getEmissao() {
+		return emissao;
+	}
+
+
+	public void setEmissao(Date emissao) {
+		this.emissao = emissao;
+	}
+
+
+	public Date getValidade() {
+		return validade;
+	}
+
+
+	public void setValidade(Date validade) {
+		this.validade = validade;
 	}
 
 
