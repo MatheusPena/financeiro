@@ -19,7 +19,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 @ViewScoped
 public class DespesasBean implements Serializable {
 
-	private Despesas despesas;
+	private Despesas despesas, despesaSelecionada;
 	private List<Despesas> listadespesa;
 	private List<Estabelecimento> estabelecimentos;
 	private String cnpj;
@@ -27,9 +27,13 @@ public class DespesasBean implements Serializable {
 	public DespesasBean() {
 		despesas = new Despesas();
 		listarDespesas();
+		//listarEstabelecimentos();
 	}
 
 	public String cadastraDespesa() {
+
+		System.out.println("EST COD " + despesas.getEstabelecimentos_codigo());
+		System.out.println("EST NOME " + despesas.getNome());
 
 		ConexaoBD.getConexao();
 		DespesasDAO despesa = new DespesasDAO();
@@ -49,27 +53,37 @@ public class DespesasBean implements Serializable {
 		return "";
 	}
 
+	public void setarDespesa() {listarEstabelecimentos();
+		this.despesas = despesaSelecionada;
+		listarEstabelecimentos();
+		this.despesas.setEstabelecimentos_codigo(despesaSelecionada.getEstabelecimentos_codigo());
+	}
+
 	public void listarDespesas() {
 		DespesasDAO despesa = new DespesasDAO();
 		setDespesa(despesa.listadespesa());
 	}
-	
-	public void listarEstabelecimentos()  {
+
+	public void listarEstabelecimentos() {
 		EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
-		
-		System.out.println("CNPJ "+cnpj);
-		System.out.println("ESTS "+estabelecimentos);
-		
-		if(cnpj!=null) {
+		cnpj = despesas.getEmpresa_cnpj();
+		System.out.println("EST " + despesas.getEstabelecimentos_codigo());
+
+		System.out.println("CNPJ " + cnpj);
+
+		if (cnpj != null) {
 			try {
-				estabelecimentos =  estabelecimentoDAO.getEstabelecimento(cnpj);
+				estabelecimentos = estabelecimentoDAO.getEstabelecimento(cnpj);
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else {
+		} else {
 			estabelecimentos = new ArrayList<>();
 		}
+		
+		//estabelecimentos = estabelecimentoDAO.listEstabelecimentos();
 	}
 
 	public Despesas getDespesas() {
@@ -100,7 +114,8 @@ public class DespesasBean implements Serializable {
 	}
 
 	/**
-	 * @param estabelecimentos the estabelecimentos to set
+	 * @param estabelecimentos
+	 *            the estabelecimentos to set
 	 */
 	public void setEstabelecimentos(List<Estabelecimento> estabelecimentos) {
 		this.estabelecimentos = estabelecimentos;
@@ -114,11 +129,26 @@ public class DespesasBean implements Serializable {
 	}
 
 	/**
-	 * @param cnpj the cnpj to set
+	 * @param cnpj
+	 *            the cnpj to set
 	 */
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
-	
+	/**
+	 * @return the despesaSelecionada
+	 */
+	public Despesas getDespesaSelecionada() {
+		return despesaSelecionada;
+	}
+
+	/**
+	 * @param despesaSelecionada
+	 *            the despesaSelecionada to set
+	 */
+	public void setDespesaSelecionada(Despesas despesaSelecionada) {
+		this.despesaSelecionada = despesaSelecionada;
+	}
+
 }

@@ -7,7 +7,6 @@ import javax.faces.bean.ManagedBean;
 @SuppressWarnings("serial")
 public class Estabelecimento implements Serializable {
 
-	// private int id;
 	private int codigo;
 	private String nome;
 	private int grupoestabelecimento_codigo;
@@ -47,7 +46,6 @@ public class Estabelecimento implements Serializable {
 
 	@Override
 	public String toString() {
-
 		return nome;
 	}
 }
