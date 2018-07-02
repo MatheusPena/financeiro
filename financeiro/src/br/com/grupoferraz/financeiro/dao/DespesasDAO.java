@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import br.com.grupoferraz.financeiro.entity.Despesas;
 import br.com.grupoferraz.financeiro.entity.Empresa;
+import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.GrupoDespesas;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -31,7 +32,7 @@ public class DespesasDAO {
 			preparedStatement.setString(2, despesa.getNome());
 			preparedStatement.setString(3, despesa.getValor());
 			preparedStatement.setInt(4, despesa.getGrupodespesas_codigo());
-			preparedStatement.setString(5, despesa.getEstabelecimentos_codigo());
+			preparedStatement.setInt(5, despesa.getEstabelecimentos_codigo());
 			preparedStatement.setString(6, despesa.getEmpresa_cnpj());
 
 
@@ -39,7 +40,7 @@ public class DespesasDAO {
 			preparedStatement.setString(8, despesa.getNome());
 			preparedStatement.setString(9, despesa.getValor());
 			preparedStatement.setInt(10, despesa.getGrupodespesas_codigo());
-			preparedStatement.setString(11, despesa.getEstabelecimentos_codigo());
+			preparedStatement.setInt(11, despesa.getEstabelecimentos_codigo());
 			preparedStatement.setString(12, despesa.getEmpresa_cnpj());
 			preparedStatement.execute();
 			return true;
@@ -78,7 +79,9 @@ public class DespesasDAO {
 				Empresa empresa = getEmpresa(idEmpresa);
 				despesa.setEmpresa(empresa);
 				despesa.setGrupodespesas(grupoDespesas);
-				despesa.setEstabelecimentos_codigo(rs.getString("estabelecimentos_codigo"));
+				despesa.setEstabelecimentos_codigo(rs.getInt("estabelecimentos_codigo"));
+				Estabelecimento estabelecimento = getEstabelecimento(despesa.getEstabelecimentos_codigo());
+				despesa.setEstabelecimento(estabelecimento);
 				despesa.setEmpresa_cnpj(idEmpresa);
 				lista.add(despesa);
 			}
@@ -122,5 +125,21 @@ public class DespesasDAO {
 			empresa.setNome(rs.getString("nome"));
 		}
 		return empresa;
+	}
+	
+	public Estabelecimento getEstabelecimento(int idEstabelecimento) throws SQLException {
+		Estabelecimento estabelecimento = new Estabelecimento();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement(
+				"select codigo, nome from estabelecimentos where codigo = ?");
+		preparedStatement.setInt(1, idEstabelecimento);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			estabelecimento.setCodigo(rs.getInt("codigo"));
+			estabelecimento.setNome(rs.getString("nome"));
+		}
+		return estabelecimento;
 	}
 }

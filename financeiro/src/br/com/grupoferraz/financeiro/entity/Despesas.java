@@ -10,11 +10,12 @@ public class Despesas implements Serializable {
 	private int codigo;
 	private String nome;
 	private String valor;
-	private String estabelecimentos_codigo ;
+	private int estabelecimentos_codigo ;
 	private int grupodespesas_codigo;
 	private GrupoDespesas grupodespesas;
 	private String empresa_cnpj;
 	private Empresa empresa;
+	private Estabelecimento estabelecimento;
 	
 	public Despesas() {
 		
@@ -66,14 +67,14 @@ public class Despesas implements Serializable {
 	/**
 	 * @return the estabelecimentos_codigo
 	 */
-	public String getEstabelecimentos_codigo() {
+	public int getEstabelecimentos_codigo() {
 		return estabelecimentos_codigo;
 	}
 
 	/**
 	 * @param estabelecimentos_codigo the estabelecimentos_codigo to set
 	 */
-	public void setEstabelecimentos_codigo(String estabelecimentos_codigo) {
+	public void setEstabelecimentos_codigo(int estabelecimentos_codigo) {
 		this.estabelecimentos_codigo = estabelecimentos_codigo;
 	}
 
@@ -132,6 +133,22 @@ public class Despesas implements Serializable {
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
+
+	/**
+	 * @return the estabelecimento
+	 */
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
+	}
+
+
+	/**
+	 * @param estabelecimento the estabelecimento to set
+	 */
+	public void setEstabelecimento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
+	}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
