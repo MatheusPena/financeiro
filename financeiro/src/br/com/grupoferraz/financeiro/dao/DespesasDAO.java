@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import br.com.grupoferraz.financeiro.entity.Despesas;
 import br.com.grupoferraz.financeiro.entity.Empresa;
+import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.GrupoDespesas;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -22,20 +23,25 @@ public class DespesasDAO {
 		try {
 			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();
-			str.append("insert into despesas (codigo, nome, valor, grupodespesas_codigo, empresas_cnpj) values (?,?,?,?,?) ");
-			str.append("on duplicate key update codigo = ?, nome = ?, valor = ?, grupodespesas_codigo = ?, empresas_cnpj = ?");
+			str.append("insert into despesas (codigo, nome, valor, "
+					+ "grupodespesas_codigo, estabelecimentos_codigo, empresa_cnpj) values (?,?,?,?,?,?) ");
+			str.append("on duplicate key update codigo = ?, nome = ?, valor = ?,"
+					+ "grupodespesas_codigo = ?, estabelecimentos_codigo = ?, empresa_cnpj = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, despesa.getCodigo());
 			preparedStatement.setString(2, despesa.getNome());
 			preparedStatement.setString(3, despesa.getValor());
 			preparedStatement.setInt(4, despesa.getGrupodespesas_codigo());
-			preparedStatement.setString(5, despesa.getEmpresas_cnpj());
+			preparedStatement.setInt(5, despesa.getEstabelecimentos_codigo());
+			preparedStatement.setString(6, despesa.getEmpresa_cnpj());
 
-			preparedStatement.setInt(6, despesa.getCodigo());
-			preparedStatement.setString(7, despesa.getNome());
-			preparedStatement.setString(8, despesa.getValor());
-			preparedStatement.setInt(9, despesa.getGrupodespesas_codigo());
-			preparedStatement.setString(10, despesa.getEmpresas_cnpj());
+
+			preparedStatement.setInt(7, despesa.getCodigo());
+			preparedStatement.setString(8, despesa.getNome());
+			preparedStatement.setString(9, despesa.getValor());
+			preparedStatement.setInt(10, despesa.getGrupodespesas_codigo());
+			preparedStatement.setInt(11, despesa.getEstabelecimentos_codigo());
+			preparedStatement.setString(12, despesa.getEmpresa_cnpj());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -56,7 +62,8 @@ public class DespesasDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select codigo, nome, valor, grupodespesas_codigo from despesas";
+			String sql = "select codigo, nome, valor, grupodespesas_codigo, "
+					+ "estabelecimentos_codigo, empresa_cnpj from despesas";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -67,9 +74,15 @@ public class DespesasDAO {
 				despesa.setValor(rs.getString("valor"));
 				despesa.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
 				int idGrupo = despesa.getGrupodespesas_codigo();
+				String idEmpresa = rs.getString("empresa_cnpj");
 				GrupoDespesas grupoDespesas = getGrupoDespesas(idGrupo);
+				Empresa empresa = getEmpresa(idEmpresa);
+				despesa.setEmpresa(empresa);
 				despesa.setGrupodespesas(grupoDespesas);
-				//despesa.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
+				despesa.setEstabelecimentos_codigo(rs.getInt("estabelecimentos_codigo"));
+				Estabelecimento estabelecimento = getEstabelecimento(despesa.getEstabelecimentos_codigo());
+				despesa.setEstabelecimento(estabelecimento);
+				despesa.setEmpresa_cnpj(idEmpresa);
 				lista.add(despesa);
 			}
 
@@ -98,13 +111,13 @@ public class DespesasDAO {
 		return grupo;
 	}
 	
-	public Empresa getEmpresa(int idEmpresa) throws SQLException {
+	public Empresa getEmpresa(String idEmpresa) throws SQLException {
 		Empresa empresa = new Empresa();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
 				"select cnpj, nome from empresas where cnpj = ?");
-		preparedStatement.setInt(1, idEmpresa);
+		preparedStatement.setString(1, idEmpresa);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
@@ -112,5 +125,21 @@ public class DespesasDAO {
 			empresa.setNome(rs.getString("nome"));
 		}
 		return empresa;
+	}
+	
+	public Estabelecimento getEstabelecimento(int idEstabelecimento) throws SQLException {
+		Estabelecimento estabelecimento = new Estabelecimento();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement(
+				"select codigo, nome from estabelecimentos where codigo = ?");
+		preparedStatement.setInt(1, idEstabelecimento);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			estabelecimento.setCodigo(rs.getInt("codigo"));
+			estabelecimento.setNome(rs.getString("nome"));
+		}
+		return estabelecimento;
 	}
 }

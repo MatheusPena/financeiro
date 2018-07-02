@@ -71,10 +71,6 @@
 										<br />
 										<h:form id="Campo"
 											styleClass="form-horizontal form-label-left">
-
-
-
-
 											<p:messages id="messages" />
 											<!-- Dados iniciais -->
 											<div class="form-group">
@@ -91,29 +87,28 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="nomeempresa" value="Empresa: " />
+													<p:outputLabel for="empresa" value="Empresa: " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="nomeempresa" required="true" converter="omnifaces.SelectItemsConverter"
-														
-														value="#{despesasBean.cnpj}" style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+													<p:outputPanel styleClass="combo">
+														<h:selectOneMenu id="empresa" required="true"
+															converter="omnifaces.SelectItemsConverter"
+															value="#{despesasBean.despesas.empresa_cnpj}"
+															style="width:320px"
+															styleClass="form-control col-md-7 col-xs-12">
+															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 
-														<f:selectItems value="#{empresaBean.empresas}"
-															var="empresa" itemValue="#{empresa.cnpj}"
-															itemLabel="#{empresa.nome}" />
-
-														 <f:ajax event="change" render="@form" execute="@this" listener="#{despesasBean.listarEstabelecimentos()}" />
-
-													</h:selectOneMenu>
-
+															<f:selectItems value="#{empresaBean.empresas}"
+																var="empresa" itemValue="#{empresa.cnpj}"
+																itemLabel="#{empresa.nome}" />
+															<f:ajax render="Campo:estabelecimento"
+																execute="@this"
+																listener="#{despesasBean.listarEstabelecimentos()}" />
+														</h:selectOneMenu>
+													</p:outputPanel>
 												</div>
-
-
 											</div>
 
-											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="estabelecimento"
@@ -121,20 +116,16 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 
-													<p:outputPanel styleClass="painelEstabelecimento" id="painelEstabelecimento">
-
-														<h:selectOneMenu id="estabelecimento" required="true" converter="omnifaces.SelectItemsConverter"
-															value="#{despesasBean.despesas.grupodespesas_codigo}"
-															style="width:320px"
-															styleClass="form-control col-md-7 col-xs-12">
-															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-
-															<f:selectItems value="#{despesasBean.estabelecimentos}"
-																var="est" itemValue="#{est.codigo}"
-																itemLabel="#{est.nome}" />
-														</h:selectOneMenu>
-
-													</p:outputPanel>
+													<h:selectOneMenu id="estabelecimento" required="true"
+														converter="omnifaces.SelectItemsConverter"
+														value="#{despesasBean.despesas.estabelecimentos_codigo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+														<f:selectItems value="#{despesasBean.estabelecimentos}"
+															var="est" itemValue="#{est.codigo}"
+															itemLabel="#{est.nome}" />
+													</h:selectOneMenu>
 
 												</div>
 											</div>
@@ -162,20 +153,6 @@
 													</p:inputText>
 												</div>
 											</div>
-
-											<!-- 	<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="grupo" value="Grupo do item:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="grupo"
-														value="#{despesasBean.despesas.grupodespesas}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true">
-													</p:inputText>
-												</div>
-											</div>  -->
-
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="grupo" value="Grupo do item: " />
@@ -203,7 +180,7 @@
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
 														action="#{despesasBean.cadastraDespesa()}"
-														onclick="window.location='#Campo'"></p:commandButton>
+														></p:commandButton>
 												</div>
 											</div>
 										</h:form>
@@ -215,8 +192,8 @@
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														Tabela dos Vendedores <small>Exibe os vendedores
-															cadastrados</small>
+														Tabela dos Despesas <small>Exibe as despesas
+															cadastradas</small>
 													</h2>
 													<ul class="nav navbar-right panel_toolbox">
 														<li><a class="collapse-link"><i
@@ -235,6 +212,8 @@
 																<th>Nome</th>
 																<th>Valor</th>
 																<th>Grupo</th>
+																<th>Empresa</th>
+																<th>Estabelecimento</th>
 
 															</tr>
 														</thead>
@@ -243,16 +222,21 @@
 																var="despesas" cellspacing="0" width="100%">
 																<tr>
 																	<td>#{despesas.codigo}</td>
-																	<td class="text-center"><p:commandButton value=""
+																	<td class="text-center">
+																	
+																	<p:commandButton value=""
+																			action="#{despesasBean.setarDespesa()}"
 																			style="font-size:10px; "
 																			styleClass="fas fa-edit btn btn-primary"
-																			update="@(.form-control) Campo">
+																			update="Campo">
 																			<f:setPropertyActionListener value="#{despesas}"
-																				target="#{despesasBean.despesas}" />
+																				target="#{despesasBean.despesaSelecionada}" />
 																		</p:commandButton></td>
 																	<td>#{despesas.nome}</td>
 																	<td>#{despesas.valor}</td>
 																	<td>#{despesas.grupodespesas}</td>
+																	<td>#{despesas.empresa}</td>
+																	<td>#{despesas.estabelecimento.nome}</td>
 																</tr>
 															</c:forEach>
 														</tbody>
