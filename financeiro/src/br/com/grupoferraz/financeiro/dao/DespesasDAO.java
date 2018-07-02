@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,9 +25,11 @@ public class DespesasDAO {
 			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();
 			str.append("insert into despesas (codigo, nome, valor, "
-					+ "grupodespesas_codigo, estabelecimentos_codigo, empresa_cnpj) values (?,?,?,?,?,?) ");
+					+ "grupodespesas_codigo, estabelecimentos_codigo, "
+					+ "empresa_cnpj, emissao, validade ) values (?,?,?,?,?,?,?,?) ");
 			str.append("on duplicate key update codigo = ?, nome = ?, valor = ?,"
-					+ "grupodespesas_codigo = ?, estabelecimentos_codigo = ?, empresa_cnpj = ?");
+					+ "grupodespesas_codigo = ?, estabelecimentos_codigo = ?,"
+					+ "empresa_cnpj = ?, emissao = ?, validade = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, despesa.getCodigo());
 			preparedStatement.setString(2, despesa.getNome());
@@ -34,14 +37,29 @@ public class DespesasDAO {
 			preparedStatement.setInt(4, despesa.getGrupodespesas_codigo());
 			preparedStatement.setInt(5, despesa.getEstabelecimentos_codigo());
 			preparedStatement.setString(6, despesa.getEmpresa_cnpj());
+			Date dataEmissao = despesa.getEmissao();
+			long t = 0;
+			if (dataEmissao != null ) {
+				t = dataEmissao.getTime();	
+			}
+			preparedStatement.setDate(7, new java.sql.Date(t));
+			
+			Date dataValidade = despesa.getValidade();
+			long j = 0;
+			if (dataValidade != null ) {
+				j = dataValidade.getTime();	
+			}
+			preparedStatement.setDate(8, new java.sql.Date(j));
 
+			preparedStatement.setInt(9, despesa.getCodigo());
+			preparedStatement.setString(10, despesa.getNome());
+			preparedStatement.setString(11, despesa.getValor());
+			preparedStatement.setInt(12, despesa.getGrupodespesas_codigo());
+			preparedStatement.setInt(13, despesa.getEstabelecimentos_codigo());
+			preparedStatement.setString(14, despesa.getEmpresa_cnpj());
+			preparedStatement.setDate(15, new java.sql.Date(t));
+			preparedStatement.setDate(16, new java.sql.Date(j));
 
-			preparedStatement.setInt(7, despesa.getCodigo());
-			preparedStatement.setString(8, despesa.getNome());
-			preparedStatement.setString(9, despesa.getValor());
-			preparedStatement.setInt(10, despesa.getGrupodespesas_codigo());
-			preparedStatement.setInt(11, despesa.getEstabelecimentos_codigo());
-			preparedStatement.setString(12, despesa.getEmpresa_cnpj());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -63,7 +81,7 @@ public class DespesasDAO {
 		try {
 			st = conexao.createStatement();
 			String sql = "select codigo, nome, valor, grupodespesas_codigo, "
-					+ "estabelecimentos_codigo, empresa_cnpj from despesas";
+					+ "estabelecimentos_codigo, empresa_cnpj, emissao, validade from despesas";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -83,6 +101,8 @@ public class DespesasDAO {
 				Estabelecimento estabelecimento = getEstabelecimento(despesa.getEstabelecimentos_codigo());
 				despesa.setEstabelecimento(estabelecimento);
 				despesa.setEmpresa_cnpj(idEmpresa);
+				despesa.setEmissao(rs.getDate("emissao"));
+				despesa.setValidade(rs.getDate("validade"));
 				lista.add(despesa);
 			}
 

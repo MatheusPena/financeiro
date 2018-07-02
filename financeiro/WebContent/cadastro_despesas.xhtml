@@ -171,6 +171,28 @@
 													</h:selectOneMenu>
 												</div>
 											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="emissao" value="Data de Emissão:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:calendar mask="true" pattern="dd/MM/yyyy"
+														inputStyleClass="form-control col-md-7 col-xs-12"
+														id="emissao" required="true" styleClass="calendar"
+														value="#{despesasBean.despesas.emissao}" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="validade" value="Data de Validade:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:calendar mask="true" pattern="dd/MM/yyyy"
+														inputStyleClass="form-control col-md-7 col-xs-12"
+														id="validade" styleClass="calendar"
+														value="#{despesasBean.despesas.validade}" />
+												</div>
+											</div>
 
 											<div class="ln_solid" />
 											<div class="form-group">
@@ -214,6 +236,8 @@
 																<th>Grupo</th>
 																<th>Empresa</th>
 																<th>Estabelecimento</th>
+																<th>Emissão</th>
+																<th>Validade</th>
 
 															</tr>
 														</thead>
@@ -237,6 +261,8 @@
 																	<td>#{despesas.grupodespesas}</td>
 																	<td>#{despesas.empresa}</td>
 																	<td>#{despesas.estabelecimento.nome}</td>
+																	<td>#{despesas.emissao}</td>
+																	<td>#{despesas.validade}</td>
 																</tr>
 															</c:forEach>
 														</tbody>
