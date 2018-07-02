@@ -41,6 +41,8 @@ public class Vendedores {
 	private int estabelecimentos_codigo;
 	private GrupoVendedores grupovendedores;
 	private Estabelecimento estabelecimento;
+	private String empresa_cnpj;
+	private Empresa empresa;
 
 	public Vendedores() {
 		initPessoa();
@@ -387,6 +389,22 @@ public class Vendedores {
 
 	public void setEstabelecimento(Estabelecimento estabelecimento) {
 		this.estabelecimento = estabelecimento;
+	}
+
+	public String getEmpresa_cnpj() {
+		return empresa_cnpj;
+	}
+
+	public void setEmpresa_cnpj(String empresa_cnpj) {
+		this.empresa_cnpj = empresa_cnpj;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 }

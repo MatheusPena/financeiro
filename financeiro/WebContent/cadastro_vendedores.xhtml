@@ -16,19 +16,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Formulário | Vendedores</title>
 		<!-- Bootstrap -->
-		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
 		<!-- Font Awesome -->
-		<link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" />
 		<!-- NProgress -->
 		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
 		<!-- iCheck -->
 		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
 		<!-- Datatables -->
-		<link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
-		<link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet" />
-		<link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+		<link
+			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+			rel="stylesheet" />
 		<!-- Custom Theme Style -->
 		<link href="build/css/custom.min.css" rel="stylesheet" />
 	</h:head>
@@ -57,8 +69,7 @@
 									</div>
 									<div class="x_content">
 										<br />
-										<h:form id="Campo" 
-											class="form-horizontal form-label-left">
+										<h:form id="Campo" class="form-horizontal form-label-left">
 											<p:messages id="messages" />
 											<!-- Dados iniciais -->
 											<div class="form-group">
@@ -172,7 +183,50 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="agencia" value="Agência *" />
+													<p:outputLabel for="empresa" value="Empresa " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel styleClass="combo">
+														<h:selectOneMenu id="empresa" required="true"
+															converter="omnifaces.SelectItemsConverter"
+															value="#{vendedoresBean.vendedores.empresa_cnpj}"
+															style="width:320px"
+															styleClass="form-control col-md-7 col-xs-12">
+															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+
+															<f:selectItems value="#{empresaBean.empresas}"
+																var="empresa" itemValue="#{empresa.cnpj}"
+																itemLabel="#{empresa.nome}" />
+															<f:ajax render="Campo:estabelecimento" execute="@this"
+																listener="#{vendedoresBean.listarEstabelecimentos()}" />
+														</h:selectOneMenu>
+													</p:outputPanel>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="estabelecimento"
+														value="Estabelecimento " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+
+													<h:selectOneMenu id="estabelecimento" required="true"
+														converter="omnifaces.SelectItemsConverter"
+														value="#{vendedoresBean.vendedores.estabelecimentos_codigo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+														<f:selectItems value="#{vendedoresBean.estabelecimentos}"
+															var="est" itemValue="#{est.codigo}"
+															itemLabel="#{est.nome}" />
+													</h:selectOneMenu>
+
+												</div>
+											</div>
+											<!--  
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="agencia" value="Estabelecimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="agencia" required="true"
@@ -189,7 +243,7 @@
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
-											</div>
+											</div>-->
 											<!-- Endereço -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -452,7 +506,8 @@
 																<th>Orgão emissor</th>
 																<th>Sexo</th>
 																<th>Estado civil</th>
-																<th>Agência</th>
+																<th>Empresa</th>
+																<th>Estabelecimento</th>
 																<th>Rua</th>
 																<th>CEP</th>
 																<th>Número</th>
@@ -471,7 +526,7 @@
 																<th>Dig. agência</th>
 																<th>Conta</th>
 																<th>Díg. conta</th>
-																
+
 															</tr>
 														</thead>
 														<tbody>
@@ -480,13 +535,14 @@
 																<tr>
 																	<td>#{vendedor.nome}</td>
 																	<td class="text-center"><p:commandButton value=""
-																	style="font-size:10px; "
-																	styleClass="fas fa-edit btn btn-primary" 
-																	update="@(.form-control) Campo">
-																	<f:setPropertyActionListener value="#{vendedor}" 
-																	target="#{vendedoresBean.vendedores}"/>
-																	</p:commandButton>
-																	</td>
+																			action="#{vendedoresBean.setarVendedor()}"
+																			style="font-size:10px; "
+																			styleClass="fas fa-edit btn btn-primary"
+																			onclick="window.location='#Campo'"
+																			update="@(.form-control) Campo">
+																			<f:setPropertyActionListener value="#{vendedor}"
+																				target="#{vendedoresBean.vendedorSelecionado}" />
+																		</p:commandButton></td>
 																	<td>#{vendedor.pessoa}</td>
 																	<td>#{vendedor.cpf}</td>
 																	<td><h:outputText value="#{vendedor.data}">
@@ -498,6 +554,7 @@
 																	<td>#{vendedor.emissor}</td>
 																	<td>#{vendedor.sexo}</td>
 																	<td>#{vendedor.estado_civil}</td>
+																	<td>#{vendedor.empresa}</td>
 																	<td>#{vendedor.estabelecimento}</td>
 																	<td>#{vendedor.rua}</td>
 																	<td>#{vendedor.cep}</td>
@@ -517,7 +574,7 @@
 																	<td>#{vendedor.digagencia}</td>
 																	<td>#{vendedor.conta}</td>
 																	<td>#{vendedor.digconta}</td>
-																	
+
 																</tr>
 															</c:forEach>
 														</tbody>

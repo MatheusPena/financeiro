@@ -31,7 +31,7 @@ public class GrupoVendedoresBean implements Serializable {
 		GrupoVendedoresDAO grupovendedores = new GrupoVendedoresDAO ();
 		if (grupovendedores.insertGrupoVendedores(this.grupovendedores)) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Grupo de Vendedores cadastrado com sucesso", "Sucesso!"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Grupo de Vendedores cadastrado com sucesso!", "Sucesso!"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));
