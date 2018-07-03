@@ -69,7 +69,7 @@ public class ClientesDAO {
 			preparedStatement.setString(24, usuario.getNomefantasia());
 			preparedStatement.setString(25, usuario.getRg());
 			preparedStatement.setString(26, usuario.getCpfcp());
-			preparedStatement.setByte(27, usuario.getExterior());
+			preparedStatement.setString(27, usuario.getExterior());
 			preparedStatement.setString(28, usuario.getContabil());
 			preparedStatement.setString(29, usuario.getDebito());
 			preparedStatement.setString(30, usuario.getNf());
@@ -109,7 +109,7 @@ public class ClientesDAO {
 			preparedStatement.setString(63, usuario.getNomefantasia());
 			preparedStatement.setString(64, usuario.getRg());
 			preparedStatement.setString(65, usuario.getCpfcp());
-			preparedStatement.setByte(66, usuario.getExterior());
+			preparedStatement.setString(66, usuario.getExterior());
 			preparedStatement.setString(67, usuario.getContabil());
 			preparedStatement.setString(68, usuario.getDebito());
 			preparedStatement.setString(69, usuario.getNf());
@@ -181,7 +181,7 @@ public class ClientesDAO {
 				usuario.setNomefantasia(rs.getString("nomefantasia"));
 				usuario.setRg(rs.getString("rg"));
 				usuario.setCpfcp(rs.getString("cpfcp"));
-				usuario.setExterior(rs.getByte("exterior"));
+				usuario.setExterior(rs.getString("exterior"));
 				usuario.setContabil(rs.getString("contabil"));
 				usuario.setDebito(rs.getString("debito"));
 				usuario.setNf(rs.getString("nf"));

@@ -35,7 +35,7 @@ public class Clientes implements Serializable {
 	private String nomefantasia;
 	private String rg;
 	private String cpfcp;
-	private byte exterior;
+	private String exterior;
 	private String contabil; 
 	private String debito;
 	private String nf;
@@ -51,11 +51,11 @@ public class Clientes implements Serializable {
 	private GrupoClientes grupoClientes;
 	
 
-	public byte getExterior() {
+	public String getExterior() {
         return exterior;
     }
  
-    public void setExterior(byte exterior) {
+    public void setExterior(String exterior) {
         this.exterior = exterior;
     }
 
