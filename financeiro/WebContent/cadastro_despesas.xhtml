@@ -143,13 +143,12 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="valor" value="Valor do item:" />
+													<h:outputLabel for="valor" required="true" value="Valor do item: * " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valor"
 														value="#{despesasBean.despesas.valor}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true">
+														styleClass="form-control col-md-7 col-xs-12">
 													</p:inputText>
 												</div>
 											</div>

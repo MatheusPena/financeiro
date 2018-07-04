@@ -20,6 +20,7 @@ public class Despesas implements Serializable {
 	private Estabelecimento estabelecimento;
 	private Date emissao;
 	private Date validade;
+	private String cpf;
 	
 	public Despesas() {
 		
@@ -130,6 +131,16 @@ public class Despesas implements Serializable {
 
 	public void setValidade(Date validade) {
 		this.validade = validade;
+	}
+
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 

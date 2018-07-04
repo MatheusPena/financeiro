@@ -115,6 +115,109 @@ public class DespesasDAO {
 		return lista;
 	}
 
+	public List<Integer> listadespesa(String codigo) {
+
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		String sql = "select codigo, nome, valor, grupodespesas_codigo, "
+				+ "estabelecimentos_codigo, empresa_cnpj, emissao, validade from despesas where "
+				+ "cast(codigo as char) like '%"+codigo+"%'";
+		
+
+		try {
+
+			preparedStatement = conexao.prepareStatement(sql);
+			
+			//preparedStatement.setString(1, codigo);
+			rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+
+				Despesas despesa = new Despesas();
+				despesa.setCodigo(rs.getInt("codigo"));
+//				despesa.setNome(rs.getString("nome"));
+//				despesa.setValor(rs.getString("valor"));
+//				despesa.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
+//				int idGrupo = despesa.getGrupodespesas_codigo();
+//				String idEmpresa = rs.getString("empresa_cnpj");
+//				GrupoDespesas grupoDespesas = getGrupoDespesas(idGrupo);
+//				Empresa empresa = getEmpresa(idEmpresa);
+//				despesa.setEmpresa(empresa);
+//				despesa.setGrupodespesas(grupoDespesas);
+//				despesa.setEstabelecimentos_codigo(rs.getInt("estabelecimentos_codigo"));
+//				Estabelecimento estabelecimento = getEstabelecimento(despesa.getEstabelecimentos_codigo());
+//				despesa.setEstabelecimento(estabelecimento);
+//				despesa.setEmpresa_cnpj(idEmpresa);
+//				despesa.setEmissao(rs.getDate("emissao"));
+//				despesa.setValidade(rs.getDate("validade"));
+				lista.add(rs.getInt("codigo"));
+			}
+
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		return lista;
+	}
+
+	public Despesas listadespesa(Integer codigo) {
+
+		ArrayList<Despesas> lista = new ArrayList<Despesas>();
+
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		String sql = "select codigo, nome, valor, grupodespesas_codigo, "
+				+ "estabelecimentos_codigo, empresa_cnpj, emissao, validade from despesas where "
+				+ "codigo = ?";
+		
+
+		try {
+
+			preparedStatement = conexao.prepareStatement(sql);
+			
+			preparedStatement.setInt(1, codigo);
+			rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+
+				Despesas despesa = new Despesas();
+				despesa.setCodigo(rs.getInt("codigo"));
+				despesa.setNome(rs.getString("nome"));
+				despesa.setValor(rs.getString("valor"));
+				despesa.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
+				int idGrupo = despesa.getGrupodespesas_codigo();
+				String idEmpresa = rs.getString("empresa_cnpj");
+				GrupoDespesas grupoDespesas = getGrupoDespesas(idGrupo);
+				Empresa empresa = getEmpresa(idEmpresa);
+				despesa.setEmpresa(empresa);
+				despesa.setGrupodespesas(grupoDespesas);
+				despesa.setEstabelecimentos_codigo(rs.getInt("estabelecimentos_codigo"));
+				Estabelecimento estabelecimento = getEstabelecimento(despesa.getEstabelecimentos_codigo());
+				despesa.setEstabelecimento(estabelecimento);
+				despesa.setEmpresa_cnpj(idEmpresa);
+				despesa.setEmissao(rs.getDate("emissao"));
+				despesa.setValidade(rs.getDate("validade"));
+				lista.add(despesa);
+			}
+
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		Despesas despesa = null;
+		if (lista != null && !lista.isEmpty()) {
+			despesa = lista.get(0);
+		}
+		return despesa;
+	}
+
+	
 	public GrupoDespesas getGrupoDespesas(int idGrupo) throws SQLException {
 		GrupoDespesas grupo = new GrupoDespesas();
 		PreparedStatement preparedStatement;
