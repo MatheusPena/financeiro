@@ -58,7 +58,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Contas a Receber <small>Cadastre aqui a contas a receber</small>
+											Formulário de Contas a Receber <small>Cadastre aqui
+												as contas a receber</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -72,389 +73,123 @@
 											<p:messages id="messages" />
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="cpf" value="CPF/CNPJ *" />
+													<h:outputLabel for="codigo"
+														value="Código do Estabelecimento *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="codigo"
+														value="#{contasReceberBean.contasreceber.estabelecimentos_codigo}"
+														styleClass="form-control col-md-7 col-xs-12"
+														required="true"></p:inputText>
+													<!--  <h:selectOneMenu id="codigo"
+														value="#{contasReceberBean.contasreceber.estabelecimentos_codigo}"
+														styleClass="form-control col-md-7 col-xs-12"
+														required="true"
+														style="width:320px">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach
+															items="#{estabelecimentoBean.estabelecimentos}"
+															var="estabelecimento" cellspacing="0" width="100%">
+															<f:selectItem
+																itemLabel="#{estabelecimento.codigo}"
+																itemValue="#{estabelecimento.codigo}" />
+														</c:forEach>
+														</h:selectOneMenu>-->
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputLabel for="cpf" value="CPF/CNPJ do Cliente *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf"
-														value="#{vendedoresBean.vendedores.cpf}"
+														value="#{contasReceberBean.contasreceber.cpf}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"></p:inputText>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="nome" value="Nome *" />
+													<h:outputText for="receita" value="Código da Receita" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="nome"
-														value="#{vendedoresBean.vendedores.nome}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true" />
+													<p:inputText id="receita"
+														value="#{contasReceberBean.contasreceber.receita}"
+														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data" value="Data de Nascimento *" />
+													<h:outputText for="documento" value="Número do Documento" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="documento"
+														value="#{contasReceberBean.contasreceber.documento}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="data" value="Data de Emissão *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="nascimento" required="true"
-														value="#{vendedoresBean.vendedores.data}" />
+														value="#{contasReceberBean.contasreceber.emissao}" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="chave" value="Chave" />
+													<h:outputText for="valor" value="Valor *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="chave"
-														value="#{vendedoresBean.vendedores.chave}"
+													<p:inputText id="valor"
+														value="#{contasReceberBean.contasreceber.valor}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="rg" value="RG" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputMask mask="999999999999-9" id="rg"
-														value="#{vendedoresBean.vendedores.rg}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="emissor" value="Orgão emissor" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="emissor"
-														styleClass="form-control col-md-7 col-xs-12"
-														value="#{vendedoresBean.vendedores.emissor}">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<f:selectItems
-															value="#{vendedoresBean.vendedores.emissores}" />
-													</h:selectOneMenu>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="sexo" value="Sexo" />
+													<h:outputText for="sexo"
+														value="Exporta para a Contabilidade" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="sexo"
-														value="#{vendedoresBean.vendedores.sexo}">
-														<f:selectItem itemLabel="Masculino&nbsp;&nbsp;"
-															itemValue="Masculino" />
-														<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+														value="#{contasReceberBean.contasreceber.contabilidade}">
+														<f:selectItem itemLabel="&nbsp;Sim&nbsp;&nbsp;"
+															itemValue="Sim" />
+														<f:selectItem itemLabel="&nbsp;Não" itemValue="Não" />
 													</h:selectOneRadio>
 												</label>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="estado_civil" value="Estado civil" />
-												</label> <label class="control-label col-md-6 col-sm-3 col-xs-12">
-													<h:selectOneRadio id="estado_civil"
-														value="#{vendedoresBean.vendedores.estado_civil}">
-														<f:selectItem itemLabel="Solteiro(a)&nbsp;&nbsp;"
-															itemValue="Solteiro" />
-														<f:selectItem itemLabel="Casado(a)&nbsp;&nbsp;"
-															itemValue="Casado" />
-														<f:selectItem itemLabel="Separado(a)&nbsp;&nbsp;"
-															itemValue="Separado" />
-														<f:selectItem itemLabel="Divorciado(a)&nbsp;&nbsp;"
-															itemValue="Divorciado" />
-														<f:selectItem itemLabel="Viúvo(a)" itemValue="Viúvo" />
-													</h:selectOneRadio>
-												</label>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="empresa" value="Empresa " />
+													<h:outputText for="resultados" value="Centro de Resultados" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:outputPanel styleClass="combo">
-														<h:selectOneMenu id="empresa" required="true"
-															converter="omnifaces.SelectItemsConverter"
-															value="#{vendedoresBean.vendedores.empresa_cnpj}"
-															style="width:320px"
-															styleClass="form-control col-md-7 col-xs-12">
-															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-
-															<f:selectItems value="#{empresaBean.empresas}"
-																var="empresa" itemValue="#{empresa.cnpj}"
-																itemLabel="#{empresa.nome}" />
-															<f:ajax render="Campo:estabelecimento" execute="@this"
-																listener="#{vendedoresBean.listarEstabelecimentos()}" />
-														</h:selectOneMenu>
-													</p:outputPanel>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="estabelecimento"
-														value="Estabelecimento " />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-
-													<h:selectOneMenu id="estabelecimento" required="true"
-														converter="omnifaces.SelectItemsConverter"
-														value="#{vendedoresBean.vendedores.estabelecimentos_codigo}"
-														style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-														<f:selectItems value="#{vendedoresBean.estabelecimentos}"
-															var="est" itemValue="#{est.codigo}"
-															itemLabel="#{est.nome}" />
-													</h:selectOneMenu>
-
-												</div>
-											</div>
-											<!--  
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="agencia" value="Estabelecimento *" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="agencia" required="true"
-														value="#{vendedoresBean.vendedores.estabelecimentos_codigo}"
-														style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{estabelecimentoBean.estabelecimentos}"
-															var="estabelecimento" cellspacing="0" width="100%">
-															<f:selectItem
-																itemLabel="#{estabelecimento.nome}"
-																itemValue="#{estabelecimento.codigo}" />
-														</c:forEach>
-													</h:selectOneMenu>
-												</div>
-											</div>-->
-											<!-- Endereço -->
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="rua" value="Rua" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="rua"
-														value="#{vendedoresBean.vendedores.rua}"
+													<p:inputText id="resultados"
+														value="#{contasReceberBean.contasreceber.centro_resultados}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="cep" value="CEP" />
+													<p:outputLabel for="descricao" value="Observação" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputMask mask="99999-999" id="cep"
-														value="#{vendedoresBean.vendedores.cep}"
+													<p:inputTextarea id="descricao"
+														value="#{contasReceberBean.contasreceber.observacao}"
 														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="numero" value="Número" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="numero"
-														value="#{vendedoresBean.vendedores.numero}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="bairro" value="Bairro" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="bairro"
-														value="#{vendedoresBean.vendedores.bairro}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="cidade" value="Cidade" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="cidade"
-														value="#{vendedoresBean.vendedores.cidade}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="uf" value="UF" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="uf"
-														value="#{vendedoresBean.vendedores.uf}"
-														style="width:120px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<f:selectItems value="#{vendedoresBean.vendedores.ufs}" />
-													</h:selectOneMenu>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="complemento" value="Complemento" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="complemento"
-														value="#{vendedoresBean.vendedores.complemento}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<!-- Contato -->
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="email" value="E-mail" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="email"
-														value="#{vendedoresBean.vendedores.email}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="telefone" value="Telefone residencial" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputMask mask="(99) 9999-9999" id="telefone"
-														value="#{vendedoresBean.vendedores.telefone}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="cel1" value="Celular" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputMask mask="(99) 99999-9999" id="cel1"
-														value="#{vendedoresBean.vendedores.cel1}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="cel2" value="Outro telefone" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputMask mask="(99) 99999-9999" id="cel2"
-														value="#{vendedoresBean.vendedores.cel2}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigov" value="Grupo do Vendedor" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="codigov" required="true"
-														value="#{vendedoresBean.vendedores.grupovendedores_codigo}"
-														style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{grupoVendedoresBean.listagrupovendedores}"
-															var="grupovendedor" cellspacing="0" width="100%">
-															<f:selectItem
-																itemLabel="#{grupovendedor.nomegrupovendedores}"
-																itemValue="#{grupovendedor.codigo}" />
-														</c:forEach>
-													</h:selectOneMenu>
 												</div>
 											</div>
 
-											<!-- Dados bancários -->
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="banco" value="Banco" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="banco"
-														value="#{vendedoresBean.vendedores.banco}"
-														style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<f:selectItem itemLabel="BANCO DO BRASIL"
-															itemValue="BANCO DO BRASIL" />
-														<f:selectItem itemLabel="BANCO DO NORDESTE DO BRASIL S.A."
-															itemValue="BANCO DO NORDESTE DO BRASIL S.A." />
-														<f:selectItem itemLabel="CAIXA ECONÔMICA FEDERAL"
-															itemValue="CAIXA ECONÔMICA FEDERAL" />
-														<f:selectItem itemLabel="BRADESCO" itemValue="BRADESCO" />
-														<f:selectItem itemLabel="BANCO ITAU S.A."
-															itemValue="BANCO ITAU S.A." />
-													</h:selectOneMenu>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="tipo_conta" value="Tipo conta" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="tipo_conta"
-														value="#{vendedoresBean.vendedores.tipo_conta}"
-														style="width:160px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<f:selectItem itemLabel="Conta corrente"
-															itemValue="Conta corrente" />
-														<f:selectItem itemLabel="Conta poupança"
-															itemValue="Conta poupança" />
-													</h:selectOneMenu>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="agenciabanco" value="Agência bancária" />
-												</label>
-												<div class="col-md-2 col-sm-6 col-xs-12">
-													<p:inputText id="agenciabanco"
-														value="#{vendedoresBean.vendedores.agenciabanco}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="digagencia" value="Dig. agência" />
-												</label>
-												<div class="col-md-2 col-sm-6 col-xs-12">
-													<p:inputText id="digagencia"
-														value="#{vendedoresBean.vendedores.digagencia}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="conta" value="Conta" />
-												</label>
-												<div class="col-md-2 col-sm-6 col-xs-12">
-													<p:inputText id="conta"
-														value="#{vendedoresBean.vendedores.conta}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="digconta" value="Dig. conta" />
-												</label>
-												<div class="col-md-2 col-sm-6 col-xs-12">
-													<p:inputText id="digconta"
-														value="#{vendedoresBean.vendedores.digconta}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
 											<div class="ln_solid" />
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-													<p:commandButton value="Resetar" class="btn btn-primary"
-														type="reset"></p:commandButton>
+													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
-														action="#{vendedoresBean.cadastraVendedor()}"
+														action="#{contasReceberBean.cadastracontasreceber}"
 														onclick="window.location='#Campo'"></p:commandButton>
 												</div>
 											</div>
@@ -467,8 +202,8 @@
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														Tabela dos Vendedores <small>Exibe os vendedores
-															cadastrados</small>
+														Tabela de Contas a Receber <small>Exibe as contas
+															cadastradas</small>
 													</h2>
 													<ul class="nav navbar-right panel_toolbox">
 														<li><a class="collapse-link"><i
@@ -482,85 +217,46 @@
 														class="table table-striped table-bordered dt-responsive nowrap ">
 														<thead>
 															<tr>
-																<th>Nome</th>
-																<th class="text-center">Editar</th>
-																<th>Pessoa</th>
-																<th>CPF/CNPJ</th>
-																<th>Data de nascimento</th>
-																<th>Chave</th>
-																<th>RG</th>
-																<th>Orgão emissor</th>
-																<th>Sexo</th>
-																<th>Estado civil</th>
-																<th>Empresa</th>
-																<th>Estabelecimento</th>
-																<th>Rua</th>
-																<th>CEP</th>
-																<th>Número</th>
-																<th>Bairro</th>
-																<th>Cidade</th>
-																<th>UF</th>
-																<th>Complemento</th>
-																<th>E-mail</th>
-																<th>Telefone residencial</th>
-																<th>Celular</th>
-																<th>Outro telefone</th>
-																<th>Grupo do vendedor</th>
-																<th>Banco</th>
-																<th>Tipo conta</th>
-																<th>Agência bancária</th>
-																<th>Dig. agência</th>
-																<th>Conta</th>
-																<th>Díg. conta</th>
+																<th>Código</th>
+																<th>Editar</th>
+																<th>Cód. Estabelecimento</th>
+																<th>CPF/CNPJ do Cliente</th>
+																<th>Cód. Receita</th>
+																<th>Número do Documento</th>
+																<th>Data de emissão</th>
+																<th>Valor</th>
+																<th>Exporta para Contabilidade</th>
+																<th>Centro de Resultados</th>
+																<th>Observação</th>
 
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach items="#{vendedoresBean.vendedor}"
-																var="vendedor" cellspacing="0" width="100%">
+															<c:forEach items="#{contasReceberBean.contasReceber}"
+																var="cr" cellspacing="0" width="100%">
 																<tr>
-																	<td>#{vendedor.nome}</td>
+																	<td>#{cr.codigo}</td>
 																	<td class="text-center"><p:commandButton value=""
-																			action="#{vendedoresBean.setarVendedor()}"
-																			style="font-size:10px; "
+																			style="font-size:10px;"
 																			styleClass="fas fa-edit btn btn-primary"
-																			onclick="window.location='#Campo'"
-																			update="@(.form-control) Campo">
-																			<f:setPropertyActionListener value="#{vendedor}"
-																				target="#{vendedoresBean.vendedorSelecionado}" />
+																			update="@(.form-control) @(.rd) @(.calendar) Campo"
+																			onclick="window.location='#Campo'">
+																			<f:setPropertyActionListener value="#{cr}"
+																				target="#{contasReceberBean.contasreceber}" />
 																		</p:commandButton></td>
-																	<td>#{vendedor.pessoa}</td>
-																	<td>#{vendedor.cpf}</td>
-																	<td><h:outputText value="#{vendedor.data}">
+																	<td>#{cr.estabelecimentos_codigo}</td>
+																	<td>#{cr.cpf}</td>
+																	<td>#{cr.receita}</td>
+																	<td>#{cr.documento}</td>
+																	<td><h:outputText value="#{cr.emissao}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"
 																				dateStyle="long" />
 																		</h:outputText></td>
-																	<td>#{vendedor.chave}</td>
-																	<td>#{vendedor.rg}</td>
-																	<td>#{vendedor.emissor}</td>
-																	<td>#{vendedor.sexo}</td>
-																	<td>#{vendedor.estado_civil}</td>
-																	<td>#{vendedor.empresa}</td>
-																	<td>#{vendedor.estabelecimento}</td>
-																	<td>#{vendedor.rua}</td>
-																	<td>#{vendedor.cep}</td>
-																	<td>#{vendedor.numero}</td>
-																	<td>#{vendedor.bairro}</td>
-																	<td>#{vendedor.cidade}</td>
-																	<td>#{vendedor.uf}</td>
-																	<td>#{vendedor.complemento}</td>
-																	<td>#{vendedor.email}</td>
-																	<td>#{vendedor.telefone}</td>
-																	<td>#{vendedor.cel1}</td>
-																	<td>#{vendedor.cel2}</td>
-																	<td>#{vendedor.grupovendedores}</td>
-																	<td>#{vendedor.banco}</td>
-																	<td>#{vendedor.tipo_conta}</td>
-																	<td>#{vendedor.agenciabanco}</td>
-																	<td>#{vendedor.digagencia}</td>
-																	<td>#{vendedor.conta}</td>
-																	<td>#{vendedor.digconta}</td>
-
+																	<td>#{cr.valor}</td>
+																	<td>#{cr.contabilidade}</td>
+																	<td>#{cr.centro_resultados}</td>
+																	<td>#{cr.observacao}</td>
+																
 																</tr>
 															</c:forEach>
 														</tbody>
