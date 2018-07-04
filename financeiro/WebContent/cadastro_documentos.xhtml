@@ -14,7 +14,7 @@
 		<!-- Meta, title, CSS, favicons, etc. -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Cadastro | Documentos</title>
+		<title>Formulário | Empresa</title>
 		<!-- Bootstrap -->
 		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 		<!-- Font Awesome -->
@@ -23,10 +23,16 @@
 		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
 		<!-- iCheck -->
 		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
+		<!-- Datatables -->
+		<link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet" />
+		<link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+		<!-- Primeface DataTable Style -->
+		<h:outputStylesheet library="css" name="table-style.css" />
 		<!-- Custom Theme Style -->
 		<link href="build/css/custom.min.css" rel="stylesheet" />
-		<!-- Dropzone.js -->
-    	<link href="resources/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>
 	</h:head>
 	<h:body>
 		<!-- /top navigation -->
@@ -35,37 +41,141 @@
 			<ui:define name="body">
 				<!-- page content -->
 				<div class="right_col">
-          <div class="">
-            
+					<div class="">
+						<div class="clearfix" />
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											Formulário de Tipo de Documentos <small>Cadastre aqui os tipos de
+												documentos</small>
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up" /></a></li>
+										</ul>
+										<div class="clearfix" />
+									</div>
+									<div class="x_content">
+										<br />
+										<h:form id="demo-form2"
+											styleClass="form-horizontal form-label-left">
+											<p:messages closable="true" id="messages"
+												styleClass="messages" />
 
-            <div class="clearfix"></div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="codigo" value="Código:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="codigo" required="true"
+														value="#{documentosBean.documento.codigo}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
 
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Envio de Documentos</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <p>Arraste o documento para o formulário ou clique nele para enviar o documento. </p>
-                    <form action="form_upload.html" class="dropzone"></form>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- jQuery -->
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="nome" value="Nome:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="nome" required="true" 
+														value="#{documentosBean.documento.nome}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+
+											<div class="ln_solid" />
+											<div class="form-group">
+												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+													<p:commandButton value="Resetar" class="btn btn-primary"
+														type="reset"></p:commandButton>
+													<p:commandButton value="Cadastrar" oncomplete="temp();"
+														action="#{documentosBean.cadastraDocumentos}"
+														update="messages @(.form_control)"
+														styleClass="btn btn-success"
+														onclick="window.location='#demo-form2'">
+													</p:commandButton>
+													<script>
+														function temp() {
+
+															setTimeout(
+																	function() {
+
+																		$(
+																				'.messages')
+																				.html(
+																						'');
+
+																	}, 5000);
+
+														}
+													</script>
+												</div>
+											</div>
+										</h:form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											Tabela de Empresa <small>Exibe as empresas
+												cadastradas</small>
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up" /></a></li>
+										</ul>
+										<div class="clearfix" />
+									</div>
+									<div class="x_content">
+										<h:form>
+											<table id="datatable-responsive" cellspacing="0" width="100%"
+												class="table table-striped table-bordered dt-responsive nowrap ">
+												<thead>
+													<tr>
+														<th>Código</th>
+														<th>Editar</th>
+														<th>Nome</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="#{documentosBean.documentos}" var="documento"
+														cellspacing="0" width="100%">
+														<tr>
+
+															<td>#{documento.codigo}</td>
+															<td><p:commandButton value=""
+																	style="font-size:10px; "
+																	styleClass="fas fa-edit btn btn-primary"
+																	onclick="window.location='#demo-form2'"
+																	update="@(.form-control) demo-form2">
+																	<f:setPropertyActionListener value="#{documento}"
+																		target="#{documentosBean.documento}" />
+																</p:commandButton></td>
+															<td>#{documento.nome}</td>
+
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</h:form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /page content -->
+			</ui:define>
+		</ui:composition>
+
+		<!-- jQuery -->
 		<script src="resources/jquery/dist/jquery.min.js"></script>
 		<!-- Bootstrap -->
 		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -75,14 +185,24 @@
 		<script src="resources/nprogress/nprogress.js"></script>
 		<!-- iCheck -->
 		<script src="resources/iCheck/icheck.min.js"></script>
-		<!-- Dropzone.js -->
-    	<script src="resources/dropzone/dist/min/dropzone.min.js"></script>       
-        
-		<!-- /page content -->
-	</ui:define>
-</ui:composition>
-
-
+		<!-- Datatables -->
+		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="resources/jszip/dist/jszip.min.js"></script>
+		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
+		<script src="resources/pdfmake/build/vfs_fonts.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="build/js/custom.min.js"></script>
 
 	</h:body>
 </f:view>

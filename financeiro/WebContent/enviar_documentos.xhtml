@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Cadastro | Documentos</title>
+		<!-- Bootstrap -->
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+		<!-- Font Awesome -->
+		<link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<!-- NProgress -->
+		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
+		<!-- iCheck -->
+		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
+		<!-- Custom Theme Style -->
+		<link href="build/css/custom.min.css" rel="stylesheet" />
+		<!-- Dropzone.js -->
+    	<link href="resources/dropzone/dist/min/dropzone.min.css" rel="stylesheet"/>
+	</h:head>
+	<h:body>
+		<!-- /top navigation -->
+		<ui:composition template="template.xhtml">
+			<ui:define name="topnav" />
+			<ui:define name="body">
+				<!-- page content -->
+				<div class="right_col">
+          <div class="">
+            
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Envio de Documentos</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <p>Arraste o documento para o formulário ou clique nele para enviar o documento. </p>
+                    <form action="form_upload.html" class="dropzone"></form>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- jQuery -->
+		<script src="resources/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="resources/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="resources/nprogress/nprogress.js"></script>
+		<!-- iCheck -->
+		<script src="resources/iCheck/icheck.min.js"></script>
+		<!-- Dropzone.js -->
+    	<script src="resources/dropzone/dist/min/dropzone.min.js"></script>       
+        
+		<!-- /page content -->
+	</ui:define>
+</ui:composition>
+
+
+
+	</h:body>
+</f:view>
