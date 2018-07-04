@@ -30,10 +30,10 @@ public class ItensCRBean implements Serializable {
 		ConexaoBD.getConexao();
 		ItensCRDAO itenscrs = new ItensCRDAO();
 		if (itenscrs.insertItensCR(itenscr)) {
-			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Conta cadastrada com sucesso!");
+			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Item cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da conta!", "Erro!"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do item!", "Erro!"));
 
 		}
 		ConexaoBD.fecharConexao();

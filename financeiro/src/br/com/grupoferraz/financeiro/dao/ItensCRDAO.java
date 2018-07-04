@@ -26,7 +26,7 @@ public class ItensCRDAO {
 					"on duplicate key update codigo =?,quantidade =?,valor =?,cfop =?,tributoa =?,tributob =?,icms =?,ipi =?,unidade =?,icmssubstituto =?,calculoicms =?,valoricms =?,descricao =?,tributosimples =?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, ItensCR.getCodigo());
-			preparedStatement.setString(2, ItensCR.getUnidade());
+			preparedStatement.setInt(2, ItensCR.getQuantidade());
 			preparedStatement.setFloat(3, ItensCR.getValor());
 			preparedStatement.setInt(4, ItensCR.getCfop());
 			preparedStatement.setInt(5, ItensCR.getTributoa());
@@ -41,7 +41,7 @@ public class ItensCRDAO {
 			preparedStatement.setInt(14, ItensCR.getTributosimples());
 			
 			preparedStatement.setInt(15, ItensCR.getCodigo());
-			preparedStatement.setString(16, ItensCR.getUnidade());
+			preparedStatement.setInt(16, ItensCR.getQuantidade());
 			preparedStatement.setFloat(17, ItensCR.getValor());
 			preparedStatement.setInt(18, ItensCR.getCfop());
 			preparedStatement.setInt(19, ItensCR.getTributoa());
