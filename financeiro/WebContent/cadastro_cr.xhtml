@@ -74,14 +74,10 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:outputLabel for="codigo"
-														value="Código do Estabelecimento *" />
+														value="Estabelecimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigo"
-														value="#{contasReceberBean.contasreceber.estabelecimentos_codigo}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true"></p:inputText>
-													<!--  <h:selectOneMenu id="codigo"
+													<h:selectOneMenu id="codigo"
 														value="#{contasReceberBean.contasreceber.estabelecimentos_codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"
@@ -91,10 +87,10 @@
 															items="#{estabelecimentoBean.estabelecimentos}"
 															var="estabelecimento" cellspacing="0" width="100%">
 															<f:selectItem
-																itemLabel="#{estabelecimento.codigo}"
+																itemLabel="#{estabelecimento.nome}"
 																itemValue="#{estabelecimento.codigo}" />
 														</c:forEach>
-														</h:selectOneMenu>-->
+														</h:selectOneMenu>
 												</div>
 											</div>
 											<div class="form-group">
@@ -167,9 +163,19 @@
 													<h:outputText for="resultados" value="Centro de Resultados" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="resultados"
+													<h:selectOneMenu id="resultados"
 														value="#{contasReceberBean.contasreceber.centro_resultados}"
-														styleClass="form-control col-md-7 col-xs-12" />
+														styleClass="form-control col-md-7 col-xs-12"
+														style="width:320px">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach
+															items="#{centroResultadosBean.centroResultadoss}"
+															var="centroresultados" cellspacing="0" width="100%">
+															<f:selectItem
+																itemLabel="#{centroresultados.nome}"
+																itemValue="#{centroresultados.codigo}" />
+														</c:forEach>
+														</h:selectOneMenu>
 												</div>
 											</div>
 											<div class="form-group">
@@ -219,7 +225,7 @@
 															<tr>
 																<th>Código</th>
 																<th>Editar</th>
-																<th>Cód. Estabelecimento</th>
+																<th>Estabelecimento</th>
 																<th>CPF/CNPJ do Cliente</th>
 																<th>Cód. Receita</th>
 																<th>Número do Documento</th>
@@ -244,7 +250,7 @@
 																			<f:setPropertyActionListener value="#{cr}"
 																				target="#{contasReceberBean.contasreceber}" />
 																		</p:commandButton></td>
-																	<td>#{cr.estabelecimentos_codigo}</td>
+																	<td>#{cr.estabelecimento}</td>
 																	<td>#{cr.cpf}</td>
 																	<td>#{cr.receita}</td>
 																	<td>#{cr.documento}</td>
@@ -254,7 +260,7 @@
 																		</h:outputText></td>
 																	<td>#{cr.valor}</td>
 																	<td>#{cr.contabilidade}</td>
-																	<td>#{cr.centro_resultados}</td>
+																	<td>#{cr.centroresultados}</td>
 																	<td>#{cr.observacao}</td>
 																
 																</tr>

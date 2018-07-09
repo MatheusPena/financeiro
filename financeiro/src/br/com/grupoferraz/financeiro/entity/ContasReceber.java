@@ -12,7 +12,9 @@ public class ContasReceber {
 	private float valor;
 	private String contabilidade;
 	private String observacao;
-	private int centro_resultados;
+	private Integer centro_resultados;
+	private Estabelecimento estabelecimento;
+	private CentroResultados centroresultados;
 
 	public int getCodigo() {
 		return codigo;
@@ -86,12 +88,28 @@ public class ContasReceber {
 		this.observacao = observacao;
 	}
 
-	public int getCentro_resultados() {
+	public Integer getCentro_resultados() {
 		return centro_resultados;
 	}
 
-	public void setCentro_resultados(int centro_resultados) {
+	public void setCentro_resultados(Integer centro_resultados) {
 		this.centro_resultados = centro_resultados;
+	}
+
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
+	}
+
+	public void setEstabelecimento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
+	}
+
+	public CentroResultados getCentroresultados() {
+		return centroresultados;
+	}
+
+	public void setCentroresultados(CentroResultados centroresultados) {
+		this.centroresultados = centroresultados;
 	}
 
 }
