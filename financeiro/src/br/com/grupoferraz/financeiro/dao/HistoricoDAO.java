@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.Historico;
 import br.com.grupoferraz.financeiro.entity.Despesas;
-import br.com.grupoferraz.financeiro.entity.Historico;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class HistoricoDAO {
