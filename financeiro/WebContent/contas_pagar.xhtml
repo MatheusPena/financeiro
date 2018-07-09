@@ -75,17 +75,73 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="estabelecimentos_codigo"
-													 value="Código do Estabelecimento:" />
+													<p:outputLabel for="nomecp" value="Nome da Conta:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="estabelecimentos_codigo"
-														value="#{pagarBean.pagarconta.estabelecimentos_codigo}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true">
-													</p:inputText>
+													<p:inputText id="nomecp" required="true"
+														value="#{pagarBean.pagarconta.nomecp}"
+														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
+									
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="empresa" value="Empresa: " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel styleClass="combo">
+														<h:selectOneMenu id="empresa" required="true"
+															converter="omnifaces.SelectItemsConverter"
+															value="#{pagarBean.pagarconta.empresa_cnpj}"
+															style="width:320px"
+															styleClass="form-control col-md-7 col-xs-12">
+															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+
+															<f:selectItems value="#{empresaBean.empresas}"
+																var="empresa" itemValue="#{empresa.cnpj}"
+																itemLabel="#{empresa.nome}" />
+															<f:ajax render="Campo:estabelecimento"
+																execute="@this"
+																 />
+														</h:selectOneMenu>
+													</p:outputPanel>
+												</div>
+											</div>
+	  										<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="estabelecimento_codigo" 
+													value="Código do Estabelecimento:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+														<p:outputPanel id="estabelecimento_codigo">
+        												<p:autoComplete id="acMinLength1" minQueryLength="1" 
+        												value="#{pagarBean.pagarconta.estabelecimento_codigo}"
+        												inputStyleClass="form-control" inputStyle="padding-right:311px"
+        												completeMethod="#{pagarBean.completeText3}" effect="fade">
+        												<p:ajax event="itemSelect" listener="#{pagarBean.onItemSelect3}"
+        												update="@(.emissaodp) @(.valor)"   />
+        												</p:autoComplete>
+        												</p:outputPanel>
+												</div>
+											</div>
+									  	<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="estabelecimento_nome"
+														value="Estabelecimento: " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+														<p:outputPanel id="estabelecimento_nome">
+        												<p:autoComplete id="acMinLength2" minQueryLength="1" 
+        												value="#{pagarBean.pagarconta.estabelecimento_nome}"
+        												inputStyleClass="form-control" inputStyle="padding-right:311px"
+        												completeMethod="#{pagarBean.completeText2}" effect="fade">
+        												<p:ajax event="itemSelect" listener="#{pagarBean.onItemSelect2}"
+        												update="@(.emissaodp) @(.valor)"   />
+        												</p:autoComplete>
+        												</p:outputPanel>
+												</div>
+											</div>
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="cpf" value="CPF/CNPJ do Fornecedor:" />
@@ -95,17 +151,26 @@
 														value="#{pagarBean.pagarconta.cpf}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
-											</div>
+											</div> 
+										
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="emissaocp" value="Data de Emissão da Conta:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:calendar mask="true" pattern="dd/MM/yyyy"
+														inputStyleClass="form-control col-md-7 col-xs-12"
+														id="emissaocp" required="true" 
+														value="#{pagarBean.pagarconta.emissaocp}" />
+												</div>
+											</div>					
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="codigo" value="Código da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<!--  <p:inputText id="codigo" required="true"
-														value="#{pagarBean.pagarconta.codigo}"
-														styleClass="form-control col-md-7 col-xs-12" /> --> 
 														<p:outputPanel id="codigo">
-        												<p:autoComplete id="acMinLength" minQueryLength="1" 
+        												<p:autoComplete id="acMinLength3" minQueryLength="1" 
         												value="#{pagarBean.pagarconta.codigo}" 
         												inputStyleClass="form-control" inputStyle="padding-right:311px"
         												completeMethod="#{pagarBean.completeText}" effect="fade">
@@ -117,16 +182,14 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="emissaocp" value="Data de Emissão da Conta:" />
+													<p:outputLabel for="nomedp" value="Nome da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:calendar mask="true" pattern="dd/MM/yyyy"
-														inputStyleClass="form-control col-md-7 col-xs-12"
-														id="emissaocp" required="true" 
-														value="#{pagarBean.pagarconta.emissaocp}" />
+													<p:inputText id="nomedp" required="true"
+														value="#{pagarBean.pagarconta.nomedp}"
+														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
-											</div>
-											
+											</div>			
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="valor" value="Valor da Despesa:" />
@@ -148,16 +211,6 @@
 														value="#{pagarBean.pagarconta.emissaodp}" />
 												</div>
 											</div>
-											<!-- <div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="centroresultados" value="Centro de Resultado:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="centroresultados" required="true"
-														value="#{pagarBean.pagarconta.centroresultados}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>	 -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="centroresultados" value="Centro de Resultado:" />
@@ -178,64 +231,32 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="tipodocumento" value="Tipo de Documento:" />
+													<p:outputLabel for="documento_codigo" value="Tipo de Documento:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="tipodocumento" required="true"
-														value="#{pagarBean.pagarconta.tipodocumento}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<!--
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="empresa" value="Empresa: " />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:outputPanel styleClass="combo">
-														<h:selectOneMenu id="empresa" required="true"
-															converter="omnifaces.SelectItemsConverter"
-															value="#{despesasBean.despesas.empresa_cnpj}"
-															style="width:320px"
-															styleClass="form-control col-md-7 col-xs-12">
-															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-
-															<f:selectItems value="#{empresaBean.empresas}"
-																var="empresa" itemValue="#{empresa.cnpj}"
-																itemLabel="#{empresa.nome}" />
-															<f:ajax render="Campo:estabelecimento"
-																execute="@this"
-																listener="#{despesasBean.listarEstabelecimentos()}" />
-														</h:selectOneMenu>
-													</p:outputPanel>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="estabelecimento"
-														value="Estabelecimento: " />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-
-													<h:selectOneMenu id="estabelecimento" required="true"
-														converter="omnifaces.SelectItemsConverter"
-														value="#{despesasBean.despesas.estabelecimentos_codigo}"
+													<h:selectOneMenu id="documento_codigo" required="true"
+														value="#{pagarBean.pagarconta.documento_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-														<f:selectItems value="#{despesasBean.estabelecimentos}"
-															var="est" itemValue="#{est.codigo}"
-															itemLabel="#{est.nome}" />
-													</h:selectOneMenu>
 
+														<f:selectItems
+															value="#{documentosBean.documentos}"
+															var="documento" itemValue="#{documento.codigo}"
+															itemLabel="#{documento.nome}" />
+													</h:selectOneMenu>
 												</div>
 											</div>
-											-->
-											
-											
-											
-
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="observacao" value="Observação:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputTextarea id="observacao"
+														value="#{pagarBean.pagarconta.observacao}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
 											<div class="ln_solid" />
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -256,7 +277,7 @@
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														Tabela dos Despesas <small>Exibe as despesas
+														Tabela de Contas à Pagar <small>Exibe as contas
 															cadastradas</small>
 													</h2>
 													<ul class="nav navbar-right panel_toolbox">
@@ -273,14 +294,18 @@
 															<tr>
 																<th>Cod. Conta</th>
 																<th class="text-center">Editar</th>
+																<th>Nome da Conta</th>
 																<th>Cod. Estabelecimento</th>
+																<th>Nome do Estabelecimento </th>
 																<th>CPF/CNPJ</th>
 																<th>Cod. Despesa</th>
+																<th>Nome da Despesa</th>
 																<th>Emissão da Conta</th>
 																<th>Valor</th>
 																<th>Emissão da Despesa</th>
 																<th>Centro de Resultados</th>
 																<th>Tipo de Documento</th>
+																<th>Observação</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -296,14 +321,20 @@
 																	<f:setPropertyActionListener value="#{pagarconta}"
 																		target="#{pagarBean.pagarconta}" />
 																	</p:commandButton></td>
-																	<td>#{pagarconta.estabelecimentos_codigo}</td>
+																	<td>#{pagarconta.nomecp}</td>
+																	<td>#{pagarconta.estabelecimento_codigo}</td>
+																	<td>#{pagarconta.estabelecimento_nome}</td>
 																	<td>#{pagarconta.cpf}</td>
 																	<td>#{pagarconta.codigo}</td>
+																	<td>#{pagarconta.nomedp}</td>
 																	<td>#{pagarconta.emissaocp}</td>
 																	<td>#{pagarconta.valor}</td>
 																	<td>#{pagarconta.emissaodp}</td>
-																	<td>#{pagarconta.centroresultados_codigo}</td>
-																	<td>#{pagarconta.tipodocumento}</td>
+																	<td>#{pagarconta.centroresultados.nome}</td>
+																	<td>#{pagarconta.documento.nome}</td>
+																<!--	<td>#{pagarconta.centroresultados_codigo}</td>
+																	<td>#{pagarconta.tipodocumento}</td> -->
+																	<td>#{pagarconta.observacao}</td>
 																</tr>
 															</c:forEach>
 														</tbody>

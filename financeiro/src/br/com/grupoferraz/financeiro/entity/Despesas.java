@@ -11,7 +11,6 @@ public class Despesas implements Serializable {
 
 	private int codigo;
 	private String nome;
-	private String valor;
 	private int estabelecimentos_codigo ;
 	private int grupodespesas_codigo;
 	private GrupoDespesas grupodespesas;
@@ -46,15 +45,6 @@ public class Despesas implements Serializable {
 		this.nome = nome;
 	}
 
-	
-	public String getValor() {
-		return valor;
-	}
-
-	
-	public void setValor(String valor) {
-		this.valor = valor;
-	}
 
 	public int getEstabelecimentos_codigo() {
 		return estabelecimentos_codigo;

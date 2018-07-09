@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.Documentos;
-import br.com.grupoferraz.financeiro.entity.Documentos;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class DocumentosDAO {

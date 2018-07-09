@@ -10,16 +10,23 @@ import javax.faces.bean.ManagedBean;
 public class Pagar implements Serializable {
 
 	private int codigocp;
-	private int estabelecimentos_codigo ;
+	private String nomecp;
+	private int estabelecimento_codigo;
 	private Estabelecimento estabelecimento;
+	private String estabelecimento_nome;
+	private String empresa_cnpj;
+	private Empresa empresa;
 	private String cpf;
 	private int codigo;
+	private String nomedp;
 	private Date emissaocp;
 	private String valor;
 	private CentroResultados centroresultados;
 	private int centroresultados_codigo;
-	private String tipodocumento;
+	private Documentos documento;
+	private int documento_codigo;
 	private Date emissaodp;
+	private String observacao;
 	
 	
 	public Pagar() {
@@ -47,16 +54,38 @@ public class Pagar implements Serializable {
 		this.valor = valor;
 	}
 
-	public int getEstabelecimentos_codigo() {
-		return estabelecimentos_codigo;
-	}
-
-	public void setEstabelecimentos_codigo(int estabelecimentos_codigo) {
-		this.estabelecimentos_codigo = estabelecimentos_codigo;
-	}
-
-
 	
+	
+	public String getEmpresa_cnpj() {
+		return empresa_cnpj;
+	}
+
+
+	public void setEmpresa_cnpj(String empresa_cnpj) {
+		this.empresa_cnpj = empresa_cnpj;
+	}
+
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+
+	public int getEstabelecimento_codigo() {
+		return estabelecimento_codigo;
+	}
+
+
+	public void setEstabelecimento_codigo(int estabelecimento_codigo) {
+		this.estabelecimento_codigo = estabelecimento_codigo;
+	}
+
+
 	public Estabelecimento getEstabelecimento() {
 		return estabelecimento;
 	}
@@ -98,18 +127,6 @@ public class Pagar implements Serializable {
 	}
 
 
-	
-
-
-	public String getTipodocumento() {
-		return tipodocumento;
-	}
-
-
-	public void setTipodocumento(String tipodocumento) {
-		this.tipodocumento = tipodocumento;
-	}
-
 
 	public Date getEmissaodp() {
 		return emissaodp;
@@ -141,6 +158,66 @@ public class Pagar implements Serializable {
 	}
 
 
+	public int getDocumento_codigo() {
+		return documento_codigo;
+	}
+
+
+	public void setDocumento_codigo(int documento_codigo) {
+		this.documento_codigo = documento_codigo;
+	}
+
+
+	public Documentos getDocumento() {
+		return documento;
+	}
+
+
+	public void setDocumento(Documentos documento) {
+		this.documento = documento;
+	}
+
+
+	public String getNomecp() {
+		return nomecp;
+	}
+
+
+	public void setNomecp(String nomecp) {
+		this.nomecp = nomecp;
+	}
+
+
+	public String getEstabelecimento_nome() {
+		return estabelecimento_nome;
+	}
+
+
+	public void setEstabelecimento_nome(String estabelecimento_nome) {
+		this.estabelecimento_nome = estabelecimento_nome;
+	}
+
+
+	public String getNomedp() {
+		return nomedp;
+	}
+
+
+	public void setNomedp(String nomedp) {
+		this.nomedp = nomedp;
+	}
+
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -152,9 +229,6 @@ public class Pagar implements Serializable {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -167,6 +241,23 @@ public class Pagar implements Serializable {
 			return false;
 		}
 		Pagar other = (Pagar) obj;
+		if (codigo != other.codigo) {
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean equals2(Object ojb) {
+		if (this == ojb) {
+			return true;
+		}
+		if (ojb == null) {
+			return false;
+		}
+		if (!(ojb instanceof Pagar)) {
+			return false;
+		}
+		Pagar other = (Pagar) ojb;
 		if (codigo != other.codigo) {
 			return false;
 		}

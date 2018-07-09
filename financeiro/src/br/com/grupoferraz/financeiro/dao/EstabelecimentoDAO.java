@@ -78,6 +78,142 @@ public class EstabelecimentoDAO {
 		}
 		return lista;
 	}
+	
+////////////////////////////LISTA DO AUTOCOMPLETE DO ESTABELECIMENTO COM INNERJOIN /////////////////////////	
+	public List<String> listaestabelecimento(String codigo, String cnpj) {	
+
+		ArrayList<String> lista = new ArrayList<String>();
+
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		
+		StringBuilder str = new StringBuilder();
+		str.append("select e.codigo, e.nome, e.grupoestabelecimento_codigo from estabelecimentos e");
+		str.append(" inner join grupoestabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
+		str.append(" inner join unidade u on ge.unidade_nome = u.nome");
+		str.append(" inner join empresas emp on emp.cnpj = u.empresas_cnpj");
+		str.append(" and emp.cnpj = ?");
+		str.append(" and e.nome  like '%"+codigo+"%'");
+		
+		String sql = str.toString();
+		
+
+		try {
+
+			preparedStatement = conexao.prepareStatement(sql);
+			preparedStatement.setString(1, cnpj);
+			
+			
+			rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+
+				Estabelecimento estabelecimentos = new Estabelecimento();
+				estabelecimentos.setCodigo(rs.getInt("codigo"));
+				lista.add(rs.getString("nome"));
+			}
+
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		return lista;
+	}
+	
+	public List<Integer> listacodigoestabelecimento (String codigo) {	
+
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		
+		
+//		String sql = "select codigo, nome, grupoestabelecimento_codigo from estabelecimentos where " 
+//				+ "cast(codigo as char) like '%"+codigo+"%'";
+		
+		StringBuilder str = new StringBuilder();
+		str.append("select e.codigo, e.nome, e.grupoestabelecimento_codigo from estabelecimentos e");
+		str.append(" inner join grupoestabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
+		str.append(" inner join unidade u on ge.unidade_nome = u.nome");
+		str.append(" inner join empresas emp on emp.cnpj = u.empresas_cnpj");
+		//str.append(" and emp.cnpj = ?");
+		str.append(" and cast(e.codigo as char) like '%"+codigo+"%'");
+		
+		String sql = str.toString();
+		
+
+		try {
+
+			preparedStatement = conexao.prepareStatement(sql);
+			//preparedStatement.setString(1, cnpj);
+			
+			
+			rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+
+				Estabelecimento estabelecimentos = new Estabelecimento();
+				estabelecimentos.setCodigo(rs.getInt("codigo"));
+				lista.add(rs.getInt("codigo"));
+			}
+
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		return lista;
+	}
+
+////////////////////////////LISTA DO AUTOCOMPLETE DO ESTABELECIMENTO COM INNERJOIN /////////////////////////		
+	
+	
+	public Estabelecimento listaestabelecimento(Integer codigo) {
+
+		ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
+
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		String sql = "select codigo, nome, grupoestabelecimento_codigo from estabelecimentos where "
+				+ "codigo = ?";
+		
+		try {
+
+			preparedStatement = conexao.prepareStatement(sql);
+			
+			preparedStatement.setInt(1, codigo);
+			rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+
+				Estabelecimento estabelecimentos = new Estabelecimento();
+				estabelecimentos.setCodigo(rs.getInt("codigo"));
+				estabelecimentos.setNome(rs.getString("nome"));
+				estabelecimentos.setGrupoestabelecimento_codigo(rs.getInt("grupoestabelecimento_codigo"));
+				int idGrupo = estabelecimentos.getGrupoestabelecimento_codigo();
+				GrupoEstabelecimento grupoEstabelecimento = getGrupoEstabelecimento(idGrupo);
+				estabelecimentos.setGrupoestabalecimento(grupoEstabelecimento);
+				lista.add(estabelecimentos);
+			}
+
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		Estabelecimento estabelecimentos = null;
+		if (lista != null && !lista.isEmpty()) {
+			estabelecimentos = lista.get(0);
+		}
+		return estabelecimentos;
+	}
+
+	
+	
 
 	public GrupoEstabelecimento getGrupoEstabelecimento(int idGrupo) throws SQLException {
 		GrupoEstabelecimento grupo = new GrupoEstabelecimento();

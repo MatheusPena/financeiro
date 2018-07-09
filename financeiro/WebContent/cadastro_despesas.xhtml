@@ -143,17 +143,6 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="valor" required="true" value="Valor do item: * " />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="valor"
-														value="#{despesasBean.despesas.valor}"
-														styleClass="form-control col-md-7 col-xs-12">
-													</p:inputText>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="grupo" value="Grupo do item: " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
@@ -231,7 +220,6 @@
 																<th>Código</th>
 																<th class="text-center">Editar</th>
 																<th>Nome</th>
-																<th>Valor</th>
 																<th>Grupo</th>
 																<th>Empresa</th>
 																<th>Estabelecimento</th>
@@ -256,7 +244,6 @@
 																				target="#{despesasBean.despesaSelecionada}" />
 																		</p:commandButton></td>
 																	<td>#{despesas.nome}</td>
-																	<td>#{despesas.valor}</td>
 																	<td>#{despesas.grupodespesas}</td>
 																	<td>#{despesas.empresa}</td>
 																	<td>#{despesas.estabelecimento.nome}</td>

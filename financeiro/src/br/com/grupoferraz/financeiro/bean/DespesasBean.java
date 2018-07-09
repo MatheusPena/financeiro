@@ -32,9 +32,6 @@ public class DespesasBean implements Serializable {
 
 	public String cadastraDespesa() {
 
-		System.out.println("EST COD " + despesas.getEstabelecimentos_codigo());
-		System.out.println("EST NOME " + despesas.getNome());
-
 		ConexaoBD.getConexao();
 		DespesasDAO despesa = new DespesasDAO();
 		if (despesa.insertDespesas(this.despesas)) {
