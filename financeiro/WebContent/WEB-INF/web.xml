@@ -102,7 +102,7 @@
 	      javax.enterprise.inject.spi.BeanManager
 	   </resource-env-ref-type>
   </resource-env-ref>
-  <context-param>
+	<context-param>
     <param-name>primefaces.THEME</param-name>
     <param-value>none</param-value>
   </context-param>

@@ -20,12 +20,15 @@ public class Pagar implements Serializable {
 	private int codigo;
 	private String nomedp;
 	private Date emissaocp;
+	private Date emissaodp;
+	private Date validadedp;
+	private ContasFinanceiras contafinanceira;
+	private int contafinanceira_codigo;
 	private String valor;
 	private CentroResultados centroresultados;
 	private int centroresultados_codigo;
 	private Documentos documento;
 	private int documento_codigo;
-	private Date emissaodp;
 	private String observacao;
 	
 	
@@ -135,6 +138,36 @@ public class Pagar implements Serializable {
 
 	public void setEmissaodp(Date emissaodp) {
 		this.emissaodp = emissaodp;
+	}
+
+
+	public Date getValidadedp() {
+		return validadedp;
+	}
+
+
+	public void setValidadedp(Date validadedp) {
+		this.validadedp = validadedp;
+	}
+
+
+	public ContasFinanceiras getContafinanceira() {
+		return contafinanceira;
+	}
+
+
+	public void setContafinanceira(ContasFinanceiras contafinanceira) {
+		this.contafinanceira = contafinanceira;
+	}
+
+
+	public int getContafinanceira_codigo() {
+		return contafinanceira_codigo;
+	}
+
+
+	public void setContafinanceira_codigo(int contafinanceira_codigo) {
+		this.contafinanceira_codigo = contafinanceira_codigo;
 	}
 
 

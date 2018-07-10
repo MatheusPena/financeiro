@@ -25,38 +25,34 @@ public class DespesasDAO {
 			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();
 			str.append("insert into despesas (codigo, nome,"
-					+ "grupodespesas_codigo, estabelecimentos_codigo, "
-					+ "empresa_cnpj, emissao, validade ) values (?,?,?,?,?,?,?) ");
+					+ "grupodespesas_codigo,"
+					+ "emissao, validade ) values (?,?,?,?,?) ");
 			str.append("on duplicate key update codigo = ?, nome = ?, "
-					+ "grupodespesas_codigo = ?, estabelecimentos_codigo = ?,"
-					+ "empresa_cnpj = ?, emissao = ?, validade = ?");
+					+ "grupodespesas_codigo = ?,"
+					+ "emissao = ?, validade = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, despesa.getCodigo());
 			preparedStatement.setString(2, despesa.getNome());
 			preparedStatement.setInt(3, despesa.getGrupodespesas_codigo());
-			preparedStatement.setInt(4, despesa.getEstabelecimentos_codigo());
-			preparedStatement.setString(5, despesa.getEmpresa_cnpj());
 			Date dataEmissao = despesa.getEmissao();
 			long t = 0;
 			if (dataEmissao != null ) {
 				t = dataEmissao.getTime();	
 			}
-			preparedStatement.setDate(6, new java.sql.Date(t));
+			preparedStatement.setDate(4, new java.sql.Date(t));
 			
 			Date dataValidade = despesa.getValidade();
 			long j = 0;
 			if (dataValidade != null ) {
 				j = dataValidade.getTime();	
 			}
-			preparedStatement.setDate(7, new java.sql.Date(j));
+			preparedStatement.setDate(5, new java.sql.Date(j));
 
-			preparedStatement.setInt(8, despesa.getCodigo());
-			preparedStatement.setString(9, despesa.getNome());
-			preparedStatement.setInt(10, despesa.getGrupodespesas_codigo());
-			preparedStatement.setInt(11, despesa.getEstabelecimentos_codigo());
-			preparedStatement.setString(12, despesa.getEmpresa_cnpj());
-			preparedStatement.setDate(13, new java.sql.Date(t));
-			preparedStatement.setDate(14, new java.sql.Date(j));
+			preparedStatement.setInt(6, despesa.getCodigo());
+			preparedStatement.setString(7, despesa.getNome());
+			preparedStatement.setInt(8, despesa.getGrupodespesas_codigo());
+			preparedStatement.setDate(9, new java.sql.Date(t));
+			preparedStatement.setDate(10, new java.sql.Date(j));
 
 			preparedStatement.execute();
 			return true;
@@ -79,7 +75,7 @@ public class DespesasDAO {
 		try {
 			st = conexao.createStatement();
 			String sql = "select codigo, nome, grupodespesas_codigo, "
-					+ "estabelecimentos_codigo, empresa_cnpj, emissao, validade from despesas";
+					+ "emissao, validade from despesas";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -88,16 +84,9 @@ public class DespesasDAO {
 				despesa.setCodigo(rs.getInt("codigo"));
 				despesa.setNome(rs.getString("nome"));
 				despesa.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
-				int idGrupo = despesa.getGrupodespesas_codigo();
-				String idEmpresa = rs.getString("empresa_cnpj");
+				int idGrupo = despesa.getGrupodespesas_codigo();		
 				GrupoDespesas grupoDespesas = getGrupoDespesas(idGrupo);
-				Empresa empresa = getEmpresa(idEmpresa);
-				despesa.setEmpresa(empresa);
-				despesa.setGrupodespesas(grupoDespesas);
-				despesa.setEstabelecimentos_codigo(rs.getInt("estabelecimentos_codigo"));
-				Estabelecimento estabelecimento = getEstabelecimento(despesa.getEstabelecimentos_codigo());
-				despesa.setEstabelecimento(estabelecimento);
-				despesa.setEmpresa_cnpj(idEmpresa);
+				despesa.setGrupodespesas(grupoDespesas);		
 				despesa.setEmissao(rs.getDate("emissao"));
 				despesa.setValidade(rs.getDate("validade"));
 				lista.add(despesa);
@@ -119,7 +108,7 @@ public class DespesasDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		String sql = "select codigo, nome, grupodespesas_codigo, "
-				+ "estabelecimentos_codigo, empresa_cnpj, emissao, validade from despesas where "
+				+ "emissao, validade from despesas where "
 				+ "cast(codigo as char) like '%"+codigo+"%'";
 		
 
@@ -152,7 +141,7 @@ public class DespesasDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		String sql = "select codigo, nome, grupodespesas_codigo, "
-				+ "estabelecimentos_codigo, empresa_cnpj, emissao, validade from despesas where "
+				+ "emissao, validade from despesas where "
 				+ "codigo = ?";
 		
 
@@ -169,16 +158,9 @@ public class DespesasDAO {
 				despesa.setCodigo(rs.getInt("codigo"));
 				despesa.setNome(rs.getString("nome"));
 				despesa.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
-				int idGrupo = despesa.getGrupodespesas_codigo();
-				String idEmpresa = rs.getString("empresa_cnpj");
+				int idGrupo = despesa.getGrupodespesas_codigo();		
 				GrupoDespesas grupoDespesas = getGrupoDespesas(idGrupo);
-				Empresa empresa = getEmpresa(idEmpresa);
-				despesa.setEmpresa(empresa);
 				despesa.setGrupodespesas(grupoDespesas);
-				despesa.setEstabelecimentos_codigo(rs.getInt("estabelecimentos_codigo"));
-				Estabelecimento estabelecimento = getEstabelecimento(despesa.getEstabelecimentos_codigo());
-				despesa.setEstabelecimento(estabelecimento);
-				despesa.setEmpresa_cnpj(idEmpresa);
 				despesa.setEmissao(rs.getDate("emissao"));
 				despesa.setValidade(rs.getDate("validade"));
 				lista.add(despesa);
@@ -198,7 +180,7 @@ public class DespesasDAO {
 	}
 ////////////////////////////LISTA DO AUTOCOMPLETE /////////////////////////
 
-//////////////////////////// GRUPOS /////////////////////////	
+////////////////////////////GRUPOS /////////////////////////	
 	public GrupoDespesas getGrupoDespesas(int idGrupo) throws SQLException {
 		GrupoDespesas grupo = new GrupoDespesas();
 		PreparedStatement preparedStatement;

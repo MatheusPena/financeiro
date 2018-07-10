@@ -80,9 +80,9 @@ public class EstabelecimentoDAO {
 	}
 	
 ////////////////////////////LISTA DO AUTOCOMPLETE DO ESTABELECIMENTO COM INNERJOIN /////////////////////////	
-	public List<String> listaestabelecimento(String codigo, String cnpj) {	
+	public List<Estabelecimento> listaestabelecimento(String codigo, String cnpj) {	
 
-		ArrayList<String> lista = new ArrayList<String>();
+		ArrayList<Estabelecimento> lista = new ArrayList<>();
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
@@ -103,60 +103,15 @@ public class EstabelecimentoDAO {
 			preparedStatement = conexao.prepareStatement(sql);
 			preparedStatement.setString(1, cnpj);
 			
-			
 			rs = preparedStatement.executeQuery();
 			
 			while (rs.next()) {
 
-				Estabelecimento estabelecimentos = new Estabelecimento();
-				estabelecimentos.setCodigo(rs.getInt("codigo"));
-				lista.add(rs.getString("nome"));
-			}
-
-		} catch (SQLException ex) {
-			Logger lgr = Logger.getLogger(Connection.class.getName());
-			lgr.log(Level.SEVERE, ex.getMessage(), ex);
-
-		} finally {
-		}
-		return lista;
-	}
-	
-	public List<Integer> listacodigoestabelecimento (String codigo) {	
-
-		ArrayList<Integer> lista = new ArrayList<Integer>();
-
-		PreparedStatement preparedStatement;
-		ResultSet rs = null;
-		
-		
-//		String sql = "select codigo, nome, grupoestabelecimento_codigo from estabelecimentos where " 
-//				+ "cast(codigo as char) like '%"+codigo+"%'";
-		
-		StringBuilder str = new StringBuilder();
-		str.append("select e.codigo, e.nome, e.grupoestabelecimento_codigo from estabelecimentos e");
-		str.append(" inner join grupoestabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
-		str.append(" inner join unidade u on ge.unidade_nome = u.nome");
-		str.append(" inner join empresas emp on emp.cnpj = u.empresas_cnpj");
-		//str.append(" and emp.cnpj = ?");
-		str.append(" and cast(e.codigo as char) like '%"+codigo+"%'");
-		
-		String sql = str.toString();
-		
-
-		try {
-
-			preparedStatement = conexao.prepareStatement(sql);
-			//preparedStatement.setString(1, cnpj);
-			
-			
-			rs = preparedStatement.executeQuery();
-			
-			while (rs.next()) {
-
-				Estabelecimento estabelecimentos = new Estabelecimento();
-				estabelecimentos.setCodigo(rs.getInt("codigo"));
-				lista.add(rs.getInt("codigo"));
+				Estabelecimento estabelecimento = new Estabelecimento();
+				estabelecimento.setCodigo(rs.getInt("codigo"));
+				estabelecimento.setNome(rs.getString("nome"));
+				estabelecimento.setGrupoestabelecimento_codigo(rs.getInt("grupoestabelecimento_codigo"));
+				lista.add(estabelecimento);
 			}
 
 		} catch (SQLException ex) {
@@ -168,8 +123,7 @@ public class EstabelecimentoDAO {
 		return lista;
 	}
 
-////////////////////////////LISTA DO AUTOCOMPLETE DO ESTABELECIMENTO COM INNERJOIN /////////////////////////		
-	
+////////////////////////////LISTA DO AUTOCOMPLETE DO ESTABELECIMENTO COM INNERJOIN /////////////////////////	
 	
 	public Estabelecimento listaestabelecimento(Integer codigo) {
 
@@ -180,6 +134,7 @@ public class EstabelecimentoDAO {
 		String sql = "select codigo, nome, grupoestabelecimento_codigo from estabelecimentos where "
 				+ "codigo = ?";
 		
+
 		try {
 
 			preparedStatement = conexao.prepareStatement(sql);

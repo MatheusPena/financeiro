@@ -10,5 +10,10 @@
 		<phase-listener>br.com.grupoferraz.financeiro.interceptor.PostLogin</phase-listener>
 		<phase-listener>br.com.grupoferraz.financeiro.interceptor.Autorizador</phase-listener>
 	</lifecycle>
+	
+	<converter>
+		<converter-id>converter</converter-id>
+		<converter-class>br.com.grupoferraz.financeiro.converter.EntityConverter</converter-class>
+	</converter>
 
 </faces-config>

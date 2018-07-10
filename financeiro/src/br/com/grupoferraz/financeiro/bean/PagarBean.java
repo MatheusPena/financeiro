@@ -27,9 +27,11 @@ public class PagarBean implements Serializable {
 
 	private Pagar contapagar;
 	private List<Pagar> listapagar;
+	//private Estabelecimento estabelecimento;
 
 	public PagarBean() {
 		contapagar = new Pagar();
+		//estabelecimento = new Estabelecimento();
 		getListapagar();
 		listapagar();
 	}
@@ -64,9 +66,9 @@ public class PagarBean implements Serializable {
         return despesasDAO.listadespesa(query); 
     }
 	
-	public List<String> completeText2(String query) {
+	public List<Estabelecimento> completeText2(String query) {
 		
-		List<String> lista = new ArrayList<>();
+		List<Estabelecimento> lista = new ArrayList<>();
 		String cnpj = null;
 		if (contapagar != null) {
 			cnpj = contapagar.getEmpresa_cnpj();
@@ -77,20 +79,7 @@ public class PagarBean implements Serializable {
         return lista; 
     }
 	
-	public List<Integer> completeText3(String query) {
-		
-		List<Integer> lista = new ArrayList<>();
-		//String cnpj = null;
-		
-		EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
-		lista.addAll(estabelecimentoDAO.listacodigoestabelecimento(query));
-		//if (contapagar != null) {
-			//cnpj = contapagar.getEmpresa_cnpj();
-			
-		//}
-
-        return lista; 
-    }
+	
 ////////////////////////////LISTA DO AUTOCOMPLETE /////////////////////////
 	
 ////////////////////////////SELECT DO AUTOCOMPLETE /////////////////////////
@@ -99,30 +88,36 @@ public class PagarBean implements Serializable {
     	DespesasDAO despesasDAO = new DespesasDAO();
     	Despesas despesa = despesasDAO .listadespesa(Integer.valueOf(obj));
     	if (despesa != null) {
-    		contapagar.setEmissaodp(despesa.getEmissao());
     		contapagar.setNomedp(despesa.getNome());
     	}
     	
     }	
-	public void onItemSelect2(SelectEvent event) {
-        String obj = event.getObject().toString();
+//	public void onItemSelect2(SelectEvent event) {
+//        Estabelecimento obj = (Estabelecimento) event.getObject();
+//        System.out.println("OBJ "+obj);
+//        
+//    	EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
+//    	Estabelecimento estabelecimentos = estabelecimentoDAO .listaestabelecimento(obj.getCodigo());
+//    	if (estabelecimentos != null) {
+//    		contapagar.setEstabelecimento_nome(estabelecimentos.getNome());
+//    	}
+//    	
+//    }
+	
+	public void selecionar() {
+		Estabelecimento estabelecimento = contapagar.getEstabelecimento();
+		System.out.println("ESTABELECIMENTO SELECIONADO "+estabelecimento);
     	EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
-    	Estabelecimento estabelecimentos = estabelecimentoDAO .listaestabelecimento(Integer.valueOf(obj));
+    	Estabelecimento estabelecimentos = estabelecimentoDAO .listaestabelecimento(estabelecimento.getCodigo());
     	if (estabelecimentos != null) {
     		contapagar.setEstabelecimento_nome(estabelecimentos.getNome());
-    	}
-    	
-    }
-	
-	public void onItemSelect3(SelectEvent event) {
-        String obj = event.getObject().toString();
-    	EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
-    	Estabelecimento estabelecimentos = estabelecimentoDAO .listaestabelecimento(Integer.valueOf(obj));
-    	if (estabelecimentos != null) {
     		contapagar.setEstabelecimento_codigo(estabelecimentos.getCodigo());
     	}
-    	
     }
+	
+	
+	
+	
 ////////////////////////////SELECT DO AUTOCOMPLETE /////////////////////////
 	
 	
@@ -141,5 +136,13 @@ public class PagarBean implements Serializable {
 	public void setListapagar(List<Pagar> listapagar) {
 		this.listapagar = listapagar;
 	}
+
+//	public Estabelecimento getEstabelecimento() {
+//		return estabelecimento;
+//	}
+//
+//	public void setEstabelecimento(Estabelecimento estabelecimento) {
+//		this.estabelecimento = estabelecimento;
+//	}
 
 }

@@ -12,7 +12,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import br.com.grupoferraz.financeiro.entity.Pagar;
 import br.com.grupoferraz.financeiro.entity.CentroResultados;
-import br.com.grupoferraz.financeiro.entity.Documentos;import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.entity.ContasFinanceiras;
+import br.com.grupoferraz.financeiro.entity.Documentos;
+import br.com.grupoferraz.financeiro.entity.Estabelecimento;
+import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class PagarDAO { 
 	Connection conexao = ConexaoBD.getConexao();
@@ -25,12 +28,12 @@ public class PagarDAO {
 			str.append("insert into contapagar (codigocp, estabelecimento_codigo, "
 					+ "cpf, codigo, emissaocp, valor, "
 					+ "centroresultados_codigo, documento_codigo, emissaodp, nomecp, "
-					+ "estabelecimento_nome, nomedp, observacao, empresa_cnpj ) "
-					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
+					+ "estabelecimento_nome, nomedp, observacao, empresa_cnpj, validadedp, contafinanceira_codigo ) "
+					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			str.append("on duplicate key update codigocp = ?, estabelecimento_codigo = ?, cpf = ?,"
 					+ "codigo = ?, emissaocp = ?, valor = ?, centroresultados_codigo = ?,"
-					+ "documento_codigo = ?, emissaodp = ?, nomecp = ?, "
-					+ "estabelecimento_nome = ?, nomedp = ?, observacao = ?, empresa_cnpj = ?");
+					+ "documento_codigo = ?, emissaodp = ?, nomecp = ?, estabelecimento_nome = ?, "
+					+ " nomedp = ?, observacao = ?, empresa_cnpj = ?, validadedp = ?, contafinanceira_codigo = ? ");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, pagarconta.getCodigocp());
 			preparedStatement.setInt(2, pagarconta.getEstabelecimento_codigo());
@@ -56,21 +59,30 @@ public class PagarDAO {
 			preparedStatement.setString(12, pagarconta.getNomedp());
 			preparedStatement.setString(13, pagarconta.getObservacao());
 			preparedStatement.setString(14, pagarconta.getEmpresa_cnpj());
+			Date dataValidadedp = pagarconta.getValidadedp();
+			long k = 0;
+			if (dataValidadedp != null ) {
+				k = dataValidadedp.getTime();	
+			}
+			preparedStatement.setDate(15, new java.sql.Date(k));
+			preparedStatement.setInt(16, pagarconta.getContafinanceira_codigo());
 			
-			preparedStatement.setInt(15, pagarconta.getCodigocp());
-			preparedStatement.setInt(16, pagarconta.getEstabelecimento_codigo());
-			preparedStatement.setString(17, pagarconta.getCpf());
-			preparedStatement.setInt(18, pagarconta.getCodigo());
-			preparedStatement.setDate(19, new java.sql.Date(t));
-			preparedStatement.setString(20, pagarconta.getValor());
-			preparedStatement.setInt(21, pagarconta.getCentroresultados_codigo());
-			preparedStatement.setInt(22, pagarconta.getDocumento_codigo());
-			preparedStatement.setDate(23, new java.sql.Date(j));
-			preparedStatement.setString(24, pagarconta.getNomecp());
-			preparedStatement.setString(25, pagarconta.getEstabelecimento_nome());
-			preparedStatement.setString(26, pagarconta.getNomedp());
-			preparedStatement.setString(27, pagarconta.getObservacao());
-			preparedStatement.setString(28, pagarconta.getEmpresa_cnpj());
+			preparedStatement.setInt(17, pagarconta.getCodigocp());
+			preparedStatement.setInt(18, pagarconta.getEstabelecimento_codigo());
+			preparedStatement.setString(19, pagarconta.getCpf());
+			preparedStatement.setInt(20, pagarconta.getCodigo());
+			preparedStatement.setDate(21, new java.sql.Date(t));
+			preparedStatement.setString(22, pagarconta.getValor());
+			preparedStatement.setInt(23, pagarconta.getCentroresultados_codigo());
+			preparedStatement.setInt(24, pagarconta.getDocumento_codigo());
+			preparedStatement.setDate(25, new java.sql.Date(j));
+			preparedStatement.setString(26, pagarconta.getNomecp());
+			preparedStatement.setString(27, pagarconta.getEstabelecimento_nome());
+			preparedStatement.setString(28, pagarconta.getNomedp());
+			preparedStatement.setString(29, pagarconta.getObservacao());
+			preparedStatement.setString(30, pagarconta.getEmpresa_cnpj());
+			preparedStatement.setDate(31, new java.sql.Date(k));
+			preparedStatement.setInt(32, pagarconta.getContafinanceira_codigo());
 			
 			preparedStatement.execute();
 			return true;
@@ -95,7 +107,8 @@ public class PagarDAO {
 			String sql = "select codigocp, estabelecimento_codigo, "
 					+ "cpf, codigo, emissaocp, valor, " 
 					+ "centroresultados_codigo, documento_codigo, emissaodp, "
-					+ "nomecp, estabelecimento_nome, nomedp, observacao, empresa_cnpj from contapagar";
+					+ "nomecp, estabelecimento_nome, nomedp, observacao, "
+					+ "empresa_cnpj, validadedp, contafinanceira_codigo from contapagar";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -103,6 +116,8 @@ public class PagarDAO {
 				Pagar pagarconta = new Pagar();
 				pagarconta.setCodigocp(rs.getInt("codigocp"));
 				pagarconta.setEstabelecimento_codigo(rs.getInt("estabelecimento_codigo"));
+				Estabelecimento estabelecimento = getEstabelecimento(pagarconta.getEstabelecimento_codigo());
+				pagarconta.setEstabelecimento(estabelecimento);
 				pagarconta.setCpf(rs.getString("cpf"));
 				pagarconta.setCodigo(rs.getInt("codigo"));
 				pagarconta.setEmissaocp(rs.getDate("emissaocp"));
@@ -120,6 +135,10 @@ public class PagarDAO {
 				pagarconta.setNomedp(rs.getString("nomedp"));
 				pagarconta.setObservacao(rs.getString("observacao"));
 				pagarconta.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
+				pagarconta.setValidadedp(rs.getDate("validadedp"));
+				pagarconta.setContafinanceira_codigo(rs.getInt("contafinanceira_codigo"));
+				ContasFinanceiras contafinanceira = getContafinanceira(pagarconta.getContafinanceira_codigo());
+				pagarconta.setContafinanceira(contafinanceira);
 				lista.add(pagarconta);
 			}
 
@@ -132,6 +151,7 @@ public class PagarDAO {
 		return lista;
 	}
 	
+	///////////////////////////////////GRUPOS////////////////////////////////////////////////
 	public CentroResultados getCentroresultados(int idCentroresultados) throws SQLException {
 		CentroResultados centroresultados = new CentroResultados();
 		PreparedStatement preparedStatement;
@@ -146,6 +166,22 @@ public class PagarDAO {
 			centroresultados.setNome(rs.getString("nome"));
 		}
 		return centroresultados;
+	}
+	
+	public ContasFinanceiras getContafinanceira(int idContafinanceira) throws SQLException {
+		ContasFinanceiras contafinanceira = new ContasFinanceiras();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement(
+				"select codigo, nome from contasfinanceiras where codigo = ?");
+		preparedStatement.setInt(1, idContafinanceira);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			contafinanceira.setCodigo(rs.getInt("codigo"));
+			contafinanceira.setNome(rs.getString("nome"));
+		}
+		return contafinanceira;
 	}
 	
 	public Documentos getDocumentos(int idDocumentos) throws SQLException {
@@ -164,7 +200,24 @@ public class PagarDAO {
 		return documento;
 	}
 	
+	public Estabelecimento getEstabelecimento(int idEstabelecimento) throws SQLException {
+		Estabelecimento estabelecimento = new Estabelecimento();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement(
+				"select codigo, nome from estabelecimentos where codigo = ?");
+		preparedStatement.setInt(1, idEstabelecimento);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			estabelecimento.setCodigo(rs.getInt("codigo"));
+			estabelecimento.setNome(rs.getString("nome"));
+		}
+		return estabelecimento;
+	}
+///////////////////////////////////GRUPOS////////////////////////////////////////////////
 	
+///////////////////////////////////lISTAS DO AUTOCOMPLETE////////////////////////////////////////////////
 	public List<Integer> listadespesa(String codigo) {
 
 		ArrayList<Integer> lista = new ArrayList<Integer>();
