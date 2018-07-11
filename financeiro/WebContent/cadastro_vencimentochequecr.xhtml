@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<!-- Meta, title, CSS, favicons, etc. -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Formulário | Vencimentos de Cheques</title>
+		<!-- Bootstrap -->
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<!-- Font Awesome -->
+		<link href="resources/font-awesome/css/font-awesome.min.css"
+			rel="stylesheet" />
+		<!-- NProgress -->
+		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
+		<!-- iCheck -->
+		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
+		<!-- Datatables -->
+		<link
+			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css"
+			rel="stylesheet" />
+		<link
+			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+			rel="stylesheet" />
+		<!-- Custom Theme Style -->
+		<link href="build/css/custom.min.css" rel="stylesheet" />
+	</h:head>
+	<h:body>
+		<!-- /top navigation -->
+		<ui:composition template="template.xhtml">
+			<ui:define name="topnav" />
+			<ui:define name="body">
+				<!-- page content -->
+				<div class="right_col">
+					<div class="">
+						<div class="clearfix" />
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											Formulário de Vencimentos de Cheques <small>Cadastre aqui
+												os vencimentos</small>
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up" /></a></li>
+										</ul>
+										<div class="clearfix" />
+									</div>
+									<div class="x_content">
+										<br />
+										<h:form id="Campo" class="form-horizontal form-label-left">
+											<p:messages id="messages" />
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="data" value="Data de Vencimento *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
+														inputStyleClass="form-control col-md-7 col-xs-12"
+														id="data" required="true"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.vencimento}" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputLabel for="valor" value="Valor *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="valor"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.valor}"
+														styleClass="form-control col-md-7 col-xs-12"
+														required="true"></p:inputText>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="banco" value="Banco" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="banco"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.banco}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItem itemLabel="BANCO DO BRASIL"
+															itemValue="BANCO DO BRASIL" />
+														<f:selectItem itemLabel="BANCO DO NORDESTE DO BRASIL S.A."
+															itemValue="BANCO DO NORDESTE DO BRASIL S.A." />
+														<f:selectItem itemLabel="CAIXA ECONÔMICA FEDERAL"
+															itemValue="CAIXA ECONÔMICA FEDERAL" />
+														<f:selectItem itemLabel="BRADESCO" itemValue="BRADESCO" />
+														<f:selectItem itemLabel="BANCO ITAU S.A."
+															itemValue="BANCO ITAU S.A." />
+													</h:selectOneMenu>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="tipo_conta" value="Tipo conta" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="tipo_conta"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.tipoconta}"
+														style="width:160px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItem itemLabel="Conta corrente"
+															itemValue="Conta corrente" />
+														<f:selectItem itemLabel="Conta poupança"
+															itemValue="Conta poupança" />
+													</h:selectOneMenu>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="agenciabanco" value="Agência bancária" />
+												</label>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<p:inputText id="agenciabanco"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.agencia}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="digagencia" value="Dig. agência" />
+												</label>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<p:inputText id="digagencia"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.digagencia}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="conta" value="Conta" />
+												</label>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<p:inputText id="conta"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.conta}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="digconta" value="Dig. conta" />
+												</label>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<p:inputText id="digconta"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.digconta}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputLabel for="cheque" value="Número do Cheque" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="cheque"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.cheque}"
+														styleClass="form-control col-md-7 col-xs-12"></p:inputText>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputLabel for="titular" value="Titular" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="titular"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.titular}"
+														styleClass="form-control col-md-7 col-xs-12"></p:inputText>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputLabel for="febraban" value="Número FEBRABAN do banco" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="febraban"
+														value="#{vencimentoChequeCRBean.vencimentoChequeCR.febraban}"
+														styleClass="form-control col-md-7 col-xs-12"></p:inputText>
+												</div>
+											</div>
+
+											<div class="ln_solid" />
+											<div class="form-group">
+												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+													<button class="btn btn-primary" type="reset">Resetar</button>
+													<p:commandButton value="Cadastrar" type="submit"
+														update="messages" class="btn btn-success"
+														action="#{vencimentoChequeCRBean.cadastraVencimentoChequeCR}"
+														onclick="window.location='#Campo'"></p:commandButton>
+												</div>
+											</div>
+										</h:form>
+									</div>
+								</div>
+								<h:form>
+									<div class="row">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<div class="x_panel">
+												<div class="x_title">
+													<h2>
+														Tabela de Vencimentos de Cheques <small>Exibe os vencimentos
+															cadastrados</small>
+													</h2>
+													<ul class="nav navbar-right panel_toolbox">
+														<li><a class="collapse-link"><i
+																class="fa fa-chevron-up" /></a></li>
+													</ul>
+													<div class="clearfix" />
+												</div>
+												<div class="x_content">
+													<table id="datatable-responsive" cellspacing="0"
+														width="100%"
+														class="table table-striped table-bordered dt-responsive nowrap ">
+														<thead>
+															<tr>
+																<th>Código</th>
+																<th>Editar</th>
+																<th>Data de Vencimento</th>
+																<th>Valor</th>
+																<th>Banco</th>
+																<th>Tipo conta</th>
+																<th>Agência bancária</th>
+																<th>Dig. agência</th>
+																<th>Conta</th>
+																<th>Díg. conta</th>
+																<th>Número do Cheque</th>
+																<th>Titular</th>
+																<th>Número FEBABAN do banco</th>
+
+															</tr>
+														</thead>
+														<tbody>
+															<c:forEach items="#{vencimentoChequeCRBean.listaVencimentoChequeCR}"
+																var="vencimentoscheque" cellspacing="0" width="100%">
+																<tr>
+																	<td>#{vencimentoscheque.codigo}</td>
+																	<td class="text-center"><p:commandButton value=""
+																			style="font-size:10px;"
+																			styleClass="fas fa-edit btn btn-primary"
+																			update="@(.form-control) @(.rd) @(.calendar) Campo"
+																			onclick="window.location='#Campo'">
+																			<f:setPropertyActionListener value="#{vencimentoscheque}"
+																				target="#{vencimentoChequeCRBean.vencimentoChequeCR}" />
+																		</p:commandButton></td>
+																	<td><h:outputText value="#{vencimentoscheque.vencimento}">
+																			<f:convertDateTime pattern="dd/MM/yyyy"
+																				dateStyle="long" />
+																		</h:outputText></td>
+																	<td>#{vencimentoscheque.valor}</td>
+																	<td>#{vencimentoscheque.banco}</td>
+																	<td>#{vencimentoscheque.tipoconta}</td>
+																	<td>#{vencimentoscheque.agencia}</td>
+																	<td>#{vencimentoscheque.digagencia}</td>
+																	<td>#{vencimentoscheque.conta}</td>
+																	<td>#{vencimentoscheque.digconta}</td>
+																	<td>#{vencimentoscheque.cheque}</td>
+																	<td>#{vencimentoscheque.titular}</td>
+																	<td>#{vencimentoscheque.febraban}</td>
+																
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /page content -->
+			</ui:define>
+		</ui:composition>
+
+		<!-- jQuery -->
+		<script src="resources/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="resources/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="resources/nprogress/nprogress.js"></script>
+		<!-- iCheck -->
+		<script src="resources/iCheck/icheck.min.js"></script>
+		<!-- Datatables -->
+		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script
+			src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script
+			src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script
+			src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script
+			src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script
+			src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script
+			src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script
+			src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script
+			src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="resources/jszip/dist/jszip.min.js"></script>
+		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
+		<script src="resources/pdfmake/build/vfs_fonts.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="build/js/custom.min.js"></script>
+
+	</h:body>
+</f:view>

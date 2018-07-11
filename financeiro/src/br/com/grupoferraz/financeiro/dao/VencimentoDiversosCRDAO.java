@@ -62,7 +62,7 @@ public class VencimentoDiversosCRDAO {
 		}
 	}
 
-	// lista todas as contas cadastradas no banco de dados
+	// lista todas os vencimentos diversos cadastrados no banco de dados
 	public List<VencimentoDiversosCR> listVencimentoDiversosCR() {
 
 		ArrayList<VencimentoDiversosCR> lista = new ArrayList<VencimentoDiversosCR>();
