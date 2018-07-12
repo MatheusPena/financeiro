@@ -16,35 +16,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Formulário | Empresa</title>
 		<!-- Bootstrap -->
-		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
-			rel="stylesheet" />
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 		<!-- Font Awesome -->
-		<link href="resources/font-awesome/css/font-awesome.min.css"
-			rel="stylesheet" />
+		<link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 		<!-- NProgress -->
 		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
 		<!-- iCheck -->
 		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
 		<!-- Datatables -->
-		<link
-			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-			rel="stylesheet" />
+		<link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet" />
+		<link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
 		<!-- Primeface DataTable Style -->
 		<h:outputStylesheet library="css" name="table-style.css" />
 		<!-- Custom Theme Style -->
 		<link href="build/css/custom.min.css" rel="stylesheet" />
+		
 	</h:head>
 	<h:body>
 		<!-- /top navigation -->
@@ -64,7 +53,7 @@
 												empresas</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
-											<li><a class="collapse-link"><i
+											<li><a  class="collapse-link2"><i
 													class="fa fa-chevron-up" /></a></li>
 										</ul>
 										<div class="clearfix" />
@@ -86,7 +75,6 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nome" value="Nome:" />
@@ -108,7 +96,7 @@
 														update="messages @(.form_control)"
 														styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
-													</p:commandButton>
+													</p:commandButton>	
 													<script>
 														function temp() {
 
@@ -128,34 +116,16 @@
 											</div>
 										</h:form>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="x_panel">
-									<div class="x_title">
-										<h2>
-											Tabela de Empresa <small>Exibe as empresas
-												cadastradas</small>
-										</h2>
-										<ul class="nav navbar-right panel_toolbox">
-											<li><a class="collapse-link"><i
-													class="fa fa-chevron-up" /></a></li>
-										</ul>
-										<div class="clearfix" />
-									</div>
+									<div class="row">															
 									<div class="x_content">
 										<h:form>
 											<table id="datatable-responsive" cellspacing="0" width="100%"
 												class="table table-striped table-bordered dt-responsive nowrap ">
 												<thead>
 													<tr>
-
 														<th>CNPJ</th>
 														<th>Editar</th>
 														<th>Nome</th>
-
 													</tr>
 												</thead>
 												<tbody>
@@ -173,7 +143,6 @@
 																		target="#{empresaBean.empresa}" />
 																</p:commandButton></td>
 															<td>#{empresa.nome}</td>
-
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -182,10 +151,396 @@
 									</div>
 								</div>
 							</div>
+							<div class="x_panel">
+							<div class="x_title">
+								<h2>
+									Formulário de Unidades <small>Cadastre aqui as unidades 
+									que as empresas pertencem</small>
+								</h2>
+								<ul class="nav navbar-right panel_toolbox">
+									<li><a class="collapse-link2"><i class="fa fa-chevron-up" /></a></li>
+								</ul>
+								<div class="clearfix" />
+							</div>
+							<div class="x_content">
+								<br />
+								<h:form id="demo-form3"
+									styleClass="form-horizontal form-label-left">
+									<p:messages id="messages" />
+
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">
+											<p:outputLabel for="nome" value="Nome:" />
+										</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<p:inputText id="nome" required="true"
+												value="#{unidadeBean.unidade.nome}"
+												styleClass="form-control col-md-7 col-xs-12" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">
+											<p:outputLabel for="empresa" value="Empresa:" />
+										</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<h:selectOneMenu id="empresa" required="true"
+												value="#{unidadeBean.unidade.empresas_cnpj}"
+												style="width:320px"
+												styleClass="form-control col-md-7 col-xs-12">
+												<f:selectItem itemLabel="Selecione" itemValue="" />
+												<c:forEach items="#{empresaBean.empresas}" var="empresa"
+													cellspacing="0" width="100%">
+													<f:selectItem itemLabel="#{empresa.nome}"
+														itemValue="#{empresa.cnpj}" />
+												</c:forEach>
+											</h:selectOneMenu>
+										</div>
+									</div>
+									<div class="ln_solid" />
+									<div class="form-group">
+										<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+											<button class="btn btn-primary" type="reset">Resetar</button>
+											<p:commandButton value="Cadastrar" type="submit"
+												action="#{unidadeBean.cadastraUnidade}" update="messages"
+												styleClass="btn btn-success"
+												onclick="window.location='#demo-form3'">
+											</p:commandButton>
+											<script>
+												function temp() {
+
+													setTimeout(
+															function() {
+
+																$(
+																		'.messages')
+																		.html(
+																				'');
+
+															}, 5000);
+
+												}
+											</script>
+										</div>
+									</div>
+								</h:form>
+							</div>
+							<div class="row">
+						<div class="x_content">
+						<h:form>
+							<table id="datatable" cellspacing="0" width="100%"
+								class="table table-striped table-bordered dt-responsive nowrap ">
+								<thead>
+									<tr>
+										<th>Nome</th>
+										<th>Editar</th>
+										<th>Empresa</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="#{unidadeBean.listaUnidade}"
+										var="unidade" cellspacing="0" width="100%">
+										<tr>
+											<td>#{unidade.nome}</td>
+											<td><p:commandButton value=""
+													style="font-size:10px; "
+													styleClass="fas fa-edit btn btn-primary"
+													onclick="window.location='#demo-form3'"
+													update="@(.form-control)">
+													<f:setPropertyActionListener value="#{unidade}"
+														target="#{unidadeBean.unidade}" />
+												</p:commandButton></td>
+											<td>#{unidade.empresa}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</h:form>
+					</div>
+				</div>		
+			</div>
+			<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					Formulário de Grupo de Estabelecimentos <small>Cadastre aqui
+						as áreas que os estabelecimentos pertencem
+						  </small>
+				</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link2"><i
+							class="fa fa-chevron-up" /></a></li>
+				</ul>
+				<div class="clearfix" />
+			</div>
+			<div class="x_content">
+				<br />
+				<h:form id="demo-form4" data-parsley-validate=""
+					styleClass="form-horizontal form-label-left">
+					<p:messages id="messages" />
+
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">
+							<p:outputLabel for="nome" value="Nome da Área:" />
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<p:inputText id="nome" required="true"
+								value="#{grupoEstabelecimentoBean.grupoestabelecimento.nomegrupoestabelecimento}"
+								styleClass="form-control col-md-7 col-xs-12" />
 						</div>
 					</div>
+					<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						<p:outputLabel for="empresa" value="Empresa: " />
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+							<h:selectOneMenu id="empresa" required="true"
+								converter="omnifaces.SelectItemsConverter"
+								value="#{grupoEstabelecimentoBean.grupoestabelecimento.empresa}" 
+								style="width:320px"
+								styleClass="form-control col-md-7 col-xs-12">
+								<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+
+								<f:selectItems value="#{empresaBean.empresas}"
+									var="empresa" itemValue="#{empresa.cnpj}"
+									itemLabel="#{empresa.nome}" />
+								<f:ajax render="demo-form4:unidade" execute= "@this" listener="#{grupoEstabelecimentoBean.listarUnidade()}" />
+							</h:selectOneMenu>
+					</div>
 				</div>
-				<!-- /page content -->
+					<p:outputPanel styleClass="form-group" id="pnl">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">
+							<p:outputLabel for="unidade" value="Unidade:" />
+						</label>
+						<p:outputPanel styleClass="col-md-6 col-sm-6 col-xs-12">
+							<h:selectOneMenu id="unidade" required="true"
+								value="#{grupoEstabelecimentoBean.grupoestabelecimento.unidade_nome}"
+								style="width:320px"
+								styleClass="form-control col-md-7 col-xs-12">
+								<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+								<c:forEach items="#{grupoEstabelecimentoBean.listaunidade}"
+									var="unidade" cellspacing="0" width="100%">
+									<f:selectItem itemLabel="#{unidade.nome}"
+										itemValue="#{unidade.nome}" />
+								</c:forEach>
+							</h:selectOneMenu>
+						</p:outputPanel>
+					</p:outputPanel>
+
+					<div class="ln_solid" />
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+							<button class="btn btn-primary" type="reset">Resetar</button>
+							<p:commandButton value="Cadastrar" type="submit"
+								action="#{grupoEstabelecimentoBean.cadastraGrupoEstabelecimento}"
+								update="messages" styleClass="btn btn-success"
+								onclick="window.location='#demo-form4'">
+							</p:commandButton>
+							<script>
+								function temp() {
+
+									setTimeout(
+											function() {
+
+												$(
+														'.messages')
+														.html(
+																'');
+
+											}, 5000);
+
+								}
+							</script>
+						</div>
+					</div>
+				</h:form>
+			</div>
+			<div class="x_content">
+			<h:form>
+				<table id="datatable-checkbox" cellspacing="0" width="100%"
+					class="table table-striped table-bordered dt-responsive nowrap ">
+					<thead>
+						<tr>
+							<th>Código</th>
+							<th>Editar</th>
+							<th>Nome do Grupo</th>
+							<th>Empresa</th>
+							<th>Unidade</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach
+							items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
+							var="grupoestabelecimento" cellspacing="0" width="100%">
+							<tr>
+								<td>#{grupoestabelecimento.codigo}</td>
+								<td><p:commandButton value=""
+										style="font-size:10px; "
+										styleClass="fas fa-edit btn btn-primary"
+										onclick="window.location='#demo-form4'"
+										update="@(.form-control)">
+										<f:setPropertyActionListener
+											value="#{grupoestabelecimento}"
+											target="#{grupoEstabelecimentoBean.grupoestabelecimento}" />
+									</p:commandButton></td>
+								<td>#{grupoestabelecimento.nomegrupoestabelecimento}</td>
+								<td>#{grupoestabelecimento.empresa}</td>
+								<td>#{grupoestabelecimento.unidade_nome}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</h:form>
+		</div>		
+	</div>
+	
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>
+				Formulário de Estabelecimentos <small>Cadastre aqui
+					os estabelecimentos</small>
+			</h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li><a class="collapse-link2"><i
+						class="fa fa-chevron-up" /></a></li>
+			</ul>
+			<div class="clearfix" />
+		</div>
+		<div class="x_content">
+			<br />
+			<h:form id="demo-form5"
+				styleClass="form-horizontal form-label-left">
+				<p:messages closable="true" id="messages"
+					styleClass="messages" />
+	
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						<p:outputLabel for="codigo" value="Código:" />
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<p:inputText id="codigo" required="true"
+							value="#{estabelecimentoBean.estabelecimento.codigo}"
+							styleClass="form-control col-md-7 col-xs-12" />
+					</div>
+				</div>
+	
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						<p:outputLabel for="nome" value="Nome (sem código):" />
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<p:inputText id="nome" required="true"
+							value="#{estabelecimentoBean.estabelecimento.nome}"
+							styleClass="form-control col-md-7 col-xs-12" />
+					</div>
+				</div>
+	
+				<div class="form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12">
+						<p:outputLabel for="grupo"
+							value="Grupo do Estabelecimento:" />
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<h:selectOneMenu id="grupo" required="true"
+							value="#{estabelecimentoBean.estabelecimento.grupoestabelecimento_codigo}"
+							style="width:320px"
+							styleClass="form-control col-md-7 col-xs-12">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<c:forEach
+								items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
+								var="grupoestabelecimento" cellspacing="0" width="100%">
+								<f:selectItem
+									itemLabel="#{grupoestabelecimento.nomegrupoestabelecimento}"
+									itemValue="#{grupoestabelecimento.codigo}" />
+							</c:forEach>
+						</h:selectOneMenu>
+					</div>
+				</div>
+	
+				<div class="ln_solid" />
+				<div class="form-group">
+					<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+						<p:commandButton value="Resetar" class="btn btn-primary"
+							type="reset"></p:commandButton>
+						<p:commandButton value="Cadastrar" oncomplete="temp();"
+							action="#{estabelecimentoBean.cadastraEstabelecimentos}"
+							update="messages @(.form_control)"
+							styleClass="btn btn-success"
+							onclick="window.location='#demo-form5'">
+						</p:commandButton>
+						<script>
+							function temp() {
+	
+								setTimeout(
+										function() {
+	
+											$(
+													'.messages')
+													.html(
+															'');
+	
+										}, 5000);
+	
+							}
+						</script>
+					</div>
+				</div>
+			</h:form>
+		</div>
+		<div class="x_content">
+			<h:form>
+				<table id="datatable-fixed-header" cellspacing="0" width="100%"
+					class="table table-striped table-bordered dt-responsive nowrap ">
+					<thead>
+						<tr>
+
+							<th>Código</th>
+							<th>Editar</th>
+							<th>Nome</th>
+							<th>Grupo do Estabelecimento</th>
+							<th>Unidade</th>
+							<th>Empresa</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="#{estabelecimentoBean.estabelecimentos}"
+							var="estabelecimento" cellspacing="0" width="100%">
+							<tr>
+
+								<td>#{estabelecimento.codigo}</td>
+								<td><p:commandButton value=""
+										style="font-size:10px; "
+										styleClass="fas fa-edit btn btn-primary"
+										onclick="window.location='#demo-form5'"
+										update="@(.form-control)">
+										<f:setPropertyActionListener value="#{estabelecimento}"
+											target="#{estabelecimentoBean.estabelecimento}" />
+									</p:commandButton></td>
+								<td>#{estabelecimento.nome}</td>
+								<td>#{estabelecimento.grupoestabalecimento}</td>
+								<td>#{estabelecimento.grupoestabalecimento.unidade_nome}</td>
+								<td>#{estabelecimento.grupoestabalecimento.unidade.empresa}</td>	
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</h:form>
+		</div>
+	</div>
+	
+
+						
+						
+						
+						
+						
+						</div>
+					</div>	
+				</div>
+			</div>
+		
+		<!-- /page content -->
+		<!-- Custom Theme Scripts -->
+		<script src="build/js/custom.js"></script>
 			</ui:define>
 		</ui:composition>
 
@@ -201,30 +556,23 @@
 		<script src="resources/iCheck/icheck.min.js"></script>
 		<!-- Datatables -->
 		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script
-			src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script
-			src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script
-			src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script
-			src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 		<script src="resources/jszip/dist/jszip.min.js"></script>
 		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
 		<script src="resources/pdfmake/build/vfs_fonts.js"></script>
-		<!-- Custom Theme Scripts -->
-		<script src="build/js/custom.min.js"></script>
+
+		
+			
 
 	</h:body>
 </f:view>

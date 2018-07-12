@@ -150,6 +150,39 @@ $MENU_TOGGLE.on('click', function() {
 	};
 
 
+// Panel toolbox EMPRESAS
+	$(document).ready(function() {
+
+		
+	    $('.collapse-link2').on('click', function() {
+	        var $BOX_PANEL = $(this).closest('.x_panel'),
+	            $ICON = $(this).find('i'),
+	            $BOX_CONTENT = $BOX_PANEL.find('.x_content');
+	        
+	        // fix for some div with hardcoded fix class
+	        if ($BOX_PANEL.attr('style')) {
+	            $BOX_CONTENT.slideToggle(200, function(){
+	                $BOX_PANEL.removeAttr('style');
+	            });
+	        } else {
+	            $BOX_CONTENT.slideToggle(200); 
+	            $BOX_PANEL.css('height', 'auto');  
+	        }
+
+	        $ICON.toggleClass('fa-chevron-up fa-chevron-down');
+	    });
+
+	    $('.close-link2').click(function () {
+	        var $BOX_PANEL = $(this).closest('.x_panel');
+
+	        $BOX_PANEL.remove();
+	    });
+	    
+	    $('.collapse-link2').click();
+	});
+// /Panel toolbox
+	
+
 // Panel toolbox
 $(document).ready(function() {
     $('.collapse-link').on('click', function() {

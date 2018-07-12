@@ -25,17 +25,22 @@ public class GrupoEstabelecimentoDAO {
 			// st = con.createStatement();
 
 			StringBuilder str = new StringBuilder();
-			str.append("insert into grupoestabelecimento (codigo, nomegrupoestabelecimento, unidade_nome)"
-					+ "values (?,?,?)");
-			str.append("on duplicate key update codigo = ?, nomegrupoestabelecimento = ?, unidade_nome = ?");
+			str.append("insert into grupoestabelecimento (codigo, nomegrupoestabelecimento, unidade_nome, empresa)"
+					+ "values (?,?,?,?)");
+			str.append("on duplicate key update codigo = ?, nomegrupoestabelecimento = ?, unidade_nome = ?, empresa = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupoestabelecimento.getCodigo());
 			preparedStatement.setString(2, grupoestabelecimento.getNomegrupoestabelecimento());
 			preparedStatement.setString(3, grupoestabelecimento.getUnidade_nome());
+			preparedStatement.setString(4, grupoestabelecimento.getEmpresa());
 
-			preparedStatement.setInt(4, grupoestabelecimento.getCodigo());
-			preparedStatement.setString(5, grupoestabelecimento.getNomegrupoestabelecimento());
-			preparedStatement.setString(6, grupoestabelecimento.getUnidade_nome());
+			
+
+			preparedStatement.setInt(5, grupoestabelecimento.getCodigo());
+			preparedStatement.setString(6, grupoestabelecimento.getNomegrupoestabelecimento());
+			preparedStatement.setString(7, grupoestabelecimento.getUnidade_nome());
+			preparedStatement.setString(8, grupoestabelecimento.getEmpresa());
+
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -65,6 +70,7 @@ public class GrupoEstabelecimentoDAO {
 				grupoestabelecimento.setCodigo(rs.getInt(1));
 				grupoestabelecimento.setNomegrupoestabelecimento(rs.getString(2));
 				grupoestabelecimento.setUnidade_nome(rs.getString(3));
+				grupoestabelecimento.setEmpresa(rs.getString(4));
 				lista.add(grupoestabelecimento);
 			}
 

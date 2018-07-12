@@ -75,6 +75,39 @@ public class UnidadeDAO {
 		}
 		return lista;
 	}
+	
+	public List<Unidade> listUnidade(String cnpj) {
+
+		ArrayList<Unidade> lista = new ArrayList<Unidade>();
+
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "select nome, empresas_cnpj from unidade where empresas_cnpj = ?";
+			st = conexao.prepareStatement(sql);
+			st.setString(1, cnpj);
+			rs = st.executeQuery();
+
+			while (rs.next()) {
+				Unidade Unidade = new Unidade();
+				Unidade.setNome(rs.getString("nome"));
+				Unidade.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
+				String idGrupo = Unidade.getEmpresas_cnpj();
+				Empresa empresa = getEmpresa(idGrupo);
+				Unidade.setEmpresa(empresa);
+				lista.add(Unidade);
+			}
+
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		return lista;
+	}
+	
 
 	public Empresa getEmpresa(String idGrupo) throws SQLException {
 		Empresa grupo = new Empresa();

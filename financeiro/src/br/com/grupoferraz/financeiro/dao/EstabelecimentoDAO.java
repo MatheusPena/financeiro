@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.com.grupoferraz.financeiro.entity.Empresa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.GrupoEstabelecimento;
+import br.com.grupoferraz.financeiro.entity.Unidade;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class EstabelecimentoDAO {
@@ -167,9 +169,6 @@ public class EstabelecimentoDAO {
 		return estabelecimentos;
 	}
 
-	
-	
-
 	public GrupoEstabelecimento getGrupoEstabelecimento(int idGrupo) throws SQLException {
 		GrupoEstabelecimento grupo = new GrupoEstabelecimento();
 		PreparedStatement preparedStatement;
@@ -183,9 +182,48 @@ public class EstabelecimentoDAO {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNomegrupoestabelecimento(rs.getString("nomegrupoestabelecimento"));
 			grupo.setUnidade_nome(rs.getString("unidade_nome"));
+			grupo.setUnidade(getUnidade(grupo.getUnidade_nome()));
 		}
 		return grupo;
 	}
+	
+	
+	public Unidade getUnidade(String idUnidade) throws SQLException {
+
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		
+		StringBuilder str = new StringBuilder();
+		str.append("select nome, empresas_cnpj from unidade where nome = ?");
+		
+		ArrayList<Unidade> lista = new ArrayList<Unidade>();
+
+		preparedStatement = conexao.prepareStatement(
+				str.toString());
+		preparedStatement.setString(1, idUnidade);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+
+			Unidade u = new Unidade();
+			u.setNome(rs.getString("nome"));
+			u.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
+			String cnpj = u.getEmpresas_cnpj();
+			Empresa empresa = new UnidadeDAO().getEmpresa(cnpj);
+			u.setEmpresa(empresa);
+			lista.add(u);
+		}
+		
+		if(!lista.isEmpty()) {
+			return lista.get(0);
+		}
+		
+		return null;
+	}
+	
+	
+	
+	
 	
 	public List<Estabelecimento> getEstabelecimento(String idEmpresa) throws SQLException {
 

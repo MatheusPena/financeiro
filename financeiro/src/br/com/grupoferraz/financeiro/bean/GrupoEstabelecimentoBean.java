@@ -9,7 +9,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.GrupoEstabelecimentoDAO;
+import br.com.grupoferraz.financeiro.dao.UnidadeDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoEstabelecimento;
+import br.com.grupoferraz.financeiro.entity.Unidade;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 @SuppressWarnings("serial")
@@ -19,18 +21,24 @@ public class GrupoEstabelecimentoBean implements Serializable {
 
 	private GrupoEstabelecimento grupoestabelecimento;
 	private List<GrupoEstabelecimento> listagrupoestabelecimento;
-
+	private List<Unidade> listaunidade; 
 
 	public GrupoEstabelecimentoBean() {
 		grupoestabelecimento = new GrupoEstabelecimento();
 		listarGrupoEstabelecimento();
+		//listarUnidade();
+	}
+	
+	public void listarUnidade() {
+		String cnpj = grupoestabelecimento.getEmpresa();
+		UnidadeDAO UnidadeDAO = new UnidadeDAO();
+		listaunidade = UnidadeDAO.listUnidade(cnpj);
+		System.out.println("CNPJ "+cnpj);
 	}
 
 	private void listarGrupoEstabelecimento()  {
 		GrupoEstabelecimentoDAO grupoestabelecimentoDAO = new GrupoEstabelecimentoDAO ();
 		listagrupoestabelecimento = grupoestabelecimentoDAO.listGrupoEstabelecimento();
-		
-		
 	}
 
 	public String cadastraGrupoEstabelecimento() {
@@ -64,6 +72,14 @@ public class GrupoEstabelecimentoBean implements Serializable {
 
 	public void setListagrupoestabelecimento(List<GrupoEstabelecimento> listagrupoestabelecimento) {
 		this.listagrupoestabelecimento = listagrupoestabelecimento;
+	}
+
+	public List<Unidade> getListaunidade() {
+		return listaunidade;
+	}
+
+	public void setListaunidade(List<Unidade> listaunidade) {
+		this.listaunidade = listaunidade;
 	}
 
 }
