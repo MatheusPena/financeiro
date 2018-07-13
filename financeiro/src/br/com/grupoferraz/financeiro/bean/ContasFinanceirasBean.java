@@ -18,7 +18,7 @@ import br.com.grupoferraz.financeiro.util.JSFUtil;
 @ManagedBean
 public class ContasFinanceirasBean implements Serializable {
 	private ContasFinanceiras ContasFinanceiras;
-	private List<ContasFinanceiras> contafinanceira;
+	private List<ContasFinanceiras> listacontafinanceira;
 
 	public ContasFinanceirasBean() {
 		ContasFinanceiras = new ContasFinanceiras();
@@ -45,22 +45,23 @@ public class ContasFinanceirasBean implements Serializable {
 
 	public void listarcontafinanceira() {
 		ContasFinanceirasDAO contafinanceira = new ContasFinanceirasDAO();
-		setcontafinanceira(contafinanceira.listContasFinanceiras());
-	}
-
-	public List<ContasFinanceiras> getcontafinanceira() {
-		return contafinanceira;
-	}
-
-	public void setcontafinanceira(List<ContasFinanceiras> contafinanceira) {
-		this.contafinanceira = contafinanceira;
+		listacontafinanceira = contafinanceira.listContasFinanceiras();
 	}
 
 	public ContasFinanceiras getContasFinanceiras() {
 		return ContasFinanceiras;
 	}
 
-	public void setContasFinanceiras(ContasFinanceiras ContasFinanceiras) {
-		this.ContasFinanceiras = ContasFinanceiras;
+	public void setContasFinanceiras(ContasFinanceiras contasFinanceiras) {
+		ContasFinanceiras = contasFinanceiras;
 	}
+
+	public List<ContasFinanceiras> getListacontafinanceira() {
+		return listacontafinanceira;
+	}
+
+	public void setListacontafinanceira(List<ContasFinanceiras> listacontafinanceira) {
+		this.listacontafinanceira = listacontafinanceira;
+	}
+
 }

@@ -59,7 +59,7 @@
 									<div class="x_title">
 										<h2>
 											Formulário de Contas a Receber <small>Cadastre aqui
-												as contas a receber</small>
+												a baixa dos vencimentos diversos</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -73,12 +73,164 @@
 											<p:messages id="messages" />
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputLabel for="cpf" value="CPF/CNPJ do Cliente *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="cpf"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.contasreceber_cpf}"
+														styleClass="form-control col-md-7 col-xs-12"
+														required="true"></p:inputText>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputLabel for="documento"
+														value="Número do Documento" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="documento"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.documento}"
+														styleClass="form-control col-md-7 col-xs-12"
+														style="width:320px">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach
+															items="#{documentosBean.documentos}"
+															var="doc" cellspacing="0" width="100%">
+															<f:selectItem
+																itemLabel="#{doc.codigo}"
+																itemValue="#{doc.codigo}" />
+														</c:forEach>
+														</h:selectOneMenu>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="data" value="Data de Emissão *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
+														inputStyleClass="form-control col-md-7 col-xs-12"
+														id="data" required="true"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.emissao}" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="data2" value="Data de Vencimento *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
+														inputStyleClass="form-control col-md-7 col-xs-12"
+														id="data2" required="true"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.vencimento}" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="titulo" value="Número do Título" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="titulo"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.contasreceber_codigo}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="valor" value="Valor do Vencimento *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="valor"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.valor}"
+														styleClass="form-control col-md-7 col-xs-12"
+														 required="true" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="data3" value="Data da Baixa do Vencimento *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
+														inputStyleClass="form-control col-md-7 col-xs-12"
+														id="data3" required="true"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.vencimentobaixa}" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="valorbaixa" value="Valor da Baixa do Vencimento *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="valorbaixa"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.valorbaixa}"
+														styleClass="form-control col-md-7 col-xs-12"
+														 required="true" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="desconto" value="Valor do Desconto da Baixa" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="desconto"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.desconto}"
+														styleClass="form-control col-md-7 col-xs-12"
+														 required="true" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="juros" value="Valor do Juros da Baixa" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="juros"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.juros}"
+														styleClass="form-control col-md-7 col-xs-12"
+														 required="true" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputText for="multa" value="Valor da Multa da Baixa" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="multa"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.multa}"
+														styleClass="form-control col-md-7 col-xs-12"
+														 required="true" />
+												</div>											
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:outputLabel for="contafinanceira"
+														value="Conta Financeira *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="contafinanceira"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.contasfinanceiras_codigo}"
+														styleClass="form-control col-md-7 col-xs-12"
+														required="true"
+														style="width:320px">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach
+															items="#{contasFinanceirasBean.listacontafinanceira}"
+															var="contasfinanceiras" cellspacing="0" width="100%">
+															<f:selectItem
+																itemLabel="#{contasfinanceiras.nome}"
+																itemValue="#{contasfinanceiras.codigo}" />
+														</c:forEach>
+														</h:selectOneMenu>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:outputLabel for="estabelecimento"
 														value="Estabelecimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="estabelecimento"
-														value="#{contasReceberBean.contasreceber.estabelecimentos_codigo}"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.contasreceber_estabelecimentos_codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"
 														style="width:320px">
@@ -95,96 +247,11 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="cpf" value="CPF/CNPJ do Cliente *" />
+													<p:outputLabel for="historico" value="Histórico da baixa" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="cpf"
-														value="#{contasReceberBean.contasreceber.cpf}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true"></p:inputText>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="receita" value="Código da Receita" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="receita"
-														value="#{contasReceberBean.contasreceber.receita}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="documento" value="Número do Documento" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="documento"
-														value="#{contasReceberBean.contasreceber.documento}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data" value="Data de Emissão *" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
-														inputStyleClass="form-control col-md-7 col-xs-12"
-														id="data" required="true"
-														value="#{contasReceberBean.contasreceber.emissao}" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="valor" value="Valor *" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="valor" required="true"
-														value="#{contasReceberBean.contasreceber.valor}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="sexo"
-														value="Exporta para a Contabilidade" />
-												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:selectOneRadio id="sexo"
-														value="#{contasReceberBean.contasreceber.contabilidade}">
-														<f:selectItem itemLabel="&nbsp;Sim&nbsp;&nbsp;"
-															itemValue="Sim" />
-														<f:selectItem itemLabel="&nbsp;Não" itemValue="Não" />
-													</h:selectOneRadio>
-												</label>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="resultados" value="Centro de Resultados" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="resultados"
-														value="#{contasReceberBean.contasreceber.centro_resultados}"
-														styleClass="form-control col-md-7 col-xs-12"
-														style="width:320px">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{centroResultadosBean.centroResultadoss}"
-															var="centroresultados" cellspacing="0" width="100%">
-															<f:selectItem
-																itemLabel="#{centroresultados.nome}"
-																itemValue="#{centroresultados.codigo}" />
-														</c:forEach>
-														</h:selectOneMenu>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="descricao" value="Observação" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputTextarea id="descricao"
-														value="#{contasReceberBean.contasreceber.observacao}"
+													<p:inputTextarea id="historico"
+														value="#{baixaDiversosCRBean.baixaDiversosCR.historico}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -195,7 +262,7 @@
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
-														action="#{contasReceberBean.cadastracontasreceber}"
+														action="#{baixaDiversosCRBean.cadastraBaixaDiversosCR()}"
 														onclick="window.location='#Campo'"></p:commandButton>
 												</div>
 											</div>
@@ -208,8 +275,8 @@
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														Tabela de Contas a Receber <small>Exibe as contas
-															cadastradas</small>
+														Tabela de Contas a Receber <small>Exibe as baixas
+															dos vencimentos diversos</small>
 													</h2>
 													<ul class="nav navbar-right panel_toolbox">
 														<li><a class="collapse-link"><i
@@ -225,43 +292,59 @@
 															<tr>
 																<th>Código</th>
 																<th>Editar</th>
-																<th>Estabelecimento</th>
 																<th>CPF/CNPJ do Cliente</th>
-																<th>Cód. Receita</th>
 																<th>Número do Documento</th>
 																<th>Data de emissão</th>
+																<th>Data do vencimento</th>
+																<th>Número do Título</th>
 																<th>Valor</th>
-																<th>Exporta para Contabilidade</th>
-																<th>Centro de Resultados</th>
-																<th>Observação</th>
+																<th>Data da baixa do vencimento</th>
+																<th>Valor da baixa</th>
+																<th>Valor do desconto</th>
+																<th>Valor do juros</th>
+																<th>Valor da multa</th>
+																<th>Conta financeira</th>
+																<th>Estabelecimento</th>
+																<th>Histórico</th>
 
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach items="#{contasReceberBean.contasReceber}"
-																var="cr" cellspacing="0" width="100%">
+															<c:forEach items="#{baixaDiversosCRBean.listaBaixaDiversosCR}"
+																var="baixadiversos" cellspacing="0" width="100%">
 																<tr>
-																	<td>#{cr.codigo}</td>
+																	<td>#{baixadiversos.codigo}</td>
 																	<td class="text-center"><p:commandButton value=""
 																			style="font-size:10px;"
 																			styleClass="fas fa-edit btn btn-primary"
 																			update="@(.form-control) @(.rd) @(.calendar) Campo"
 																			onclick="window.location='#Campo'">
-																			<f:setPropertyActionListener value="#{cr}"
-																				target="#{contasReceberBean.contasreceber}" />
+																			<f:setPropertyActionListener value="#{baixadiversos}"
+																				target="#{baixaDiversosCRBean.baixaDiversosCR}" />
 																		</p:commandButton></td>
-																	<td>#{cr.estabelecimento}</td>
-																	<td>#{cr.cpf}</td>
-																	<td>#{cr.receita}</td>
-																	<td>#{cr.documento}</td>
-																	<td><h:outputText value="#{cr.emissao}">
+																	<td>#{baixadiversos.contasreceber_cpf}</td>
+																	<td>#{baixadiversos.documento}</td>
+																	<td><h:outputText value="#{baixadiversos.emissao}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"
 																				dateStyle="long" />
 																		</h:outputText></td>
-																	<td>#{cr.valor}</td>
-																	<td>#{cr.contabilidade}</td>
-																	<td>#{cr.centroresultados}</td>
-																	<td>#{cr.observacao}</td>
+																	<td><h:outputText value="#{baixadiversos.vencimento}">
+																			<f:convertDateTime pattern="dd/MM/yyyy"
+																				dateStyle="long" />
+																		</h:outputText></td>	
+																	<td>#{baixadiversos.contasreceber_codigo}</td>
+																	<td>#{baixadiversos.valor}</td>
+																	<td><h:outputText value="#{baixadiversos.vencimentobaixa}">
+																			<f:convertDateTime pattern="dd/MM/yyyy"
+																				dateStyle="long" />
+																		</h:outputText></td>	
+																	<td>#{baixadiversos.valorbaixa}</td>
+																	<td>#{baixadiversos.desconto}</td>
+																	<td>#{baixadiversos.juros}</td>
+																	<td>#{baixadiversos.multa}</td>
+																	<td>#{baixadiversos.contasfinanceiras}</td>
+																	<td>#{baixadiversos.estabelecimento}</td>
+																	<td>#{baixadiversos.historico}</td>
 																
 																</tr>
 															</c:forEach>

@@ -101,4 +101,9 @@ public class ContasFinanceiras {
 		this.grupocontasfinanceiras = grupocontasfinanceiras;
 	}
 
+	@Override
+	public String toString() {
+		return nome;
+	}
+
 }
