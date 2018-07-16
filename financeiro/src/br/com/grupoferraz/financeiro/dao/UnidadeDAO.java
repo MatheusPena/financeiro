@@ -25,14 +25,16 @@ public class UnidadeDAO {
 		try {
 			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();	
-			str.append("insert into unidade (nome, empresas_cnpj)" + "values (?,?)");
-			str.append("on duplicate key update nome = ?, empresas_cnpj = ?");
+			str.append("insert into unidade (nome, empresas_cnpj, codigo) values (?,?,?) ");
+			str.append("on duplicate key update nome = ?, empresas_cnpj = ?, codigo = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setString(1, Unidade.getNome());
 			preparedStatement.setString(2, Unidade.getEmpresas_cnpj());
+			preparedStatement.setInt(3, Unidade.getCodigo());
 			
-			preparedStatement.setString(3, Unidade.getNome());
-			preparedStatement.setString(4, Unidade.getEmpresas_cnpj());
+			preparedStatement.setString(4, Unidade.getNome());
+			preparedStatement.setString(5, Unidade.getEmpresas_cnpj());
+			preparedStatement.setInt(6, Unidade.getCodigo());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -53,18 +55,20 @@ public class UnidadeDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select *" + "from unidade";
+			String sql = "select * from unidade";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-
-				Unidade Unidade = new Unidade();
-				Unidade.setNome(rs.getString(1));
-				Unidade.setEmpresas_cnpj(rs.getString(2));
-				String idGrupo = Unidade.getEmpresas_cnpj();
-				Empresa empresa = getEmpresa(idGrupo);
-				Unidade.setEmpresa(empresa);
-				lista.add(Unidade);
+				Unidade unidade = new Unidade();
+				unidade.setNome(rs.getString("nome"));
+				unidade.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
+				unidade.setCodigo(rs.getInt("codigo"));
+				String idEmpresa = unidade.getEmpresas_cnpj();
+				Empresa empresa = getEmpresa(idEmpresa);
+				unidade.setEmpresa(empresa);
+				lista.add(unidade);
+				empresa = null;
+				idEmpresa = null;
 			}
 
 		} catch (SQLException ex) {
@@ -84,19 +88,20 @@ public class UnidadeDAO {
 		ResultSet rs = null;
 
 		try {
-			String sql = "select nome, empresas_cnpj from unidade where empresas_cnpj = ?";
+			String sql = "select nome, empresas_cnpj, codigo from unidade where empresas_cnpj = ?";
 			st = conexao.prepareStatement(sql);
 			st.setString(1, cnpj);
 			rs = st.executeQuery();
 
 			while (rs.next()) {
-				Unidade Unidade = new Unidade();
-				Unidade.setNome(rs.getString("nome"));
-				Unidade.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
-				String idGrupo = Unidade.getEmpresas_cnpj();
+				Unidade unidade = new Unidade();
+				unidade.setNome(rs.getString("nome"));
+				unidade.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
+				unidade.setCodigo(rs.getInt("codigo"));
+				String idGrupo = unidade.getEmpresas_cnpj();
 				Empresa empresa = getEmpresa(idGrupo);
-				Unidade.setEmpresa(empresa);
-				lista.add(Unidade);
+				unidade.setEmpresa(empresa);
+				lista.add(unidade);
 			}
 
 		} catch (SQLException ex) {

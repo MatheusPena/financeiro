@@ -14,9 +14,11 @@ import org.primefaces.event.SelectEvent;
 import br.com.grupoferraz.financeiro.dao.DespesasDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.dao.PagarDAO;
+import br.com.grupoferraz.financeiro.dao.VencimentoPagarDAO;
 import br.com.grupoferraz.financeiro.entity.Despesas;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.Pagar;
+import br.com.grupoferraz.financeiro.entity.VencimentoPagar;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
@@ -27,13 +29,16 @@ public class PagarBean implements Serializable {
 
 	private Pagar contapagar;
 	private List<Pagar> listapagar;
-	//private Estabelecimento estabelecimento;
+	private VencimentoPagar vencimento;
+	private List<VencimentoPagar> vencimentolista;
+	
 
 	public PagarBean() {
 		contapagar = new Pagar();
-		//estabelecimento = new Estabelecimento();
 		getListapagar();
 		listapagar();
+		vencimento = new VencimentoPagar();
+		listarVencimento();
 	}
 
 	public String cadastraPagar() {
@@ -92,17 +97,6 @@ public class PagarBean implements Serializable {
     	}
     	
     }	
-//	public void onItemSelect2(SelectEvent event) {
-//        Estabelecimento obj = (Estabelecimento) event.getObject();
-//        System.out.println("OBJ "+obj);
-//        
-//    	EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
-//    	Estabelecimento estabelecimentos = estabelecimentoDAO .listaestabelecimento(obj.getCodigo());
-//    	if (estabelecimentos != null) {
-//    		contapagar.setEstabelecimento_nome(estabelecimentos.getNome());
-//    	}
-//    	
-//    }
 	
 	public void selecionar() {
 		Estabelecimento estabelecimento = contapagar.getEstabelecimento();
@@ -137,12 +131,48 @@ public class PagarBean implements Serializable {
 		this.listapagar = listapagar;
 	}
 
-//	public Estabelecimento getEstabelecimento() {
-//		return estabelecimento;
-//	}
-//
-//	public void setEstabelecimento(Estabelecimento estabelecimento) {
-//		this.estabelecimento = estabelecimento;
-//	}
+
+
+	public String cadastraVencimento() {
+
+		ConexaoBD.getConexao();
+		VencimentoPagarDAO vencimento = new VencimentoPagarDAO();
+		if (vencimento.insertVencimento(this.vencimento)) {
+
+			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Vencimento de conta cadastrado com sucesso!");
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do vencimento!", "Erro!"));
+
+		}
+		ConexaoBD.fecharConexao();
+		this.vencimento = new VencimentoPagar();
+
+		return "";
+	}
+	
+	
+	public void listarVencimento() {
+		VencimentoPagarDAO vencimento = new VencimentoPagarDAO();
+		setVencimento(vencimento.listVencimento());
+	}
+
+	
+	public List<VencimentoPagar> getVencimento() {
+		return vencimentolista;
+	}
+
+	public void setVencimento(List<VencimentoPagar> vencimento) {
+		this.vencimentolista = vencimento;
+	}
+
+	public VencimentoPagar getVencimentoPagar() {
+		return vencimento;
+	}
+
+	public void setVencimentoPagar(VencimentoPagar vencimento) {
+		this.vencimento = vencimento;
+	}
+
 
 }

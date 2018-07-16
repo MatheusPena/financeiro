@@ -1,6 +1,8 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -31,9 +33,15 @@ public class GrupoEstabelecimentoBean implements Serializable {
 	
 	public void listarUnidade() {
 		String cnpj = grupoestabelecimento.getEmpresa();
+		Connection conexao = ConexaoBD.getConexao();
 		UnidadeDAO UnidadeDAO = new UnidadeDAO();
 		listaunidade = UnidadeDAO.listUnidade(cnpj);
 		System.out.println("CNPJ "+cnpj);
+		try {
+			conexao.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void listarGrupoEstabelecimento()  {
@@ -43,7 +51,7 @@ public class GrupoEstabelecimentoBean implements Serializable {
 
 	public String cadastraGrupoEstabelecimento() {
 
-		ConexaoBD.getConexao();
+		//ConexaoBD.getConexao();
 		GrupoEstabelecimentoDAO grupoestabelecimento = new GrupoEstabelecimentoDAO ();
 		if (grupoestabelecimento.insertGrupoEstabelecimento(this.grupoestabelecimento)) {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -53,7 +61,7 @@ public class GrupoEstabelecimentoBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));
 
 		}
-		ConexaoBD.fecharConexao();
+		//ConexaoBD.fecharConexao();
 
 		return "";
 	}

@@ -83,7 +83,6 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="empresa" value="Empresa: " />
@@ -150,7 +149,7 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-										<div class="form-group">
+											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="emissaocp"
 														value="Data de Emissão da Conta:" />
@@ -162,8 +161,6 @@
 														value="#{pagarBean.pagarconta.emissaocp}" />
 												</div>
 											</div>
-											
-											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="codigo" value="Código da Despesa:" />
@@ -202,18 +199,6 @@
 														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
 											</div>
-										<!--  	<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="emissaodp"
-														value="Data de Emissão da Despesa:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:calendar mask="true" showOn="" pattern="dd/MM/yyyy"
-														inputStyleClass="emissaodp form-control col-md-7 col-xs-12"
-														id="emissaodp" styleClass="calendar emissaodp"
-														value="#{pagarBean.pagarconta.emissaodp}" />
-												</div>
-											</div> -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="emissaodp" value="Data de Emissão da Despesa:" />
@@ -304,102 +289,285 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-											<div class="ln_solid" />
+										</h:form>
+									</div>
+								</div>	
+								<div class="x_panel">
+								<div class="x_title">
+									<h2>
+										Vencimentos <small>Cadastre aqui o vencimento das contas que
+											deverão ser pagas.</small>
+									</h2>
+									<ul class="nav navbar-right panel_toolbox">
+										<li><a class="collapse-link"><i class="fa fa-chevron-up" /></a>		
+										</li>
+									</ul>
+									<div class="clearfix" />
+								</div>
+								<div class="x_content">
+									<h:form id="form"
+										styleClass="form-horizontal form-label-left">
+										<p:messages id="messages" />
+										<!-- Dados iniciais -->
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<h:outputLabel for="vencimento_codigo" value="Código do Vencimento:" />
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p:inputText id="vencimento_codigo"
+													value="#{pagarBean.vencimentoPagar.vencimento_codigo}" 
+													styleClass="form-control col-md-7 col-xs-12"
+													required="true">
+												</p:inputText>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<p:outputLabel for="vencimento"
+													value="Data de Vencimento da Conta:" />
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
+													inputStyleClass="form-control col-md-7 col-xs-12"
+													id="vencimento" required="true"
+													value="#{pagarBean.vencimentoPagar.vencimento}" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<h:outputLabel for="titulo" value="Título:" />
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p:inputText id="titulo"
+													value="#{pagarBean.vencimentoPagar.titulo}"
+													styleClass="form-control col-md-7 col-xs-12"
+													required="true">
+												</p:inputText>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<p:outputLabel for="value" value="Valor:" />
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p:inputText id="value" required="true"
+													value="#{pagarBean.vencimentoPagar.valor}"
+													styleClass="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<p:outputLabel for="desconto" 
+												value="Desconto Previsto:" />
+											</label>									
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="desconto" required="true"
+													value="#{pagarBean.vencimentoPagar.desconto}"
+													styleClass="form-control col-md-7 col-xs-12 valor" />
+												</div>																							
+										</div> 
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<p:outputLabel for="codigoag" value="Código do Agente Pagador" />
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p:inputText id="codigoag" required="true"
+													value="#{pagarBean.vencimentoPagar.codigoag}"
+													styleClass="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<p:outputLabel for="nomeag"
+													value="Nome do Agente Pagador:" />
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p:inputText id="nomeag" required="true"
+													value="#{pagarBean.vencimentoPagar.nomeag}"
+													styleClass="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<p:outputLabel for="lancamento"
+													value="Forma de Lançamento:" />
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p:inputText id="lancamento" required="true"
+													value="#{pagarBean.vencimentoPagar.lancamento}"
+													styleClass="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<h:outputText for="banco" value="Banco" />
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<h:selectOneMenu id="banco"
+													value="#{pagarBean.vencimentoPagar.banco}"
+													style="width:320px"
+													styleClass="form-control col-md-7 col-xs-12">
+													<f:selectItem itemLabel="Selecione" itemValue="" />
+													<f:selectItem itemLabel="BANCO DO BRASIL"
+														itemValue="BANCO DO BRASIL" />
+													<f:selectItem itemLabel="BANCO DO NORDESTE DO BRASIL S.A."
+														itemValue="BANCO DO NORDESTE DO BRASIL S.A." />
+													<f:selectItem itemLabel="CAIXA ECONÔMICA FEDERAL"
+														itemValue="CAIXA ECONÔMICA FEDERAL" />
+													<f:selectItem itemLabel="BRADESCO" itemValue="BRADESCO" />
+													<f:selectItem itemLabel="BANCO ITAU S.A."
+														itemValue="BANCO ITAU S.A." />
+												</h:selectOneMenu>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<h:outputText for="agenciabanco" value="Agência bancária" />
+											</label>
+											<div class="col-md-2 col-sm-6 col-xs-12">
+												<p:inputText id="agenciabanco"
+													value="#{pagarBean.vencimentoPagar.agenciabanco}"
+													styleClass="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<h:outputText for="digagencia" value="Dig. agência" />
+											</label>
+											<div class="col-md-2 col-sm-6 col-xs-12">
+												<p:inputText id="digagencia"
+													value="#{pagarBean.vencimentoPagar.digagencia}"
+													styleClass="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<h:outputText for="conta" value="Conta" />
+											</label>
+											<div class="col-md-2 col-sm-6 col-xs-12">
+												<p:inputText id="conta"
+													value="#{pagarBean.vencimentoPagar.conta}"
+													styleClass="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<h:outputText for="digconta" value="Dig. conta" />
+											</label>
+											<div class="col-md-2 col-sm-6 col-xs-12">
+												<p:inputText id="digconta"
+													value="#{pagarBean.vencimentoPagar.digconta}"
+													styleClass="form-control col-md-7 col-xs-12" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">
+												<p:outputLabel for="agendar"
+													value="Agendar Para:" />
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
+													inputStyleClass="form-control col-md-7 col-xs-12"
+													id="agendar" required="true"
+													value="#{pagarBean.vencimentoPagar.agendar}" />
+											</div>
+										</div>	
+										<div class="ln_solid" />
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<p:commandButton value="Resetar" class="btn btn-primary"
 														type="reset"></p:commandButton>
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
-														action="#{pagarBean.cadastraPagar()}"></p:commandButton>
+														action="#{pagarBean.cadastraPagar()}">
+													</p:commandButton>
 												</div>
+											</div>																	
+									</h:form>
+								</div>	
+							</div>		
+							<h:form>
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class="x_panel">
+											<div class="x_title">
+												<h2>
+													Tabela de Contas à Pagar <small>Exibe as contas
+														cadastradas</small>
+												</h2>
+												<ul class="nav navbar-right panel_toolbox">
+													<li><a class="collapse-link"><i
+															class="fa fa-chevron-up" /></a></li>
+												</ul>
+												<div class="clearfix" />
 											</div>
-										</h:form>
-									</div>
-								</div>
-								<h:form>
-									<div class="row">
-										<div class="col-md-12 col-sm-12 col-xs-12">
-											<div class="x_panel">
-												<div class="x_title">
-													<h2>
-														Tabela de Contas à Pagar <small>Exibe as contas
-															cadastradas</small>
-													</h2>
-													<ul class="nav navbar-right panel_toolbox">
-														<li><a class="collapse-link"><i
-																class="fa fa-chevron-up" /></a></li>
-													</ul>
-													<div class="clearfix" />
-												</div>
-												<div class="x_content">
-													<table id="datatable-responsive" cellspacing="0"
-														width="100%"
-														class="table table-striped table-bordered dt-responsive nowrap ">
-														<thead>
+											<div class="x_content">
+												<table id="datatable-responsive" cellspacing="0"
+													width="100%"
+													class="table table-striped table-bordered dt-responsive nowrap ">
+													<thead>
+														<tr>
+															<th>Cod. Conta</th>
+															<th class="text-center">Editar</th>
+															<th>Nome da Conta</th>
+															<th>Cod. Estabelecimento</th>
+															<th>Nome do Estabelecimento</th>
+															<th>CPF/CNPJ</th>
+															<th>Cod. Despesa</th>
+															<th>Nome da Despesa</th>
+															<th>Emissão da Conta</th>
+															<th>Valor</th>
+															<th>Emissão da Despesa</th>
+															<th>Centro de Resultados</th>
+															<th>Tipo de Documento</th>
+															<th>Observação</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach items="#{pagarBean.listapagar}"
+															var="pagarconta" cellspacing="0" width="100%">
 															<tr>
-																<th>Cod. Conta</th>
-																<th class="text-center">Editar</th>
-																<th>Nome da Conta</th>
-																<th>Cod. Estabelecimento</th>
-																<th>Nome do Estabelecimento</th>
-																<th>CPF/CNPJ</th>
-																<th>Cod. Despesa</th>
-																<th>Nome da Despesa</th>
-																<th>Emissão da Conta</th>
-																<th>Valor</th>
-																<th>Emissão da Despesa</th>
-																<th>Centro de Resultados</th>
-																<th>Tipo de Documento</th>
-																<th>Observação</th>
+																<td>#{pagarconta.codigocp}</td>
+																<td><p:commandButton value=""
+																		style="font-size:10px; "
+																		styleClass="fas fa-edit btn btn-primary"
+																		onclick="window.location='#demo-form2'"
+																		update="@(.form-control) @(.autocomplete)">
+																		<f:setPropertyActionListener value="#{pagarconta}"
+																			target="#{pagarBean.pagarconta}" />
+																	</p:commandButton></td>
+																<td>#{pagarconta.nomecp}</td>
+																<td>#{pagarconta.estabelecimento_codigo}</td>
+																<td>#{pagarconta.estabelecimento_nome}</td>
+																<td>#{pagarconta.cpf}</td>
+																<td>#{pagarconta.codigo}</td>
+																<td>#{pagarconta.nomedp}</td>
+																<td>#{pagarconta.emissaocp}</td>
+																<td>#{pagarconta.valor}</td>
+																<td>#{pagarconta.emissaodp}</td>
+																<td>#{pagarconta.centroresultados.nome}</td>
+																<td>#{pagarconta.documento.nome}</td>
+																<!--	<td>#{pagarconta.centroresultados_codigo}</td>
+																<td>#{pagarconta.tipodocumento}</td> -->
+																<td>#{pagarconta.observacao}</td>
 															</tr>
-														</thead>
-														<tbody>
-															<c:forEach items="#{pagarBean.listapagar}"
-																var="pagarconta" cellspacing="0" width="100%">
-																<tr>
-																	<td>#{pagarconta.codigocp}</td>
-																	<td><p:commandButton value=""
-																			style="font-size:10px; "
-																			styleClass="fas fa-edit btn btn-primary"
-																			onclick="window.location='#demo-form2'"
-																			update="@(.form-control) @(.autocomplete)">
-																			<f:setPropertyActionListener value="#{pagarconta}"
-																				target="#{pagarBean.pagarconta}" />
-																		</p:commandButton></td>
-																	<td>#{pagarconta.nomecp}</td>
-																	<td>#{pagarconta.estabelecimento_codigo}</td>
-																	<td>#{pagarconta.estabelecimento_nome}</td>
-																	<td>#{pagarconta.cpf}</td>
-																	<td>#{pagarconta.codigo}</td>
-																	<td>#{pagarconta.nomedp}</td>
-																	<td>#{pagarconta.emissaocp}</td>
-																	<td>#{pagarconta.valor}</td>
-																	<td>#{pagarconta.emissaodp}</td>
-																	<td>#{pagarconta.centroresultados.nome}</td>
-																	<td>#{pagarconta.documento.nome}</td>
-																	<!--	<td>#{pagarconta.centroresultados_codigo}</td>
-																	<td>#{pagarconta.tipodocumento}</td> -->
-																	<td>#{pagarconta.observacao}</td>
-																</tr>
-															</c:forEach>
-														</tbody>
-													</table>
-												</div>
+														</c:forEach>
+													</tbody>
+												</table>
 											</div>
 										</div>
 									</div>
-								</h:form>
-							</div>
+								</div>
+							</h:form>
 						</div>
 					</div>
 				</div>
-				<!-- /page content -->
-			</ui:define>
-		</ui:composition>
+			</div>
+			<!-- /page content -->
+		</ui:define>
+	</ui:composition>
 
 		<!-- jQuery <script src="resources/jquery/dist/jquery.min.js"></script>-->
-
 		<!-- Bootstrap -->
 		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
 		<!-- FastClick -->
@@ -410,25 +578,17 @@
 		<script src="resources/iCheck/icheck.min.js"></script>
 		<!-- Datatables -->
 		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script
-			src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script
-			src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script
-			src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script
-			src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 		<script src="resources/jszip/dist/jszip.min.js"></script>
 		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
 		<script src="resources/pdfmake/build/vfs_fonts.js"></script>

@@ -8,33 +8,33 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.grupoferraz.financeiro.entity.Unidade;
 import br.com.grupoferraz.financeiro.dao.UnidadeDAO;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.entity.Unidade;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
 public class UnidadeBean implements Serializable {
-	private Unidade Unidade;
+	private Unidade unidade;
 	private List<Unidade> listaUnidade;
+	private UnidadeDAO unidadeDAO;
 
 	public UnidadeBean() {
-		Unidade = new Unidade();
+		unidade = new Unidade();
 		listarUnidade();
 	}
 
 	private void listarUnidade() {
-		UnidadeDAO UnidadeDAO = new UnidadeDAO();
-		listaUnidade = UnidadeDAO.listUnidade();
-
+		unidadeDAO = new UnidadeDAO();
+		listaUnidade = unidadeDAO.listUnidade();
+		
 	}
 
 	public String cadastraUnidade() {
 
-		ConexaoBD.getConexao();
-		UnidadeDAO Unidade = new UnidadeDAO();
-		if (Unidade.insertUnidade(this.Unidade)) {
+		//Connection conexao = ConexaoBD.getConexao();
+		UnidadeDAO unidadeDAO = new UnidadeDAO();
+		if (unidadeDAO.insertUnidade(this.unidade)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"Unidade cadastrada com sucesso!", "Sucesso!"));
 		} else {
@@ -42,17 +42,16 @@ public class UnidadeBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da unidade!", "Erro!"));
 
 		}
-		ConexaoBD.fecharConexao();
 
 		return "";
 	}
 
 	public Unidade getUnidade() {
-		return Unidade;
+		return unidade;
 	}
 
-	public void setUnidade(Unidade Unidade) {
-		this.Unidade = Unidade;
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
 	}
 
 	public List<Unidade> getListaUnidade() {
