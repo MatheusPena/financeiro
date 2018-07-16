@@ -131,7 +131,7 @@ public class BaixaDiversosCRDAO {
 				BaixaDiversosCR.setVencimento(rs.getDate("vencimento"));
 				BaixaDiversosCR.setContasreceber_codigo(rs.getInt("contasreceber_codigo"));
 				BaixaDiversosCR.setValor(rs.getFloat("valor"));
-				BaixaDiversosCR.setVencimento(rs.getDate("vencimentobaixa"));
+				BaixaDiversosCR.setVencimentobaixa(rs.getDate("vencimentobaixa"));
 				BaixaDiversosCR.setValorbaixa(rs.getFloat("valorbaixa"));
 				BaixaDiversosCR.setDesconto(rs.getFloat("desconto"));
 				BaixaDiversosCR.setJuros(rs.getFloat("juros"));
