@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,36 +23,18 @@ public class DespesasDAO {
 		try {
 			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();
-			str.append("insert into despesas (codigo, nome,"
-					+ "grupodespesas_codigo,"
-					+ "emissao, validade ) values (?,?,?,?,?) ");
-			str.append("on duplicate key update codigo = ?, nome = ?, "
-					+ "grupodespesas_codigo = ?,"
-					+ "emissao = ?, validade = ?");
+			str.append("insert into despesas (codigo, nome, grupodespesas_codigo) values (?,?,?)");
+			str.append("on duplicate key update codigo = ?, nome = ?, grupodespesas_codigo = ?");
+	
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, despesa.getCodigo());
 			preparedStatement.setString(2, despesa.getNome());
 			preparedStatement.setInt(3, despesa.getGrupodespesas_codigo());
-			Date dataEmissao = despesa.getEmissao();
-			long t = 0;
-			if (dataEmissao != null ) {
-				t = dataEmissao.getTime();	
-			}
-			preparedStatement.setDate(4, new java.sql.Date(t));
 			
-			Date dataValidade = despesa.getValidade();
-			long j = 0;
-			if (dataValidade != null ) {
-				j = dataValidade.getTime();	
-			}
-			preparedStatement.setDate(5, new java.sql.Date(j));
-
-			preparedStatement.setInt(6, despesa.getCodigo());
-			preparedStatement.setString(7, despesa.getNome());
-			preparedStatement.setInt(8, despesa.getGrupodespesas_codigo());
-			preparedStatement.setDate(9, new java.sql.Date(t));
-			preparedStatement.setDate(10, new java.sql.Date(j));
-
+			preparedStatement.setInt(4, despesa.getCodigo());
+			preparedStatement.setString(5, despesa.getNome());
+			preparedStatement.setInt(6, despesa.getGrupodespesas_codigo());
+			
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -74,7 +55,7 @@ public class DespesasDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from despesas";
+			String sql = "select codigo, nome, grupodespesas_codigo from despesas";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -85,7 +66,7 @@ public class DespesasDAO {
 				despesa.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
 				int idGrupo = despesa.getGrupodespesas_codigo();		
 				GrupoDespesas grupoDespesas = getGrupoDespesas(idGrupo);
-				despesa.setGrupodespesas(grupoDespesas);
+				despesa.setGrupodespesas(grupoDespesas);		
 				lista.add(despesa);
 			}
 
@@ -97,15 +78,16 @@ public class DespesasDAO {
 		}
 		return lista;
 	}
-////////////////////////////LISTA DO AUTOCOMPLETE DA DESPESA /////////////////////////
+	
+	//Lista o auto complete de despesas na página do conta a pagar 
 	public List<Integer> listadespesa(String codigo) {
 
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		String sql = "select codigo, nome, grupodespesas_codigo, "
-				+ "emissao, validade from despesas where "
+		String sql = "select codigo, nome, grupodespesas_codigo "
+				+ " from despesas where "
 				+ "cast(codigo as char) like '%"+codigo+"%'";
 		
 
@@ -131,6 +113,43 @@ public class DespesasDAO {
 		return lista;
 	}
 
+	//Lista o auto complete de despesas na página do Plano de Contas 
+	public List<Despesas> listanomedespesa(String nome) {
+
+		ArrayList<Despesas> lista = new ArrayList<>();
+
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		String sql = "select codigo, nome, grupodespesas_codigo from despesas where "
+				+ "nome like '%"+nome+"%'";
+		
+
+		try {
+
+			preparedStatement = conexao.prepareStatement(sql);
+			
+			rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+
+				Despesas despesa = new Despesas();
+				despesa.setCodigo(rs.getInt("codigo"));
+				despesa.setNome(rs.getString("nome"));
+				despesa.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
+				lista.add(despesa);
+			}
+
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		return lista;
+	}
+	
+	
+	
 	public Despesas listadespesa(Integer codigo) {
 
 		ArrayList<Despesas> lista = new ArrayList<Despesas>();
@@ -138,7 +157,7 @@ public class DespesasDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		String sql = "select codigo, nome, grupodespesas_codigo, "
-				+ "emissao, validade from despesas where "
+				+ " from despesas where "
 				+ "codigo = ?";
 		
 
@@ -158,8 +177,7 @@ public class DespesasDAO {
 				int idGrupo = despesa.getGrupodespesas_codigo();		
 				GrupoDespesas grupoDespesas = getGrupoDespesas(idGrupo);
 				despesa.setGrupodespesas(grupoDespesas);
-				despesa.setEmissao(rs.getDate("emissao"));
-				despesa.setValidade(rs.getDate("validade"));
+
 				lista.add(despesa);
 			}
 
