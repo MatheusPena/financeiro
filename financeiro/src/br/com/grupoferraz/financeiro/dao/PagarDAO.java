@@ -30,10 +30,10 @@ public class PagarDAO {
 					+ "centroresultados_codigo, documento_codigo, emissaodp, nomecp, "
 					+ "estabelecimento_nome, nomedp, observacao, empresa_cnpj, validadedp, contafinanceira_codigo ) "
 					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
-			str.append("on duplicate key update codigocp = ?, estabelecimento_codigo = ?, cpf = ?,"
-					+ "codigo = ?, emissaocp = ?, valor = ?, centroresultados_codigo = ?,"
+			str.append("on duplicate key update codigocp = ?, estabelecimento_codigo = ?, cpf = ?, "
+					+ "codigo = ?, emissaocp = ?, valor = ?, centroresultados_codigo = ?, "
 					+ "documento_codigo = ?, emissaodp = ?, nomecp = ?, estabelecimento_nome = ?, "
-					+ " nomedp = ?, observacao = ?, empresa_cnpj = ?, validadedp = ?, contafinanceira_codigo = ? ");
+					+ "nomedp = ?, observacao = ?, empresa_cnpj = ?, validadedp = ?, contafinanceira_codigo = ? ");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, pagarconta.getCodigocp());
 			preparedStatement.setInt(2, pagarconta.getEstabelecimento_codigo());

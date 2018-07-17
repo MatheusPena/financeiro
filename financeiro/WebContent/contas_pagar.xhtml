@@ -41,8 +41,10 @@
 				<div class="right_col">
 					<div class="">
 						<div class="clearfix" />
+						
 						<div class="row">
 							<div class="col-md-12 col-sm-12 col-xs-12">
+							<h:form id="Campo" styleClass="form-horizontal form-label-left"> 
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
@@ -57,8 +59,8 @@
 									</div>
 									<div class="x_content">
 										<br />
-										<h:form id="Campo"
-											styleClass="form-horizontal form-label-left">
+										<div id="demo-form2"
+											class="form-horizontal form-label-left">
 											<p:messages id="messages" />
 											<!-- Dados iniciais -->
 											<div class="form-group">
@@ -69,7 +71,7 @@
 													<p:inputText id="codigocp"
 														value="#{pagarBean.pagarconta.codigocp}"
 														styleClass="form-control col-md-7 col-xs-12"
-														required="true">
+														required="false">
 													</p:inputText>
 												</div>
 											</div>
@@ -78,7 +80,7 @@
 													<p:outputLabel for="nomecp" value="Nome da Conta:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="nomecp" required="true"
+													<p:inputText id="nomecp" required="false"
 														value="#{pagarBean.pagarconta.nomecp}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
@@ -89,7 +91,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:outputPanel styleClass="combo">
-														<h:selectOneMenu id="empresa" required="true"
+														<h:selectOneMenu id="empresa" required="false"
 															converter="omnifaces.SelectItemsConverter"
 															value="#{pagarBean.pagarconta.empresa_cnpj}"
 															style="width:320px"
@@ -103,7 +105,7 @@
 														</h:selectOneMenu>
 													</p:outputPanel>
 												</div>
-											</div>
+											</div> 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="estabelecimento_nome"
@@ -134,7 +136,7 @@
 													value="Código do Estabelecimento:" />
 												</label>									
 													<div class="col-md-6 col-sm-6 col-xs-12">
-														<p:inputText id="estabelecimento_codigo" required="true"
+														<p:inputText id="estabelecimento_codigo" required="false"
 														value="#{pagarBean.pagarconta.estabelecimento_codigo}"
 														styleClass="form-control col-md-7 col-xs-12 valor" />
 													</div>																							
@@ -144,7 +146,7 @@
 													<p:outputLabel for="cpf" value="CPF/CNPJ do Fornecedor:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="cpf" required="true"
+													<p:inputText id="cpf" required="false"
 														value="#{pagarBean.pagarconta.cpf}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
@@ -157,7 +159,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" showOn="" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
-														id="emissaocp" required="true"
+														id="emissaocp" required="false"
 														value="#{pagarBean.pagarconta.emissaocp}" />
 												</div>
 											</div>
@@ -184,7 +186,7 @@
 													<p:outputLabel for="nomedp" value="Nome da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="nomedp" required="true"
+													<p:inputText id="nomedp" required="false"
 														value="#{pagarBean.pagarconta.nomedp}"
 														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
@@ -194,7 +196,7 @@
 													<p:outputLabel for="valor" value="Valor da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="valor" required="true"
+													<p:inputText id="valor" required="false"
 														value="#{pagarBean.pagarconta.valor}"
 														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
@@ -206,7 +208,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
-														id="emissaodp" required="true" styleClass="calendar"
+														id="emissaodp" required="false" styleClass="calendar"
 														value="#{pagarBean.pagarconta.emissaodp}" />
 												</div>
 											</div>
@@ -215,7 +217,7 @@
 													<p:outputLabel for="validadecp" value="Data de Validade da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:calendar mask="true" pattern="dd/MM/yyyy"
+													<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="validadecp" styleClass="calendar"
 														value="#{pagarBean.pagarconta.validadedp}" />
@@ -227,27 +229,27 @@
 														value="Conta Financeira:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="contafinanceira" required="true"
+													<h:selectOneMenu id="contafinanceira" required="false"
 														value="#{pagarBean.pagarconta.contafinanceira_codigo}" 
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 
 														<f:selectItems
-															value="#{contasFinanceirasBean.contafinanceira}"
+															value="#{contasFinanceirasBean.listacontafinanceira}"
 															var="contasFinanceiras"
 															itemValue="#{contasFinanceiras.codigo}"
 															itemLabel="#{contasFinanceiras.nome}" />
 													</h:selectOneMenu>
 												</div>
-											</div>
-											<div class="form-group">
+											</div> 
+												<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="centroresultados"
 														value="Centro de Resultado:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="centroresultados" required="true"
+													<h:selectOneMenu id="centroresultados" required="false"
 														value="#{pagarBean.pagarconta.centroresultados_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
@@ -260,14 +262,14 @@
 															itemLabel="#{centroResultados.nome}" />
 													</h:selectOneMenu>
 												</div>
-											</div>
-											<div class="form-group">
+											</div> 
+										  	<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="documento_codigo"
 														value="Tipo de Documento:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="documento_codigo" required="true"
+													<h:selectOneMenu id="documento_codigo" required="false"
 														value="#{pagarBean.pagarconta.documento_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
@@ -289,7 +291,7 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-										</h:form>
+										</div>
 									</div>
 								</div>	
 								<div class="x_panel">
@@ -305,9 +307,9 @@
 									<div class="clearfix" />
 								</div>
 								<div class="x_content">
-									<h:form id="form"
-										styleClass="form-horizontal form-label-left">
-										<p:messages id="messages" />
+									<div id="form"
+										class="form-horizontal form-label-left">
+									
 										<!-- Dados iniciais -->
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -317,7 +319,7 @@
 												<p:inputText id="vencimento_codigo"
 													value="#{pagarBean.vencimentoPagar.vencimento_codigo}" 
 													styleClass="form-control col-md-7 col-xs-12"
-													required="true">
+													required="false">
 												</p:inputText>
 											</div>
 										</div>
@@ -329,7 +331,7 @@
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 													inputStyleClass="form-control col-md-7 col-xs-12"
-													id="vencimento" required="true"
+													id="vencimento" required="false"
 													value="#{pagarBean.vencimentoPagar.vencimento}" />
 											</div>
 										</div>
@@ -341,16 +343,16 @@
 												<p:inputText id="titulo"
 													value="#{pagarBean.vencimentoPagar.titulo}"
 													styleClass="form-control col-md-7 col-xs-12"
-													required="true">
+													required="false">
 												</p:inputText>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">
-												<p:outputLabel for="value" value="Valor:" />
+												<p:outputLabel for="value" value="Valor da Conta:" />
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p:inputText id="value" required="true"
+												<p:inputText id="value" required="false"
 													value="#{pagarBean.vencimentoPagar.valor}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
@@ -361,7 +363,7 @@
 												value="Desconto Previsto:" />
 											</label>									
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="desconto" required="true"
+													<p:inputText id="desconto" required="false"
 													value="#{pagarBean.vencimentoPagar.desconto}"
 													styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>																							
@@ -371,7 +373,7 @@
 												<p:outputLabel for="codigoag" value="Código do Agente Pagador" />
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p:inputText id="codigoag" required="true"
+												<p:inputText id="codigoag" required="false"
 													value="#{pagarBean.vencimentoPagar.codigoag}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
@@ -382,7 +384,7 @@
 													value="Nome do Agente Pagador:" />
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p:inputText id="nomeag" required="true"
+												<p:inputText id="nomeag" required="false"
 													value="#{pagarBean.vencimentoPagar.nomeag}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
@@ -393,12 +395,12 @@
 													value="Forma de Lançamento:" />
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p:inputText id="lancamento" required="true"
+												<p:inputText id="lancamento" required="false"
 													value="#{pagarBean.vencimentoPagar.lancamento}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
 										</div>
-										<div class="form-group">
+									    <div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">
 												<h:outputText for="banco" value="Banco" />
 											</label>
@@ -419,7 +421,7 @@
 														itemValue="BANCO ITAU S.A." />
 												</h:selectOneMenu>
 											</div>
-										</div>
+										</div> 
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">
 												<h:outputText for="agenciabanco" value="Agência bancária" />
@@ -468,7 +470,7 @@
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 													inputStyleClass="form-control col-md-7 col-xs-12"
-													id="agendar" required="true"
+													id="agendar" required="false"
 													value="#{pagarBean.vencimentoPagar.agendar}" />
 											</div>
 										</div>	
@@ -477,15 +479,16 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<p:commandButton value="Resetar" class="btn btn-primary"
 														type="reset"></p:commandButton>
-													<p:commandButton value="Cadastrar" type="submit"
-														update="messages" class="btn btn-success"
+													<p:commandButton value="cadastrar"
+														update="messages @(.form_control) Campo" styleClass="btn btn-success"
 														action="#{pagarBean.cadastraPagar()}">
 													</p:commandButton>
 												</div>
 											</div>																	
-									</h:form>
+									</div>
 								</div>	
-							</div>		
+							</div>	
+							</h:form>
 							<h:form>
 								<div class="row">
 									<div class="col-md-12 col-sm-12 col-xs-12">
@@ -547,9 +550,80 @@
 																<td>#{pagarconta.emissaodp}</td>
 																<td>#{pagarconta.centroresultados.nome}</td>
 																<td>#{pagarconta.documento.nome}</td>
-																<!--	<td>#{pagarconta.centroresultados_codigo}</td>
-																<td>#{pagarconta.tipodocumento}</td> -->
 																<td>#{pagarconta.observacao}</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</h:form>
+							<h:form>
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class="x_panel">
+											<div class="x_title">
+												<h2>
+													Tabela de Vencimentos <small>Exibe as contas
+														cadastradas</small>
+												</h2>
+												<ul class="nav navbar-right panel_toolbox">
+													<li><a class="collapse-link"><i
+															class="fa fa-chevron-up" /></a></li>
+												</ul>
+												<div class="clearfix" />
+											</div>
+											<div class="x_content">
+												<table id="datatable" cellspacing="0"
+													width="100%"
+													class="table table-striped table-bordered dt-responsive nowrap ">
+													<thead>
+														<tr>
+															<th>Cod. Vencimento</th>
+															<th class="text-center">Editar</th>
+															<th>Data de Vencimento</th>
+															<th>Título</th>
+															<th>Valor da Conta</th>
+															<th>Desconto Previsto</th>
+															<th>Cod. Agente Pagador</th>
+															<th>Nome do Agente Pagador</th>
+															<th>Forma de Lançamento</th>
+															<th>Banco</th>
+															<th>Agência Bancária</th>
+															<th>Dig. Agência</th>
+															<th>Conta</th>
+															<th>Dig. Conta</th>
+															<th>Agendar Para</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach items="#{pagarBean.vencimentolista}"
+															var="vencimento" cellspacing="0" width="100%">
+															<tr>
+																<td>#{vencimento.vencimento_codigo}</td>
+																<td><p:commandButton value=""
+																		style="font-size:10px; "
+																		styleClass="fas fa-edit btn btn-primary"
+																		onclick="window.location='#demo-form2'"
+																		update="@(.form-control) @(.autocomplete)">
+																		<f:setPropertyActionListener value="#{vencimento}"
+																			target="#{pagarBean.vencimentoPagar}" />
+																	</p:commandButton></td>
+																<td>#{vencimento.vencimento}</td>
+																<td>#{vencimento.titulo}</td>
+																<td>#{vencimento.valor}</td>
+																<td>#{vencimento.desconto}</td>
+																<td>#{vencimento.codigoag}</td>
+																<td>#{vencimento.nomeag}</td>
+																<td>#{vencimento.lancamento}</td>
+																<td>#{vencimento.banco}</td>
+																<td>#{vencimento.agenciabanco}</td>
+																<td>#{vencimento.digagencia}</td>
+																<td>#{vencimento.conta}</td>
+																<td>#{pagarconta.digconta}</td>
+																<td>#{vencimento.agendar}</td>															
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -561,6 +635,7 @@
 							</h:form>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 			<!-- /page content -->

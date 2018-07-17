@@ -45,26 +45,28 @@ public class VencimentoPagarDAO {
 			preparedStatement.setString(10, vencimento.getAgenciabanco());
 			preparedStatement.setString(11, vencimento.getDigagencia());
 			preparedStatement.setString(12, vencimento.getConta());
+			preparedStatement.setString(13, vencimento.getDigconta());
 			Date agendar = vencimento.getAgendar();
 			long j = 0;
 			if (agendar != null ) {
 				j = agendar.getTime();	
 			}
-			preparedStatement.setDate(13, new java.sql.Date(j));
+			preparedStatement.setDate(14, new java.sql.Date(j));
 			
-			preparedStatement.setInt(14, vencimento.getVencimento_codigo());
-			preparedStatement.setDate(15, new java.sql.Date(t));
-			preparedStatement.setString(16, vencimento.getTitulo());
-			preparedStatement.setString(17, vencimento.getValor());
-			preparedStatement.setString(18, vencimento.getDesconto());
-			preparedStatement.setString(19, vencimento.getCodigoag());
-			preparedStatement.setString(20, vencimento.getNomeag());
-			preparedStatement.setString(21, vencimento.getLancamento());
-			preparedStatement.setString(22, vencimento.getBanco());
-			preparedStatement.setString(23, vencimento.getAgenciabanco());
-			preparedStatement.setString(24, vencimento.getDigagencia());
-			preparedStatement.setString(25, vencimento.getConta());
-			preparedStatement.setDate(26, new java.sql.Date(j));
+			preparedStatement.setInt(15, vencimento.getVencimento_codigo());
+			preparedStatement.setDate(16, new java.sql.Date(t));
+			preparedStatement.setString(17, vencimento.getTitulo());
+			preparedStatement.setString(18, vencimento.getValor());
+			preparedStatement.setString(19, vencimento.getDesconto());
+			preparedStatement.setString(20, vencimento.getCodigoag());
+			preparedStatement.setString(21, vencimento.getNomeag());
+			preparedStatement.setString(22, vencimento.getLancamento());
+			preparedStatement.setString(23, vencimento.getBanco());
+			preparedStatement.setString(24, vencimento.getAgenciabanco());
+			preparedStatement.setString(25, vencimento.getDigagencia());
+			preparedStatement.setString(26, vencimento.getConta());
+			preparedStatement.setString(27, vencimento.getDigconta());
+			preparedStatement.setDate(28, new java.sql.Date(j));
 
 			preparedStatement.execute();
 
@@ -105,6 +107,7 @@ public class VencimentoPagarDAO {
 				vencimento.setAgenciabanco(rs.getString("agenciabanco"));
 				vencimento.setDigagencia(rs.getString("digagencia"));
 				vencimento.setConta(rs.getString("conta"));
+				vencimento.setDigconta(rs.getString("digconta"));
 				vencimento.setAgendar(rs.getDate("agendar"));
 
 				lista.add(vencimento);

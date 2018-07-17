@@ -43,18 +43,20 @@ public class PagarBean implements Serializable {
 
 	public String cadastraPagar() {
 
-		ConexaoBD.getConexao();
+		///ConexaoBD.getConexao();
+		
 		PagarDAO pagarconta = new PagarDAO ();
 		if (pagarconta.insertContasPagar(contapagar)) {
 			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Conta cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da conta!", "Erro!"));
-
+		return "";
 		}
-		ConexaoBD.fecharConexao();
+		//ConexaoBD.fecharConexao();
 		contapagar = new Pagar();
-
+		
+		cadastraVencimento();
 		return "";
 	}
 	
@@ -96,7 +98,9 @@ public class PagarBean implements Serializable {
     		contapagar.setNomedp(despesa.getNome());
     	}
     	
-    }	
+    }
+	
+	
 	
 	public void selecionar() {
 		Estabelecimento estabelecimento = contapagar.getEstabelecimento();
@@ -154,17 +158,10 @@ public class PagarBean implements Serializable {
 	
 	public void listarVencimento() {
 		VencimentoPagarDAO vencimento = new VencimentoPagarDAO();
-		setVencimento(vencimento.listVencimento());
+		setVencimentolista(vencimento.listVencimento());
 	}
 
 	
-	public List<VencimentoPagar> getVencimento() {
-		return vencimentolista;
-	}
-
-	public void setVencimento(List<VencimentoPagar> vencimento) {
-		this.vencimentolista = vencimento;
-	}
 
 	public VencimentoPagar getVencimentoPagar() {
 		return vencimento;
@@ -172,6 +169,14 @@ public class PagarBean implements Serializable {
 
 	public void setVencimentoPagar(VencimentoPagar vencimento) {
 		this.vencimento = vencimento;
+	}
+
+	public List<VencimentoPagar> getVencimentolista() {
+		return vencimentolista;
+	}
+
+	public void setVencimentolista(List<VencimentoPagar> vencimentolista) {
+		this.vencimentolista = vencimentolista;
 	}
 
 

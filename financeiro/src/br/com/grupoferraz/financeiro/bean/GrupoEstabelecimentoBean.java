@@ -1,8 +1,6 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -14,7 +12,6 @@ import br.com.grupoferraz.financeiro.dao.GrupoEstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.dao.UnidadeDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoEstabelecimento;
 import br.com.grupoferraz.financeiro.entity.Unidade;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -33,15 +30,11 @@ public class GrupoEstabelecimentoBean implements Serializable {
 	
 	public void listarUnidade() {
 		String cnpj = grupoestabelecimento.getEmpresa();
-		Connection conexao = ConexaoBD.getConexao();
+		
 		UnidadeDAO UnidadeDAO = new UnidadeDAO();
 		listaunidade = UnidadeDAO.listUnidade(cnpj);
 		System.out.println("CNPJ "+cnpj);
-		try {
-			conexao.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	private void listarGrupoEstabelecimento()  {
