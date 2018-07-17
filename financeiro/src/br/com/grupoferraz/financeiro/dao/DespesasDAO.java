@@ -74,8 +74,7 @@ public class DespesasDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select codigo, nome, grupodespesas_codigo, "
-					+ "emissao, validade from despesas";
+			String sql = "select * from despesas";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -86,9 +85,7 @@ public class DespesasDAO {
 				despesa.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
 				int idGrupo = despesa.getGrupodespesas_codigo();		
 				GrupoDespesas grupoDespesas = getGrupoDespesas(idGrupo);
-				despesa.setGrupodespesas(grupoDespesas);		
-				despesa.setEmissao(rs.getDate("emissao"));
-				despesa.setValidade(rs.getDate("validade"));
+				despesa.setGrupodespesas(grupoDespesas);
 				lista.add(despesa);
 			}
 
