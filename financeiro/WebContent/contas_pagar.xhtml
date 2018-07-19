@@ -101,7 +101,7 @@
 															<f:selectItems value="#{empresaBean.empresas}"
 																var="empresa" itemValue="#{empresa.cnpj}"
 																itemLabel="#{empresa.nome}" />
-															<f:ajax render="Campo:estabelecimento" execute="@this" />
+															<f:ajax render="Campo:estabelecimento_nome" execute="@this" />
 														</h:selectOneMenu>
 													</p:outputPanel>
 												</div>
@@ -123,7 +123,7 @@
 															itemLabel="#{est.nome}">
 															
 															<p:ajax event="itemSelect" resetValues="true"
-																listener="#{pagarBean.selecionar}"
+																listener="#{pagarBean.selecionar()}"
 																update="@(.emissaodp) @(.valor)" process="@this" />
 														</p:autoComplete>
 																												
