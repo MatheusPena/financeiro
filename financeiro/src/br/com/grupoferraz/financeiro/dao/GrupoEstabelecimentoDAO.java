@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.com.grupoferraz.financeiro.entity.Empresa;
 import br.com.grupoferraz.financeiro.entity.GrupoEstabelecimento;
+import br.com.grupoferraz.financeiro.entity.Unidade;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class GrupoEstabelecimentoDAO {
@@ -25,20 +27,20 @@ public class GrupoEstabelecimentoDAO {
 			// st = con.createStatement();
 
 			StringBuilder str = new StringBuilder();
-			str.append("insert into grupoestabelecimento (codigo, nomegrupoestabelecimento, unidade_nome, empresa)"
+			str.append("insert into grupoestabelecimento (codigo, nomegrupoestabelecimento, unidade_codigo, empresa)"
 					+ "values (?,?,?,?)");
-			str.append("on duplicate key update codigo = ?, nomegrupoestabelecimento = ?, unidade_nome = ?, empresa = ?");
+			str.append("on duplicate key update codigo = ?, nomegrupoestabelecimento = ?, unidade_codigo = ?, empresa = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupoestabelecimento.getCodigo());
 			preparedStatement.setString(2, grupoestabelecimento.getNomegrupoestabelecimento());
-			preparedStatement.setString(3, grupoestabelecimento.getUnidade_nome());
+			preparedStatement.setInt(3, grupoestabelecimento.getUnidade_codigo());
 			preparedStatement.setString(4, grupoestabelecimento.getEmpresa());
-
+			
 			
 
 			preparedStatement.setInt(5, grupoestabelecimento.getCodigo());
 			preparedStatement.setString(6, grupoestabelecimento.getNomegrupoestabelecimento());
-			preparedStatement.setString(7, grupoestabelecimento.getUnidade_nome());
+			preparedStatement.setInt(7, grupoestabelecimento.getUnidade_codigo());
 			preparedStatement.setString(8, grupoestabelecimento.getEmpresa());
 
 			preparedStatement.execute();
@@ -69,8 +71,12 @@ public class GrupoEstabelecimentoDAO {
 				GrupoEstabelecimento grupoestabelecimento = new GrupoEstabelecimento();
 				grupoestabelecimento.setCodigo(rs.getInt(1));
 				grupoestabelecimento.setNomegrupoestabelecimento(rs.getString(2));
-				grupoestabelecimento.setUnidade_nome(rs.getString(3));
+				grupoestabelecimento.setUnidade_codigo(rs.getInt(3));
 				grupoestabelecimento.setEmpresa(rs.getString(4));
+				Empresa empresa = new UnidadeDAO().getEmpresa(grupoestabelecimento.getEmpresa());
+				grupoestabelecimento.setEmp(empresa);
+				Unidade unidade = new UnidadeDAO().getUnidade(grupoestabelecimento.getUnidade_codigo());
+				grupoestabelecimento.setUnidade(unidade);
 				lista.add(grupoestabelecimento);
 			}
 

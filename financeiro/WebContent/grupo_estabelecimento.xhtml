@@ -90,7 +90,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="unidade" required="true"
-														value="#{grupoEstabelecimentoBean.grupoestabelecimento.unidade_nome}"
+														value="#{grupoEstabelecimentoBean.grupoestabelecimento.unidade_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -176,7 +176,7 @@
 																		target="#{grupoEstabelecimentoBean.grupoestabelecimento}" />
 																</p:commandButton></td>
 															<td>#{grupoestabelecimento.nomegrupoestabelecimento}</td>
-															<td>#{grupoestabelecimento.unidade_nome}</td>
+															<td>#{grupoestabelecimento.unidade_codigo}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

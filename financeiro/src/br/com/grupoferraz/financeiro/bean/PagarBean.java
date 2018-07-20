@@ -104,14 +104,17 @@ public class PagarBean implements Serializable {
 	
 	public void selecionar() {
 		Estabelecimento estabelecimento = contapagar.getEstabelecimento();
-		System.out.println("ESTABELECIMENTO SELECIONADO "+estabelecimento);
-    	EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
-    	Estabelecimento estabelecimentos = estabelecimentoDAO .listaestabelecimento(estabelecimento.getCodigo());
-    	if (estabelecimentos != null) {
-    		contapagar.setEstabelecimento_nome(estabelecimentos.getNome());
-    		contapagar.setEstabelecimento_codigo(estabelecimentos.getCodigo());
-    	}
-    }
+		System.out.println("ESTABELECIMENTO SELECIONADO " + estabelecimento);
+		EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
+		if (estabelecimento != null) {
+			Estabelecimento estabelecimentos = estabelecimentoDAO.listaestabelecimento(estabelecimento.getCodigo());
+			if (estabelecimentos != null) {
+				contapagar.setEstabelecimento_nome(estabelecimentos.getNome());
+				contapagar.setEstabelecimento_codigo(estabelecimentos.getCodigo());
+			}
+		}
+
+	}
 	
 	
 	

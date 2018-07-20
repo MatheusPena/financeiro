@@ -82,7 +82,7 @@ public class EstabelecimentoDAO {
 	}
 	
 ////////////////////////////LISTA DO AUTOCOMPLETE DO ESTABELECIMENTO COM INNERJOIN /////////////////////////	
-	public List<Estabelecimento> listaestabelecimento(String codigo, String cnpj) {	
+	public List<Estabelecimento> listaestabelecimento(String query, String cnpj) {	
 
 		ArrayList<Estabelecimento> lista = new ArrayList<>();
 
@@ -92,18 +92,24 @@ public class EstabelecimentoDAO {
 		StringBuilder str = new StringBuilder();
 		str.append("select e.codigo, e.nome, e.grupoestabelecimento_codigo from estabelecimentos e");
 		str.append(" inner join grupoestabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
-		str.append(" inner join unidade u on ge.unidade_nome = u.nome");
+		str.append(" inner join unidade u on ge.unidade_codigo = u.codigo");
 		str.append(" inner join empresas emp on emp.cnpj = u.empresas_cnpj");
-		str.append(" and emp.cnpj = ?");
-		str.append(" and e.nome  like '%"+codigo+"%'");
+		str.append(" where u.empresas_cnpj = '"+cnpj+"'");
+		str.append(" and e.nome like '%"+query+"%'");
+		
+		
 		
 		String sql = str.toString();
+		
+		System.out.println("SQL GERADA "+sql);
 		
 
 		try {
 
 			preparedStatement = conexao.prepareStatement(sql);
-			preparedStatement.setString(1, cnpj);
+			
+			System.out.println("CNPJ "+cnpj);
+			
 			
 			rs = preparedStatement.executeQuery();
 			
@@ -174,38 +180,39 @@ public class EstabelecimentoDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nomegrupoestabelecimento, unidade_nome from grupoestabelecimento where codigo = ?");
+				"select codigo, nomegrupoestabelecimento, unidade_codigo from grupoestabelecimento where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNomegrupoestabelecimento(rs.getString("nomegrupoestabelecimento"));
-			grupo.setUnidade_nome(rs.getString("unidade_nome"));
-			grupo.setUnidade(getUnidade(grupo.getUnidade_nome()));
+			grupo.setUnidade_codigo(rs.getInt("unidade_codigo"));
+			grupo.setUnidade(getUnidade(grupo.getUnidade_codigo()));
 		}
 		return grupo;
 	}
 	
 	
-	public Unidade getUnidade(String idUnidade) throws SQLException {
+	public Unidade getUnidade(int idUnidade) throws SQLException {
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		
 		StringBuilder str = new StringBuilder();
-		str.append("select nome, empresas_cnpj from unidade where nome = ?");
+		str.append("select codigo, nome, empresas_cnpj from unidade where codigo = ?");
 		
 		ArrayList<Unidade> lista = new ArrayList<Unidade>();
 
 		preparedStatement = conexao.prepareStatement(
 				str.toString());
-		preparedStatement.setString(1, idUnidade);
+		preparedStatement.setInt(1, idUnidade);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
-
+			
 			Unidade u = new Unidade();
+			u.setCodigo(rs.getInt("codigo"));
 			u.setNome(rs.getString("nome"));
 			u.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
 			String cnpj = u.getEmpresas_cnpj();
@@ -233,7 +240,7 @@ public class EstabelecimentoDAO {
 		StringBuilder str = new StringBuilder();
 		str.append("select e.codigo, e.nome, e.grupoestabelecimento_codigo from estabelecimentos e");
 		str.append(" inner join grupoestabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
-		str.append(" inner join unidade u on ge.unidade_nome = u.nome");
+		str.append(" inner join unidade u on ge.unidade_codigo = u.nome");
 		str.append(" inner join empresas emp on emp.cnpj = u.empresas_cnpj");
 		str.append(" and emp.cnpj = ?");
 		

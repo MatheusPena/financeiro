@@ -19,11 +19,7 @@ public class UnidadeDAO {
 
 	public boolean insertUnidade(Unidade Unidade) {
 
-		// Statement st = null;
-		// ResultSet rs = null;
-
 		try {
-			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();	
 			str.append("insert into unidade (nome, empresas_cnpj, codigo) values (?,?,?) ");
 			str.append("on duplicate key update nome = ?, empresas_cnpj = ?, codigo = ?");
@@ -113,7 +109,7 @@ public class UnidadeDAO {
 		return lista;
 	}
 	
-
+	//Método para mostrar o nome da empresa na tabela de Unidades, ao invés do CNPJ
 	public Empresa getEmpresa(String idGrupo) throws SQLException {
 		Empresa grupo = new Empresa();
 		PreparedStatement preparedStatement;
@@ -128,5 +124,23 @@ public class UnidadeDAO {
 			grupo.setNome(rs.getString("nome"));
 		}
 		return grupo;
+	}
+
+	//Método para mostrar o nome da unidade na tabela de Grupo Estabelecimento, ao invés do código
+	public Unidade getUnidade(int id) throws SQLException {
+		Unidade u = new Unidade();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao
+				.prepareStatement("select codigo, nome, empresas_cnpj from unidade where codigo = ?");
+		preparedStatement.setInt(1, id);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			u.setCodigo(rs.getInt("codigo"));
+			u.setNome(rs.getString("nome"));
+			u.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
+		}
+		return u;
 	}
 }

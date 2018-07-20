@@ -3,8 +3,9 @@ package br.com.grupoferraz.financeiro.entity;
 public class GrupoEstabelecimento {
 	private int codigo;
 	private String empresa;
+	private Empresa emp;
 	private String nomegrupoestabelecimento;
-	private String unidade_nome;
+	private int unidade_codigo;
 	private Unidade unidade;
 	
 	public int getCodigo() {
@@ -13,11 +14,12 @@ public class GrupoEstabelecimento {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	public String getUnidade_nome() {
-		return unidade_nome;
+	
+	public int getUnidade_codigo() {
+		return unidade_codigo;
 	}
-	public void setUnidade_nome(String unidade_nome) {
-		this.unidade_nome = unidade_nome;
+	public void setUnidade_codigo(int unidade_codigo) {
+		this.unidade_codigo = unidade_codigo;
 	}
 	public String getNomegrupoestabelecimento() {
 		return nomegrupoestabelecimento;
@@ -26,6 +28,12 @@ public class GrupoEstabelecimento {
 		this.nomegrupoestabelecimento = nomegrupoestabelecimento;
 	}
 	
+	public Empresa getEmp() {
+		return emp;
+	}
+	public void setEmp(Empresa emp) {
+		this.emp = emp;
+	}
 	public String getEmpresa() {
 		return empresa;
 	}
