@@ -30,6 +30,7 @@ public class Pagar implements Serializable {
 	private Documentos documento;
 	private int documento_codigo;
 	private String observacao;
+	private Despesas despesa;
 	
 	
 	public Pagar() {
@@ -251,6 +252,16 @@ public class Pagar implements Serializable {
 	}
 
 
+	public Despesas getDespesa() {
+		return despesa;
+	}
+
+
+	public void setDespesa(Despesas despesa) {
+		this.despesa = despesa;
+	}
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -301,4 +312,5 @@ public class Pagar implements Serializable {
 	public String toString() {
 		return cpf;
 	}
+
 }

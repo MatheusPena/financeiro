@@ -165,29 +165,32 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigo" value="Código da Despesa:" />
+													<p:outputLabel for="nomedp" value="Nome da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:outputPanel id="codigo">
-														<p:autoComplete id="acMinLength3" minQueryLength="1"
-															value="#{pagarBean.pagarconta.codigo}"
-															inputStyleClass="form-control"
-															inputStyle="padding-right:311px"
-															completeMethod="#{pagarBean.completeText}" effect="fade">
-															<p:ajax event="itemSelect"
-																listener="#{pagarBean.onItemSelect}"
-																update="@(.emissaodp) @(.valor)" />
-														</p:autoComplete>
+													<p:outputPanel id="nomedp">
+														<p:autoComplete id="acMinLength" minQueryLength="1"
+															dropdown="false" converter="converter"
+															value="#{pagarBean.pagarconta.despesa}"
+															inputStyleClass="form-control" forceSelection="true"
+															inputStyle="padding-right:311px" styleClass="autocomplete"
+															completeMethod="#{pagarBean.completeText}" 
+															effect="fade" var="est" itemValue="#{est}" 
+															itemLabel="#{est.nome}">															
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{pagarBean.selecionarDespesa()}"
+																update="@(.emissaodp) @(.valor) @this" process="@this" />
+														</p:autoComplete>																												
 													</p:outputPanel>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="nomedp" value="Nome da Despesa:" />
+													<p:outputLabel for="codigo" value="Código da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="nomedp" required="false"
-														value="#{pagarBean.pagarconta.nomedp}"
+													<p:inputText id="codigo" required="false"
+														value="#{pagarBean.pagarconta.codigo}"
 														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
 											</div>
@@ -622,7 +625,7 @@
 																<td>#{vencimento.agenciabanco}</td>
 																<td>#{vencimento.digagencia}</td>
 																<td>#{vencimento.conta}</td>
-																<td>#{pagarconta.digconta}</td>
+																<td>#{vencimento.digconta}</td>
 																<td>#{vencimento.agendar}</td>															
 															</tr>
 														</c:forEach>

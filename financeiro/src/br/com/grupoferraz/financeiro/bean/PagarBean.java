@@ -9,8 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.event.SelectEvent;
-
 import br.com.grupoferraz.financeiro.dao.DespesasDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.dao.PagarDAO;
@@ -41,9 +39,8 @@ public class PagarBean implements Serializable {
 		listarVencimento();
 	}
 
+//	Cadastro do Contas a Pagar
 	public String cadastraPagar() {
-
-		///ConexaoBD.getConexao();
 		
 		PagarDAO pagarconta = new PagarDAO ();
 		if (pagarconta.insertContasPagar(contapagar)) {
@@ -53,7 +50,6 @@ public class PagarBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da conta!", "Erro!"));
 		return "";
 		}
-		//ConexaoBD.fecharConexao();
 		contapagar = new Pagar();
 		
 		cadastraVencimento();
@@ -65,14 +61,7 @@ public class PagarBean implements Serializable {
 		setListapagar(pagarconta.listapagar());
 	}
 	
-//////////////////////////// LISTA DO AUTOCOMPLETE /////////////////////////
-	public List<Integer> completeText(String query) {
-		DespesasDAO despesasDAO = new DespesasDAO();
-		
-         
-        return despesasDAO.listadespesa(query); 
-    }
-	
+// Autocomplete referente ao estabelecimento
 	public List<Estabelecimento> completeText2(String query) {
 		
 		List<Estabelecimento> lista = new ArrayList<>();
@@ -85,22 +74,6 @@ public class PagarBean implements Serializable {
 
         return lista; 
     }
-	
-	
-////////////////////////////LISTA DO AUTOCOMPLETE /////////////////////////
-	
-////////////////////////////SELECT DO AUTOCOMPLETE /////////////////////////
-	public void onItemSelect(SelectEvent event) {
-        String obj = event.getObject().toString();
-    	DespesasDAO despesasDAO = new DespesasDAO();
-    	Despesas despesa = despesasDAO .listadespesa(Integer.valueOf(obj));
-    	if (despesa != null) {
-    		contapagar.setNomedp(despesa.getNome());
-    	}
-    	
-    }
-	
-	
 	
 	public void selecionar() {
 		Estabelecimento estabelecimento = contapagar.getEstabelecimento();
@@ -116,12 +89,45 @@ public class PagarBean implements Serializable {
 
 	}
 	
+//	Autocomplete referente à Despesas
+//	public List<Integer> completeText(String query) {
+//		DespesasDAO despesasDAO = new DespesasDAO();
+//		
+//         
+//        return despesasDAO.listadespesa(query); 
+//    }
+//	
+//	public void onItemSelect(SelectEvent event) {
+//        String obj = event.getObject().toString();
+//    	DespesasDAO despesasDAO = new DespesasDAO();
+//    	Despesas despesa = despesasDAO .listadespesa(Integer.valueOf(obj));
+//    	if (despesa != null) {
+//    		contapagar.setNomedp(despesa.getNome());
+//    	}
+//    	
+//    }
+	
+//	Autocomplete referente à Despesas
+	public List<Despesas> completeText(String query) {
+		DespesasDAO despesasDAO = new DespesasDAO();
+
+		return despesasDAO.listadespesas(query);
+	}
+
+
+	public void selecionarDespesa() {
+		
+		Despesas despesa = contapagar.getDespesa();
+		
+		if (despesa != null) {
+			contapagar.setCodigo(despesa.getCodigo());
+			contapagar.setNomedp(despesa.getNome());
+		}
+		System.out.println("despesa "+despesa.getNome());
+	}
 	
 	
-	
-////////////////////////////SELECT DO AUTOCOMPLETE /////////////////////////
-	
-	
+// 	Getters e Setters do Conta a Pagar
 	public Pagar getPagarconta() {
 		return contapagar;
 	}
@@ -139,7 +145,7 @@ public class PagarBean implements Serializable {
 	}
 
 
-
+//	Cadastro do Vencimento
 	public String cadastraVencimento() {
 
 		ConexaoBD.getConexao();
@@ -165,7 +171,7 @@ public class PagarBean implements Serializable {
 	}
 
 	
-
+// 	Getters e Setters do Vencimento
 	public VencimentoPagar getVencimentoPagar() {
 		return vencimento;
 	}
