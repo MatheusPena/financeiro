@@ -3,13 +3,11 @@ package br.com.grupoferraz.financeiro.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.faces.bean.ManagedBean;
 
-@ManagedBean
 @SuppressWarnings("serial")
 public class Despesas implements Serializable {
 
-	private int codigo;
+	private Integer codigo;
 	private String nome;
 	private int estabelecimentos_codigo ;
 	private int grupodespesas_codigo;
@@ -26,12 +24,12 @@ public class Despesas implements Serializable {
 	}
 
 	
-	public int getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
@@ -133,21 +131,16 @@ public class Despesas implements Serializable {
 		this.cpf = cpf;
 	}
 
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + codigo;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -160,11 +153,23 @@ public class Despesas implements Serializable {
 			return false;
 		}
 		Despesas other = (Despesas) obj;
-		if (codigo != other.codigo) {
+		if (codigo == null) {
+			if (other.codigo != null) {
+				return false;
+			}
+		} else if (!codigo.equals(other.codigo)) {
+			return false;
+		}
+		if (nome == null) {
+			if (other.nome != null) {
+				return false;
+			}
+		} else if (!nome.equals(other.nome)) {
 			return false;
 		}
 		return true;
 	}
+
 
 	@Override
 	public String toString() {

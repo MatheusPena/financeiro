@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.com.grupoferraz.financeiro.entity.Despesas;
 import br.com.grupoferraz.financeiro.entity.GrupoPlanoContas;
 import br.com.grupoferraz.financeiro.entity.PlanoContas;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
@@ -20,23 +21,19 @@ public class PlanoContasDAO {
 
 	public boolean insertPlanoContas(PlanoContas PlanoContas) {
 
-
-
 		try {
-	
+
 			StringBuilder str = new StringBuilder();
 			str.append("insert into planocontas (codigo, nome, tipo, natureza, iss, conta_contabil, contabil_estoque, "
-					+ "inss, irpf, pis, conta, atividade, icms, observacao, grupoplanodecontas_codigo)"		
+					+ "inss, irpf, pis, conta, atividade, icms, observacao, grupoplanodecontas_codigo)"
 					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?, tipo = ?, "
 					+ "natureza = ?, iss = ?, conta_contabil = ?, contabil_estoque = ?, inss = ?, irpf = ?, pis = ?, "
 					+ "conta = ?, atividade = ?, icms = ?, observacao = ?,  grupoplanodecontas_codigo = ? ");
-			
-			
 
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setString(1, PlanoContas.getCodigo());
-			preparedStatement.setString(2, PlanoContas.getNome());
+			preparedStatement.setInt(2, PlanoContas.getNome());
 			preparedStatement.setString(3, PlanoContas.getTipo());
 			preparedStatement.setString(4, PlanoContas.getNatureza());
 			preparedStatement.setString(5, PlanoContas.getIss());
@@ -51,13 +48,12 @@ public class PlanoContasDAO {
 			preparedStatement.setString(14, PlanoContas.getObservacao());
 			if (PlanoContas.getGrupoplanocontas_codigo() != null) {
 				preparedStatement.setInt(15, PlanoContas.getGrupoplanocontas_codigo());
-			}
-			else {
+			} else {
 				preparedStatement.setNull(15, Types.INTEGER);
 			}
-			
+
 			preparedStatement.setString(16, PlanoContas.getCodigo());
-			preparedStatement.setString(17, PlanoContas.getNome());
+			preparedStatement.setInt(17, PlanoContas.getNome());
 			preparedStatement.setString(18, PlanoContas.getTipo());
 			preparedStatement.setString(19, PlanoContas.getNatureza());
 			preparedStatement.setString(20, PlanoContas.getIss());
@@ -72,11 +68,10 @@ public class PlanoContasDAO {
 			preparedStatement.setString(29, PlanoContas.getObservacao());
 			if (PlanoContas.getGrupoplanocontas_codigo() != null) {
 				preparedStatement.setInt(30, PlanoContas.getGrupoplanocontas_codigo());
-			}
-			else {
+			} else {
 				preparedStatement.setNull(30, Types.INTEGER);
 			}
-			
+
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -87,7 +82,7 @@ public class PlanoContasDAO {
 		}
 	}
 
-	// lista todos os usuarios cadastrados no banco de dados
+	// lista todos os planos de contas cadastrados no banco de dados
 	public List<PlanoContas> listPlanoContas() {
 
 		ArrayList<PlanoContas> lista = new ArrayList<PlanoContas>();
@@ -97,17 +92,18 @@ public class PlanoContasDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select codigo, nome, tipo,"
-					+ "natureza, iss, conta_contabil, contabil_estoque, inss, "
-					+ "irpf, pis, conta, atividade, icms, observacao, "
-					+ "grupoplanodecontas_codigo from planocontas";
+			String sql = "select codigo, nome, tipo, natureza, iss, conta_contabil, contabil_estoque, inss, "
+					+ "irpf, pis, conta, atividade, icms, observacao, " + "grupoplanodecontas_codigo from planocontas";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
 				PlanoContas PlanoContas = new PlanoContas();
 				PlanoContas.setCodigo(rs.getString(1));
-				PlanoContas.setNome(rs.getString(2));
+				PlanoContas.setNome(rs.getInt(2));
+				int idGrupo0 = PlanoContas.getNome();
+				Despesas despesa = getDespesa(idGrupo0);
+				PlanoContas.setDespesa(despesa);
 				PlanoContas.setTipo(rs.getString(3));
 				PlanoContas.setNatureza(rs.getString(4));
 				PlanoContas.setIss(rs.getString(5));
@@ -136,12 +132,29 @@ public class PlanoContasDAO {
 		return lista;
 	}
 
+	// lista todos as despesas cadastradas no banco de dados
+	public Despesas getDespesa(int idGrupo) throws SQLException {
+		Despesas grupo = new Despesas();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement("select * from despesas where codigo = ?");
+		preparedStatement.setInt(1, idGrupo);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			grupo.setCodigo(rs.getInt("codigo"));
+			grupo.setNome(rs.getString("nome"));
+			grupo.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
+		}
+		return grupo;
+	}
+	
+	// lista todos os grupos de planos de contas cadastrados no banco de dados
 	public GrupoPlanoContas getGrupoPlanoContas(int idGrupo) throws SQLException {
 		GrupoPlanoContas grupo = new GrupoPlanoContas();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao
-				.prepareStatement("select codigo, nome from grupoplanodecontas where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select codigo, nome from grupoplanodecontas where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

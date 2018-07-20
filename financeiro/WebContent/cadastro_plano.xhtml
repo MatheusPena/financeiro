@@ -71,19 +71,10 @@
 									</div>
 									<div class="x_content">
 										<br />
-										<h:form id="demo-form2" data-parsley-validate=""
+										<h:form id="Campo" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
 											<p:messages id="messages" />
 
-											<!--  <div class="form-group">
-				                  <label class="control-label col-md-3 col-sm-3 col-xs-12">
-				                  	<p:outputLabel for="id" value="ID:" />
-				                  </label>
-				                  <div class="col-md-6 col-sm-6 col-xs-12">
-				                    <p:inputText id="id" value="#{clientesBean.usuario.id}"
-				                    styleClass="form-control col-md-7 col-xs-12" />
-				   				  </div>
-				   				</div>-->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="codigo" value="Código:" />
@@ -97,21 +88,29 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="nome" value="Nome:" />
+													<p:outputLabel for="nome" value="Nome da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="nome" required="true"
-														value="#{planoContasBean.planoContas.nome}"
-														styleClass="form-control col-md-7 col-xs-12" />
+													<p:outputPanel id="nome">
+														<p:autoComplete id="Despesa" minQueryLength="1"
+															converter="converter" required="true"
+															value="#{planoContasBean.planoContas.despesa}"
+															inputStyleClass="form-control" forceSelection="true"
+															inputStyle="padding-right:311px" var="d" itemLabel="#{d.nome}" itemValue="#{d}"
+															completeMethod="#{planoContasBean.completeText}" effect="fade">
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{planoContasBean.selecionar()}" />
+														</p:autoComplete>
+													</p:outputPanel>
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="tipo" value="Tipo: *" />
+													<h:outputLabel for="Tipo" value="Tipo: *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="tipo" required="true"
+													<h:selectOneMenu id="Tipo" required="true"
 														value="#{planoContasBean.planoContas.tipo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
@@ -124,7 +123,7 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="natureza" value="Natureza: " />
+													<h:outputLabel for="natureza" value="Natureza: " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="natureza"
@@ -240,7 +239,7 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="tipo_conta" value="Tipo da Conta:" />
+													<h:outputLabel for="tipo_conta" value="Tipo da Conta:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="tipo_conta"
@@ -299,8 +298,19 @@
 													<p:commandButton value="Cadastrar" type="submit"
 														action="#{planoContasBean.cadastraPlanoContass}"
 														update="messages" styleClass="btn btn-success"
-														onclick="window.location='#demo-form2'">
+														onclick="window.location='#Campo'">
 													</p:commandButton>
+													<script>
+													 function temp() {
+
+                                                         setTimeout(function() {
+
+                                                                $('.messages').html('');
+
+                                                         }, 5000);
+
+                                                  }
+													</script>
 												</div>
 											</div>
 										</h:form>
@@ -330,8 +340,8 @@
 													<tr>
 
 														<th>Código</th>
-														<th class="text-center">Editar</th>
-														<th>Nome</th>
+														<th>Editar</th>
+														<th>Nome da Despesa</th>
 														<th>Tipo</th>
 														<th>Natureza</th>
 														<th>Grupo das Receitas/Despesas</th>
@@ -354,13 +364,14 @@
 															<td>#{plano.codigo}</td>
 															<td class="text-center"><p:commandButton value="" 
 															style="font-size:10px;"
-															styleClass="fas fa-edit btn btn-primary" 
-															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
+															styleClass="fas fa-edit btn btn-primary"
+															onclick="window.location='#Campo'"
+															update="@(.form-control) @(.rd) @(.calendar) Campo">
 															<f:setPropertyActionListener value="#{plano}" 
 															target="#{planoContasBean.planoContas}"/>
 															</p:commandButton>
 															</td>
-															<td>#{plano.nome}</td>
+															<td>#{plano.despesa}</td>
 															<td>#{plano.tipo}</td>
 															<td>#{plano.natureza}</td>
 															<td>#{plano.grupoplanocontas}</td>

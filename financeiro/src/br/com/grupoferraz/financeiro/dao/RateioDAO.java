@@ -106,7 +106,7 @@ public class RateioDAO {
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getString("codigo"));
-			grupo.setNome(rs.getString("nome"));
+			grupo.setNome(rs.getInt("nome"));
 			grupo.setTipo(rs.getString("tipo"));
 			grupo.setNatureza(rs.getString("natureza"));
 			grupo.setInss(rs.getString("iss"));

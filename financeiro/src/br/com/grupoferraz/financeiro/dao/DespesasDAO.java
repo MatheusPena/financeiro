@@ -79,7 +79,7 @@ public class DespesasDAO {
 		return lista;
 	}
 	
-	//Lista o auto complete de despesas na página do conta a pagar 
+	//Lista o auto complete de despesas na página do conta a pagar (pela chave primária)
 	public List<Integer> listadespesa(String codigo) {
 
 		ArrayList<Integer> lista = new ArrayList<Integer>();
@@ -102,6 +102,42 @@ public class DespesasDAO {
 				Despesas despesa = new Despesas();
 				despesa.setCodigo(rs.getInt("codigo"));
 				lista.add(rs.getInt("codigo"));
+			}
+
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		return lista;
+	}
+	
+	//Lista o auto complete de despesas na página do plano de contas (pelo objeto) 
+	public List<Despesas> listadespesas(String codigo) {
+
+		ArrayList<Despesas> lista = new ArrayList<Despesas>();
+
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		String sql = "select codigo, nome, grupodespesas_codigo "
+				+ " from despesas where "
+				+ "nome like '%"+codigo+"%'";
+		
+
+		try {
+
+			preparedStatement = conexao.prepareStatement(sql);
+			
+			rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+
+				Despesas despesa = new Despesas();
+				despesa.setCodigo(rs.getInt("codigo"));
+				despesa.setNome(rs.getString("nome"));
+				despesa.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
+				lista.add(despesa);
 			}
 
 		} catch (SQLException ex) {
