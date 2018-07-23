@@ -192,9 +192,7 @@ public class DespesasDAO {
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		String sql = "select codigo, nome, grupodespesas_codigo, "
-				+ " from despesas where "
-				+ "codigo = ?";
+		String sql = "select codigo, nome, grupodespesas_codigo from despesas where codigo = ?";
 		
 
 		try {
