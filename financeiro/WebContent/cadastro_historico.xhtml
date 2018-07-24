@@ -100,7 +100,7 @@
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{despesasBean.listadespesa}"
+															items="#{despesaBean.listadespesa}"
 															var="despesa" cellspacing="0" width="100%">
 															<f:selectItem
 																itemLabel="#{despesa.nome}"
@@ -169,7 +169,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{historicoBean.listahistorico}"
+													<c:forEach items="#{historicoBean.listahistoricos}"
 														var="historico" cellspacing="0" width="100%">
 														<tr>
 

@@ -19,11 +19,8 @@ public class HistoricoDAO {
 
 	public boolean insertHistorico(Historico historicos) {
 
-		// Statement st = null;
-		// ResultSet rs = null;
-
 		try {
-			// st = con.createStatement();
+
 			StringBuilder str = new StringBuilder();
 			str.append("insert into historico (codigo, descricao, despesa_codigo) values (?,?,?) ");
 			str.append("on duplicate key update codigo = ?, descricao = ?, despesa_codigo = ?");
@@ -79,50 +76,20 @@ public class HistoricoDAO {
 		return lista;
 	}
 
+	//Lista as despesas cadastradas na tela dos Históricos
 	public Despesa getDespesas(int idDespesa) throws SQLException {
-		Despesa despesas = new Despesa();
+		Despesa despesa = new Despesa();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nome from despesas where codigo = ?");
+				"select codigo, nome from despesa where codigo = ?");
 		preparedStatement.setInt(1, idDespesa);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
-			despesas.setCodigo(rs.getInt("codigo"));
-			despesas.setNome(rs.getString("nome"));
+			despesa.setCodigo(rs.getInt("codigo"));
+			despesa.setNome(rs.getString("nome"));
 		}
-		return despesas;
+		return despesa;
 	}
-	
-//	public List<Historico> getEstabelecimento(String idEmpresa) throws SQLException {
-//
-//		PreparedStatement preparedStatement;
-//		ResultSet rs = null;
-//		
-//		StringBuilder str = new StringBuilder();
-//		str.append("select e.codigo, e.nome, e.grupoestabelecimento_codigo from estabelecimentos e");
-//		str.append(" inner join grupoestabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
-//		str.append(" inner join unidade u on ge.unidade_nome = u.nome");
-//		str.append(" inner join empresas emp on emp.cnpj = u.empresas_cnpj");
-//		str.append(" and emp.cnpj = ?");
-//		
-//		List<Historico> lista = new ArrayList<>();
-//		preparedStatement = conexao.prepareStatement(
-//				str.toString());
-//		preparedStatement.setString(1, idEmpresa);
-//		rs = preparedStatement.executeQuery();
-//
-//		while (rs.next()) {
-//			Historico estabelecimentos = new Historico();
-//			estabelecimentos.setCodigo(rs.getInt("codigo"));
-//			estabelecimentos.setNome(rs.getString("nome"));
-//			estabelecimentos.setGrupoestabelecimento_codigo(rs.getInt("grupoestabelecimento_codigo"));
-//			int idGrupo = estabelecimentos.getGrupoestabelecimento_codigo();
-//			Despesas grupoEstabelecimento = getGrupoEstabelecimento(idGrupo);
-//			estabelecimentos.setGrupoestabalecimento(grupoEstabelecimento);
-//			lista.add(estabelecimentos);
-//		}
-//		return lista;
-//	}
 }

@@ -18,7 +18,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class HistoricoBean implements Serializable {
 
 	private Historico historico;
-	private List<Historico> listahistorico;
+	private List<Historico> listahistoricos;
 
 	public HistoricoBean() {
 		historico = new Historico();
@@ -32,8 +32,6 @@ public class HistoricoBean implements Serializable {
 		if (historicos.insertHistorico(this.historico)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Historico cadastrado com sucesso!", "Sucesso!"));
-			// JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Estabelecimento
-			// cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do historico!", "Erro!"));
@@ -47,7 +45,7 @@ public class HistoricoBean implements Serializable {
 
 	public void listarHistoricos() {
 		HistoricoDAO historicos = new HistoricoDAO();
-		setListahistorico(historicos.listHistoricos());
+		setListahistoricos(historicos.listHistoricos());
 	}
 
 	public Historico getHistorico() {
@@ -58,13 +56,15 @@ public class HistoricoBean implements Serializable {
 		this.historico = historico;
 	}
 
-	public List<Historico> getListahistorico() {
-		return listahistorico;
+	public List<Historico> getListahistoricos() {
+		return listahistoricos;
 	}
 
-	public void setListahistorico(List<Historico> listahistorico) {
-		this.listahistorico = listahistorico;
+	public void setListahistoricos(List<Historico> listahistoricos) {
+		this.listahistoricos = listahistoricos;
 	}
+
+	
 
 	
 }
