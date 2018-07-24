@@ -13,26 +13,25 @@ import java.util.logging.Logger;
 import br.com.grupoferraz.financeiro.entity.GrupoVendedor;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
-public class GrupoVendedoresDAO {
+public class GrupoVendedorDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertGrupoVendedores(GrupoVendedor grupovendedores) {
+	public boolean insertGrupoVendedor(GrupoVendedor grupovendedor) {
 
 		// Statement st = null;
 		// ResultSet rs = null;
 
 		try {
 			// st = con.createStatement();
-			StringBuilder str = new StringBuilder();	
-			str.append("insert into grupovendedores (codigo, nomegrupovendedores)"
-					+ " values (?,?)");
-			str.append("on duplicate key update codigo = ?, nomegrupovendedores = ?");
+			StringBuilder str = new StringBuilder();
+			str.append("insert into grupovendedor (codigo, nome)" + " values (?,?)");
+			str.append("on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
-			preparedStatement.setInt(1, grupovendedores.getCodigo());
-			preparedStatement.setString(2, grupovendedores.getNomegrupovendedores());
-			
-			preparedStatement.setInt(3, grupovendedores.getCodigo());
-			preparedStatement.setString(4, grupovendedores.getNomegrupovendedores());
+			preparedStatement.setInt(1, grupovendedor.getCodigo());
+			preparedStatement.setString(2, grupovendedor.getNome());
+
+			preparedStatement.setInt(3, grupovendedor.getCodigo());
+			preparedStatement.setString(4, grupovendedor.getNome());
 
 			preparedStatement.execute();
 			return true;
@@ -44,7 +43,7 @@ public class GrupoVendedoresDAO {
 		}
 	}
 
-	// lista todos os usuarios cadastrados no banco de dados
+	// lista todos os grupos cadastrados no banco de dados
 	public List<GrupoVendedor> listGrupoVendedores() {
 
 		ArrayList<GrupoVendedor> lista = new ArrayList<GrupoVendedor>();
@@ -54,18 +53,16 @@ public class GrupoVendedoresDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select *" 
-			+  "from grupovendedores";
+			String sql = "select *" + "from grupovendedor";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
-				GrupoVendedor grupovendedores = new GrupoVendedor();
-				grupovendedores.setCodigo(rs.getInt(1));
-				grupovendedores.setNomegrupovendedores(rs.getString(2));
-				lista.add(grupovendedores);
+				GrupoVendedor grupovendedor = new GrupoVendedor();
+				grupovendedor.setCodigo(rs.getInt(1));
+				grupovendedor.setNome(rs.getString(2));
+				lista.add(grupovendedor);
 			}
-			
 
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());

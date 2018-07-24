@@ -25,13 +25,13 @@ public class VendedorDAO {
 			str.append("INSERT INTO financeiro.vendedor (pessoa,cpfcnpj,nome,dtnascimento,chave,"
 					+ "rg,emissor,sexo,estadocivil,rua,cep,numero,bairro,cidade,uf,complemento,email,telefone,"
 					+ "cel1,cel2,banco,tipoconta,agenciabanco,"
-					+ "digagencia,conta,digconta,data_cadastro, grupovendedor_codigo, estabelecimento_codigo, empresas_cnpj) "
+					+ "digagencia,conta,digconta,data_cadastro, grupovendedor_codigo, estabelecimento_codigo, empresa_cnpj) "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			str.append("on duplicate key update pessoa = ?, cpfcnpj = ?, nome = ?, dtnascimento = ?, chave = ?,"
 					+ "rg = ?, emissor = ?, sexo = ?, estadocivil = ?, " + "rua = ?, cep = ?, numero = ?, "
 					+ "bairro = ?, cidade = ?, uf = ?, complemento = ?, email = ?, telefone = ?, cel1 = ?, cel2 = ?,"
 					+ "banco = ?, tipoconta = ?, agenciabanco = ?, digagencia = ?,"
-					+ "conta = ?, digconta = ?, data_cadastro = ?, grupovendedor_codigo = ?, estabelecimento_codigo = ?, empresas_cnpj = ? ");
+					+ "conta = ?, digconta = ?, data_cadastro = ?, grupovendedor_codigo = ?, estabelecimento_codigo = ?, empresa_cnpj = ? ");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setString(1, vendedor.getPessoa());
 			preparedStatement.setString(2, vendedor.getCpf());
@@ -136,10 +136,10 @@ public class VendedorDAO {
 				vendedor.setEmissor(rs.getString("emissor"));
 				vendedor.setSexo(rs.getString("sexo"));
 				vendedor.setEstado_civil(rs.getString("estadocivil"));
-				vendedor.setEmpresa_cnpj(rs.getString("empresas_cnpj"));
+				vendedor.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 				Empresa emp = getEmpresa(vendedor.getEmpresa_cnpj());
 				vendedor.setEmpresa(emp);
-				vendedor.setEstabelecimento_codigo(rs.getInt("estabelecimentos_codigo"));
+				vendedor.setEstabelecimento_codigo(rs.getInt("estabelecimento_codigo"));
 				Estabelecimento obj2 = getEstabelecimento(vendedor.getEstabelecimento_codigo());
 				vendedor.setEstabelecimento(obj2);
 				vendedor.setRua(rs.getString("rua"));
@@ -182,13 +182,13 @@ public class VendedorDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao
-				.prepareStatement("select codigo, nomegrupovendedor from grupovendedor where codigo = ?");
+				.prepareStatement("select codigo, nome from grupovendedor where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
-			grupo.setNomegrupovendedores(rs.getString("nomegrupovendedor"));
+			grupo.setNome(rs.getString("nome"));
 		}
 		return grupo;
 	}

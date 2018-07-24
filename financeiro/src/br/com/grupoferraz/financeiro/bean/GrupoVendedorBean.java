@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.grupoferraz.financeiro.dao.GrupoVendedoresDAO;
+import br.com.grupoferraz.financeiro.dao.GrupoVendedorDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoVendedor;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -17,19 +17,20 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 @ViewScoped
 public class GrupoVendedorBean implements Serializable {
 
-	private GrupoVendedor grupovendedores;
-	private List<GrupoVendedor> listagrupovendedores;
+	private GrupoVendedor grupovendedor;
+	private List<GrupoVendedor> listagrupovendedor;
 
 	public GrupoVendedorBean() {
-		grupovendedores = new GrupoVendedor();
-		listarGrupoVendedores();
+		grupovendedor = new GrupoVendedor();
+		listargrupovendedor();
 	}
-
-	public String cadastraGrupoVendedores() {
+	
+	//cadastra um grupo exibindo uma mensagem
+	public String cadastragrupovendedor() {
 
 		ConexaoBD.getConexao();
-		GrupoVendedoresDAO grupovendedores = new GrupoVendedoresDAO ();
-		if (grupovendedores.insertGrupoVendedores(this.grupovendedores)) {
+		GrupoVendedorDAO grupovendedor = new GrupoVendedorDAO ();
+		if (grupovendedor.insertGrupoVendedor(this.grupovendedor)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Grupo de Vendedores cadastrado com sucesso!", "Sucesso!"));
 		} else {
@@ -41,26 +42,27 @@ public class GrupoVendedorBean implements Serializable {
 
 		return "";
 	}
-
-	public void listarGrupoVendedores()  {
-		GrupoVendedoresDAO grupovendedoresDAO = new GrupoVendedoresDAO ();
-		listagrupovendedores = grupovendedoresDAO.listGrupoVendedores();
+	
+	//lista os grupos existentes na tabela
+	public void listargrupovendedor()  {
+		GrupoVendedorDAO grupovendedorDAO = new GrupoVendedorDAO ();
+		listagrupovendedor = grupovendedorDAO.listGrupoVendedores();
 	}
 
-	public GrupoVendedor getGrupovendedores() {
-		return grupovendedores;
+	public GrupoVendedor getgrupovendedor() {
+		return grupovendedor;
 	}
 
-	public void setGrupovendedores(GrupoVendedor grupovendedores) {
-		this.grupovendedores = grupovendedores;
+	public void setgrupovendedor(GrupoVendedor grupovendedor) {
+		this.grupovendedor = grupovendedor;
 	}
 
-	public List<GrupoVendedor> getListagrupovendedores() {
-		return listagrupovendedores;
+	public List<GrupoVendedor> getListagrupovendedor() {
+		return listagrupovendedor;
 	}
 
-	public void setListagrupovendedores(List<GrupoVendedor> listagrupovendedores) {
-		this.listagrupovendedores = listagrupovendedores;
+	public void setListagrupovendedor(List<GrupoVendedor> listagrupovendedor) {
+		this.listagrupovendedor = listagrupovendedor;
 	}
 
 

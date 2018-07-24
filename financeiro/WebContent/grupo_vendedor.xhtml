@@ -64,21 +64,11 @@
 											<p:messages id="messages" />
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigo" value="Código:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigo" required="true"
-														value="#{grupoVendedoresBean.grupovendedores.codigo}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nome" value="Nome:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-														value="#{grupoVendedoresBean.grupovendedores.nomegrupovendedores}"
+														value="#{grupoVendedorBean.grupovendedor.nome}"
 														styleClass="form-control col-md-7 col-xs-12" /> 	
 												</div>
 											</div>
@@ -87,7 +77,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{grupoVendedoresBean.cadastraGrupoVendedores}" update="messages"
+														action="#{grupoVendedorBean.cadastragrupovendedor}" update="messages"
 														styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
@@ -119,25 +109,26 @@
 												<thead>
 													<tr>
 														<th>Código</th>
-														<th class="text-center">Editar</th>
+														<th>Editar</th>
 														<th>Nome do Grupo</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{grupoVendedoresBean.listagrupovendedores}" 
-													var="grupovendedores"
+													<c:forEach items="#{grupoVendedorBean.listagrupovendedor}" 
+													var="grupoVendedor"
 													cellspacing="0" width="100%">
 														<tr>
-															<td>#{grupovendedores.codigo}</td>
-															<td class="text-center">
+															<td>#{grupoVendedor.codigo}</td>
+															<td>
 															<p:commandButton value="" style="font-size:10px;"
-															styleClass="fas fa-edit btn btn-primary" 
+															styleClass="fas fa-edit btn btn-primary"
+															onclick="window.location='#demo-form2'"
 															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
-															<f:setPropertyActionListener value="#{grupovendedores}" 
-															target="#{grupoVendedoresBean.grupovendedores}"/>
+															<f:setPropertyActionListener value="#{grupoVendedor}" 
+															target="#{grupoVendedorBean.grupovendedor}"/>
 															</p:commandButton>
 															</td>
-															<td>#{grupovendedores.nomegrupovendedores}</td>					
+															<td>#{grupoVendedor.nome}</td>					
 														</tr>
 													</c:forEach>
 												</tbody>

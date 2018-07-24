@@ -74,9 +74,9 @@
 											<!-- Dados iniciais -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="pessoa" value="Pessoa *" />
+													<h:outputLabel for="Pessoa" value="Pessoa *" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:selectOneRadio id="pessoa" required="true"
+													<h:selectOneRadio id="Pessoa" required="true"
 														value="#{vendedorBean.vendedor.pessoa}">
 														<f:selectItems
 															value="#{vendedorBean.vendedor.pessoas}" var="pessoa"
@@ -86,10 +86,10 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="cpf" value="CPF/CNPJ *" />
+													<h:outputLabel for="CPFCNPJ" value="CPF/CNPJ *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="cpf"
+													<p:inputText id="CPFCNPJ"
 														value="#{vendedorBean.vendedor.cpf}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"></p:inputText>
@@ -97,10 +97,10 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="nome" value="Nome *" />
+													<h:outputLabel for="Nome" value="Nome *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="nome"
+													<p:inputText id="Nome"
 														value="#{vendedorBean.vendedor.nome}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true" />
@@ -108,12 +108,12 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="data" value="Data de Nascimento *" />
+													<h:outputLabel for="Nascimento" value="Data de Nascimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
 														inputStyleClass="form-control col-md-7 col-xs-12"
-														id="nascimento" required="true"
+														id="Nascimento" required="true"
 														value="#{vendedorBean.vendedor.data}" />
 												</div>
 											</div>
@@ -193,7 +193,6 @@
 															style="width:320px"
 															styleClass="form-control col-md-7 col-xs-12">
 															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-
 															<f:selectItems value="#{empresaBean.empresas}"
 																var="empresa" itemValue="#{empresa.cnpj}"
 																itemLabel="#{empresa.nome}" />
@@ -206,7 +205,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="estabelecimento"
-														value="Estabelecimento " />
+														value="Estabelecimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:outputPanel id="estabelecimento">
@@ -215,34 +214,13 @@
 															value="#{vendedorBean.vendedor.estabelecimento}"
 															inputStyleClass="form-control" forceSelection="true"
 															inputStyle="padding-right:311px" var="d" itemLabel="#{d.nome}" itemValue="#{d}"
-															completeMethod="#vendedorBean.completeText}" effect="fade">
+															completeMethod="#{vendedorBean.completeText}" effect="fade">
 															<p:ajax event="itemSelect" resetValues="true"
 																listener="#{vendedorBean.selecionar}" />
 														</p:autoComplete>
 													</p:outputPanel>
 												</div>
 											</div>
-											<!--  
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="agencia" value="Estabelecimento *" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="agencia" required="true"
-														value="#{vendedorBean.vendedor.estabelecimentos_codigo}"
-														style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{estabelecimentoBean.estabelecimentos}"
-															var="estabelecimento" cellspacing="0" width="100%">
-															<f:selectItem
-																itemLabel="#{estabelecimento.nome}"
-																itemValue="#{estabelecimento.codigo}" />
-														</c:forEach>
-													</h:selectOneMenu>
-												</div>
-											</div>-->
 											<!-- Endereço -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -370,16 +348,15 @@
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{grupovendedorBean.listagrupovendedor}"
+															items="#{grupoVendedorBean.listagrupovendedor}"
 															var="grupovendedor" cellspacing="0" width="100%">
 															<f:selectItem
-																itemLabel="#{grupovendedor.nomegrupovendedor}"
+																itemLabel="#{grupovendedor.nome}"
 																itemValue="#{grupovendedor.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
 											</div>
-
 											<!-- Dados bancários -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -543,10 +520,10 @@
 																		</p:commandButton></td>
 																	<td>#{vendedor.pessoa}</td>
 																	<td>#{vendedor.cpf}</td>
-																	<td><h:outputLabel value="#{vendedor.data}">
+																	<td><h:outputText value="#{vendedor.data}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"
 																				dateStyle="long" />
-																		</h:outputLabel></td>
+																		</h:outputText></td>
 																	<td>#{vendedor.chave}</td>
 																	<td>#{vendedor.rg}</td>
 																	<td>#{vendedor.emissor}</td>

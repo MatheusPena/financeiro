@@ -34,10 +34,6 @@ public class VendedorBean implements Serializable {
 
 	// cadastra um vendedor exibindo uma mensagem na tela
 	public String cadastraVendedor() {
-
-		System.out.println("EST COD " + vendedor.getEstabelecimento_codigo());
-		System.out.println("EST NOME " + vendedor.getNome());
-
 		ConexaoBD.getConexao();
 		VendedorDAO vendedor = new VendedorDAO();
 		if (vendedor.insertVendedor(this.vendedor)) {
@@ -71,10 +67,6 @@ public class VendedorBean implements Serializable {
 	public void listarEstabelecimentos() {
 		EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
 		cnpj = vendedor.getEmpresa_cnpj();
-		System.out.println("EST " + vendedor.getEstabelecimento_codigo());
-
-		System.out.println("CNPJ " + cnpj);
-
 		if (cnpj != null) {
 			try {
 				estabelecimentos = estabelecimentoDAO.getEstabelecimento(cnpj);
