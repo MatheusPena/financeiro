@@ -12,7 +12,7 @@ public class VencimentoDiversosCR {
 	private String empresas_cnpj;
 	private int documento_codigo;
 	private Empresa empresa;
-	private Documentos documento;
+	private Documento documento;
 
 	public int getCodigo() {
 		return codigo;
@@ -86,11 +86,11 @@ public class VencimentoDiversosCR {
 		this.empresa = empresa;
 	}
 
-	public Documentos getDocumento() {
+	public Documento getDocumento() {
 		return documento;
 	}
 
-	public void setDocumento(Documentos documento) {
+	public void setDocumento(Documento documento) {
 		this.documento = documento;
 	}
 

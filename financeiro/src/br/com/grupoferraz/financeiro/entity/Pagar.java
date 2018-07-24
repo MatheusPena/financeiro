@@ -27,7 +27,7 @@ public class Pagar implements Serializable {
 	private String valor;
 	private CentroResultados centroresultados;
 	private int centroresultados_codigo;
-	private Documentos documento;
+	private Documento documento;
 	private int documento_codigo;
 	private String observacao;
 	private Despesa despesa;
@@ -202,12 +202,12 @@ public class Pagar implements Serializable {
 	}
 
 
-	public Documentos getDocumento() {
+	public Documento getDocumento() {
 		return documento;
 	}
 
 
-	public void setDocumento(Documentos documento) {
+	public void setDocumento(Documento documento) {
 		this.documento = documento;
 	}
 

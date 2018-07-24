@@ -14,7 +14,7 @@ import br.com.grupoferraz.financeiro.entity.Pagar;
 import br.com.grupoferraz.financeiro.entity.CentroResultados;
 import br.com.grupoferraz.financeiro.entity.ContasFinanceiras;
 import br.com.grupoferraz.financeiro.entity.Despesa;
-import br.com.grupoferraz.financeiro.entity.Documentos;
+import br.com.grupoferraz.financeiro.entity.Documento;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -127,7 +127,7 @@ public class PagarDAO {
 				CentroResultados centroresultados = getCentroresultados(pagarconta.getCentroresultados_codigo());
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setDocumento_codigo(rs.getInt("documento_codigo"));
-				Documentos documento = getDocumentos(pagarconta.getDocumento_codigo());
+				Documento documento = getDocumentos(pagarconta.getDocumento_codigo());
 				pagarconta.setDocumento(documento);
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setEmissaodp(rs.getDate("emissaodp"));
@@ -187,8 +187,8 @@ public class PagarDAO {
 		return contafinanceira;
 	}
 	
-	public Documentos getDocumentos(int idDocumentos) throws SQLException {
-		Documentos documento = new Documentos();
+	public Documento getDocumentos(int idDocumentos) throws SQLException {
+		Documento documento = new Documento();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
@@ -289,7 +289,7 @@ public class PagarDAO {
 				CentroResultados centroresultados = getCentroresultados(pagarconta.getCentroresultados_codigo());
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setDocumento_codigo(rs.getInt("documento_codigo"));
-				Documentos documento = getDocumentos(pagarconta.getDocumento_codigo());
+				Documento documento = getDocumentos(pagarconta.getDocumento_codigo());
 				pagarconta.setDocumento(documento);
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setEmissaodp(rs.getDate("emissaodp"));

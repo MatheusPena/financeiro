@@ -8,60 +8,58 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.grupoferraz.financeiro.dao.DocumentosDAO;
-import br.com.grupoferraz.financeiro.entity.Documentos;
+import br.com.grupoferraz.financeiro.dao.DocumentoDAO;
+import br.com.grupoferraz.financeiro.entity.Documento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class DocumentosBean implements Serializable {
-	private Documentos documento;
-	private List<Documentos> listadocumentos;
+public class DocumentoBean implements Serializable {
+	private Documento documento;
+	private List<Documento> listadocumentos;
 
-	public DocumentosBean() {
-		setDocumento(new Documentos());
+	public DocumentoBean() {
+		setDocumento(new Documento());
 		listarDocumentos();
 	}
 
 	public String cadastraDocumentos() {
 
 		ConexaoBD.getConexao();
-		DocumentosDAO Documentos = new DocumentosDAO();
+		DocumentoDAO Documentos = new DocumentoDAO();
 		if (Documentos.insertDocumentos(this.getDocumento())) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"Documento cadastrado com sucesso!", "Sucesso!"));
-			// JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Empresa
-			// cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do Documento!", "Erro!"));
 
 		}
 		ConexaoBD.fecharConexao();
-		setDocumento(new Documentos());
+		setDocumento(new Documento());
 
 		return "";
 	}
 
 	public void listarDocumentos() {
-		DocumentosDAO Documentos = new DocumentosDAO();
+		DocumentoDAO Documentos = new DocumentoDAO();
 		setDocumentos(Documentos.listDocumentos());
 	}
 
-	public List<Documentos> getDocumentos() {
+	public List<Documento> getDocumentos() {
 		return listadocumentos;
 	}
 
-	public void setDocumentos(List<Documentos> Documentos) {
+	public void setDocumentos(List<Documento> Documentos) {
 		this.listadocumentos = Documentos;
 	}
 
-	public Documentos getDocumento() {
+	public Documento getDocumento() {
 		return documento;
 	}
 
-	public void setDocumento(Documentos documento) {
+	public void setDocumento(Documento documento) {
 		this.documento = documento;
 	}
 

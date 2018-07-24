@@ -10,21 +10,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.Documentos;
+import br.com.grupoferraz.financeiro.entity.Documento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
-public class DocumentosDAO {
+public class DocumentoDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertDocumentos(Documentos documento) {
-
-		// Statement st = null;
-		// ResultSet rs = null;
+	public boolean insertDocumentos(Documento documento) {
 
 		try {
-			// st = con.createStatement();
+
 			StringBuilder str = new StringBuilder();
-			str.append("insert into documento (codigo, nome) values (?,?) ");
+			str.append("insert into documento (codigo, nome) values (?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, documento.getCodigo());
@@ -43,9 +40,9 @@ public class DocumentosDAO {
 	}
 
 	// lista todos os usuarios cadastrados no banco de dados
-	public List<Documentos> listDocumentos() {
+	public List<Documento> listDocumentos() {
 
-		ArrayList<Documentos> lista = new ArrayList<Documentos>();
+		ArrayList<Documento> lista = new ArrayList<Documento>();
 
 		Statement st = null;
 		ResultSet rs = null;
@@ -57,7 +54,7 @@ public class DocumentosDAO {
 
 			while (rs.next()) {
 
-				Documentos documento = new Documentos();
+				Documento documento = new Documento();
 				documento.setCodigo(rs.getInt("codigo"));
 				documento.setNome(rs.getString("nome"));
 				lista.add(documento);

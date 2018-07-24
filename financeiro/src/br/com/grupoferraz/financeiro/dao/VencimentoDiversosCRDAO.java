@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.Documentos;
+import br.com.grupoferraz.financeiro.entity.Documento;
 import br.com.grupoferraz.financeiro.entity.VencimentoDiversosCR;
 import br.com.grupoferraz.financeiro.entity.Empresa;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
@@ -83,7 +83,7 @@ public class VencimentoDiversosCRDAO {
 				VencimentoDiversosCR.setValor(rs.getFloat("valor"));
 				VencimentoDiversosCR.setDocumento_codigo(rs.getInt("documento_codigo"));
 				int obj1 = VencimentoDiversosCR.getDocumento_codigo();
-				Documentos documento = getDocumentos(obj1);
+				Documento documento = getDocumentos(obj1);
 				VencimentoDiversosCR.setDocumento(documento);
 				VencimentoDiversosCR.setTitulo(rs.getInt("titulo"));
 				VencimentoDiversosCR.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
@@ -121,8 +121,8 @@ public class VencimentoDiversosCRDAO {
 		return grupo;
 	}
 	
-	public Documentos getDocumentos(int idDocumentos) throws SQLException {
-		Documentos documento = new Documentos();
+	public Documento getDocumentos(int idDocumentos) throws SQLException {
+		Documento documento = new Documento();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(

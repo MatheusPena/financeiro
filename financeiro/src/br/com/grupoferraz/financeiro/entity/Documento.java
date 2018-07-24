@@ -1,6 +1,6 @@
 package br.com.grupoferraz.financeiro.entity;
 
-public class Documentos {
+public class Documento {
 	private int codigo;
 	private String nome;
 
@@ -23,7 +23,6 @@ public class Documentos {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return nome;
 	}
 
