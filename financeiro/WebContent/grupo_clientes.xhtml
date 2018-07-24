@@ -16,11 +16,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Grupos | Clientes</title>
 		<!-- Bootstrap -->
-		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
-			rel="stylesheet" />
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 		<!-- Font Awesome -->
-		<link href="resources/font-awesome/css/font-awesome.min.css"
-			rel="stylesheet" />
+		<link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 		<!-- NProgress -->
 		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
 		<!-- iCheck -->
@@ -64,23 +62,13 @@
 										<h:form id="demo-form2" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
 											<p:messages id="messages" />
-
-											<!--  <div class="form-group">
-				                  <label class="control-label col-md-3 col-sm-3 col-xs-12">
-				                  	<p:outputLabel for="id" value="ID:" />
-				                  </label>
-				                  <div class="col-md-6 col-sm-6 col-xs-12">
-				                    <p:inputText id="id" value="#{clientesBean.usuario.id}"
-				                    styleClass="form-control col-md-7 col-xs-12" />
-				   				  </div>
-				   				</div>-->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="codigo" value="Código:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo" required="true"
-														value="#{grupoClientesBean.grupocliente.codigo}"
+														value="#{grupoClienteBean.grupocliente.codigo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -90,17 +78,16 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-														value="#{grupoClientesBean.grupocliente.nome}"
+														value="#{grupoClienteBean.grupocliente.nome}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
 											<div class="ln_solid" />
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{grupoClientesBean.cadastraGrupoCliente}"
+														action="#{grupoClienteBean.cadastraGrupoCliente}"
 														update="messages" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
@@ -137,7 +124,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{grupoClientesBean.grupoclientes}"
+													<c:forEach items="#{grupoClienteBean.listagrupoclientes}"
 														var="grupocliente" cellspacing="0" width="100%">
 														<tr>
 															<td>#{grupocliente.codigo}</td>
@@ -146,7 +133,7 @@
 															styleClass="fas fa-edit btn btn-primary" 
 															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
 															<f:setPropertyActionListener value="#{grupocliente}" 
-															target="#{grupoClientesBean.grupocliente}"/>
+															target="#{grupoClienteBean.grupocliente}"/>
 															</p:commandButton>
 															</td>
 															<td>#{grupocliente.nome}</td>	

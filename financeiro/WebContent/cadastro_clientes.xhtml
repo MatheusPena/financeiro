@@ -62,24 +62,13 @@
 										<h:form id="demo-form2" 
 											styleClass="form-horizontal form-label-left">
 											<p:messages id="messages" />
-
-											<!--  <div class="form-group">
-				                  <label class="control-label col-md-3 col-sm-3 col-xs-12">
-				                  	<p:outputLabel for="id" value="ID:" />
-				                  </label>
-				                  <div class="col-md-6 col-sm-6 col-xs-12">
-				                    <p:inputText id="id" value="#{clientesBean.usuario.id}"
-				                    styleClass="form-control col-md-7 col-xs-12" />
-				   				  </div>
-				   				</div>-->
-
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nome" value="Nome:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-														value="#{clientesBean.usuario.nome}"
+														value="#{clienteBean.cliente.nome}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -90,7 +79,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf" required="true"
-														value="#{clientesBean.usuario.cpf}"
+														value="#{clienteBean.cliente.cpf}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -100,10 +89,10 @@
 													<p:outputLabel for="nascimento" value="Data de Nascimento:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:calendar mask="true" pattern="dd/MM/yyyy"
+													<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="nascimento" required="true" styleClass="calendar"
-														value="#{clientesBean.usuario.nascimento}" />
+														value="#{clienteBean.cliente.nascimento}" />
 												</div>
 											</div>
 
@@ -113,7 +102,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="logradouro"
-														value="#{clientesBean.usuario.logradouro}"
+														value="#{clienteBean.cliente.logradouro}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -123,7 +112,7 @@
 													<p:outputLabel for="num" value="Número do Endereço:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="num" value="#{clientesBean.usuario.num}"
+													<p:inputText id="num" value="#{clienteBean.cliente.num}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -133,7 +122,7 @@
 													<p:outputLabel for="com" value="Complemento do Endereço:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="com" value="#{clientesBean.usuario.com}"
+													<p:inputText id="com" value="#{clienteBean.cliente.com}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -144,7 +133,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="bairro"
-														value="#{clientesBean.usuario.bairro}"
+														value="#{clienteBean.cliente.bairro}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -155,7 +144,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="99999-999" id="cep"
-														value="#{clientesBean.usuario.cep}"
+														value="#{clienteBean.cliente.cep}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -166,7 +155,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cidade"
-														value="#{clientesBean.usuario.cidade}"
+														value="#{clienteBean.cliente.cidade}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -177,7 +166,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="estado"
-														value="#{clientesBean.usuario.estado}"
+														value="#{clienteBean.cliente.estado}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -188,7 +177,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="99.999.999-9" id="ie"
-														value="#{clientesBean.usuario.ie}"
+														value="#{clienteBean.cliente.ie}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -199,7 +188,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="(99) 9999-9999" id="telefone"
-														value="#{clientesBean.usuario.telefone}"
+														value="#{clienteBean.cliente.telefone}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -210,7 +199,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="(99) 99999-9999" id="celular"
-														value="#{clientesBean.usuario.celular}"
+														value="#{clienteBean.cliente.celular}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -220,7 +209,7 @@
 													<p:outputLabel for="fax" value="FAX:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="fax" value="#{clientesBean.usuario.fax}"
+													<p:inputText id="fax" value="#{clienteBean.cliente.fax}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -231,7 +220,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="email"
-														value="#{clientesBean.usuario.email}"
+														value="#{clienteBean.cliente.email}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -241,7 +230,7 @@
 													<p:outputLabel for="site" value="Site:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="site" value="#{clientesBean.usuario.site}"
+													<p:inputText id="site" value="#{clienteBean.cliente.site}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -252,7 +241,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="contato"
-														value="#{clientesBean.usuario.contato}"
+														value="#{clienteBean.cliente.contato}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -263,29 +252,23 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigorec" required="true"
-														value="#{clientesBean.usuario.codigorec}"
+														value="#{clienteBean.cliente.codigorec}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="grupoclientes_codigo"
+													<p:outputLabel for="grupocliente_codigo"
 														value="Grupo do Cliente:" />
 												</label>
-												<!--  
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigogc" required="true"
-														value="#{clientesBean.usuario.codigogc}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>-->
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="grupoclientes_codigo" required="true"
-														value="#{clientesBean.usuario.grupoclientes_codigo}"
+													<h:selectOneMenu id="grupocliente_codigo" required="true"
+														value="#{clienteBean.cliente.grupocliente_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach items="#{grupoClientesBean.grupoclientes}"
+														<c:forEach items="#{grupoClienteBean.listagrupoclientes}"
 															var="grupocliente" cellspacing="0" width="100%">
 															<f:selectItem itemLabel="#{grupocliente.nome}"
 																itemValue="#{grupocliente.codigo}" />
@@ -301,7 +284,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigorep"
-														value="#{clientesBean.usuario.codigorep}"
+														value="#{clienteBean.cliente.codigorep}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -313,7 +296,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigoac" required="true"
-														value="#{clientesBean.usuario.codigoac}"
+														value="#{clienteBean.cliente.codigoac}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -324,7 +307,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nomefantasia" required="true"
-														value="#{clientesBean.usuario.nomefantasia}"
+														value="#{clienteBean.cliente.nomefantasia}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -335,7 +318,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="999999999999-9" id="rg"
-														value="#{clientesBean.usuario.rg}"
+														value="#{clienteBean.cliente.rg}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -347,7 +330,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpfcp"
-														value="#{clientesBean.usuario.cpfcp}"
+														value="#{clienteBean.cliente.cpfcp}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -357,12 +340,12 @@
 													<p:outputLabel for="exterior" value="Exterior:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="exterior"
-														value="#{clientesBean.usuario.exterior}">
+														value="#{clienteBean.cliente.exterior}">
 														<f:selectItem itemLabel="&nbsp;Sim &nbsp;&nbsp;"
-															itemValue="#{0}" />
+															itemValue="Sim" />
 
 														<f:selectItem itemLabel="&nbsp;Não &nbsp;&nbsp;"
-															itemValue="#{1}" />
+															itemValue="Não" />
 													</h:selectOneRadio>
 												</label>
 											</div>
@@ -374,7 +357,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="contabil"
-														value="#{clientesBean.usuario.contabil}"
+														value="#{clienteBean.cliente.contabil}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -384,11 +367,11 @@
 													<p:outputLabel for="debito" value="Débito Automático:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="debito"
-														value="#{clientesBean.usuario.debito}">
+														value="#{clienteBean.cliente.debito}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
-															itemValue="0" />
+															itemValue="Sim" />
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
-															itemValue="1" />
+															itemValue="Não" />
 													</h:selectOneRadio>
 												</label>
 											</div>
@@ -398,12 +381,12 @@
 													<p:outputLabel for="nf" value="Gera NF Automático:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="nf"
-														value="#{clientesBean.usuario.nf}">
+														value="#{clienteBean.cliente.nf}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
-															itemValue="0" />
+															itemValue="Sim" />
 
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
-															itemValue="1" />
+															itemValue="Não" />
 													</h:selectOneRadio>
 												</label>
 											</div>
@@ -414,7 +397,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="ident"
-														value="#{clientesBean.usuario.ident}"
+														value="#{clienteBean.cliente.ident}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -426,7 +409,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="docidex"
-														value="#{clientesBean.usuario.docidex}"
+														value="#{clienteBean.cliente.docidex}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -436,7 +419,7 @@
 													<p:outputLabel for="insc" value="Inscrição Municipal:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="insc" value="#{clientesBean.usuario.insc}"
+													<p:inputText id="insc" value="#{clienteBean.cliente.insc}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -447,7 +430,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigopais"
-														value="#{clientesBean.usuario.codigopais}"
+														value="#{clienteBean.cliente.codigopais}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -459,12 +442,12 @@
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputPanel styleClass="rd">
 													<h:selectOneRadio id="iseninscr" 
-														value="#{clientesBean.usuario.iseninscr}">
+														value="#{clienteBean.cliente.iseninscr}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
-															itemValue="0" />
+															itemValue="Sim" />
 
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
-															itemValue="1" />
+															itemValue="Não" />
 													</h:selectOneRadio>
 													</p:outputPanel>
 												</label>
@@ -475,12 +458,12 @@
 													<p:outputLabel for="inss" value="Retém INSS:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="inss"
-														value="#{clientesBean.usuario.inss}">
+														value="#{clienteBean.cliente.inss}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
-															itemValue="0" />
+															itemValue="Sim" />
 
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
-															itemValue="1" />
+															itemValue="Não" />
 													</h:selectOneRadio>
 												</label>
 											</div>
@@ -490,12 +473,12 @@
 													<p:outputLabel for="iss" value="ISS:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="iss"
-														value="#{clientesBean.usuario.iss}">
+														value="#{clienteBean.cliente.iss}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
-															itemValue="0" />
+															itemValue="Sim" />
 
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
-															itemValue="1" />
+															itemValue="Não" />
 													</h:selectOneRadio>
 												</label>
 											</div>
@@ -506,7 +489,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="aliquota"
-														value="#{clientesBean.usuario.aliquota}"
+														value="#{clienteBean.cliente.aliquota}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -518,7 +501,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="indicadorie"
-														value="#{clientesBean.usuario.indicadorie}"
+														value="#{clienteBean.cliente.indicadorie}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -529,7 +512,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputTextarea id="descricao"
-														value="#{clientesBean.usuario.descricao}"
+														value="#{clienteBean.cliente.descricao}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -540,9 +523,9 @@
 													<p:commandButton value="Resetar" class="btn btn-primary"
 														type="reset"></p:commandButton>
 													<p:commandButton value="Cadastrar" oncomplete="temp();"
-														action="#{clientesBean.cadastraUsuario}"
+														action="#{clienteBean.cadastraCliente}"  
 														update="messages @(.form_control)" styleClass="btn btn-success"
-														>
+														onclick="window.location='#demo-form2'">
 													</p:commandButton>
 													<script>
 													 function temp() {
@@ -582,7 +565,6 @@
 												class="table table-striped table-bordered dt-responsive nowrap ">
 												<thead>
 													<tr>
-														
 														<th>Nome</th>
 														<th class="text-center">Editar</th>
 														<th>CPF/CNPJ</th>
@@ -621,64 +603,63 @@
 														<th>ISS</th>
 														<th>Indicador IE Destinatário</th>
 														<th>Alíquota de ISS</th>
-														<th>Observação</th>
-														
+														<th>Observação</th>													
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{clientesBean.clientes}" var="usuario"
+													<c:forEach items="#{clienteBean.listaclientes}" var="cliente"
 														cellspacing="0" width="100%">
 														<tr>
-															
-															<td>#{usuario.nome}</td>
+															<td>#{cliente.nome}</td>
 															<td class="text-center"><p:commandButton value=""
 															style="font-size:10px;"
 															styleClass="fas fa-edit btn btn-primary" 
 															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
-															<f:setPropertyActionListener value="#{usuario}" 
-															target="#{clientesBean.usuario}"/>
+															<f:setPropertyActionListener value="#{cliente}" 
+															target="#{clienteBean.cliente}"/>
 															</p:commandButton>
 															</td>
-															<td>#{usuario.cpf}</td>
-															<td><h:outputText value="#{usuario.nascimento}">
+															<td>#{cliente.cpf}</td>
+															<td><h:outputText value="#{cliente.nascimento}">
 																	<f:convertDateTime pattern="dd/MM/yyyy"
 																		dateStyle="long" />
-																</h:outputText></td>
-															<td>#{usuario.logradouro}</td>
-															<td>#{usuario.num}</td>
-															<td>#{usuario.com}</td>
-															<td>#{usuario.bairro}</td>
-															<td>#{usuario.cep}</td>
-															<td>#{usuario.cidade}</td>
-															<td>#{usuario.estado}</td>
-															<td>#{usuario.ie}</td>
-															<td>#{usuario.telefone}</td>
-															<td>#{usuario.celular}</td>
-															<td>#{usuario.fax}</td>
-															<td>#{usuario.email}</td>
-															<td>#{usuario.site}</td>
-															<td>#{usuario.contato}</td>
-															<td>#{usuario.codigorec}</td>	
-															<td>#{usuario.grupoClientes}</td>
-															<td>#{usuario.codigoac}</td>
-															<td>#{usuario.codigorep}</td>
-															<td>#{usuario.nomefantasia}</td>
-															<td>#{usuario.rg}</td>
-															<td>#{usuario.cpfcp}</td>
-															<td>#{usuario.exterior}</td>
-															<td>#{usuario.contabil}</td>
-															<td>#{usuario.debito}</td>
-															<td>#{usuario.nf}</td>
-															<td>#{usuario.ident}</td>
-															<td>#{usuario.docidex}</td>
-															<td>#{usuario.insc}</td>
-															<td>#{usuario.codigopais}</td>
-															<td>#{usuario.iseninscr}</td>
-															<td>#{usuario.inss}</td>
-															<td>#{usuario.iss}</td>
-															<td>#{usuario.indicadorie}</td>
-															<td>#{usuario.aliquota}</td>
-															<td>#{usuario.descricao}</td>
+																</h:outputText>
+															</td>
+															<td>#{cliente.logradouro}</td>
+															<td>#{cliente.num}</td>
+															<td>#{cliente.com}</td>
+															<td>#{cliente.bairro}</td>
+															<td>#{cliente.cep}</td>
+															<td>#{cliente.cidade}</td>
+															<td>#{cliente.estado}</td>
+															<td>#{cliente.ie}</td>
+															<td>#{cliente.telefone}</td>
+															<td>#{cliente.celular}</td>
+															<td>#{cliente.fax}</td>
+															<td>#{cliente.email}</td>
+															<td>#{cliente.site}</td>
+															<td>#{cliente.contato}</td>
+															<td>#{cliente.codigorec}</td>	
+															<td>#{cliente.grupoCliente}</td>
+															<td>#{cliente.codigoac}</td>
+															<td>#{cliente.codigorep}</td>
+															<td>#{cliente.nomefantasia}</td>
+															<td>#{cliente.rg}</td>
+															<td>#{cliente.cpfcp}</td>
+															<td>#{cliente.exterior}</td>
+															<td>#{cliente.contabil}</td>
+															<td>#{cliente.debito}</td>
+															<td>#{cliente.nf}</td>
+															<td>#{cliente.ident}</td>
+															<td>#{cliente.docidex}</td>
+															<td>#{cliente.insc}</td>
+															<td>#{cliente.codigopais}</td>
+															<td>#{cliente.iseninscr}</td>
+															<td>#{cliente.inss}</td>
+															<td>#{cliente.iss}</td>
+															<td>#{cliente.indicadorie}</td>
+															<td>#{cliente.aliquota}</td>
+															<td>#{cliente.descricao}</td>
 															
 														</tr>
 													</c:forEach>

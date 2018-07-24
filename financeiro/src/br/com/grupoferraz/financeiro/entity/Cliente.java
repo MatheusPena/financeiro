@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean
 @SuppressWarnings("serial")
-public class Clientes implements Serializable {
+public class Cliente implements Serializable {
  
 	//private int id;
 	private String nome;
@@ -29,7 +29,7 @@ public class Clientes implements Serializable {
 	private String site;
 	private String contato;
 	private String codigorec;
-	private Integer grupoclientes_codigo;
+	private Integer grupocliente_codigo;
 	private String codigorep;
 	private String codigoac;
 	private String nomefantasia;
@@ -48,7 +48,7 @@ public class Clientes implements Serializable {
 	private String iss;
 	private BigDecimal aliquota;
 	private String indicadorie;
-	private GrupoClientes grupoClientes;
+	private GrupoCliente grupoCliente;
 	
 
 	public String getExterior() {
@@ -211,13 +211,7 @@ public class Clientes implements Serializable {
 		this.codigorec = codigorec;
 	}
 
-	public Integer getGrupoclientes_codigo() {
-		return grupoclientes_codigo;
-	}
-
-	public void setGrupoclientes_codigo(Integer grupoclientes_codigo) {
-		this.grupoclientes_codigo = grupoclientes_codigo;
-	}
+	
 
 	public String getCodigorep() {
 		return codigorep;
@@ -315,6 +309,14 @@ public class Clientes implements Serializable {
 		this.codigopais = codigopais;
 	}
 
+	public Integer getGrupocliente_codigo() {
+		return grupocliente_codigo;
+	}
+
+	public void setGrupocliente_codigo(Integer grupocliente_codigo) {
+		this.grupocliente_codigo = grupocliente_codigo;
+	}
+
 	public String getIseninscr() {
 		return iseninscr;
 	}
@@ -363,13 +365,14 @@ public class Clientes implements Serializable {
 		this.nascimento = nascimento;
 	}
 
-	public GrupoClientes getGrupoClientes() {
-		return grupoClientes;
+	public GrupoCliente getGrupoCliente() {
+		return grupoCliente;
 	}
 
-	public void setGrupoClientes(GrupoClientes grupoClientes) {
-		this.grupoClientes = grupoClientes;
+	public void setGrupoCliente(GrupoCliente grupoCliente) {
+		this.grupoCliente = grupoCliente;
 	}
+
 	
 
 	
