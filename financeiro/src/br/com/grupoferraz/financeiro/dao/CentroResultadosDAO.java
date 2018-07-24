@@ -18,7 +18,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class CentroResultadosDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertCentroResultadoss(CentroResultados CentroResultadoss) {
+	public boolean insertCentroResultadoss(CentroResultados CentroResultados) {
 
 		try {
 			
@@ -30,24 +30,24 @@ public class CentroResultadosDAO {
 			
 			
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
-			preparedStatement.setInt(1, CentroResultadoss.getCodigo());
-			preparedStatement.setString(2, CentroResultadoss.getNome());
-			preparedStatement.setString(3, CentroResultadoss.getAtividade());
-			preparedStatement.setString(4, CentroResultadoss.getCrcontabil());
-			preparedStatement.setFloat(5, CentroResultadoss.getPeso());
-			if (CentroResultadoss.getGrupocentroresultados_codigo() != null) {
-				preparedStatement.setInt(6, CentroResultadoss.getGrupocentroresultados_codigo());
+			preparedStatement.setInt(1, CentroResultados.getCodigo());
+			preparedStatement.setString(2, CentroResultados.getNome());
+			preparedStatement.setString(3, CentroResultados.getAtividade());
+			preparedStatement.setString(4, CentroResultados.getCrcontabil());
+			preparedStatement.setBigDecimal(5, CentroResultados.getPeso());
+			if (CentroResultados.getGrupocentroresultados_codigo() != null) {
+				preparedStatement.setInt(6, CentroResultados.getGrupocentroresultados_codigo());
 			}
 			else {
 				preparedStatement.setNull(6, Types.INTEGER);
 			}
-			preparedStatement.setInt(7, CentroResultadoss.getCodigo());
-			preparedStatement.setString(8, CentroResultadoss.getNome());
-			preparedStatement.setString(9, CentroResultadoss.getAtividade());
-			preparedStatement.setString(10, CentroResultadoss.getCrcontabil());
-			preparedStatement.setFloat(11, CentroResultadoss.getPeso());
-			if (CentroResultadoss.getGrupocentroresultados_codigo() != null) {
-				preparedStatement.setInt(12, CentroResultadoss.getGrupocentroresultados_codigo());
+			preparedStatement.setInt(7, CentroResultados.getCodigo());
+			preparedStatement.setString(8, CentroResultados.getNome());
+			preparedStatement.setString(9, CentroResultados.getAtividade());
+			preparedStatement.setString(10, CentroResultados.getCrcontabil());
+			preparedStatement.setBigDecimal(11, CentroResultados.getPeso());
+			if (CentroResultados.getGrupocentroresultados_codigo() != null) {
+				preparedStatement.setInt(12, CentroResultados.getGrupocentroresultados_codigo());
 			}
 			else {
 				preparedStatement.setNull(12, Types.INTEGER);
@@ -65,7 +65,7 @@ public class CentroResultadosDAO {
 	}
 
 	// lista todos os usuarios cadastrados no banco de dados
-	public List<CentroResultados> listCentroResultadoss() {
+	public List<CentroResultados> listCentroResultados() {
 
 		ArrayList<CentroResultados> lista = new ArrayList<CentroResultados>();
 
@@ -79,17 +79,17 @@ public class CentroResultadosDAO {
 
 			while (rs.next()) {
 
-				CentroResultados CentroResultadoss = new CentroResultados();
-				CentroResultadoss.setCodigo(rs.getInt("codigo"));
-				CentroResultadoss.setNome(rs.getString("nome"));
-				CentroResultadoss.setAtividade(rs.getString("atividade"));
-				CentroResultadoss.setCrcontabil(rs.getString("crcontabil"));
-				CentroResultadoss.setPeso(rs.getFloat("peso"));
-				CentroResultadoss.setGrupocentroresultados_codigo(rs.getInt("grupocentroresultados_codigo"));
-				int idGrupo = CentroResultadoss.getGrupocentroresultados_codigo();
+				CentroResultados CentroResultados = new CentroResultados();
+				CentroResultados.setCodigo(rs.getInt("codigo"));
+				CentroResultados.setNome(rs.getString("nome"));
+				CentroResultados.setAtividade(rs.getString("atividade"));
+				CentroResultados.setCrcontabil(rs.getString("crcontabil"));
+				CentroResultados.setPeso(rs.getBigDecimal("peso"));
+				CentroResultados.setGrupocentroresultados_codigo(rs.getInt("grupocentroresultados_codigo"));
+				int idGrupo = CentroResultados.getGrupocentroresultados_codigo();
 				GrupoCResultados gcentroResultados = getGrupoCentroResultados(idGrupo);
-				CentroResultadoss.setGruporesultados(gcentroResultados);
-				lista.add(CentroResultadoss);
+				CentroResultados.setGruporesultados(gcentroResultados);
+				lista.add(CentroResultados);
 			}
 
 		} catch (SQLException ex) {
@@ -100,7 +100,9 @@ public class CentroResultadosDAO {
 		}
 		return lista;
 	}
-
+	
+	
+	//exibe o nome do grupo do centro de resultados
 	public GrupoCResultados getGrupoCentroResultados(int idGrupo) throws SQLException {
 		GrupoCResultados grupo = new GrupoCResultados();
 		PreparedStatement preparedStatement;

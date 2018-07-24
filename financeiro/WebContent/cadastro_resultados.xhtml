@@ -49,7 +49,7 @@
 									<div class="x_title">
 										<h2>
 											Formulário de Centros de Resultados <small>Cadastre
-												aqui os Centros de Resultados</small>
+												aqui os centros de resultados</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -62,16 +62,6 @@
 										<h:form id="demo-form2" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
 											<p:messages id="messages" />
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigo" value="Código:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigo" required="true"
-														value="#{centroResultadosBean.centroResultados.codigo}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nome" value="Nome:" />
@@ -157,7 +147,7 @@
 									<div class="x_title">
 										<h2>
 											Tabela de Centros de Resultados <small>Exibe os
-												Centros de Resultados cadastrados</small>
+												centros de resultados cadastrados</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -172,9 +162,9 @@
 												<thead>
 													<tr>
 														<th>Código</th>
-														<th class="text-center">Editar</th>
+														<th>Editar</th>
 														<th>Nome</th>
-														<th>Grupo do centro resultados</th>
+														<th>Grupo do Centro de Resultados</th>
 														<th>Inativo</th>
 														<th>CR Contábil</th>
 														<th>Peso</th>
@@ -185,9 +175,10 @@
 														var="centroResultados" cellspacing="0" width="100%">
 														<tr>
 															<td>#{centroResultados.codigo}</td>
-															<td class="text-center"><p:commandButton value="" 
+															<td><p:commandButton value="" 
 															style="font-size:10px;"
-															styleClass="fas fa-edit btn btn-primary" 
+															styleClass="fas fa-edit btn btn-primary"
+															onclick="window.location='#demo-form2'"
 															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
 															<f:setPropertyActionListener value="#{centroResultados}" 
 															target="#{centroResultadosBean.centroResultados}"/>

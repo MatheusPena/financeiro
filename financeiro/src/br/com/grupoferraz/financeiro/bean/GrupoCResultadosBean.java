@@ -24,19 +24,21 @@ public class GrupoCResultadosBean implements Serializable {
 		listarGrupoCResultados();
 	}
 
+	//lista os grupos de centro de resultados na tabela
 	private void listarGrupoCResultados() {
 		GrupoCResultadosDAO grupoCResultadosDAO = new GrupoCResultadosDAO();
 		listagrupoCResultados = grupoCResultadosDAO.listGrupoCResultado();
 
 	}
 
+	//cadastra os grupos de resultados exibindo uma mensagem
 	public String cadastraGrupoCResultados() {
 
 		ConexaoBD.getConexao();
 		GrupoCResultadosDAO grupoCResultados = new GrupoCResultadosDAO();
 		if (grupoCResultados.insertGrupoCResultado(this.grupoCResultados)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Grupo de Centro de Resultados cadastrado com sucesso", "Sucesso!"));
+					"Grupo de Centro de Resultados cadastrado com sucesso!", "Sucesso!"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));

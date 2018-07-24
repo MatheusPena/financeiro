@@ -24,6 +24,7 @@ public class CentroResultadosBean implements Serializable {
 		listarCentroResultadoss();
 	}
 
+	//cadastra os centros de resultados exibindo uma mensagem na tela
 	public String cadastraCentroResultadoss() {
 
 		ConexaoBD.getConexao();
@@ -33,7 +34,7 @@ public class CentroResultadosBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Centro de Resultados cadastrado com sucesso!", "Sucesso!"));
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do CentroResultados!", "Erro!"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do Centro de Resultados!", "Erro!"));
 
 		}
 		ConexaoBD.fecharConexao();
@@ -41,9 +42,10 @@ public class CentroResultadosBean implements Serializable {
 		return "";
 	}
 
+	//lista na tabela os centros de resultados
 	public void listarCentroResultadoss() {
 		CentroResultadosDAO CentroResultadoss = new CentroResultadosDAO();
-		setCentroResultadoss(CentroResultadoss.listCentroResultadoss());
+		setCentroResultadoss(CentroResultadoss.listCentroResultados());
 	}
 
 	public CentroResultados getCentroResultados() {

@@ -200,7 +200,7 @@ public class AdiantamentoDAO {
 			grupo.setNome(rs.getString("nome"));
 			grupo.setAtividade(rs.getString("atividade"));
 			grupo.setCrcontabil(rs.getString("crcontabil"));
-			grupo.setPeso(rs.getFloat("peso"));
+			grupo.setPeso(rs.getBigDecimal("peso"));
 			grupo.setGrupocentroresultados_codigo(rs.getInt("grupocentroresultados_codigo"));
 		}
 		return grupo;
