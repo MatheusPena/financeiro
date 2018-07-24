@@ -74,13 +74,13 @@
 											<!-- Dados iniciais -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="pessoa" value="Pessoa *" />
+													<h:outputLabel for="pessoa" value="Pessoa *" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="pessoa" required="true"
-														value="#{vendedoresBean.vendedores.pessoa}">
+														value="#{vendedorBean.vendedor.pessoa}">
 														<f:selectItems
-															value="#{vendedoresBean.vendedores.pessoas}" var="pessoa"
-															itemLabel="#{pessoa}&nbsp;&nbsp;" itemValue="#{pessoa}" />
+															value="#{vendedorBean.vendedor.pessoas}" var="pessoa"
+															itemLabel="&nbsp;#{pessoa}&nbsp;&nbsp;" itemValue="#{pessoa}" />
 													</h:selectOneRadio>
 												</label>
 											</div>
@@ -90,94 +90,94 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf"
-														value="#{vendedoresBean.vendedores.cpf}"
+														value="#{vendedorBean.vendedor.cpf}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"></p:inputText>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="nome" value="Nome *" />
+													<h:outputLabel for="nome" value="Nome *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome"
-														value="#{vendedoresBean.vendedores.nome}"
+														value="#{vendedorBean.vendedor.nome}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data" value="Data de Nascimento *" />
+													<h:outputLabel for="data" value="Data de Nascimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="nascimento" required="true"
-														value="#{vendedoresBean.vendedores.data}" />
+														value="#{vendedorBean.vendedor.data}" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="chave" value="Chave" />
+													<h:outputLabel for="chave" value="Chave" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="chave"
-														value="#{vendedoresBean.vendedores.chave}"
+														value="#{vendedorBean.vendedor.chave}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="rg" value="RG" />
+													<h:outputLabel for="rg" value="RG" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="999999999999-9" id="rg"
-														value="#{vendedoresBean.vendedores.rg}"
+														value="#{vendedorBean.vendedor.rg}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="emissor" value="Orgão emissor" />
+													<h:outputLabel for="emissor" value="Orgão emissor" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="emissor"
 														styleClass="form-control col-md-7 col-xs-12"
-														value="#{vendedoresBean.vendedores.emissor}">
+														value="#{vendedorBean.vendedor.emissor}">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<f:selectItems
-															value="#{vendedoresBean.vendedores.emissores}" />
+															value="#{vendedorBean.vendedor.emissores}" />
 													</h:selectOneMenu>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="sexo" value="Sexo" />
+													<h:outputLabel for="sexo" value="Sexo" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="sexo"
-														value="#{vendedoresBean.vendedores.sexo}">
-														<f:selectItem itemLabel="Masculino&nbsp;&nbsp;"
+														value="#{vendedorBean.vendedor.sexo}">
+														<f:selectItem itemLabel="&nbsp;Masculino&nbsp;&nbsp;"
 															itemValue="Masculino" />
-														<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+														<f:selectItem itemLabel="&nbsp;Feminino" itemValue="Feminino" />
 													</h:selectOneRadio>
 												</label>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="estado_civil" value="Estado civil" />
+													<h:outputLabel for="estado_civil" value="Estado civil" />
 												</label> <label class="control-label col-md-6 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="estado_civil"
-														value="#{vendedoresBean.vendedores.estado_civil}">
-														<f:selectItem itemLabel="Solteiro(a)&nbsp;&nbsp;"
+														value="#{vendedorBean.vendedor.estado_civil}">
+														<f:selectItem itemLabel="&nbsp;Solteiro(a)&nbsp;&nbsp;"
 															itemValue="Solteiro" />
-														<f:selectItem itemLabel="Casado(a)&nbsp;&nbsp;"
+														<f:selectItem itemLabel="&nbsp;Casado(a)&nbsp;&nbsp;"
 															itemValue="Casado" />
-														<f:selectItem itemLabel="Separado(a)&nbsp;&nbsp;"
+														<f:selectItem itemLabel="&nbsp;Separado(a)&nbsp;&nbsp;"
 															itemValue="Separado" />
-														<f:selectItem itemLabel="Divorciado(a)&nbsp;&nbsp;"
+														<f:selectItem itemLabel="&nbsp;Divorciado(a)&nbsp;&nbsp;"
 															itemValue="Divorciado" />
-														<f:selectItem itemLabel="Viúvo(a)" itemValue="Viúvo" />
+														<f:selectItem itemLabel="&nbsp;Viúvo(a)" itemValue="Viúvo" />
 													</h:selectOneRadio>
 												</label>
 											</div>
@@ -189,7 +189,7 @@
 													<p:outputPanel styleClass="combo">
 														<h:selectOneMenu id="empresa" required="true"
 															converter="omnifaces.SelectItemsConverter"
-															value="#{vendedoresBean.vendedores.empresa_cnpj}"
+															value="#{vendedorBean.vendedor.empresa_cnpj}"
 															style="width:320px"
 															styleClass="form-control col-md-7 col-xs-12">
 															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
@@ -198,7 +198,7 @@
 																var="empresa" itemValue="#{empresa.cnpj}"
 																itemLabel="#{empresa.nome}" />
 															<f:ajax render="Campo:estabelecimento" execute="@this"
-																listener="#{vendedoresBean.listarEstabelecimentos()}" />
+																listener="#{vendedorBean.listarEstabelecimentos()}" />
 														</h:selectOneMenu>
 													</p:outputPanel>
 												</div>
@@ -209,28 +209,27 @@
 														value="Estabelecimento " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-
-													<h:selectOneMenu id="estabelecimento" required="true"
-														converter="omnifaces.SelectItemsConverter"
-														value="#{vendedoresBean.vendedores.estabelecimentos_codigo}"
-														style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-														<f:selectItems value="#{vendedoresBean.estabelecimentos}"
-															var="est" itemValue="#{est.codigo}"
-															itemLabel="#{est.nome}" />
-													</h:selectOneMenu>
-
+													<p:outputPanel id="estabelecimento">
+														<p:autoComplete id="Estabelecimento" minQueryLength="1"
+															converter="converter" required="true"
+															value="#{vendedorBean.vendedor.estabelecimento}"
+															inputStyleClass="form-control" forceSelection="true"
+															inputStyle="padding-right:311px" var="d" itemLabel="#{d.nome}" itemValue="#{d}"
+															completeMethod="#vendedorBean.completeText}" effect="fade">
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{vendedorBean.selecionar}" />
+														</p:autoComplete>
+													</p:outputPanel>
 												</div>
 											</div>
 											<!--  
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="agencia" value="Estabelecimento *" />
+													<h:outputLabel for="agencia" value="Estabelecimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="agencia" required="true"
-														value="#{vendedoresBean.vendedores.estabelecimentos_codigo}"
+														value="#{vendedorBean.vendedor.estabelecimentos_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -247,116 +246,116 @@
 											<!-- Endereço -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="rua" value="Rua" />
+													<h:outputLabel for="rua" value="Rua" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="rua"
-														value="#{vendedoresBean.vendedores.rua}"
+														value="#{vendedorBean.vendedor.rua}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="cep" value="CEP" />
+													<h:outputLabel for="cep" value="CEP" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="99999-999" id="cep"
-														value="#{vendedoresBean.vendedores.cep}"
+														value="#{vendedorBean.vendedor.cep}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="numero" value="Número" />
+													<h:outputLabel for="numero" value="Número" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="numero"
-														value="#{vendedoresBean.vendedores.numero}"
+														value="#{vendedorBean.vendedor.numero}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="bairro" value="Bairro" />
+													<h:outputLabel for="bairro" value="Bairro" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="bairro"
-														value="#{vendedoresBean.vendedores.bairro}"
+														value="#{vendedorBean.vendedor.bairro}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="cidade" value="Cidade" />
+													<h:outputLabel for="cidade" value="Cidade" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cidade"
-														value="#{vendedoresBean.vendedores.cidade}"
+														value="#{vendedorBean.vendedor.cidade}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="uf" value="UF" />
+													<h:outputLabel for="uf" value="UF" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="uf"
-														value="#{vendedoresBean.vendedores.uf}"
+														value="#{vendedorBean.vendedor.uf}"
 														style="width:120px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<f:selectItems value="#{vendedoresBean.vendedores.ufs}" />
+														<f:selectItems value="#{vendedorBean.vendedor.ufs}" />
 													</h:selectOneMenu>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="complemento" value="Complemento" />
+													<h:outputLabel for="complemento" value="Complemento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="complemento"
-														value="#{vendedoresBean.vendedores.complemento}"
+														value="#{vendedorBean.vendedor.complemento}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<!-- Contato -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="email" value="E-mail" />
+													<h:outputLabel for="email" value="E-mail" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="email"
-														value="#{vendedoresBean.vendedores.email}"
+														value="#{vendedorBean.vendedor.email}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="telefone" value="Telefone residencial" />
+													<h:outputLabel for="telefone" value="Telefone residencial" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="(99) 9999-9999" id="telefone"
-														value="#{vendedoresBean.vendedores.telefone}"
+														value="#{vendedorBean.vendedor.telefone}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="cel1" value="Celular" />
+													<h:outputLabel for="cel1" value="Celular" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="(99) 99999-9999" id="cel1"
-														value="#{vendedoresBean.vendedores.cel1}"
+														value="#{vendedorBean.vendedor.cel1}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="cel2" value="Outro telefone" />
+													<h:outputLabel for="cel2" value="Outro telefone" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="(99) 99999-9999" id="cel2"
-														value="#{vendedoresBean.vendedores.cel2}"
+														value="#{vendedorBean.vendedor.cel2}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -366,15 +365,15 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="codigov" required="true"
-														value="#{vendedoresBean.vendedores.grupovendedores_codigo}"
+														value="#{vendedorBean.vendedor.grupovendedor_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{grupoVendedoresBean.listagrupovendedores}"
+															items="#{grupovendedorBean.listagrupovendedor}"
 															var="grupovendedor" cellspacing="0" width="100%">
 															<f:selectItem
-																itemLabel="#{grupovendedor.nomegrupovendedores}"
+																itemLabel="#{grupovendedor.nomegrupovendedor}"
 																itemValue="#{grupovendedor.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
@@ -384,11 +383,11 @@
 											<!-- Dados bancários -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="banco" value="Banco" />
+													<h:outputLabel for="banco" value="Banco" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="banco"
-														value="#{vendedoresBean.vendedores.banco}"
+														value="#{vendedorBean.vendedor.banco}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -406,11 +405,11 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="tipo_conta" value="Tipo conta" />
+													<h:outputLabel for="tipo_conta" value="Tipo conta" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="tipo_conta"
-														value="#{vendedoresBean.vendedores.tipo_conta}"
+														value="#{vendedorBean.vendedor.tipo_conta}"
 														style="width:160px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -423,52 +422,51 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="agenciabanco" value="Agência bancária" />
+													<h:outputLabel for="agenciabanco" value="Agência bancária" />
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="agenciabanco"
-														value="#{vendedoresBean.vendedores.agenciabanco}"
+														value="#{vendedorBean.vendedor.agenciabanco}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="digagencia" value="Dig. agência" />
+													<h:outputLabel for="digagencia" value="Dig. agência" />
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="digagencia"
-														value="#{vendedoresBean.vendedores.digagencia}"
+														value="#{vendedorBean.vendedor.digagencia}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="conta" value="Conta" />
+													<h:outputLabel for="conta" value="Conta" />
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="conta"
-														value="#{vendedoresBean.vendedores.conta}"
+														value="#{vendedorBean.vendedor.conta}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="digconta" value="Dig. conta" />
+													<h:outputLabel for="digconta" value="Dig. conta" />
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="digconta"
-														value="#{vendedoresBean.vendedores.digconta}"
+														value="#{vendedorBean.vendedor.digconta}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="ln_solid" />
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-													<p:commandButton value="Resetar" class="btn btn-primary"
-														type="reset"></p:commandButton>
+													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
-														action="#{vendedoresBean.cadastraVendedor()}"
+														action="#{vendedorBean.cadastraVendedor()}"
 														onclick="window.location='#Campo'"></p:commandButton>
 												</div>
 											</div>
@@ -481,7 +479,7 @@
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														Tabela dos Vendedores <small>Exibe os vendedores
+														Tabela de Vendedores <small>Exibe os vendedores
 															cadastrados</small>
 													</h2>
 													<ul class="nav navbar-right panel_toolbox">
@@ -497,7 +495,7 @@
 														<thead>
 															<tr>
 																<th>Nome</th>
-																<th class="text-center">Editar</th>
+																<th>Editar</th>
 																<th>Pessoa</th>
 																<th>CPF/CNPJ</th>
 																<th>Data de nascimento</th>
@@ -530,25 +528,25 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach items="#{vendedoresBean.vendedor}"
+															<c:forEach items="#{vendedorBean.listavendedor}"
 																var="vendedor" cellspacing="0" width="100%">
 																<tr>
 																	<td>#{vendedor.nome}</td>
 																	<td class="text-center"><p:commandButton value=""
-																			action="#{vendedoresBean.setarVendedor()}"
+																			action="#{vendedorBean.setarVendedor()}"
 																			style="font-size:10px; "
 																			styleClass="fas fa-edit btn btn-primary"
 																			onclick="window.location='#Campo'"
 																			update="@(.form-control) Campo">
 																			<f:setPropertyActionListener value="#{vendedor}"
-																				target="#{vendedoresBean.vendedorSelecionado}" />
+																				target="#{vendedorBean.vendedorSelecionado}" />
 																		</p:commandButton></td>
 																	<td>#{vendedor.pessoa}</td>
 																	<td>#{vendedor.cpf}</td>
-																	<td><h:outputText value="#{vendedor.data}">
+																	<td><h:outputLabel value="#{vendedor.data}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"
 																				dateStyle="long" />
-																		</h:outputText></td>
+																		</h:outputLabel></td>
 																	<td>#{vendedor.chave}</td>
 																	<td>#{vendedor.rg}</td>
 																	<td>#{vendedor.emissor}</td>
@@ -567,7 +565,7 @@
 																	<td>#{vendedor.telefone}</td>
 																	<td>#{vendedor.cel1}</td>
 																	<td>#{vendedor.cel2}</td>
-																	<td>#{vendedor.grupovendedores}</td>
+																	<td>#{vendedor.grupovendedor}</td>
 																	<td>#{vendedor.banco}</td>
 																	<td>#{vendedor.tipo_conta}</td>
 																	<td>#{vendedor.agenciabanco}</td>

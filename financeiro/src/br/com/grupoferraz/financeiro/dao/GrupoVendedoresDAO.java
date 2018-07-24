@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.GrupoVendedores;
+import br.com.grupoferraz.financeiro.entity.GrupoVendedor;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class GrupoVendedoresDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertGrupoVendedores(GrupoVendedores grupovendedores) {
+	public boolean insertGrupoVendedores(GrupoVendedor grupovendedores) {
 
 		// Statement st = null;
 		// ResultSet rs = null;
@@ -45,9 +45,9 @@ public class GrupoVendedoresDAO {
 	}
 
 	// lista todos os usuarios cadastrados no banco de dados
-	public List<GrupoVendedores> listGrupoVendedores() {
+	public List<GrupoVendedor> listGrupoVendedores() {
 
-		ArrayList<GrupoVendedores> lista = new ArrayList<GrupoVendedores>();
+		ArrayList<GrupoVendedor> lista = new ArrayList<GrupoVendedor>();
 
 		Statement st = null;
 		ResultSet rs = null;
@@ -60,7 +60,7 @@ public class GrupoVendedoresDAO {
 
 			while (rs.next()) {
 
-				GrupoVendedores grupovendedores = new GrupoVendedores();
+				GrupoVendedor grupovendedores = new GrupoVendedor();
 				grupovendedores.setCodigo(rs.getInt(1));
 				grupovendedores.setNomegrupovendedores(rs.getString(2));
 				lista.add(grupovendedores);

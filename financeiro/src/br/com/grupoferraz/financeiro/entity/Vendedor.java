@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Vendedores {
+public class Vendedor {
 	private String pessoa;
 	private List<String> pessoas;
 	private String cpf;
@@ -37,14 +37,14 @@ public class Vendedores {
 	private int conta;
 	private int digconta;
 	private Date dataCadastro;
-	private Integer grupovendedores_codigo;
-	private int estabelecimentos_codigo;
-	private GrupoVendedores grupovendedores;
+	private int grupovendedor_codigo;
+	private int estabelecimento_codigo;
+	private GrupoVendedor grupovendedor;
 	private Estabelecimento estabelecimento;
 	private String empresa_cnpj;
 	private Empresa empresa;
 
-	public Vendedores() {
+	public Vendedor() {
 		initPessoa();
 		initEmissor();
 		initUF();
@@ -167,6 +167,14 @@ public class Vendedores {
 		this.chave = chave;
 	}
 
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
 	public String getEmissor() {
 		return emissor;
 	}
@@ -181,14 +189,6 @@ public class Vendedores {
 
 	public void setEmissores(Map<String, String> emissores) {
 		this.emissores = emissores;
-	}
-
-	public String getRg() {
-		return rg;
-	}
-
-	public void setRg(String rg) {
-		this.rg = rg;
 	}
 
 	public String getSexo() {
@@ -303,14 +303,6 @@ public class Vendedores {
 		this.cel2 = cel2;
 	}
 
-	public Integer getGrupovendedores_codigo() {
-		return grupovendedores_codigo;
-	}
-
-	public void setGrupovendedores_codigo(Integer grupovendedores_codigo) {
-		this.grupovendedores_codigo = grupovendedores_codigo;
-	}
-
 	public String getBanco() {
 		return banco;
 	}
@@ -363,24 +355,32 @@ public class Vendedores {
 		return dataCadastro;
 	}
 
-	public int getEstabelecimentos_codigo() {
-		return estabelecimentos_codigo;
-	}
-
-	public void setEstabelecimentos_codigo(int estabelecimentos_codigo) {
-		this.estabelecimentos_codigo = estabelecimentos_codigo;
-	}
-
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public GrupoVendedores getGrupovendedores() {
-		return grupovendedores;
+	public int getGrupovendedor_codigo() {
+		return grupovendedor_codigo;
 	}
 
-	public void setGrupovendedores(GrupoVendedores grupovendedores) {
-		this.grupovendedores = grupovendedores;
+	public void setGrupovendedor_codigo(int grupovendedor_codigo) {
+		this.grupovendedor_codigo = grupovendedor_codigo;
+	}
+
+	public int getEstabelecimento_codigo() {
+		return estabelecimento_codigo;
+	}
+
+	public void setEstabelecimento_codigo(int estabelecimento_codigo) {
+		this.estabelecimento_codigo = estabelecimento_codigo;
+	}
+
+	public GrupoVendedor getGrupovendedor() {
+		return grupovendedor;
+	}
+
+	public void setGrupovendedor(GrupoVendedor grupovendedor) {
+		this.grupovendedor = grupovendedor;
 	}
 
 	public Estabelecimento getEstabelecimento() {

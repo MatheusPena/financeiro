@@ -9,19 +9,19 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.GrupoVendedoresDAO;
-import br.com.grupoferraz.financeiro.entity.GrupoVendedores;
+import br.com.grupoferraz.financeiro.entity.GrupoVendedor;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class GrupoVendedoresBean implements Serializable {
+public class GrupoVendedorBean implements Serializable {
 
-	private GrupoVendedores grupovendedores;
-	private List<GrupoVendedores> listagrupovendedores;
+	private GrupoVendedor grupovendedores;
+	private List<GrupoVendedor> listagrupovendedores;
 
-	public GrupoVendedoresBean() {
-		grupovendedores = new GrupoVendedores();
+	public GrupoVendedorBean() {
+		grupovendedores = new GrupoVendedor();
 		listarGrupoVendedores();
 	}
 
@@ -47,19 +47,19 @@ public class GrupoVendedoresBean implements Serializable {
 		listagrupovendedores = grupovendedoresDAO.listGrupoVendedores();
 	}
 
-	public GrupoVendedores getGrupovendedores() {
+	public GrupoVendedor getGrupovendedores() {
 		return grupovendedores;
 	}
 
-	public void setGrupovendedores(GrupoVendedores grupovendedores) {
+	public void setGrupovendedores(GrupoVendedor grupovendedores) {
 		this.grupovendedores = grupovendedores;
 	}
 
-	public List<GrupoVendedores> getListagrupovendedores() {
+	public List<GrupoVendedor> getListagrupovendedores() {
 		return listagrupovendedores;
 	}
 
-	public void setListagrupovendedores(List<GrupoVendedores> listagrupovendedores) {
+	public void setListagrupovendedores(List<GrupoVendedor> listagrupovendedores) {
 		this.listagrupovendedores = listagrupovendedores;
 	}
 
