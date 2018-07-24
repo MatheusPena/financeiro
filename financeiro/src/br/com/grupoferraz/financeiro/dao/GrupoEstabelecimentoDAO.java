@@ -20,11 +20,7 @@ public class GrupoEstabelecimentoDAO {
 
 	public boolean insertGrupoEstabelecimento(GrupoEstabelecimento grupoestabelecimento) {
 
-		// Statement st = null;
-		// ResultSet rs = null;
-
 		try {
-			// st = con.createStatement();
 
 			StringBuilder str = new StringBuilder();
 			str.append("insert into grupoestabelecimento (codigo, nomegrupoestabelecimento, unidade_codigo, empresa)"
@@ -36,8 +32,6 @@ public class GrupoEstabelecimentoDAO {
 			preparedStatement.setInt(3, grupoestabelecimento.getUnidade_codigo());
 			preparedStatement.setString(4, grupoestabelecimento.getEmpresa());
 			
-			
-
 			preparedStatement.setInt(5, grupoestabelecimento.getCodigo());
 			preparedStatement.setString(6, grupoestabelecimento.getNomegrupoestabelecimento());
 			preparedStatement.setInt(7, grupoestabelecimento.getUnidade_codigo());
@@ -63,7 +57,7 @@ public class GrupoEstabelecimentoDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select *" + "from grupoestabelecimento";
+			String sql = "select * from grupoestabelecimento";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {

@@ -3,7 +3,7 @@ package br.com.grupoferraz.financeiro.entity;
 public class Unidade {
 	private int codigo;
 	private String nome;
-	private String empresas_cnpj;
+	private String empresa_cnpj;
 	private Empresa empresa;
 	
 
@@ -23,12 +23,13 @@ public class Unidade {
 		this.nome = nome;
 	}
 
-	public String getEmpresas_cnpj() {
-		return empresas_cnpj;
+
+	public String getEmpresa_cnpj() {
+		return empresa_cnpj;
 	}
 
-	public void setEmpresas_cnpj(String empresas_cnpj) {
-		this.empresas_cnpj = empresas_cnpj;
+	public void setEmpresa_cnpj(String empresa_cnpj) {
+		this.empresa_cnpj = empresa_cnpj;
 	}
 
 	public Empresa getEmpresa() {

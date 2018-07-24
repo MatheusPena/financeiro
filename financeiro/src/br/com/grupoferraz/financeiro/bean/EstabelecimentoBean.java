@@ -32,8 +32,7 @@ public class EstabelecimentoBean implements Serializable {
 		if (estabelecimentos.insertEstabelecimentos(this.estabelecimento)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Estabelecimento cadastrado com sucesso!", "Sucesso!"));
-			// JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Estabelecimento
-			// cadastrado com sucesso!");
+			
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do estabelecimento!", "Erro!"));

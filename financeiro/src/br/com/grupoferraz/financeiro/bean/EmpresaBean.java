@@ -31,8 +31,6 @@ public class EmpresaBean implements Serializable {
 		if (Empresas.insertEmpresas(this.Empresa)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"Empresa cadastrada com sucesso!", "Sucesso!"));
-			// JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Empresa
-			// cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da Empresa!", "Erro!"));

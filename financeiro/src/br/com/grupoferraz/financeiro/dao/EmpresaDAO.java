@@ -18,9 +18,6 @@ public class EmpresaDAO {
 
 	public boolean insertEmpresas(Empresa Empresas) {
 
-		// Statement st = null;
-		// ResultSet rs = null;
-
 		try {
 			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();
@@ -52,7 +49,7 @@ public class EmpresaDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select cnpj, nome from empresas ";
+			String sql = "select cnpj, nome from empresa ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {

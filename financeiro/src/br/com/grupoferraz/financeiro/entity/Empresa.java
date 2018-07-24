@@ -22,7 +22,6 @@ public class Empresa {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return nome;
 	}
 

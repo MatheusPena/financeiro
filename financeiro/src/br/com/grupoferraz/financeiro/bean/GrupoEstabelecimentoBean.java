@@ -19,32 +19,38 @@ import br.com.grupoferraz.financeiro.entity.Unidade;
 public class GrupoEstabelecimentoBean implements Serializable {
 
 	private GrupoEstabelecimento grupoestabelecimento;
-	private List<GrupoEstabelecimento> listagrupoestabelecimento;
-	private List<Unidade> listaunidade; 
+	private List<GrupoEstabelecimento> listagrupoestabelecimentos;
+	private List<Unidade> listaunidades; 
 
 	public GrupoEstabelecimentoBean() {
 		grupoestabelecimento = new GrupoEstabelecimento();
 		listarGrupoEstabelecimento();
-		//listarUnidade();
 	}
 	
+	//Inicia o método listar unidade
+	public void setarGrupoEstabelecimento(GrupoEstabelecimento ge) {
+		listarUnidade();
+	}
+	
+	//Lista as unidades na página de Grupo de Estabelecimento
 	public void listarUnidade() {
 		String cnpj = grupoestabelecimento.getEmpresa();
 		
-		UnidadeDAO UnidadeDAO = new UnidadeDAO();
-		listaunidade = UnidadeDAO.listUnidade(cnpj);
-		System.out.println("CNPJ "+cnpj);
+		UnidadeDAO unidadeDAO = new UnidadeDAO();
+		
+		if(cnpj!=null) {
+			setListaunidades(unidadeDAO.listUnidade(cnpj));
+		}
 		
 	}
 
 	private void listarGrupoEstabelecimento()  {
 		GrupoEstabelecimentoDAO grupoestabelecimentoDAO = new GrupoEstabelecimentoDAO ();
-		listagrupoestabelecimento = grupoestabelecimentoDAO.listGrupoEstabelecimento();
+		listagrupoestabelecimentos = grupoestabelecimentoDAO.listGrupoEstabelecimento();
 	}
 
 	public String cadastraGrupoEstabelecimento() {
 
-		//ConexaoBD.getConexao();
 		GrupoEstabelecimentoDAO grupoestabelecimento = new GrupoEstabelecimentoDAO ();
 		if (grupoestabelecimento.insertGrupoEstabelecimento(this.grupoestabelecimento)) {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -54,7 +60,6 @@ public class GrupoEstabelecimentoBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));
 
 		}
-		//ConexaoBD.fecharConexao();
 
 		return "";
 	}
@@ -67,20 +72,21 @@ public class GrupoEstabelecimentoBean implements Serializable {
 		this.grupoestabelecimento = grupoestabelecimento;
 	}
 
-	public List<GrupoEstabelecimento> getListagrupoestabelecimento() {
-		return listagrupoestabelecimento;
+	public List<GrupoEstabelecimento> getListagrupoestabelecimentos() {
+		return listagrupoestabelecimentos;
 	}
 
-	public void setListagrupoestabelecimento(List<GrupoEstabelecimento> listagrupoestabelecimento) {
-		this.listagrupoestabelecimento = listagrupoestabelecimento;
+	public void setListagrupoestabelecimentos(List<GrupoEstabelecimento> listagrupoestabelecimentos) {
+		this.listagrupoestabelecimentos = listagrupoestabelecimentos;
 	}
 
-	public List<Unidade> getListaunidade() {
-		return listaunidade;
+	public List<Unidade> getListaunidades() {
+		return listaunidades;
 	}
 
-	public void setListaunidade(List<Unidade> listaunidade) {
-		this.listaunidade = listaunidade;
+	public void setListaunidades(List<Unidade> listaunidades) {
+		this.listaunidades = listaunidades;
 	}
 
+	
 }

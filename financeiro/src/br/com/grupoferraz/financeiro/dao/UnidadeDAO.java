@@ -21,15 +21,15 @@ public class UnidadeDAO {
 
 		try {
 			StringBuilder str = new StringBuilder();	
-			str.append("insert into unidade (nome, empresas_cnpj, codigo) values (?,?,?) ");
-			str.append("on duplicate key update nome = ?, empresas_cnpj = ?, codigo = ?");
+			str.append("insert into unidade (nome, empresa_cnpj, codigo) values (?,?,?) ");
+			str.append("on duplicate key update nome = ?, empresa_cnpj = ?, codigo = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setString(1, Unidade.getNome());
-			preparedStatement.setString(2, Unidade.getEmpresas_cnpj());
+			preparedStatement.setString(2, Unidade.getEmpresa_cnpj());
 			preparedStatement.setInt(3, Unidade.getCodigo());
 			
 			preparedStatement.setString(4, Unidade.getNome());
-			preparedStatement.setString(5, Unidade.getEmpresas_cnpj());
+			preparedStatement.setString(5, Unidade.getEmpresa_cnpj());
 			preparedStatement.setInt(6, Unidade.getCodigo());
 			preparedStatement.execute();
 			return true;
@@ -57,9 +57,9 @@ public class UnidadeDAO {
 			while (rs.next()) {
 				Unidade unidade = new Unidade();
 				unidade.setNome(rs.getString("nome"));
-				unidade.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
+				unidade.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 				unidade.setCodigo(rs.getInt("codigo"));
-				String idEmpresa = unidade.getEmpresas_cnpj();
+				String idEmpresa = unidade.getEmpresa_cnpj();
 				Empresa empresa = getEmpresa(idEmpresa);
 				unidade.setEmpresa(empresa);
 				lista.add(unidade);
@@ -76,6 +76,7 @@ public class UnidadeDAO {
 		return lista;
 	}
 	
+	//lista as empresas cadastradas a partir do CNPJ da empresa
 	public List<Unidade> listUnidade(String cnpj) {
 
 		ArrayList<Unidade> lista = new ArrayList<Unidade>();
@@ -84,7 +85,7 @@ public class UnidadeDAO {
 		ResultSet rs = null;
 
 		try {
-			String sql = "select nome, empresas_cnpj, codigo from unidade where empresas_cnpj = ?";
+			String sql = "select nome, empresa_cnpj, codigo from unidade where empresa_cnpj = ?";
 			st = conexao.prepareStatement(sql);
 			st.setString(1, cnpj);
 			rs = st.executeQuery();
@@ -92,9 +93,9 @@ public class UnidadeDAO {
 			while (rs.next()) {
 				Unidade unidade = new Unidade();
 				unidade.setNome(rs.getString("nome"));
-				unidade.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
+				unidade.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 				unidade.setCodigo(rs.getInt("codigo"));
-				String idGrupo = unidade.getEmpresas_cnpj();
+				String idGrupo = unidade.getEmpresa_cnpj();
 				Empresa empresa = getEmpresa(idGrupo);
 				unidade.setEmpresa(empresa);
 				lista.add(unidade);
@@ -115,7 +116,7 @@ public class UnidadeDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao
-				.prepareStatement("select cnpj, nome from empresas where cnpj = ?");
+				.prepareStatement("select cnpj, nome from empresa where cnpj = ?");
 		preparedStatement.setString(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -132,14 +133,14 @@ public class UnidadeDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao
-				.prepareStatement("select codigo, nome, empresas_cnpj from unidade where codigo = ?");
+				.prepareStatement("select codigo, nome, empresa_cnpj from unidade where codigo = ?");
 		preparedStatement.setInt(1, id);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			u.setCodigo(rs.getInt("codigo"));
 			u.setNome(rs.getString("nome"));
-			u.setEmpresas_cnpj(rs.getString("empresas_cnpj"));
+			u.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 		}
 		return u;
 	}

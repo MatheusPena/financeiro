@@ -16,7 +16,7 @@ import br.com.grupoferraz.financeiro.entity.Unidade;
 @ViewScoped
 public class UnidadeBean implements Serializable {
 	private Unidade unidade;
-	private List<Unidade> listaUnidade;
+	private List<Unidade> listaunidades;
 	private UnidadeDAO unidadeDAO;
 
 	public UnidadeBean() {
@@ -26,13 +26,12 @@ public class UnidadeBean implements Serializable {
 
 	private void listarUnidade() {
 		unidadeDAO = new UnidadeDAO();
-		listaUnidade = unidadeDAO.listUnidade();
+		listaunidades = unidadeDAO.listUnidade();
 		
 	}
 
 	public String cadastraUnidade() {
 
-		//Connection conexao = ConexaoBD.getConexao();
 		UnidadeDAO unidadeDAO = new UnidadeDAO();
 		if (unidadeDAO.insertUnidade(this.unidade)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -54,12 +53,12 @@ public class UnidadeBean implements Serializable {
 		this.unidade = unidade;
 	}
 
-	public List<Unidade> getListaUnidade() {
-		return listaUnidade;
+	public List<Unidade> getListaunidades() {
+		return listaunidades;
 	}
 
-	public void setListaUnidade(List<Unidade> listaUnidade) {
-		this.listaUnidade = listaUnidade;
+	public void setListaunidades(List<Unidade> listaunidades) {
+		this.listaunidades = listaunidades;
 	}
 	
 }

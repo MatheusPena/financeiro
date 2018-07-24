@@ -185,7 +185,7 @@
 										</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<h:selectOneMenu id="empresa" required="true"
-												value="#{unidadeBean.unidade.empresas_cnpj}"
+												value="#{unidadeBean.unidade.empresa_cnpj}"
 												style="width:320px"
 												styleClass="form-control col-md-7 col-xs-12">
 												<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -238,7 +238,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="#{unidadeBean.listaUnidade}"
+									<c:forEach items="#{unidadeBean.listaunidades}" 
 										var="unidade" cellspacing="0" width="100%">
 										<tr>
 											<td>#{unidade.nome}</td>
@@ -304,7 +304,7 @@
 									var="empresa" itemValue="#{empresa.cnpj}"
 									itemLabel="#{empresa.nome}" />
 								<f:ajax render="demo-form4:unidade"
-								 execute= "@this" listener="#{grupoEstabelecimentoBean.listarUnidade()}" />
+								 execute="@this" listener="#{grupoEstabelecimentoBean.listarUnidade()}" />
 							</h:selectOneMenu>
 					</div>
 				</div>
@@ -318,11 +318,17 @@
 								style="width:320px"
 								styleClass="form-control col-md-7 col-xs-12">
 								<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-								<c:forEach items="#{grupoEstabelecimentoBean.listaunidade}"
+							
+								<f:selectItems value="#{grupoEstabelecimentoBean.listaunidades}"
+									var="unidade" itemLabel="#{unidade.nome}"
+										itemValue="#{unidade.codigo}" />
+							
+							<!-- <c:forEach items="#{grupoEstabelecimentoBean.listaunidades}"
 									var="unidade" cellspacing="0" width="100%">
 									<f:selectItem itemLabel="#{unidade.nome}"
 										itemValue="#{unidade.codigo}" />
-								</c:forEach>
+								</c:forEach> -->
+								
 							</h:selectOneMenu>
 						</p:outputPanel>
 					</p:outputPanel>
@@ -370,19 +376,23 @@
 					</thead>
 					<tbody>
 						<c:forEach
-							items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
+							items="#{grupoEstabelecimentoBean.listagrupoestabelecimentos}"
 							var="grupoestabelecimento" cellspacing="0" width="100%">
 							<tr>
 								<td>#{grupoestabelecimento.codigo}</td>
-								<td><p:commandButton value=""
+								<td>
+								
+								<p:commandButton value=""
 										style="font-size:10px; "
 										styleClass="fas fa-edit btn btn-primary"
 										onclick="window.location='#demo-form4'"
-										update="@(.form-control)">
+										update="@(.form-control)" action="#{grupoEstabelecimentoBean.setarGrupoEstabelecimento(grupoestabelecimento)}">
 										<f:setPropertyActionListener
 											value="#{grupoestabelecimento}"
 											target="#{grupoEstabelecimentoBean.grupoestabelecimento}" />
-									</p:commandButton></td>
+									</p:commandButton>
+									
+									</td>
 								<td>#{grupoestabelecimento.nomegrupoestabelecimento}</td>
 								<td>#{grupoestabelecimento.emp}</td>
 								<td>#{grupoestabelecimento.unidade.nome}</td>
@@ -446,7 +456,7 @@
 							styleClass="form-control col-md-7 col-xs-12">
 							<f:selectItem itemLabel="Selecione" itemValue="" />
 							<c:forEach
-								items="#{grupoEstabelecimentoBean.listagrupoestabelecimento}"
+								items="#{grupoEstabelecimentoBean.listagrupoestabelecimentos}"
 								var="grupoestabelecimento" cellspacing="0" width="100%">
 								<f:selectItem
 									itemLabel="#{grupoestabelecimento.nomegrupoestabelecimento}
