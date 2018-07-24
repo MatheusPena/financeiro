@@ -17,7 +17,7 @@ public class PlanoContas {
 	private int icms;
 	private String observacao;
 	private Integer grupoplanocontas_codigo;
-	private Despesas despesa;
+	private Despesa despesa;
 	private GrupoPlanoContas grupoplanocontas;
 
 	public String getCodigo() {
@@ -148,11 +148,11 @@ public class PlanoContas {
 		this.grupoplanocontas_codigo = grupoplanocontas_codigo;
 	}
 
-	public Despesas getDespesa() {
+	public Despesa getDespesa() {
 		return despesa;
 	}
 
-	public void setDespesa(Despesas despesa) {
+	public void setDespesa(Despesa despesa) {
 		this.despesa = despesa;
 	}
 

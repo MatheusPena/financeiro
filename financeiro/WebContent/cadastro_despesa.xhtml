@@ -67,7 +67,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo"
-														value="#{despesasBean.despesas.codigo}"
+														value="#{despesaBean.despesa.codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true">
 													</p:inputText>
@@ -79,7 +79,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome"
-														value="#{despesasBean.despesas.nome}"
+														value="#{despesaBean.despesa.nome}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true">
 													</p:inputText>
@@ -91,14 +91,14 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="grupo" required="true"
-														value="#{despesasBean.despesas.grupodespesas_codigo}"
+														value="#{despesaBean.despesa.grupodespesa_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 														<f:selectItems
-															value="#{grupoDespesasBean.listagrupodespesas}"
+															value="#{grupoDespesaBean.listagrupodespesas}"
 															var="grupoDespesa" itemValue="#{grupoDespesa.codigo}"
-															itemLabel="#{grupoDespesa.nomegrupodespesas}" />
+															itemLabel="#{grupoDespesa.nomegrupodespesa}" />
 													</h:selectOneMenu>
 												</div>
 											</div>
@@ -108,7 +108,7 @@
 												<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
-														action="#{despesasBean.cadastraDespesa()}">
+														action="#{despesaBean.cadastraDespesa()}">
 													</p:commandButton>
 												</div>
 											</div>
@@ -121,7 +121,7 @@
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														Tabela dos Despesas <small>Exibe as despesas
+														Tabela de Despesas <small>Exibe as despesas
 															cadastradas</small>
 													</h2>
 													<ul class="nav navbar-right panel_toolbox">
@@ -143,22 +143,31 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach items="#{despesasBean.listadespesa}"
-																var="despesas" cellspacing="0" width="100%">
+															<c:forEach items="#{despesaBean.listadespesa}"
+																var="despesa" cellspacing="0" width="100%">
 																<tr>
-																	<td>#{despesas.codigo}</td>
-																	<td class="text-center">
+																	<td>#{despesa.codigo}</td>
+																	<!-- <td class="text-center">
 																	
 																	<p:commandButton value=""
-																			action="#{despesasBean.setarDespesa()}"
+																			action="#{despesaBean.setarDespesa()}"
 																			style="font-size:10px; "
 																			styleClass="fas fa-edit btn btn-primary"
 																			update="Campo">
 																			<f:setPropertyActionListener value="#{despesas}"
-																				target="#{despesasBean.despesaSelecionada}" />
-																		</p:commandButton></td>
-																	<td>#{despesas.nome}</td>
-																	<td>#{despesas.grupodespesas}</td>
+																				target="#{despesaBean.despesaSelecionada}" />
+																		</p:commandButton></td>  -->
+															<td class="text-center">
+															<p:commandButton value=""
+															 style="font-size:10px;"
+															styleClass="fas fa-edit btn btn-primary" 
+															update="@(.form-control) @(.calendar) Campo">
+															<f:setPropertyActionListener value="#{despesa}" 
+															target="#{despesaBean.despesa}"/>
+															</p:commandButton>
+															</td>
+																	<td>#{despesa.nome}</td>
+																	<td>#{despesa.grupodespesa}</td>
 																</tr>
 															</c:forEach>
 														</tbody>

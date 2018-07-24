@@ -30,7 +30,7 @@ public class Pagar implements Serializable {
 	private Documentos documento;
 	private int documento_codigo;
 	private String observacao;
-	private Despesas despesa;
+	private Despesa despesa;
 	
 	
 	public Pagar() {
@@ -252,12 +252,12 @@ public class Pagar implements Serializable {
 	}
 
 
-	public Despesas getDespesa() {
+	public Despesa getDespesa() {
 		return despesa;
 	}
 
 
-	public void setDespesa(Despesas despesa) {
+	public void setDespesa(Despesa despesa) {
 		this.despesa = despesa;
 	}
 

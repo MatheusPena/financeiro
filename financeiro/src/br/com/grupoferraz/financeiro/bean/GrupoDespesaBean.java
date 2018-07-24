@@ -6,27 +6,27 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import br.com.grupoferraz.financeiro.dao.GrupoDespesasDAO;
-import br.com.grupoferraz.financeiro.entity.GrupoDespesas;
+import br.com.grupoferraz.financeiro.dao.GrupoDespesaDAO;
+import br.com.grupoferraz.financeiro.entity.GrupoDespesa;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class GrupoDespesasBean implements Serializable {
+public class GrupoDespesaBean implements Serializable {
 
-	private GrupoDespesas grupodespesas;
-	private List<GrupoDespesas> listagrupodespesas;
+	private GrupoDespesa grupodespesa;
+	private List<GrupoDespesa> listagrupodespesas;
 
 
-	public GrupoDespesasBean() {
-		grupodespesas = new GrupoDespesas();
+	public GrupoDespesaBean() {
+		grupodespesa = new GrupoDespesa();
 		listarGrupoDespesas();
 	}
 
 	private void listarGrupoDespesas()  {
-		GrupoDespesasDAO grupoDespesasDAO = new GrupoDespesasDAO ();
-		listagrupodespesas = grupoDespesasDAO.listGrupoDespesas();
+		GrupoDespesaDAO grupoDespesaDAO = new GrupoDespesaDAO ();
+		listagrupodespesas = grupoDespesaDAO.listGrupoDespesas();
 		
 		
 	}
@@ -34,8 +34,8 @@ public class GrupoDespesasBean implements Serializable {
 	public String cadastraGrupoDespesa() {
 
 		ConexaoBD.getConexao();
-		GrupoDespesasDAO grupodespesas = new GrupoDespesasDAO ();
-		if (grupodespesas.insertGrupoDespesas(this.grupodespesas)) {
+		GrupoDespesaDAO grupodespesa = new GrupoDespesaDAO ();
+		if (grupodespesa.insertGrupoDespesa(this.grupodespesa)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Grupo de Despesas cadastrado com sucesso!", "Sucesso!"));
 		} else {
@@ -48,19 +48,19 @@ public class GrupoDespesasBean implements Serializable {
 		return "";
 	}
 
-	public GrupoDespesas getGrupodespesas() {
-		return grupodespesas;
+	public GrupoDespesa getGrupodespesa() {
+		return grupodespesa;
 	}
 
-	public void setGrupodespesas(GrupoDespesas grupodespesas) {
-		this.grupodespesas = grupodespesas;
+	public void setGrupodespesa(GrupoDespesa grupodespesa) {
+		this.grupodespesa = grupodespesa;
 	}
 
-	public List<GrupoDespesas> getListagrupodespesas() {
+	public List<GrupoDespesa> getListagrupodespesas() {
 		return listagrupodespesas;
 	}
 
-	public void setListagrupodespesas(List<GrupoDespesas> listagrupodespesas) {
+	public void setListagrupodespesas(List<GrupoDespesa> listagrupodespesas) {
 		this.listagrupodespesas = listagrupodespesas;
 	}
 

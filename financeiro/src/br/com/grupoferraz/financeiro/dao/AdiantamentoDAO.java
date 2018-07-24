@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.CentroResultados;
 import br.com.grupoferraz.financeiro.entity.ContasFinanceiras;
-import br.com.grupoferraz.financeiro.entity.Despesas;
+import br.com.grupoferraz.financeiro.entity.Despesa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.Historico;
 import br.com.grupoferraz.financeiro.entity.Adiantamento;
@@ -111,7 +111,7 @@ public class AdiantamentoDAO {
 				CentroResultados obj3 = getCentroResultados(Adiantamento.getCentroresultados_codigo());
 				Adiantamento.setCentroresultado(obj3);
 				Adiantamento.setDespesas_codigo(rs.getInt(9));
-				Despesas obj4 = getDespesa(Adiantamento.getDespesas_codigo());
+				Despesa obj4 = getDespesa(Adiantamento.getDespesas_codigo());
 				Adiantamento.setDespesa(obj4);
 				Adiantamento.setValor(rs.getFloat(3));
 				Adiantamento.setHistoricopadrao_codigo(rs.getInt(10));
@@ -131,18 +131,18 @@ public class AdiantamentoDAO {
 		return lista;
 	}
 
-	public Despesas getDespesa(int idGrupo) throws SQLException {
-		Despesas grupo = new Despesas();
+	public Despesa getDespesa(int idGrupo) throws SQLException {
+		Despesa grupo = new Despesa();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from despesas where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from despesa where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNome(rs.getString("nome"));
-			grupo.setGrupodespesas_codigo(rs.getInt("grupodespesas_codigo"));
+			grupo.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
 		}
 		return grupo;
 	}

@@ -1,10 +1,10 @@
 package br.com.grupoferraz.financeiro.entity;
 
-public class GrupoDespesas {
+public class GrupoDespesa {
 	private int codigo;
-	private String nomegrupodespesas;
+	private String nomegrupodespesa;
 	
-	public GrupoDespesas() {
+	public GrupoDespesa() {
 		
 	}
 	
@@ -15,16 +15,14 @@ public class GrupoDespesas {
 		this.codigo = codigo;
 	}
 	
-	public String getNomegrupodespesas() {
-		return nomegrupodespesas;
+	public String getNomegrupodespesa() {
+		return nomegrupodespesa;
 	}
-	public void setNomegrupodespesas(String nomegrupodespesas) {
-		this.nomegrupodespesas = nomegrupodespesas;
+
+	public void setNomegrupodespesa(String nomegrupodespesa) {
+		this.nomegrupodespesa = nomegrupodespesa;
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -33,9 +31,6 @@ public class GrupoDespesas {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -44,10 +39,10 @@ public class GrupoDespesas {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof GrupoDespesas)) {
+		if (!(obj instanceof GrupoDespesa)) {
 			return false;
 		}
-		GrupoDespesas other = (GrupoDespesas) obj;
+		GrupoDespesa other = (GrupoDespesa) obj;
 		if (codigo != other.codigo) {
 			return false;
 		}
@@ -56,8 +51,7 @@ public class GrupoDespesas {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return nomegrupodespesas;
+		return nomegrupodespesa;
 	}
 	
 }

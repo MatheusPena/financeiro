@@ -10,27 +10,26 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.GrupoDespesas;
+import br.com.grupoferraz.financeiro.entity.GrupoDespesa;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
-public class GrupoDespesasDAO {
+public class GrupoDespesaDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertGrupoDespesas(GrupoDespesas grupodespesas) {
+	public boolean insertGrupoDespesa(GrupoDespesa grupodespesa) {
 
 
 		try {
 
 			StringBuilder str = new StringBuilder();
-			str.append("insert into grupodespesas (codigo, nomegrupodespesa)"
-					+ "values (?,?)");
+			str.append("insert into grupodespesa (codigo, nomegrupodespesa) values (?,?)");
 			str.append("on duplicate key update codigo = ?, nomegrupodespesa = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
-			preparedStatement.setInt(1, grupodespesas.getCodigo());
-			preparedStatement.setString(2, grupodespesas.getNomegrupodespesas());
+			preparedStatement.setInt(1, grupodespesa.getCodigo());
+			preparedStatement.setString(2, grupodespesa.getNomegrupodespesa());
 
-			preparedStatement.setInt(3, grupodespesas.getCodigo());
-			preparedStatement.setString(4, grupodespesas.getNomegrupodespesas());
+			preparedStatement.setInt(3, grupodespesa.getCodigo());
+			preparedStatement.setString(4, grupodespesa.getNomegrupodespesa());
 			preparedStatement.execute();
 			return true;
 	
@@ -43,24 +42,24 @@ public class GrupoDespesasDAO {
 	}
 
 	// lista todos os usuarios cadastrados no banco de dados
-	public List<GrupoDespesas> listGrupoDespesas() {
+	public List<GrupoDespesa> listGrupoDespesas() {
 
-		ArrayList<GrupoDespesas> lista = new ArrayList<GrupoDespesas>();
+		ArrayList<GrupoDespesa> lista = new ArrayList<GrupoDespesa>();
 
 		Statement st = null;
 		ResultSet rs = null;
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select *" + "from grupodespesas";
+			String sql = "select * from grupodespesa";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
-				GrupoDespesas grupodespesas = new GrupoDespesas();
-				grupodespesas.setCodigo(rs.getInt(1));
-				grupodespesas.setNomegrupodespesas(rs.getString(2));
-				lista.add(grupodespesas);
+				GrupoDespesa grupodespesa = new GrupoDespesa();
+				grupodespesa.setCodigo(rs.getInt(1));
+				grupodespesa.setNomegrupodespesa(rs.getString(2));
+				lista.add(grupodespesa);
 			}
 
 		} catch (SQLException ex) {

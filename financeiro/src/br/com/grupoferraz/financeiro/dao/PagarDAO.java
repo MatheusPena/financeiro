@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import br.com.grupoferraz.financeiro.entity.Pagar;
 import br.com.grupoferraz.financeiro.entity.CentroResultados;
 import br.com.grupoferraz.financeiro.entity.ContasFinanceiras;
-import br.com.grupoferraz.financeiro.entity.Despesas;
+import br.com.grupoferraz.financeiro.entity.Despesa;
 import br.com.grupoferraz.financeiro.entity.Documentos;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
@@ -140,7 +140,7 @@ public class PagarDAO {
 				pagarconta.setContafinanceira_codigo(rs.getInt("contafinanceira_codigo"));
 				ContasFinanceiras contafinanceira = getContafinanceira(pagarconta.getContafinanceira_codigo());
 				pagarconta.setContafinanceira(contafinanceira);
-				Despesas despesa = new DespesasDAO().listadespesa(pagarconta.getCodigo());
+				Despesa despesa = new DespesaDAO().listadespesa(pagarconta.getCodigo());
 				pagarconta.setDespesa(despesa);
 				lista.add(pagarconta);
 			}

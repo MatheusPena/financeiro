@@ -67,7 +67,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo" required="true"
-													value="#{grupoDespesasBean.grupodespesas.codigo}"
+													value="#{grupoDespesaBean.grupodespesa.codigo}"
 													styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -77,7 +77,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-													value="#{grupoDespesasBean.grupodespesas.nomegrupodespesas}" 
+													value="#{grupoDespesaBean.grupodespesa.nomegrupodespesa}" 
 													styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -86,7 +86,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{grupoDespesasBean.cadastraGrupoDespesa}"
+														action="#{grupoDespesaBean.cadastraGrupoDespesa}"
 														update="messages" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'"> 
 													</p:commandButton>
@@ -140,20 +140,20 @@
 												</thead>
 												<tbody>
 													<c:forEach
-														items="#{grupoDespesasBean.listagrupodespesas}"
-														var="grupodespesas" cellspacing="0" width="100%">
+														items="#{grupoDespesaBean.listagrupodespesas}"
+														var="grupodespesa" cellspacing="0" width="100%">
 														<tr>
-															<td>#{grupodespesas.codigo}</td>
+															<td>#{grupodespesa.codigo}</td>
 															<td><p:commandButton value=""
 																	style="font-size:10px; "
 																	styleClass="fas fa-edit btn btn-primary"
 																	onclick="window.location='#demo-form2'"
 																	update="@(.form-control)">
 																	<f:setPropertyActionListener
-																	value="#{grupodespesas}"
-																	target="#{grupoDespesasBean.grupodespesas}" />
+																	value="#{grupodespesa}"
+																	target="#{grupoDespesaBean.grupodespesa}" />
 																</p:commandButton></td>
-															<td>#{grupodespesas.nomegrupodespesas}</td>
+															<td>#{grupodespesa.nomegrupodespesa}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

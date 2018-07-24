@@ -10,7 +10,7 @@ public class Historico implements Serializable {
 	private int codigo;
 	private String descricao;
 	private int despesa_codigo;
-	private Despesas Despesa;
+	private Despesa Despesa;
 
 	public int getCodigo() {
 		return codigo;
@@ -38,11 +38,11 @@ public class Historico implements Serializable {
 		this.despesa_codigo = despesa_codigo;
 	}
 
-	public Despesas getDespesa() {
+	public Despesa getDespesa() {
 		return Despesa;
 	}
 
-	public void setDespesa(Despesas despesa) {
+	public void setDespesa(Despesa despesa) {
 		Despesa = despesa;
 	}
 
