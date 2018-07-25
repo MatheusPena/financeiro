@@ -8,27 +8,27 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.grupoferraz.financeiro.dao.GrupoFornecedoresDAO;
-import br.com.grupoferraz.financeiro.entity.GrupoFornecedores;
+import br.com.grupoferraz.financeiro.dao.GrupoFornecedorDAO;
+import br.com.grupoferraz.financeiro.entity.GrupoFornecedor;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class GrupoFornecedoresBean implements Serializable {
+public class GrupoFornecedorBean implements Serializable {
 
-	private GrupoFornecedores grupofornecedor;
-	private List<GrupoFornecedores> grupofornecedores;
+	private GrupoFornecedor grupofornecedor;
+	private List<GrupoFornecedor> grupofornecedores;
 
-	public GrupoFornecedoresBean() {
-		grupofornecedor = new GrupoFornecedores();
+	public GrupoFornecedorBean() {
+		grupofornecedor = new GrupoFornecedor();
 		getGrupoFornecedores();
 	}
 
 	public String cadastraGrupofornecedor() {
 
 		ConexaoBD.getConexao();
-		GrupoFornecedoresDAO grupofornecedores = new GrupoFornecedoresDAO ();
+		GrupoFornecedorDAO grupofornecedores = new GrupoFornecedorDAO ();
 		if (grupofornecedores.insertGrupoFornecedores(grupofornecedor)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Grupo de fornecedor cadastrado com sucesso", "Sucesso!"));
@@ -43,24 +43,24 @@ public class GrupoFornecedoresBean implements Serializable {
 	}
 
 	public void getGrupoFornecedores()  {
-		GrupoFornecedoresDAO grupofornecedoresDAO = new GrupoFornecedoresDAO ();
+		GrupoFornecedorDAO grupofornecedoresDAO = new GrupoFornecedorDAO ();
 		grupofornecedores = grupofornecedoresDAO.listGrupoFornecedores();
 	}
 
 
-	public GrupoFornecedores getGrupofornecedor() {
+	public GrupoFornecedor getGrupofornecedor() {
 		return grupofornecedor;
 	}
 
-	public void setGrupofornecedor(GrupoFornecedores grupofornecedor) {
+	public void setGrupofornecedor(GrupoFornecedor grupofornecedor) {
 		this.grupofornecedor = grupofornecedor;
 	}
 
-	public List<GrupoFornecedores> getGrupofornecedores() {
+	public List<GrupoFornecedor> getGrupofornecedores() {
 		return grupofornecedores;
 	}
 
-	public void setGrupofornecedores(List<GrupoFornecedores> grupofornecedores) {
+	public void setGrupofornecedores(List<GrupoFornecedor> grupofornecedores) {
 		this.grupofornecedores = grupofornecedores;
 	}
 

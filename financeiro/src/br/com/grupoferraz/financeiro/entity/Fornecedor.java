@@ -3,7 +3,7 @@ package br.com.grupoferraz.financeiro.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Fornecedores {
+public class Fornecedor {
 	private String nome;
 	private String cpf;
 	private Date dtnascimento;
@@ -22,7 +22,7 @@ public class Fornecedores {
 	private String site;
 	private String contato;
 	private String codigodes;
-	private Integer grupofornecedores_codigo;
+	private Integer grupofornecedor_codigo;
 	private String rg;
 	private String contabil;
 	private String banco;
@@ -43,7 +43,7 @@ public class Fornecedores {
 	private String docidex;
 	private String descricao;
 	private Date data_cadastro;
-	private GrupoFornecedores grupofornecedores;
+	private GrupoFornecedor grupofornecedor;
 	
 	public String getNome() {
 		return nome;
@@ -74,6 +74,18 @@ public class Fornecedores {
 	}
 	public void setNum(String num) {
 		this.num = num;
+	}
+	public Integer getGrupofornecedor_codigo() {
+		return grupofornecedor_codigo;
+	}
+	public void setGrupofornecedor_codigo(Integer grupofornecedor_codigo) {
+		this.grupofornecedor_codigo = grupofornecedor_codigo;
+	}
+	public GrupoFornecedor getGrupofornecedor() {
+		return grupofornecedor;
+	}
+	public void setGrupofornecedor(GrupoFornecedor grupofornecedor) {
+		this.grupofornecedor = grupofornecedor;
 	}
 	public String getCom() {
 		return com;
@@ -153,12 +165,7 @@ public class Fornecedores {
 	public void setCodigodes(String codigodes) {
 		this.codigodes = codigodes;
 	}
-	public Integer getGrupofornecedores_codigo() {
-		return grupofornecedores_codigo;
-	}
-	public void setGrupofornecedores_codigo(Integer grupofornecedores_codigo) {
-		this.grupofornecedores_codigo = grupofornecedores_codigo;
-	}
+	
 	public String getRg() {
 		return rg;
 	}
@@ -278,13 +285,6 @@ public class Fornecedores {
 	}
 	public void setData_cadastro(Date data_cadastro) {
 		this.data_cadastro = data_cadastro;
-	}
-	
-	public GrupoFornecedores getGrupofornecedores() {
-		return grupofornecedores;
-	}
-	public void setGrupofornecedores(GrupoFornecedores grupofornecedores) {
-		this.grupofornecedores = grupofornecedores;
 	}
 	
 }

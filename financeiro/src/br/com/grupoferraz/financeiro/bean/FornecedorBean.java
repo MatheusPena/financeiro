@@ -7,8 +7,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import br.com.grupoferraz.financeiro.dao.FornecedoresDAO;
-import br.com.grupoferraz.financeiro.entity.Fornecedores;
+import br.com.grupoferraz.financeiro.dao.FornecedorDAO;
+import br.com.grupoferraz.financeiro.entity.Fornecedor;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 
@@ -16,16 +16,16 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 @SuppressWarnings("serial")
 @ViewScoped
 @ManagedBean
-public class FornecedoresBean implements Serializable {
-	private Fornecedores fornecedores = new Fornecedores();
-	private List<Fornecedores> fornecedor = new ArrayList<>();
+public class FornecedorBean implements Serializable {
+	private Fornecedor fornecedores = new Fornecedor();
+	private List<Fornecedor> fornecedor = new ArrayList<>();
 
-	public FornecedoresBean() {
-		fornecedores = new Fornecedores();
+	public FornecedorBean() {
+		fornecedores = new Fornecedor();
 		getFornecedorr();
 	}
 	
-	public void editar(Fornecedores fornecedores) {
+	public void editar(Fornecedor fornecedores) {
 		this.fornecedores = fornecedores;
 		System.out.println(fornecedores);
 	}
@@ -33,7 +33,7 @@ public class FornecedoresBean implements Serializable {
 	public String cadastrar() {
 		fornecedor.add(fornecedores);
 		ConexaoBD.getConexao();
-		FornecedoresDAO fornecedoresDAO = new FornecedoresDAO();
+		FornecedorDAO fornecedoresDAO = new FornecedorDAO();
 		if (fornecedoresDAO.insertFornecedores(fornecedores)) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Fornecedor cadastrado com sucesso!", "Sucesso!"));
@@ -48,23 +48,23 @@ public class FornecedoresBean implements Serializable {
 	}
 	
 	public void getFornecedorr()  {
-		FornecedoresDAO vendedoresDAO = new FornecedoresDAO ();
+		FornecedorDAO vendedoresDAO = new FornecedorDAO ();
 		fornecedor = vendedoresDAO.listFornecedores();
 	}
 
-	public Fornecedores getFornecedores() {
+	public Fornecedor getFornecedores() {
 		return fornecedores;
 	}
 
-	public void setFornecedores(Fornecedores fornecedores) {
+	public void setFornecedores(Fornecedor fornecedores) {
 		this.fornecedores = fornecedores;
 	}
 
-	public List<Fornecedores> getFornecedor() {
+	public List<Fornecedor> getFornecedor() {
 		return fornecedor;
 	}
 
-	public void setFornecedor(List<Fornecedores> fornecedor) {
+	public void setFornecedor(List<Fornecedor> fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 	

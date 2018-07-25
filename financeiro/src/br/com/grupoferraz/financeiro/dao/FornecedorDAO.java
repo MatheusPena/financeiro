@@ -1,7 +1,7 @@
 package br.com.grupoferraz.financeiro.dao;
 
-import br.com.grupoferraz.financeiro.entity.Fornecedores;
-import br.com.grupoferraz.financeiro.entity.GrupoFornecedores;
+import br.com.grupoferraz.financeiro.entity.Fornecedor;
+import br.com.grupoferraz.financeiro.entity.GrupoFornecedor;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,16 +14,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FornecedoresDAO {
+public class FornecedorDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertFornecedores(Fornecedores fornecedores) {
+	public boolean insertFornecedores(Fornecedor fornecedores) {
+		
 		try {
 			StringBuilder str = new StringBuilder();
-			str.append("insert into fornecedores (nome, cpf, dtnascimento,"
+			str.append("insert into fornecedor (nome, cpf, dtnascimento,"
 					+ "logradouro, num, com, bairro, cep, "
 					+ "cidade, estado, ie, telefone, celular, fax, email, "
-					+ "site, contato, codigodes, grupofornecedores_codigo,  rg,"
+					+ "site, contato, codigodes, grupofornecedor_codigo,  rg,"
 					+ "contabil, banco, tipoconta, agenciabanco, digagencia, conta, "
 					+ "digconta, nomefantasia, febraban, inscmunicipio,"
 					+ "prestadorserv, icms, ipi, codigopais, inss, aliquota, docidex, descricao, data_cadastro)"
@@ -31,7 +32,7 @@ public class FornecedoresDAO {
 			str.append("on duplicate key update nome = ?, cpf = ?, dtnascimento = ?, "
 					+ "logradouro = ?, num = ?, com = ?, bairro = ?, cep = ?, cidade = ?, estado = ?, ie = ?, "
 					+ "telefone = ?, celular = ?, fax = ?, email = ?,  site = ?, contato = ?, codigodes = ?, "
-					+ "grupofornecedores_codigo = ?, rg = ?, contabil = ?, banco = ?, tipoconta = ?, agenciabanco = ?, "
+					+ "grupofornecedor_codigo = ?, rg = ?, contabil = ?, banco = ?, tipoconta = ?, agenciabanco = ?, "
 					+ "digagencia = ?, conta = ?, digconta = ?, nomefantasia = ?, "
 					+ "febraban = ?, inscmunicipio = ?, prestadorserv = ?, "
 					+ "icms = ?, ipi = ?, codigopais = ?, inss = ?, aliquota = ?, docidex = ?, descricao = ?, data_cadastro = ?");
@@ -60,7 +61,7 @@ public class FornecedoresDAO {
 			PreparedStatement.setString(16, fornecedores.getSite());
 			PreparedStatement.setString(17, fornecedores.getContato());
 			PreparedStatement.setString(18, fornecedores.getCodigodes());
-			PreparedStatement.setInt(19, fornecedores.getGrupofornecedores_codigo());
+			PreparedStatement.setInt(19, fornecedores.getGrupofornecedor_codigo());
 			PreparedStatement.setString(20, fornecedores.getRg());
 			PreparedStatement.setString(21, fornecedores.getContabil());
 			PreparedStatement.setString(22, fornecedores.getBanco());
@@ -100,7 +101,7 @@ public class FornecedoresDAO {
 			PreparedStatement.setString(55, fornecedores.getSite());
 			PreparedStatement.setString(56, fornecedores.getContato());
 			PreparedStatement.setString(57, fornecedores.getCodigodes());
-			PreparedStatement.setInt(58, fornecedores.getGrupofornecedores_codigo());
+			PreparedStatement.setInt(58, fornecedores.getGrupofornecedor_codigo());
 			PreparedStatement.setString(59, fornecedores.getRg());
 			PreparedStatement.setString(60, fornecedores.getContabil());
 			PreparedStatement.setString(61, fornecedores.getBanco());
@@ -132,9 +133,9 @@ public class FornecedoresDAO {
 	}
 
 	// lista todos os fornecedoress cadastrados no banco de dados
-	public List<Fornecedores> listFornecedores() {
+	public List<Fornecedor> listFornecedores() {
 
-		ArrayList<Fornecedores> lista = new ArrayList<Fornecedores>();
+		ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
 
 		Statement st = null;
 		ResultSet rs = null;
@@ -144,16 +145,16 @@ public class FornecedoresDAO {
 			String sql = "select nome, cpf, dtnascimento,"
 					+ "logradouro, num, com, bairro, cep, "
 					+ "cidade, estado, ie, telefone, celular, fax, email,"
-					+ "site, contato, codigodes, grupofornecedores_codigo, rg,  "
+					+ "site, contato, codigodes, grupofornecedor_codigo, rg,  "
 					+ "contabil, banco, tipoconta, agenciabanco, digagencia, conta, "
 					+ "digconta, nomefantasia, febraban, inscmunicipio," 
 					+ "prestadorserv, icms, ipi, codigopais, inss, aliquota, "
-					+ "docidex, descricao, data_cadastro from fornecedores";
+					+ "docidex, descricao, data_cadastro from fornecedor";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {			
 				
-				Fornecedores fornecedores = new Fornecedores();
+				Fornecedor fornecedores = new Fornecedor();
 				fornecedores.setNome(rs.getString(1));
 				fornecedores.setCpf(rs.getString(2));
 				fornecedores.setDtnascimento(rs.getDate(3));
@@ -172,9 +173,9 @@ public class FornecedoresDAO {
 				fornecedores.setSite(rs.getString(16));
 				fornecedores.setContato(rs.getString(17));
 				fornecedores.setCodigodes(rs.getString(18));
-				fornecedores.setGrupofornecedores_codigo(rs.getInt(19));
-				Integer codigo = fornecedores.getGrupofornecedores_codigo();
-				fornecedores.setGrupofornecedores(getFornecedores(codigo)); 
+				fornecedores.setGrupofornecedor_codigo(rs.getInt(19));
+				Integer codigo = fornecedores.getGrupofornecedor_codigo();
+				fornecedores.setGrupofornecedor(getFornecedores(codigo)); 
 				fornecedores.setRg(rs.getString(20));
 				fornecedores.setContabil(rs.getString(21));
 				fornecedores.setBanco(rs.getString(22));
@@ -210,14 +211,14 @@ public class FornecedoresDAO {
 	}
 		
 	
-	public GrupoFornecedores getFornecedores(Integer codigo) {
-		GrupoFornecedores grupoFornecedores = new GrupoFornecedores();
+	public GrupoFornecedor getFornecedores(Integer codigo) {
+		GrupoFornecedor grupoFornecedores = new GrupoFornecedor();
 		
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		try {
 			preparedStatement = conexao
-					.prepareStatement ("select codigo, nome from grupofornecedores where codigo = ?");
+					.prepareStatement ("select codigo, nome from grupofornecedor where codigo = ?");
 			preparedStatement.setInt(1, codigo);
 			rs = preparedStatement.executeQuery();
 			while (rs.next()) {

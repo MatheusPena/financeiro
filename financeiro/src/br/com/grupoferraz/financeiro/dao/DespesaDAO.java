@@ -21,7 +21,7 @@ public class DespesaDAO {
 	public boolean insertDespesas(Despesa despesa) {
 
 		try {
-			// st = con.createStatement();
+
 			StringBuilder str = new StringBuilder();
 			str.append("insert into despesa (codigo, nome, grupodespesa_codigo) values (?,?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?, grupodespesa_codigo = ?");

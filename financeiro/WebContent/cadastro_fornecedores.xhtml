@@ -69,7 +69,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-														value="#{fornecedoresBean.fornecedores.nome}"
+														value="#{fornecedorBean.fornecedores.nome}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -79,7 +79,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf" required="true"
-														value="#{fornecedoresBean.fornecedores.cpf}"
+														value="#{fornecedorBean.fornecedores.cpf}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -88,10 +88,10 @@
 													<p:outputLabel for="nascimento" value="Data de Nascimento:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:calendar mask="true" pattern="dd/MM/yyyy"
+													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="nascimento" required="true"
-														value="#{fornecedoresBean.fornecedores.dtnascimento}" />
+														value="#{fornecedorBean.fornecedores.dtnascimento}" />
 												</div>
 											</div>													
 											<div class="form-group">
@@ -100,7 +100,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="logradouro"
-														value="#{fornecedoresBean.fornecedores.logradouro}"
+														value="#{fornecedorBean.fornecedores.logradouro}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -110,7 +110,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="num"
-														value="#{fornecedoresBean.fornecedores.num}"
+														value="#{fornecedorBean.fornecedores.num}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -120,7 +120,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="com"
-														value="#{fornecedoresBean.fornecedores.com}"
+														value="#{fornecedorBean.fornecedores.com}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -130,7 +130,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="bairro"
-														value="#{fornecedoresBean.fornecedores.bairro}"
+														value="#{fornecedorBean.fornecedores.bairro}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>			
@@ -140,7 +140,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="99999-999" id="cep"
-														value="#{fornecedoresBean.fornecedores.cep}"
+														value="#{fornecedorBean.fornecedores.cep}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>									
@@ -150,7 +150,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cidade"
-														value="#{fornecedoresBean.fornecedores.cidade}"
+														value="#{fornecedorBean.fornecedores.cidade}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -160,7 +160,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="estado"
-														value="#{fornecedoresBean.fornecedores.estado}"
+														value="#{fornecedorBean.fornecedores.estado}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>		
@@ -170,7 +170,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="99.999.999-9" id="ie"
-														value="#{fornecedoresBean.fornecedores.ie}"
+														value="#{fornecedorBean.fornecedores.ie}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div> 
@@ -180,7 +180,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="(99) 9999-9999" id="telefone"
-														value="#{fornecedoresBean.fornecedores.telefone}"
+														value="#{fornecedorBean.fornecedores.telefone}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div> 								
@@ -190,7 +190,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="(99) 99999-9999" id="celular"
-														value="#{fornecedoresBean.fornecedores.celular}"
+														value="#{fornecedorBean.fornecedores.celular}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>		
@@ -200,7 +200,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="fax"
-														value="#{fornecedoresBean.fornecedores.fax}"
+														value="#{fornecedorBean.fornecedores.fax}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -210,7 +210,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="email"
-														value="#{fornecedoresBean.fornecedores.email}"
+														value="#{fornecedorBean.fornecedores.email}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -220,7 +220,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="site"
-														value="#{fornecedoresBean.fornecedores.site}"
+														value="#{fornecedorBean.fornecedores.site}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -230,7 +230,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="contato"
-														value="#{fornecedoresBean.fornecedores.contato}"
+														value="#{fornecedorBean.fornecedores.contato}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -240,7 +240,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigodes"
-														value="#{fornecedoresBean.fornecedores.codigodes}"
+														value="#{fornecedorBean.fornecedores.codigodes}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>					
@@ -249,17 +249,13 @@
 													<p:outputLabel for="codigogf" value="Grupo do Fornecedor:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<!--
-													<p:inputText id="codigogf" required="true"
-														value="#{fornecedoresBean.fornecedores.codigogf}"
-														styleClass="form-control col-md-7 col-xs-12" />-->
 													<h:selectOneMenu id="codigogf" required="true"
-														value="#{fornecedoresBean.fornecedores.grupofornecedores_codigo}"
+														value="#{fornecedorBean.fornecedores.grupofornecedor_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{grupoFornecedoresBean.grupofornecedores}"
+															items="#{grupoFornecedorBean.grupofornecedores}"
 															var="grupofornecedor" cellspacing="0" width="100%">
 															<f:selectItem itemLabel="#{grupofornecedor.nome}"
 																itemValue="#{grupofornecedor.codigo}" />
@@ -273,7 +269,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputMask mask="999999999999-9" id="rg"
-														value="#{fornecedoresBean.fornecedores.rg}"
+														value="#{fornecedorBean.fornecedores.rg}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>	
@@ -283,7 +279,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="contabil"
-														value="#{fornecedoresBean.fornecedores.contabil}"
+														value="#{fornecedorBean.fornecedores.contabil}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>	
@@ -293,7 +289,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="banco"
-														value="#{fornecedoresBean.fornecedores.banco}"
+														value="#{fornecedorBean.fornecedores.banco}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -315,7 +311,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="tipo_conta"
-														value="#{fornecedoresBean.fornecedores.tipoconta}"
+														value="#{fornecedorBean.fornecedores.tipoconta}"
 														style="width:160px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -332,7 +328,7 @@
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="agenciabanco"
-														value="#{fornecedoresBean.fornecedores.agenciabanco}"
+														value="#{fornecedorBean.fornecedores.agenciabanco}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -342,7 +338,7 @@
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="digagencia"
-														value="#{fornecedoresBean.fornecedores.digagencia}"
+														value="#{fornecedorBean.fornecedores.digagencia}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -352,7 +348,7 @@
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="conta"
-														value="#{fornecedoresBean.fornecedores.conta}"
+														value="#{fornecedorBean.fornecedores.conta}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -362,7 +358,7 @@
 												</label>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<p:inputText id="digconta"
-														value="#{fornecedoresBean.fornecedores.digconta}"
+														value="#{fornecedorBean.fornecedores.digconta}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -373,7 +369,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nomefantasiaf"
-														value="#{fornecedoresBean.fornecedores.nomefantasia}"
+														value="#{fornecedorBean.fornecedores.nomefantasia}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -384,7 +380,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="febraban"
-														value="#{fornecedoresBean.fornecedores.febraban}"
+														value="#{fornecedorBean.fornecedores.febraban}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -395,7 +391,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="inscricaom"
-														value="#{fornecedoresBean.fornecedores.inscmunicipio}"
+														value="#{fornecedorBean.fornecedores.inscmunicipio}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -405,7 +401,7 @@
 														value="Prestador de Serviço Público" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="servidorpublico"
-														value="#{fornecedoresBean.fornecedores.prestadorserv}">
+														value="#{fornecedorBean.fornecedores.prestadorserv}">
 														<f:selectItem itemLabel="Sim&nbsp;&nbsp;" itemValue="Sim" />
 														<f:selectItem itemLabel="Não" itemValue="Não" />
 													</h:selectOneRadio>
@@ -416,7 +412,7 @@
 													<p:outputLabel for="icms" value="ICMS" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="icms"
-														value="#{fornecedoresBean.fornecedores.icms}">
+														value="#{fornecedorBean.fornecedores.icms}">
 														<f:selectItem itemLabel="Sim&nbsp;&nbsp;" itemValue="Sim" />
 														<f:selectItem itemLabel="Não" itemValue="Não" />
 													</h:selectOneRadio>
@@ -427,7 +423,7 @@
 													<p:outputLabel for="ipi" value="IPI" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="ipi"
-														value="#{fornecedoresBean.fornecedores.ipi}">
+														value="#{fornecedorBean.fornecedores.ipi}">
 														<f:selectItem itemLabel="Sim&nbsp;&nbsp;" itemValue="Sim" />
 														<f:selectItem itemLabel="Não" itemValue="Não" />
 													</h:selectOneRadio>
@@ -439,7 +435,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codepais"
-														value="#{fornecedoresBean.fornecedores.codigopais}"
+														value="#{fornecedorBean.fornecedores.codigopais}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -448,7 +444,7 @@
 													<p:outputLabel for="inss" value="Calcular INSS Empresa" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="inss"
-														value="#{fornecedoresBean.fornecedores.inss}">
+														value="#{fornecedorBean.fornecedores.inss}">
 														<f:selectItem itemLabel="Sim&nbsp;&nbsp;" itemValue="Sim" />
 														<f:selectItem itemLabel="Não" itemValue="Não" />
 													</h:selectOneRadio>
@@ -460,7 +456,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="aliquota"
-														value="#{fornecedoresBean.fornecedores.aliquota}"
+														value="#{fornecedorBean.fornecedores.aliquota}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -471,7 +467,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="docidex"
-														value="#{fornecedoresBean.fornecedores.docidex}"
+														value="#{fornecedorBean.fornecedores.docidex}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -481,7 +477,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputTextarea id="descricao"
-														value="#{fornecedoresBean.fornecedores.descricao}"
+														value="#{fornecedorBean.fornecedores.descricao}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -490,7 +486,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{fornecedoresBean.cadastrar()}" update="messages"
+														action="#{fornecedorBean.cadastrar()}" update="messages"
 														styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
@@ -564,7 +560,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{fornecedoresBean.fornecedor}"
+													<c:forEach items="#{fornecedorBean.fornecedor}"
 														var="fornecedor" cellspacing="0" width="100%">
 														<tr>
 															<td>#{fornecedor.nome}</td>
@@ -572,9 +568,8 @@
 															<p:commandButton value="" style="font-size:10px; "
 															styleClass="fas fa-edit btn btn-primary" 
 															update="demo-form2" process="@this" 
-															action="#{fornecedoresBean.editar(fornecedor)}">
-															<!-- 	<f:setPropertyActionListener value="#{fornecedor}" 
-															target="#{fornecedoresBean.fornecedores}"/> -->
+															onclick="window.location='#demo-form2'"
+															action="#{fornecedorBean.editar(fornecedor)}">
 															</p:commandButton>
 															</td> 
 															<td>#{fornecedor.cpf}</td>
@@ -597,7 +592,7 @@
 															<td>#{fornecedor.site}</td>
 															<td>#{fornecedor.contato}</td>
 															<td>#{fornecedor.codigodes}</td>
-															<td>#{fornecedor.grupofornecedores}</td>
+															<td>#{fornecedor.grupofornecedor}</td>
 															<td>#{fornecedor.rg}</td>
 															<td>#{fornecedor.contabil}</td>
 															<td>#{fornecedor.banco}</td>

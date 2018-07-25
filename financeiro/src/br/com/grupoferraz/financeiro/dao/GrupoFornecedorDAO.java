@@ -10,29 +10,26 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.GrupoFornecedores;
+import br.com.grupoferraz.financeiro.entity.GrupoFornecedor;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
-public class GrupoFornecedoresDAO {
+public class GrupoFornecedorDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertGrupoFornecedores(GrupoFornecedores grupofornecedores) {
-
-		// Statement st = null;
-		// ResultSet rs = null;
+	public boolean insertGrupoFornecedores(GrupoFornecedor grupofornecedor) {
 
 		try {
-			// st = con.createStatement();
+			
 			StringBuilder str = new StringBuilder();	
-			str.append("insert into grupofornecedores (codigo, nome)"
+			str.append("insert into grupofornecedor (codigo, nome)"
 					+ " values (?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
-			preparedStatement.setInt(1, grupofornecedores.getCodigo());
-			preparedStatement.setString(2, grupofornecedores.getNome());
+			preparedStatement.setInt(1, grupofornecedor.getCodigo());
+			preparedStatement.setString(2, grupofornecedor.getNome());
 			
-			preparedStatement.setInt(3, grupofornecedores.getCodigo());
-			preparedStatement.setString(4, grupofornecedores.getNome());
+			preparedStatement.setInt(3, grupofornecedor.getCodigo());
+			preparedStatement.setString(4, grupofornecedor.getNome());
 			
 			preparedStatement.execute();
 			return true;
@@ -45,22 +42,22 @@ public class GrupoFornecedoresDAO {
 	}
 
 	// lista todos os usuarios cadastrados no banco de dados
-	public List<GrupoFornecedores> listGrupoFornecedores() {
+	public List<GrupoFornecedor> listGrupoFornecedores() {
 
-		ArrayList<GrupoFornecedores> lista = new ArrayList<GrupoFornecedores>();
+		ArrayList<GrupoFornecedor> lista = new ArrayList<GrupoFornecedor>();
 
 		Statement st = null;
 		ResultSet rs = null;
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select *" 
-			+  "from grupofornecedores";
+			String sql = "select * from grupofornecedor";
+			
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
-				GrupoFornecedores grupofornecedor = new GrupoFornecedores();
+				GrupoFornecedor grupofornecedor = new GrupoFornecedor();
 				grupofornecedor.setCodigo(rs.getInt(1));
 				grupofornecedor.setNome(rs.getString(2));
 				lista.add(grupofornecedor);

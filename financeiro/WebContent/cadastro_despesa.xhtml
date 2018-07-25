@@ -106,7 +106,7 @@
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 												<button class="btn btn-primary" type="reset">Resetar</button>
-													<p:commandButton value="Cadastrar" type="submit"
+													<p:commandButton value="Cadastrar"
 														update="messages" class="btn btn-success"
 														action="#{despesaBean.cadastraDespesa()}">
 													</p:commandButton>
@@ -143,29 +143,19 @@
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach items="#{despesaBean.listadespesa}"
+															<c:forEach items="#{despesaBean.listadespesas}"
 																var="despesa" cellspacing="0" width="100%">
 																<tr>
-																	<td>#{despesa.codigo}</td>
-																	<!-- <td class="text-center">
-																	
+																	<td>#{despesa.codigo}</td>										
 																	<p:commandButton value=""
-																			action="#{despesaBean.setarDespesa()}"
-																			style="font-size:10px; "
-																			styleClass="fas fa-edit btn btn-primary"
-																			update="Campo">
-																			<f:setPropertyActionListener value="#{despesas}"
-																				target="#{despesaBean.despesaSelecionada}" />
-																		</p:commandButton></td>  -->
-															<td class="text-center">
-															<p:commandButton value=""
-															 style="font-size:10px;"
-															styleClass="fas fa-edit btn btn-primary" 
-															update="@(.form-control) @(.calendar) Campo">
-															<f:setPropertyActionListener value="#{despesa}" 
-															target="#{despesaBean.despesa}"/>
-															</p:commandButton>
-															</td>
+																	style="font-size:10px;"
+																	onclick="window.location='#Campo'"
+																	styleClass="fas fa-edit btn btn-primary" 
+																	update="@(.form-control) @(.calendar) Campo">
+																	<f:setPropertyActionListener value="#{despesa}" 
+																	target="#{despesaBean.despesa}"/>
+																	</p:commandButton>
+																	</td>
 																	<td>#{despesa.nome}</td>
 																	<td>#{despesa.grupodespesa}</td>
 																</tr>

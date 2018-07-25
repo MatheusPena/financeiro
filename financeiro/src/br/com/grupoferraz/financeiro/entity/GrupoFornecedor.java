@@ -1,6 +1,6 @@
 package br.com.grupoferraz.financeiro.entity;
 
-public class GrupoFornecedores {
+public class GrupoFornecedor {
 	private int codigo;
 	private String nome;
 	

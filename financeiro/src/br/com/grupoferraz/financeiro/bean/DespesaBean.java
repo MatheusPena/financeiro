@@ -8,7 +8,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import br.com.grupoferraz.financeiro.dao.DespesaDAO;
 import br.com.grupoferraz.financeiro.entity.Despesa;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -16,7 +16,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class DespesaBean implements Serializable {
 
 	private Despesa despesa;
-	private List<Despesa> listadespesa;
+	private List<Despesa> listadespesas;
 
 	public DespesaBean() {
 		despesa = new Despesa();
@@ -25,25 +25,23 @@ public class DespesaBean implements Serializable {
 
 	public String cadastraDespesa() {
 
-		ConexaoBD.getConexao();
 		DespesaDAO despesa = new DespesaDAO();
 		if (despesa.insertDespesas(this.despesa)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Despesa cadastrada com sucesso!", "Sucesso!"));
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Despesa cadastrada com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da despesa!", "Erro!"));
-
+			return "";
 		}
-		ConexaoBD.fecharConexao();
+
 		this.despesa = new Despesa();
 
-		return "";
+		return "cadastro_despesa?faces-redirect=true";
 	}
 
 	public void listarDespesas() {
 		DespesaDAO despesa = new DespesaDAO();
-		setListadespesa(despesa.listadespesa());
+		setListadespesas(despesa.listadespesa());
 	}
 
 	public Despesa getDespesa() {
@@ -58,12 +56,12 @@ public class DespesaBean implements Serializable {
 		this.despesa = despesa;
 	}
 
-	public List<Despesa> getListadespesa() {
-		return listadespesa;
+	public List<Despesa> getListadespesas() {
+		return listadespesas;
 	}
 
-	public void setListadespesa(List<Despesa> listadespesa) {
-		this.listadespesa = listadespesa;
+	public void setListadespesas(List<Despesa> listadespesas) {
+		this.listadespesas = listadespesas;
 	}
 
 
