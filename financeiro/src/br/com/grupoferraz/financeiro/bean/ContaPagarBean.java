@@ -11,11 +11,11 @@ import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.DespesaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
-import br.com.grupoferraz.financeiro.dao.PagarDAO;
+import br.com.grupoferraz.financeiro.dao.ContaPagarDAO;
 import br.com.grupoferraz.financeiro.dao.VencimentoPagarDAO;
 import br.com.grupoferraz.financeiro.entity.Despesa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
-import br.com.grupoferraz.financeiro.entity.Pagar;
+import br.com.grupoferraz.financeiro.entity.ContaPagar;
 import br.com.grupoferraz.financeiro.entity.VencimentoPagar;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
@@ -23,16 +23,16 @@ import br.com.grupoferraz.financeiro.util.JSFUtil;
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class PagarBean implements Serializable {
+public class ContaPagarBean implements Serializable {
 
-	private Pagar contapagar;
-	private List<Pagar> listapagar;
+	private ContaPagar contapagar;
+	private List<ContaPagar> listapagar;
 	private VencimentoPagar vencimento;
-	private List<VencimentoPagar> vencimentolista;
+	private List<VencimentoPagar> listavencimentos;
 	
 
-	public PagarBean() {
-		contapagar = new Pagar();
+	public ContaPagarBean() {
+		contapagar = new ContaPagar();
 		getListapagar();
 		listapagar();
 		vencimento = new VencimentoPagar();
@@ -42,7 +42,7 @@ public class PagarBean implements Serializable {
 //	Cadastro do Contas a Pagar
 	public String cadastraPagar() {
 		
-		PagarDAO pagarconta = new PagarDAO ();
+		ContaPagarDAO pagarconta = new ContaPagarDAO ();
 		if (pagarconta.insertContasPagar(contapagar)) {
 			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Conta cadastrado com sucesso!");
 		} else {
@@ -50,14 +50,14 @@ public class PagarBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da conta!", "Erro!"));
 		return "";
 		}
-		contapagar = new Pagar();
+		contapagar = new ContaPagar();
 		
 		cadastraVencimento();
 		return "";
 	}
 	
 	public void listapagar() {
-		PagarDAO pagarconta = new PagarDAO();
+		ContaPagarDAO pagarconta = new ContaPagarDAO();
 		setListapagar(pagarconta.listapagar());
 	}
 	
@@ -77,7 +77,6 @@ public class PagarBean implements Serializable {
 	
 	public void selecionar() {
 		Estabelecimento estabelecimento = contapagar.getEstabelecimento();
-		System.out.println("ESTABELECIMENTO SELECIONADO " + estabelecimento);
 		EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
 		if (estabelecimento != null) {
 			Estabelecimento estabelecimentos = estabelecimentoDAO.listaestabelecimento(estabelecimento.getCodigo());
@@ -89,23 +88,6 @@ public class PagarBean implements Serializable {
 
 	}
 	
-//	Autocomplete referente à Despesas
-//	public List<Integer> completeText(String query) {
-//		DespesasDAO despesasDAO = new DespesasDAO();
-//		
-//         
-//        return despesasDAO.listadespesa(query); 
-//    }
-//	
-//	public void onItemSelect(SelectEvent event) {
-//        String obj = event.getObject().toString();
-//    	DespesasDAO despesasDAO = new DespesasDAO();
-//    	Despesas despesa = despesasDAO .listadespesa(Integer.valueOf(obj));
-//    	if (despesa != null) {
-//    		contapagar.setNomedp(despesa.getNome());
-//    	}
-//    	
-//    }
 	
 //	Autocomplete referente à Despesas
 	public List<Despesa> completeText(String query) {
@@ -120,7 +102,7 @@ public class PagarBean implements Serializable {
 		Despesa despesa = contapagar.getDespesa();
 		
 		if (despesa != null) {
-			contapagar.setCodigo(despesa.getCodigo());
+			contapagar.setCodigodp(despesa.getCodigo());
 			contapagar.setNomedp(despesa.getNome());
 		}
 		System.out.println("despesa "+despesa.getNome());
@@ -128,19 +110,19 @@ public class PagarBean implements Serializable {
 	
 	
 // 	Getters e Setters do Conta a Pagar
-	public Pagar getPagarconta() {
+	public ContaPagar getPagarconta() {
 		return contapagar;
 	}
 
-	public void setPagarconta(Pagar pagarconta) {
+	public void setPagarconta(ContaPagar pagarconta) {
 		this.contapagar = pagarconta;
 	}
 
-	public List<Pagar> getListapagar() {
+	public List<ContaPagar> getListapagar() {
 		return listapagar;
 	}
 
-	public void setListapagar(List<Pagar> listapagar) {
+	public void setListapagar(List<ContaPagar> listapagar) {
 		this.listapagar = listapagar;
 	}
 
@@ -167,7 +149,7 @@ public class PagarBean implements Serializable {
 	
 	public void listarVencimento() {
 		VencimentoPagarDAO vencimento = new VencimentoPagarDAO();
-		setVencimentolista(vencimento.listVencimento());
+		setListavencimento(vencimento.listVencimento());
 	}
 
 	
@@ -180,12 +162,12 @@ public class PagarBean implements Serializable {
 		this.vencimento = vencimento;
 	}
 
-	public List<VencimentoPagar> getVencimentolista() {
-		return vencimentolista;
+	public List<VencimentoPagar> getListavencimentos() {
+		return listavencimentos;
 	}
 
-	public void setVencimentolista(List<VencimentoPagar> vencimentolista) {
-		this.vencimentolista = vencimentolista;
+	public void setListavencimento(List<VencimentoPagar> listavencimento) {
+		this.listavencimentos = listavencimento;
 	}
 
 

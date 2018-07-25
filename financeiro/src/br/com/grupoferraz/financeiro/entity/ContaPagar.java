@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean
 @SuppressWarnings("serial")
-public class Pagar implements Serializable {
+public class ContaPagar implements Serializable {
 
 	private int codigocp;
 	private String nomecp;
@@ -17,10 +17,19 @@ public class Pagar implements Serializable {
 	private String empresa_cnpj;
 	private Empresa empresa;
 	private String cpf;
-	private int codigo;
+	private int codigodp;
 	private String nomedp;
 	private Date emissaocp;
 	private Date emissaodp;
+	public int getCodigodp() {
+		return codigodp;
+	}
+
+
+	public void setCodigodp(int codigodp) {
+		this.codigodp = codigodp;
+	}
+
 	private Date validadedp;
 	private ContasFinanceiras contafinanceira;
 	private int contafinanceira_codigo;
@@ -33,20 +42,9 @@ public class Pagar implements Serializable {
 	private Despesa despesa;
 	
 	
-	public Pagar() {
+	public ContaPagar() {
 		
 	}
-
-	
-	public int getCodigo() {
-		return codigo;
-	}
-
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
 	
 	
 	public String getValor() {
@@ -269,7 +267,7 @@ public class Pagar implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + codigo;
+		result = prime * result + codigodp;
 		return result;
 	}
 
@@ -281,11 +279,11 @@ public class Pagar implements Serializable {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof Pagar)) {
+		if (!(obj instanceof ContaPagar)) {
 			return false;
 		}
-		Pagar other = (Pagar) obj;
-		if (codigo != other.codigo) {
+		ContaPagar other = (ContaPagar) obj;
+		if (codigodp != other.codigodp) {
 			return false;
 		}
 		return true;
@@ -298,11 +296,11 @@ public class Pagar implements Serializable {
 		if (ojb == null) {
 			return false;
 		}
-		if (!(ojb instanceof Pagar)) {
+		if (!(ojb instanceof ContaPagar)) {
 			return false;
 		}
-		Pagar other = (Pagar) ojb;
-		if (codigo != other.codigo) {
+		ContaPagar other = (ContaPagar) ojb;
+		if (codigodp != other.codigodp) {
 			return false;
 		}
 		return true;

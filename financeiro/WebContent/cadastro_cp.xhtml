@@ -69,7 +69,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigocp"
-														value="#{pagarBean.pagarconta.codigocp}"
+														value="#{contaPagarBean.pagarconta.codigocp}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="false">
 													</p:inputText>
@@ -81,7 +81,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nomecp" required="false"
-														value="#{pagarBean.pagarconta.nomecp}"
+														value="#{contaPagarBean.pagarconta.nomecp}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -93,7 +93,7 @@
 													<p:outputPanel styleClass="combo">
 														<h:selectOneMenu id="empresa" required="false"
 															converter="omnifaces.SelectItemsConverter"
-															value="#{pagarBean.pagarconta.empresa_cnpj}"
+															value="#{contaPagarBean.pagarconta.empresa_cnpj}"
 															style="width:320px"
 															styleClass="form-control col-md-7 col-xs-12">
 															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
@@ -115,15 +115,15 @@
 													<p:outputPanel id="estabelecimento_nome">
 														<p:autoComplete id="acMinLength2" minQueryLength="1"
 															dropdown="false" converter="converter"
-															value="#{pagarBean.pagarconta.estabelecimento}"
+															value="#{contaPagarBean.pagarconta.estabelecimento}"
 															inputStyleClass="form-control" forceSelection="true"
 															inputStyle="padding-right:311px" styleClass="autocomplete"
-															completeMethod="#{pagarBean.completeText2}" 
+															completeMethod="#{contaPagarBean.completeText2}" 
 															effect="fade" var="est" itemValue="#{est}" 
 															itemLabel="#{est.nome}">
 															
 															<p:ajax event="itemSelect" resetValues="true"
-																listener="#{pagarBean.selecionar()}"
+																listener="#{contaPagarBean.selecionar()}"
 																update="@(.emissaodp) @(.valor) @this" process="@this" />
 														</p:autoComplete>
 																												
@@ -137,7 +137,7 @@
 												</label>									
 													<div class="col-md-6 col-sm-6 col-xs-12">
 														<p:inputText id="estabelecimento_codigo" required="false"
-														value="#{pagarBean.pagarconta.estabelecimento_codigo}"
+														value="#{contaPagarBean.pagarconta.estabelecimento_codigo}"
 														styleClass="form-control col-md-7 col-xs-12 valor" />
 													</div>																							
 											</div> 
@@ -147,7 +147,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf" required="false"
-														value="#{pagarBean.pagarconta.cpf}"
+														value="#{contaPagarBean.pagarconta.cpf}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -160,7 +160,7 @@
 													<p:calendar mask="true" showOn="" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="emissaocp" required="false"
-														value="#{pagarBean.pagarconta.emissaocp}" />
+														value="#{contaPagarBean.pagarconta.emissaocp}" />
 												</div>
 											</div>
 											<div class="form-group">
@@ -171,14 +171,14 @@
 													<p:outputPanel id="nomedp">
 														<p:autoComplete id="acMinLength" minQueryLength="1"
 															dropdown="false" converter="converter"
-															value="#{pagarBean.pagarconta.despesa}"
+															value="#{contaPagarBean.pagarconta.despesa}"
 															inputStyleClass="form-control" forceSelection="true"
 															inputStyle="padding-right:311px" styleClass="autocomplete"
-															completeMethod="#{pagarBean.completeText}" 
+															completeMethod="#{contaPagarBean.completeText}" 
 															effect="fade" var="est" itemValue="#{est}" 
 															itemLabel="#{est.nome}">															
 															<p:ajax event="itemSelect" resetValues="true"
-																listener="#{pagarBean.selecionarDespesa()}"
+																listener="#{contaPagarBean.selecionarDespesa()}"
 																update="@(.emissaodp) @(.valor) @this" process="@this" />
 														</p:autoComplete>																												
 													</p:outputPanel>
@@ -190,7 +190,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo" required="false"
-														value="#{pagarBean.pagarconta.codigo}"
+														value="#{contaPagarBean.pagarconta.codigodp}"
 														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
 											</div>
@@ -200,7 +200,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valor" required="false"
-														value="#{pagarBean.pagarconta.valor}"
+														value="#{contaPagarBean.pagarconta.valor}"
 														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
 											</div>
@@ -212,7 +212,7 @@
 													<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="emissaodp" required="false" styleClass="calendar"
-														value="#{pagarBean.pagarconta.emissaodp}" />
+														value="#{contaPagarBean.pagarconta.emissaodp}" />
 												</div>
 											</div>
 											<div class="form-group">
@@ -223,7 +223,7 @@
 													<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="validadecp" styleClass="calendar"
-														value="#{pagarBean.pagarconta.validadedp}" />
+														value="#{contaPagarBean.pagarconta.validadedp}" />
 												</div>
 											</div>	
 											<div class="form-group">
@@ -233,7 +233,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="contafinanceira" required="false"
-														value="#{pagarBean.pagarconta.contafinanceira_codigo}" 
+														value="#{contaPagarBean.pagarconta.contafinanceira_codigo}" 
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
@@ -253,7 +253,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="centroresultados" required="false"
-														value="#{pagarBean.pagarconta.centroresultados_codigo}"
+														value="#{contaPagarBean.pagarconta.centroresultados_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
@@ -273,12 +273,12 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="documento_codigo" required="false"
-														value="#{pagarBean.pagarconta.documento_codigo}"
+														value="#{contaPagarBean.pagarconta.documento_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 
-														<f:selectItems value="#{documentosBean.documentos}"
+														<f:selectItems value="#{documentoBean.documentos}"
 															var="documento" itemValue="#{documento.codigo}"
 															itemLabel="#{documento.nome}" />
 													</h:selectOneMenu>
@@ -290,7 +290,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputTextarea id="observacao"
-														value="#{pagarBean.pagarconta.observacao}"
+														value="#{contaPagarBean.pagarconta.observacao}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -320,7 +320,7 @@
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<p:inputText id="vencimento_codigo"
-													value="#{pagarBean.vencimentoPagar.vencimento_codigo}" 
+													value="#{contaPagarBean.vencimentoPagar.vencimento_codigo}" 
 													styleClass="form-control col-md-7 col-xs-12"
 													required="false">
 												</p:inputText>
@@ -335,7 +335,7 @@
 												<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 													inputStyleClass="form-control col-md-7 col-xs-12"
 													id="vencimento" required="false"
-													value="#{pagarBean.vencimentoPagar.vencimento}" />
+													value="#{contaPagarBean.vencimentoPagar.vencimento}" />
 											</div>
 										</div>
 										<div class="form-group">
@@ -344,7 +344,7 @@
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<p:inputText id="titulo"
-													value="#{pagarBean.vencimentoPagar.titulo}"
+													value="#{contaPagarBean.vencimentoPagar.titulo}"
 													styleClass="form-control col-md-7 col-xs-12"
 													required="false">
 												</p:inputText>
@@ -356,7 +356,7 @@
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<p:inputText id="value" required="false"
-													value="#{pagarBean.vencimentoPagar.valor}"
+													value="#{contaPagarBean.vencimentoPagar.valor}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
 										</div>
@@ -367,7 +367,7 @@
 											</label>									
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="desconto" required="false"
-													value="#{pagarBean.vencimentoPagar.desconto}"
+													value="#{contaPagarBean.vencimentoPagar.desconto}"
 													styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>																							
 										</div> 
@@ -377,7 +377,7 @@
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<p:inputText id="codigoag" required="false"
-													value="#{pagarBean.vencimentoPagar.codigoag}"
+													value="#{contaPagarBean.vencimentoPagar.codigoag}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
 										</div>
@@ -388,7 +388,7 @@
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<p:inputText id="nomeag" required="false"
-													value="#{pagarBean.vencimentoPagar.nomeag}"
+													value="#{contaPagarBean.vencimentoPagar.nomeag}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
 										</div>
@@ -399,7 +399,7 @@
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<p:inputText id="lancamento" required="false"
-													value="#{pagarBean.vencimentoPagar.lancamento}"
+													value="#{contaPagarBean.vencimentoPagar.lancamento}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
 										</div>
@@ -409,7 +409,7 @@
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<h:selectOneMenu id="banco"
-													value="#{pagarBean.vencimentoPagar.banco}"
+													value="#{contaPagarBean.vencimentoPagar.banco}"
 													style="width:320px"
 													styleClass="form-control col-md-7 col-xs-12">
 													<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -431,7 +431,7 @@
 											</label>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<p:inputText id="agenciabanco"
-													value="#{pagarBean.vencimentoPagar.agenciabanco}"
+													value="#{contaPagarBean.vencimentoPagar.agenciabanco}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
 										</div>
@@ -441,7 +441,7 @@
 											</label>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<p:inputText id="digagencia"
-													value="#{pagarBean.vencimentoPagar.digagencia}"
+													value="#{contaPagarBean.vencimentoPagar.digagencia}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
 										</div>
@@ -451,7 +451,7 @@
 											</label>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<p:inputText id="conta"
-													value="#{pagarBean.vencimentoPagar.conta}"
+													value="#{contaPagarBean.vencimentoPagar.conta}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
 										</div>
@@ -461,7 +461,7 @@
 											</label>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<p:inputText id="digconta"
-													value="#{pagarBean.vencimentoPagar.digconta}"
+													value="#{contaPagarBean.vencimentoPagar.digconta}"
 													styleClass="form-control col-md-7 col-xs-12" />
 											</div>
 										</div>
@@ -474,7 +474,7 @@
 												<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 													inputStyleClass="form-control col-md-7 col-xs-12"
 													id="agendar" required="false"
-													value="#{pagarBean.vencimentoPagar.agendar}" />
+													value="#{contaPagarBean.vencimentoPagar.agendar}" />
 											</div>
 										</div>	
 										<div class="ln_solid" />
@@ -483,7 +483,7 @@
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="cadastrar"
 														update="messages @(.form_control) Campo" styleClass="btn btn-success"
-														action="#{pagarBean.cadastraPagar()}">
+														action="#{contaPagarBean.cadastraPagar()}">
 													</p:commandButton>
 												</div>
 											</div>																	
@@ -529,7 +529,7 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="#{pagarBean.listapagar}"
+														<c:forEach items="#{contaPagarBean.listapagar}"
 															var="pagarconta" cellspacing="0" width="100%">
 															<tr>
 																<td>#{pagarconta.codigocp}</td>
@@ -539,13 +539,13 @@
 																		onclick="window.location='#demo-form2'"
 																		update="@(.form-control) @(.autocomplete)">
 																		<f:setPropertyActionListener value="#{pagarconta}"
-																			target="#{pagarBean.pagarconta}" />
+																			target="#{contaPagarBean.pagarconta}" />
 																	</p:commandButton></td>
 																<td>#{pagarconta.nomecp}</td>
 																<td>#{pagarconta.estabelecimento_codigo}</td>
 																<td>#{pagarconta.estabelecimento_nome}</td>
 																<td>#{pagarconta.cpf}</td>
-																<td>#{pagarconta.codigo}</td>
+																<td>#{pagarconta.codigodp}</td>
 																<td>#{pagarconta.nomedp}</td>
 																<td>#{pagarconta.emissaocp}</td>
 																<td>#{pagarconta.valor}</td>
@@ -601,17 +601,17 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="#{pagarBean.vencimentolista}"
+														<c:forEach items="#{contaPagarBean.listavencimentos}"
 															var="vencimento" cellspacing="0" width="100%">
 															<tr>
 																<td>#{vencimento.vencimento_codigo}</td>
 																<td><p:commandButton value=""
 																		style="font-size:10px; "
 																		styleClass="fas fa-edit btn btn-primary"
-																		onclick="window.location='#demo-form2'"
+																		onclick="window.location='#form'"
 																		update="@(.form-control) @(.autocomplete)">
 																		<f:setPropertyActionListener value="#{vencimento}"
-																			target="#{pagarBean.vencimentoPagar}" />
+																			target="#{contaPagarBean.vencimentoPagar}" />
 																	</p:commandButton></td>
 																<td>#{vencimento.vencimento}</td>
 																<td>#{vencimento.titulo}</td>
