@@ -16,19 +16,19 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class EmpresaDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertEmpresas(Empresa Empresas) {
+	public boolean insertEmpresas(Empresa Empresa) {
 
 		try {
 			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();
-			str.append("insert into empresas (cnpj, nome) values (?,?) ");
+			str.append("insert into empresa (cnpj, nome) values (?,?) ");
 			str.append("on duplicate key update cnpj = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
-			preparedStatement.setString(1, Empresas.getCnpj());
-			preparedStatement.setString(2, Empresas.getNome());
+			preparedStatement.setString(1, Empresa.getCnpj());
+			preparedStatement.setString(2, Empresa.getNome());
 
-			preparedStatement.setString(3, Empresas.getCnpj());
-			preparedStatement.setString(4, Empresas.getNome());
+			preparedStatement.setString(3, Empresa.getCnpj());
+			preparedStatement.setString(4, Empresa.getNome());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -54,10 +54,10 @@ public class EmpresaDAO {
 
 			while (rs.next()) {
 
-				Empresa Empresas = new Empresa();
-				Empresas.setCnpj(rs.getString("cnpj"));
-				Empresas.setNome(rs.getString("nome"));
-				lista.add(Empresas);
+				Empresa Empresa = new Empresa();
+				Empresa.setCnpj(rs.getString("cnpj"));
+				Empresa.setNome(rs.getString("nome"));
+				lista.add(Empresa);
 			}
 
 		} catch (SQLException ex) {

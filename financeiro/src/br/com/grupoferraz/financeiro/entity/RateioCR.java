@@ -1,13 +1,17 @@
 package br.com.grupoferraz.financeiro.entity;
 
-public class Rateio {
+import java.math.BigDecimal;
+
+public class RateioCR {
 	private int codigo;
 	private String receita;
-	private int estabelecimento;
+	private int estabelecimento_codigo;
 	private int centro_resultados;
-	private float percentual;
+	private BigDecimal percentual;
+	private String empresa_cnpj;
+	private Empresa empresa;
 	private PlanoContas planocontas;
-	private Estabelecimento estabelecimentos;
+	private Estabelecimento estabelecimento;
 	private CentroResultados centroresultados;
 
 	public int getCodigo() {
@@ -26,12 +30,12 @@ public class Rateio {
 		this.receita = receita;
 	}
 
-	public int getEstabelecimento() {
-		return estabelecimento;
+	public int getEstabelecimento_codigo() {
+		return estabelecimento_codigo;
 	}
 
-	public void setEstabelecimento(int estabelecimento) {
-		this.estabelecimento = estabelecimento;
+	public void setEstabelecimento_codigo(int estabelecimento_codigo) {
+		this.estabelecimento_codigo = estabelecimento_codigo;
 	}
 
 	public int getCentro_resultados() {
@@ -42,12 +46,28 @@ public class Rateio {
 		this.centro_resultados = centro_resultados;
 	}
 
-	public float getPercentual() {
+	public BigDecimal getPercentual() {
 		return percentual;
 	}
 
-	public void setPercentual(float percentual) {
+	public void setPercentual(BigDecimal percentual) {
 		this.percentual = percentual;
+	}
+
+	public String getEmpresa_cnpj() {
+		return empresa_cnpj;
+	}
+
+	public void setEmpresa_cnpj(String empresa_cnpj) {
+		this.empresa_cnpj = empresa_cnpj;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 	public PlanoContas getPlanocontas() {
@@ -58,12 +78,12 @@ public class Rateio {
 		this.planocontas = planocontas;
 	}
 
-	public Estabelecimento getEstabelecimentos() {
-		return estabelecimentos;
+	public Estabelecimento getEstabelecimento() {
+		return estabelecimento;
 	}
 
-	public void setEstabelecimentos(Estabelecimento estabelecimentos) {
-		this.estabelecimentos = estabelecimentos;
+	public void setEstabelecimento(Estabelecimento estabelecimento) {
+		this.estabelecimento = estabelecimento;
 	}
 
 	public CentroResultados getCentroresultados() {
