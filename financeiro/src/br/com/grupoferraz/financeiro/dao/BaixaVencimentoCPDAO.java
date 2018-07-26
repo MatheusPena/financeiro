@@ -10,18 +10,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import br.com.grupoferraz.financeiro.entity.BaixaCP;
+import br.com.grupoferraz.financeiro.entity.BaixaVencimentoCP;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
-public class BaixaCPDAO {
+public class BaixaVencimentoCPDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertBaixaCP(BaixaCP baixa) {
+	public boolean insertBaixaCP(BaixaVencimentoCP baixa) {
 
 		try {
 
 			StringBuilder str = new StringBuilder();
-			str.append("insert into baixa_cp (codigo, cpf, numerodoc, emissaocp, vencimentocp, numerotitulo, vencimentovalor, "
+			str.append("insert into baixacp (codigo, cpf, numerodoc, emissaocp, vencimentocp, numerotitulo, vencimentovalor, "
 					+ "baixavencimentocp, valorbaixavencimento, valordescontobaixa, valorjurusbaixa, contafinanceira, "
 					+ "estfinanceira, historico) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			str.append("on duplicate key update codigo = ?, cpf = ?, numerodoc = ?, emissaocp = ?, vencimentocp = ?, numerotitulo = ?, "
@@ -86,9 +86,9 @@ public class BaixaCPDAO {
 	}
 
 	// lista todos os usuarios cadastrados no banco de dados
-	public List<BaixaCP> listBaixa() {
+	public List<BaixaVencimentoCP> listBaixa() {
 
-		ArrayList<BaixaCP> lista = new ArrayList<BaixaCP>();
+		ArrayList<BaixaVencimentoCP> lista = new ArrayList<BaixaVencimentoCP>();
 
 		Statement st = null;
 		ResultSet rs = null;
@@ -97,12 +97,12 @@ public class BaixaCPDAO {
 			st = conexao.createStatement();
 			String sql = "select codigo, cpf, numerodoc, emissaocp, vencimentocp, numerotitulo, vencimentovalor, "
 					+ 	"baixavencimentocp, valorbaixavencimento, valordescontobaixa, valorjurusbaixa, contafinanceira, "
-					+ 	"estfinanceira, historico from baixa_cp";
+					+ 	"estfinanceira, historico from baixacp";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
-				BaixaCP baixa = new BaixaCP();
+				BaixaVencimentoCP baixa = new BaixaVencimentoCP();
 				baixa.setCodigo(rs.getInt("codigo"));
 				baixa.setCpf(rs.getString("cpf"));
 				baixa.setNumerodoc(rs.getString("numerodoc"));

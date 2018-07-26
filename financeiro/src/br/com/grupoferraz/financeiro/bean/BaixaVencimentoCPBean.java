@@ -8,26 +8,24 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.grupoferraz.financeiro.dao.BaixaCPDAO;
-import br.com.grupoferraz.financeiro.entity.BaixaCP;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.dao.BaixaVencimentoCPDAO;
+import br.com.grupoferraz.financeiro.entity.BaixaVencimentoCP;
 
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class BaixaCPBean implements Serializable {
-	private BaixaCP Baixa;
-	private List<BaixaCP> Listabaixa;
+public class BaixaVencimentoCPBean implements Serializable {
+	private BaixaVencimentoCP Baixa;
+	private List<BaixaVencimentoCP> Listabaixas;
 
-	public BaixaCPBean() {
-		Baixa = new BaixaCP();
+	public BaixaVencimentoCPBean() {
+		Baixa = new BaixaVencimentoCP();
 		listarBaixa();
 	}
 
 	public String cadastraBaixa() {
 
-		ConexaoBD.getConexao();
-		BaixaCPDAO BaixaCPDAO = new BaixaCPDAO();
+		BaixaVencimentoCPDAO BaixaCPDAO = new BaixaVencimentoCPDAO();
 		if (BaixaCPDAO.insertBaixaCP(Baixa)) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
 					"Baixa de conta cadastrada com sucesso!", "Sucesso!"));
@@ -36,31 +34,30 @@ public class BaixaCPBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da Baixa!", "Erro!"));
 
 		}
-		ConexaoBD.fecharConexao();
-		Baixa = new BaixaCP();
+		Baixa = new BaixaVencimentoCP();
 
 		return "";
 	}
 
 	public void listarBaixa() {
-		BaixaCPDAO BaixaCPDAO = new BaixaCPDAO();
-		setListabaixa(BaixaCPDAO.listBaixa());
+		BaixaVencimentoCPDAO BaixaCPDAO = new BaixaVencimentoCPDAO();
+		setListabaixas(BaixaCPDAO.listBaixa());
 	}
 
-	public BaixaCP getBaixa() {
+	public BaixaVencimentoCP getBaixa() {
 		return Baixa;
 	}
 
-	public void setBaixa(BaixaCP baixa) {
+	public void setBaixa(BaixaVencimentoCP baixa) {
 		Baixa = baixa;
 	}
 
-	public List<BaixaCP> getListabaixa() {
-		return Listabaixa;
+	public List<BaixaVencimentoCP> getListabaixas() {
+		return Listabaixas;
 	}
 
-	public void setListabaixa(List<BaixaCP> listabaixa) {
-		Listabaixa = listabaixa;
+	public void setListabaixas(List<BaixaVencimentoCP> listabaixas) {
+		Listabaixas = listabaixas;
 	}
 
 

@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean
 @SuppressWarnings("serial")
-public class BaixaCP implements Serializable {
+public class BaixaVencimentoCP implements Serializable {
 
 	private int codigo;
 	private String cpf;

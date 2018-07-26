@@ -69,7 +69,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo"
-														value="#{baixaCPBean.baixa.codigo}"
+														value="#{baixaVencimentoCPBean.baixa.codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="false">
 													</p:inputText>
@@ -81,7 +81,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf" required="false"
-														value="#{baixaCPBean.baixa.cpf}"
+														value="#{baixaVencimentoCPBean.baixa.cpf}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -91,7 +91,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="numerodoc" required="false"
-														value="#{baixaCPBean.baixa.numerodoc}"
+														value="#{baixaVencimentoCPBean.baixa.numerodoc}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -104,7 +104,7 @@
 													<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="emissaocp" required="false"
-														value="#{baixaCPBean.baixa.emissaocp}" />
+														value="#{baixaVencimentoCPBean.baixa.emissaocp}" />
 												</div>
 											</div>
 											<div class="form-group">
@@ -116,7 +116,7 @@
 													<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="vencimentocp" required="false"
-														value="#{baixaCPBean.baixa.vencimentocp}" />
+														value="#{baixaVencimentoCPBean.baixa.vencimentocp}" />
 												</div>
 											</div>
 											<div class="form-group">
@@ -126,7 +126,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="numerotitulo" required="false"
-														value="#{baixaCPBean.baixa.numerotitulo}"
+														value="#{baixaVencimentoCPBean.baixa.numerotitulo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -137,7 +137,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="vencimentovalor" required="false"
-														value="#{baixaCPBean.baixa.vencimentovalor}"
+														value="#{baixaVencimentoCPBean.baixa.vencimentovalor}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -150,7 +150,7 @@
 													<p:calendar mask="true" showOn="false" pattern="dd/MM/yyyy"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="baixavencimentocp" required="false"
-														value="#{baixaCPBean.baixa.baixavencimentocp}" />
+														value="#{baixaVencimentoCPBean.baixa.baixavencimentocp}" />
 												</div>
 											</div>
 											<div class="form-group">
@@ -160,7 +160,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valorbaixavencimento" required="false"
-														value="#{baixaCPBean.baixa.valorbaixavencimento}"
+														value="#{baixaVencimentoCPBean.baixa.valorbaixavencimento}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -171,7 +171,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valordescontobaixa" required="false"
-														value="#{baixaCPBean.baixa.valordescontobaixa}"
+														value="#{baixaVencimentoCPBean.baixa.valordescontobaixa}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -182,7 +182,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valorjurusbaixa" required="false"
-														value="#{baixaCPBean.baixa.valorjurusbaixa}"
+														value="#{baixaVencimentoCPBean.baixa.valorjurusbaixa}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -193,7 +193,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="contafinanceira" required="false"
-														value="#{baixaCPBean.baixa.contafinanceira}"
+														value="#{baixaVencimentoCPBean.baixa.contafinanceira}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -204,7 +204,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="estfinanceira" required="false"
-														value="#{baixaCPBean.baixa.estfinanceira}"
+														value="#{baixaVencimentoCPBean.baixa.estfinanceira}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -215,7 +215,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="historico" required="false"
-														value="#{baixaCPBean.baixa.historico}"
+														value="#{baixaVencimentoCPBean.baixa.historico}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -225,8 +225,9 @@
 													<p:commandButton value="Resetar" class="btn btn-primary"
 														type="reset"></p:commandButton>
 													<p:commandButton value="cadastrar"
+														onclick="window.location='#demo-form2'"
 														update="messages @(.form_control) Campo" styleClass="btn btn-success"
-														action="#{baixaCPBean.cadastraBaixa()}">
+														action="#{baixaVencimentoCPBean.cadastraBaixa()}">
 													</p:commandButton>
 												</div>
 											</div>					
@@ -273,7 +274,7 @@
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="#{baixaCPBean.listabaixa}"
+														<c:forEach items="#{baixaVencimentoCPBean.listabaixas}"
 															var="baixa" cellspacing="0" width="100%">
 															<tr>
 																<td>#{baixa.codigo}</td>
@@ -283,7 +284,7 @@
 																		onclick="window.location='#demo-form2'"
 																		update="@(.form-control) @(.autocomplete)">
 																		<f:setPropertyActionListener value="#{baixa}"
-																			target="#{baixaCPBean.baixa}" />
+																		target="#{baixaVencimentoCPBean.baixa}" />
 																	</p:commandButton></td>
 																<td>#{baixa.cpf}</td>
 																<td>#{baixa.numerodoc}</td>
