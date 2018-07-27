@@ -85,9 +85,9 @@
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
 															items="#{grupoCResultadosBean.listagrupoCResultados}"
-															var="grupocentroResultadoss" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{grupocentroResultadoss.nome}"
-																itemValue="#{grupocentroResultadoss.codigo}" />
+															var="grupolistacentroresultados" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{grupolistacentroresultados.nome}"
+																itemValue="#{grupolistacentroresultados.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
@@ -130,7 +130,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{centroResultadosBean.cadastraCentroResultadoss}"
+														action="#{centroResultadosBean.cadastraCentroResultados}"
 														update="messages" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'">
 													</p:commandButton>
@@ -171,7 +171,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{centroResultadosBean.centroResultadoss}"
+													<c:forEach items="#{centroResultadosBean.listacentroresultados}"
 														var="centroResultados" cellspacing="0" width="100%">
 														<tr>
 															<td>#{centroResultados.codigo}</td>

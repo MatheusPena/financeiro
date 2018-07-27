@@ -17,7 +17,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 @ViewScoped
 public class CentroResultadosBean implements Serializable {
 	private CentroResultados centroResultados;
-	private List<CentroResultados> centroResultadoss;
+	private List<CentroResultados> listacentroresultados;
 
 	public CentroResultadosBean() {
 		centroResultados = new CentroResultados();
@@ -25,7 +25,7 @@ public class CentroResultadosBean implements Serializable {
 	}
 
 	//cadastra os centros de resultados exibindo uma mensagem na tela
-	public String cadastraCentroResultadoss() {
+	public String cadastraCentroResultados() {
 
 		ConexaoBD.getConexao();
 		CentroResultadosDAO CentroResultadoss = new CentroResultadosDAO();
@@ -45,7 +45,7 @@ public class CentroResultadosBean implements Serializable {
 	//lista na tabela os centros de resultados
 	public void listarCentroResultadoss() {
 		CentroResultadosDAO CentroResultadoss = new CentroResultadosDAO();
-		setCentroResultadoss(CentroResultadoss.listCentroResultados());
+		setListacentroresultados(CentroResultadoss.listCentroResultados());
 	}
 
 	public CentroResultados getCentroResultados() {
@@ -56,12 +56,12 @@ public class CentroResultadosBean implements Serializable {
 		this.centroResultados = centroResultados;
 	}
 
-	public List<CentroResultados> getCentroResultadoss() {
-		return centroResultadoss;
+	public List<CentroResultados> getListacentroresultados() {
+		return listacentroresultados;
 	}
 
-	public void setCentroResultadoss(List<CentroResultados> centroResultadoss) {
-		this.centroResultadoss = centroResultadoss;
+	public void setListacentroresultados(List<CentroResultados> listacentroResultados) {
+		this.listacentroresultados = listacentroResultados;
 	}
 
 	
