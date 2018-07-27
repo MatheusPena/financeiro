@@ -7,7 +7,7 @@ public class RateioCP {
 	private String estabelecimento_nome;
 	private String empresa_cnpj;
 	private Empresa empresa;
-	private CentroResultados centroresultados;
+	private CentroResultado centroresultados;
 	private int centroresultados_codigo;
 	private String despesa;
 	private String despesa_codigo;
@@ -62,11 +62,11 @@ public class RateioCP {
 		this.empresa = empresa;
 	}
 
-	public CentroResultados getCentroresultados() {
+	public CentroResultado getCentroresultados() {
 		return centroresultados;
 	}
 
-	public void setCentroresultados(CentroResultados centroresultados) {
+	public void setCentroresultados(CentroResultado centroresultados) {
 		this.centroresultados = centroresultados;
 	}
 

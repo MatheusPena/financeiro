@@ -15,7 +15,7 @@ public class Adiantamento {
 	private String observacao;
 	private ContasFinanceiras contafinanceira;
 	private Estabelecimento estabelecimento;
-	private CentroResultados centroresultado;
+	private CentroResultado centroresultado;
 	private Despesa despesa;
 	private Historico historico;
 
@@ -115,11 +115,11 @@ public class Adiantamento {
 		this.estabelecimento = estabelecimento;
 	}
 
-	public CentroResultados getCentroresultado() {
+	public CentroResultado getCentroresultado() {
 		return centroresultado;
 	}
 
-	public void setCentroresultado(CentroResultados centroresultado) {
+	public void setCentroresultado(CentroResultado centroresultado) {
 		this.centroresultado = centroresultado;
 	}
 

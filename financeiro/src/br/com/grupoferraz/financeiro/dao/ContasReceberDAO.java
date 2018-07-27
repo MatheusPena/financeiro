@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.CentroResultados;
+import br.com.grupoferraz.financeiro.entity.CentroResultado;
 import br.com.grupoferraz.financeiro.entity.ContasReceber;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
@@ -104,7 +104,7 @@ public class ContasReceberDAO {
 				contasreceber.setValor(rs.getFloat("valor"));
 				contasreceber.setContabilidade(rs.getString("contabilidade"));
 				contasreceber.setCentro_resultados(rs.getInt("centroresultados_codigo"));
-				CentroResultados obj3 = getCentroResultados(contasreceber.getCentro_resultados());
+				CentroResultado obj3 = getCentroResultados(contasreceber.getCentro_resultados());
 				contasreceber.setCentroresultados(obj3);
 				contasreceber.setObservacao(rs.getString("observacao"));
 				lista.add(contasreceber);
@@ -136,8 +136,8 @@ public class ContasReceberDAO {
 		return grupo;
 	}
 	
-	public CentroResultados getCentroResultados(int idGrupo) throws SQLException {
-		CentroResultados grupo = new CentroResultados();
+	public CentroResultado getCentroResultados(int idGrupo) throws SQLException {
+		CentroResultado grupo = new CentroResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 			preparedStatement = conexao

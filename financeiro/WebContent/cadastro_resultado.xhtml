@@ -14,7 +14,7 @@
 		<!-- Meta, title, CSS, favicons, etc. -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Grupos | Vendedores</title>
+		<title>Formulário | Centros de Resultados</title>
 		<!-- Bootstrap -->
 		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 		<!-- Font Awesome -->
@@ -48,8 +48,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Grupos de Vendedores <small>Cadastre aqui os grupos
-												de vendedores</small>
+											Formulário de Centros de Resultados <small>Cadastre
+												aqui os centros de resultados</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -61,15 +61,68 @@
 										<br />
 										<h:form id="demo-form2" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
-											<p:messages id="messages" styleClass="messages" />
+											<p:messages id="messages" styleClass="messages"/>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nome" value="Nome:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-														value="#{grupoVendedorBean.grupovendedor.nome}"
-														styleClass="form-control col-md-7 col-xs-12" /> 	
+														value="#{centroResultadoBean.centroResultado.nome}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="grupo"
+														value="Grupo do Centro de Resultados:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="grupo"
+														value="#{centroResultadoBean.centroResultado.grupocentroresultados_codigo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<c:forEach
+															items="#{grupoCResultadosBean.listagrupoCResultados}"
+															var="grupocentroResultados" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{grupocentroResultados.nome}"
+																itemValue="#{grupocentroResultados.codigo}" />
+														</c:forEach>
+													</h:selectOneMenu>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="atividade" value="Inativo:" />
+												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<h:selectOneRadio id="atividade" required="true"
+														value="#{centroResultadoBean.centroResultado.atividade}">
+														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
+															itemValue="Sim" />
+														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
+															itemValue="Não" />
+													</h:selectOneRadio>
+												</label>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="crcontabil" value="CR Contábil:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="crcontabil" required="true"
+														value="#{centroResultadoBean.centroResultado.crcontabil}"
+														styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="peso" value="Peso:" />
+												</label>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<p:inputText id="peso"
+														value="#{centroResultadoBean.centroResultado.peso}"
+														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="ln_solid" />
@@ -77,8 +130,8 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar"
-														action="#{grupoVendedorBean.cadastragrupovendedor}" update="messages @form"
-														styleClass="btn btn-success"
+														action="#{centroResultadoBean.cadastraCentroResultado}"
+														update="messages @form" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'"
 														oncomplete="temp()">
 													</p:commandButton>
@@ -105,8 +158,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Tabela de Grupo de Vendedores <small>Exibe os grupos de vendedores
-												cadastrados</small>
+											Tabela de Centros de Resultados <small>Exibe os
+												centros de resultados cadastrados</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -122,25 +175,32 @@
 													<tr>
 														<th>Código</th>
 														<th>Editar</th>
-														<th>Nome do Grupo</th>
+														<th>Nome</th>
+														<th>Grupo do Centro de Resultados</th>
+														<th>Inativo</th>
+														<th>CR Contábil</th>
+														<th>Peso</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{grupoVendedorBean.listagrupovendedor}" 
-													var="grupoVendedor"
-													cellspacing="0" width="100%">
+													<c:forEach items="#{centroResultadoBean.centroResultados}"
+														var="centroResultado" cellspacing="0" width="100%">
 														<tr>
-															<td>#{grupoVendedor.codigo}</td>
-															<td>
-															<p:commandButton value="" style="font-size:10px;"
+															<td>#{centroResultado.codigo}</td>
+															<td><p:commandButton value="" 
+															style="font-size:10px;"
 															styleClass="fas fa-edit btn btn-primary"
 															onclick="window.location='#demo-form2'"
 															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
-															<f:setPropertyActionListener value="#{grupoVendedor}" 
-															target="#{grupoVendedorBean.grupovendedor}"/>
+															<f:setPropertyActionListener value="#{centroResultado}" 
+															target="#{centroResultadoBean.centroResultado}"/>
 															</p:commandButton>
 															</td>
-															<td>#{grupoVendedor.nome}</td>					
+															<td>#{centroResultado.nome}</td>
+															<td>#{centroResultado.gruporesultados}</td>
+															<td>#{centroResultado.atividade}</td>
+															<td>#{centroResultado.crcontabil}</td>
+															<td>#{centroResultado.peso}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

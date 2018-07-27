@@ -61,14 +61,14 @@
 										<br />
 										<h:form id="demo-form2" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
-											<p:messages id="messages" />
+											<p:messages id="messages" styleClass="messages"/>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nome" value="Nome:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-														value="#{grupoCResultadosBean.grupoCResultados.nome}"
+														value="#{grupoCResultadoBean.grupoCResultado.nome}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -76,11 +76,23 @@
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
-													<p:commandButton value="Cadastrar" type="submit"
-														action="#{grupoCResultadosBean.cadastraGrupoCResultados}"
-														update="messages" styleClass="btn btn-success"
-														onclick="window.location='#demo-form2'">
+													<p:commandButton value="Cadastrar"
+														action="#{grupoCResultadoBean.cadastraGrupoCResultado}"
+														update="messages @form" styleClass="btn btn-success"
+														onclick="window.location='#demo-form2'"
+														oncomplete="temp()">
 													</p:commandButton>
+													<script>
+													 function temp() {
+
+                                                         setTimeout(function() {
+
+                                                                $('.messages').html('');
+
+                                                         }, 5000);
+
+                                                  }
+													</script>
 												</div>
 											</div>
 										</h:form>
@@ -115,20 +127,20 @@
 												</thead>
 												<tbody>
 													<c:forEach
-														items="#{grupoCResultadosBean.listagrupoCResultados}"
-														var="grupoCResultados" cellspacing="0" width="100%">
+														items="#{grupoCResultadoBean.listagrupoCResultados}"
+														var="grupoCResultado" cellspacing="0" width="100%">
 														<tr>
-															<td>#{grupoCResultados.codigo}</td>
+															<td>#{grupoCResultado.codigo}</td>
 															<td>
 															<p:commandButton value="" style="font-size:10px;"
 															styleClass="fas fa-edit btn btn-primary"
 															onclick="window.location='#demo-form2'"
 															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
-															<f:setPropertyActionListener value="#{grupoCResultados}" 
-															target="#{grupoCResultadosBean.grupoCResultados}"/>
+															<f:setPropertyActionListener value="#{grupoCResultado}" 
+															target="#{grupoCResultadoBean.grupoCResultado}"/>
 															</p:commandButton>
 															</td>
-															<td>#{grupoCResultados.nome}</td>
+															<td>#{grupoCResultado.nome}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

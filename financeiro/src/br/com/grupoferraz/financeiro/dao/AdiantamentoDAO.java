@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.CentroResultados;
+import br.com.grupoferraz.financeiro.entity.CentroResultado;
 import br.com.grupoferraz.financeiro.entity.ContasFinanceiras;
 import br.com.grupoferraz.financeiro.entity.Despesa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
@@ -108,7 +108,7 @@ public class AdiantamentoDAO {
 				ContasFinanceiras obj2 = getContaFinanceira(Adiantamento.getContasfinanceiras_codigo());
 				Adiantamento.setContafinanceira(obj2);
 				Adiantamento.setCentroresultados_codigo(rs.getInt(8));
-				CentroResultados obj3 = getCentroResultados(Adiantamento.getCentroresultados_codigo());
+				CentroResultado obj3 = getCentroResultados(Adiantamento.getCentroresultados_codigo());
 				Adiantamento.setCentroresultado(obj3);
 				Adiantamento.setDespesas_codigo(rs.getInt(9));
 				Despesa obj4 = getDespesa(Adiantamento.getDespesas_codigo());
@@ -187,8 +187,8 @@ public class AdiantamentoDAO {
 		return grupo;
 	}
 
-	public CentroResultados getCentroResultados(int idGrupo) throws SQLException {
-		CentroResultados grupo = new CentroResultados();
+	public CentroResultado getCentroResultados(int idGrupo) throws SQLException {
+		CentroResultado grupo = new CentroResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement("select * from centroresultados where codigo = ?");

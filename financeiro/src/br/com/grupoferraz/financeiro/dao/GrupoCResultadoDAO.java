@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.GrupoCResultados;
+import br.com.grupoferraz.financeiro.entity.GrupoCResultado;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
-public class GrupoCResultadosDAO {
+public class GrupoCResultadoDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertGrupoCResultado(GrupoCResultados grupoCResultado) {
+	public boolean insertGrupoCResultado(GrupoCResultado grupoCResultado) {
 
 		// Statement st = null;
 		// ResultSet rs = null;
@@ -45,9 +45,9 @@ public class GrupoCResultadosDAO {
 	}
 
 	// lista todos os usuarios cadastrados no banco de dados
-	public List<GrupoCResultados> listGrupoCResultado() {
+	public List<GrupoCResultado> listGrupoCResultado() {
 
-		ArrayList<GrupoCResultados> lista = new ArrayList<GrupoCResultados>();
+		ArrayList<GrupoCResultado> lista = new ArrayList<GrupoCResultado>();
 
 		Statement st = null;
 		ResultSet rs = null;
@@ -59,7 +59,7 @@ public class GrupoCResultadosDAO {
 
 			while (rs.next()) {
 
-				GrupoCResultados grupoCResultado = new GrupoCResultados();
+				GrupoCResultado grupoCResultado = new GrupoCResultado();
 				grupoCResultado.setCodigo(rs.getInt(1));
 				grupoCResultado.setNome(rs.getString(2));
 				lista.add(grupoCResultado);

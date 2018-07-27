@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import br.com.grupoferraz.financeiro.entity.ContaPagar;
-import br.com.grupoferraz.financeiro.entity.CentroResultados;
+import br.com.grupoferraz.financeiro.entity.CentroResultado;
 import br.com.grupoferraz.financeiro.entity.ContasFinanceiras;
 import br.com.grupoferraz.financeiro.entity.Despesa;
 import br.com.grupoferraz.financeiro.entity.Documento;
@@ -124,7 +124,7 @@ public class ContaPagarDAO {
 				pagarconta.setEmissaocp(rs.getDate("emissaocp"));
 				pagarconta.setValor(rs.getString("valor"));
 				pagarconta.setCentroresultados_codigo(rs.getInt("centroresultados_codigo"));
-				CentroResultados centroresultados = getCentroresultados(pagarconta.getCentroresultados_codigo());
+				CentroResultado centroresultados = getCentroresultados(pagarconta.getCentroresultados_codigo());
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setDocumento_codigo(rs.getInt("documento_codigo"));
 				Documento documento = getDocumentos(pagarconta.getDocumento_codigo());
@@ -155,8 +155,8 @@ public class ContaPagarDAO {
 	}
 	
 	//Lista os Centro de Resultados cadastrados e exibe-os na tela de Contas à Pagar.
-	public CentroResultados getCentroresultados(int idCentroresultados) throws SQLException {
-		CentroResultados centroresultados = new CentroResultados();
+	public CentroResultado getCentroresultados(int idCentroresultados) throws SQLException {
+		CentroResultado centroresultados = new CentroResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
@@ -288,7 +288,7 @@ public class ContaPagarDAO {
 				pagarconta.setEmissaocp(rs.getDate("emissaocp"));
 				pagarconta.setValor(rs.getString("valor"));
 				pagarconta.setCentroresultados_codigo(rs.getInt("centroresultados_codigo"));
-				CentroResultados centroresultados = getCentroresultados(pagarconta.getCentroresultados_codigo());
+				CentroResultado centroresultados = getCentroresultados(pagarconta.getCentroresultados_codigo());
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setDocumento_codigo(rs.getInt("documento_codigo"));
 				Documento documento = getDocumentos(pagarconta.getDocumento_codigo());

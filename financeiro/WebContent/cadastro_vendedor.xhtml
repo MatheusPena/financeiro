@@ -70,7 +70,7 @@
 									<div class="x_content">
 										<br />
 										<h:form id="Campo" class="form-horizontal form-label-left">
-											<p:messages id="messages" />
+											<p:messages id="messages" styleClass="messages"/>
 											<!-- Dados iniciais -->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -441,10 +441,22 @@
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
-													<p:commandButton value="Cadastrar" type="submit"
-														update="messages" class="btn btn-success"
+													<p:commandButton value="Cadastrar"
+														update="messages  @form" class="btn btn-success"
 														action="#{vendedorBean.cadastraVendedor()}"
-														onclick="window.location='#Campo'"></p:commandButton>
+														onclick="window.location='#Campo'"
+														oncomplete="temp()"></p:commandButton>
+													<script>
+													 function temp() {
+
+                                                         setTimeout(function() {
+
+                                                                $('.messages').html('');
+
+                                                         }, 5000);
+
+                                                  }
+													</script>
 												</div>
 											</div>
 										</h:form>

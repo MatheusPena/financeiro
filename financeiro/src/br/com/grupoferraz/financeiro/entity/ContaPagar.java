@@ -34,7 +34,7 @@ public class ContaPagar implements Serializable {
 	private ContasFinanceiras contafinanceira;
 	private int contafinanceira_codigo;
 	private String valor;
-	private CentroResultados centroresultados;
+	private CentroResultado centroresultados;
 	private int centroresultados_codigo;
 	private Documento documento;
 	private int documento_codigo;
@@ -170,12 +170,12 @@ public class ContaPagar implements Serializable {
 	}
 
 
-	public CentroResultados getCentroresultados() {
+	public CentroResultado getCentroresultados() {
 		return centroresultados;
 	}
 
 
-	public void setCentroresultados(CentroResultados centroresultados) {
+	public void setCentroresultados(CentroResultado centroresultados) {
 		this.centroresultados = centroresultados;
 	}
 

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.CentroResultados;
+import br.com.grupoferraz.financeiro.entity.CentroResultado;
 import br.com.grupoferraz.financeiro.entity.Empresa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.PlanoContas;
@@ -86,7 +86,7 @@ public class RateioCRDAO {
 				Estabelecimento obj2 = getEstabelecimento(Rateio.getEstabelecimento_codigo());
 				Rateio.setEstabelecimento(obj2);
 				Rateio.setCentro_resultados(rs.getInt(5));
-				CentroResultados obj3 = getCentroResultados(Rateio.getCentro_resultados());
+				CentroResultado obj3 = getCentroResultados(Rateio.getCentro_resultados());
 				Rateio.setCentroresultados(obj3);
 				lista.add(Rateio);
 			}
@@ -165,8 +165,8 @@ public class RateioCRDAO {
 	}
 
 	// Exibe o centro de resultados
-	public CentroResultados getCentroResultados(int idGrupo) throws SQLException {
-		CentroResultados grupo = new CentroResultados();
+	public CentroResultado getCentroResultados(int idGrupo) throws SQLException {
+		CentroResultado grupo = new CentroResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement("select * from centroresultados where codigo = ?");

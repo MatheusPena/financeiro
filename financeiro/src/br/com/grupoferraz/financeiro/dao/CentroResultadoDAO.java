@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.CentroResultados;
-import br.com.grupoferraz.financeiro.entity.GrupoCResultados;
+import br.com.grupoferraz.financeiro.entity.CentroResultado;
+import br.com.grupoferraz.financeiro.entity.GrupoCResultado;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
-public class CentroResultadosDAO {
+public class CentroResultadoDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertCentroResultadoss(CentroResultados CentroResultados) {
+	public boolean insertCentroResultadoss(CentroResultado CentroResultados) {
 
 		try {
 			
@@ -65,9 +65,9 @@ public class CentroResultadosDAO {
 	}
 
 	// lista todos os usuarios cadastrados no banco de dados
-	public List<CentroResultados> listCentroResultados() {
+	public List<CentroResultado> listCentroResultados() {
 
-		ArrayList<CentroResultados> lista = new ArrayList<CentroResultados>();
+		ArrayList<CentroResultado> lista = new ArrayList<CentroResultado>();
 
 		Statement st = null;
 		ResultSet rs = null;
@@ -79,7 +79,7 @@ public class CentroResultadosDAO {
 
 			while (rs.next()) {
 
-				CentroResultados CentroResultados = new CentroResultados();
+				CentroResultado CentroResultados = new CentroResultado();
 				CentroResultados.setCodigo(rs.getInt("codigo"));
 				CentroResultados.setNome(rs.getString("nome"));
 				CentroResultados.setAtividade(rs.getString("atividade"));
@@ -87,7 +87,7 @@ public class CentroResultadosDAO {
 				CentroResultados.setPeso(rs.getBigDecimal("peso"));
 				CentroResultados.setGrupocentroresultados_codigo(rs.getInt("grupocentroresultados_codigo"));
 				int idGrupo = CentroResultados.getGrupocentroresultados_codigo();
-				GrupoCResultados gcentroResultados = getGrupoCentroResultados(idGrupo);
+				GrupoCResultado gcentroResultados = getGrupoCentroResultados(idGrupo);
 				CentroResultados.setGruporesultados(gcentroResultados);
 				lista.add(CentroResultados);
 			}
@@ -103,8 +103,8 @@ public class CentroResultadosDAO {
 	
 	
 	//exibe o nome do grupo do centro de resultados
-	public GrupoCResultados getGrupoCentroResultados(int idGrupo) throws SQLException {
-		GrupoCResultados grupo = new GrupoCResultados();
+	public GrupoCResultado getGrupoCentroResultados(int idGrupo) throws SQLException {
+		GrupoCResultado grupo = new GrupoCResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(

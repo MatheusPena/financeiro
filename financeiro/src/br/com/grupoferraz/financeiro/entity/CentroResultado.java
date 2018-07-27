@@ -7,14 +7,14 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean
 @SuppressWarnings("serial")
-public class CentroResultados implements Serializable {
+public class CentroResultado implements Serializable {
 	private int codigo;
 	private String nome;
 	private Integer grupocentroresultados_codigo;
 	private String atividade;
 	private String crcontabil;
 	private BigDecimal peso;
-	private GrupoCResultados gruporesultados;
+	private GrupoCResultado gruporesultados;
 
 	public int getCodigo() {
 		return codigo;
@@ -64,11 +64,11 @@ public class CentroResultados implements Serializable {
 		this.peso = peso;
 	}
 
-	public GrupoCResultados getGruporesultados() {
+	public GrupoCResultado getGruporesultados() {
 		return gruporesultados;
 	}
 
-	public void setGruporesultados(GrupoCResultados gruporesultados) {
+	public void setGruporesultados(GrupoCResultado gruporesultados) {
 		this.gruporesultados = gruporesultados;
 	}
 

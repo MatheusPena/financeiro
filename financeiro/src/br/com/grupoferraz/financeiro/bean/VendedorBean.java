@@ -37,15 +37,16 @@ public class VendedorBean implements Serializable {
 		ConexaoBD.getConexao();
 		VendedorDAO vendedor = new VendedorDAO();
 		if (vendedor.insertVendedor(this.vendedor)) {
-			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Vendedor cadastrado com sucesso!");
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Vendedor cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do Vendedor!", "Erro!"));
+			return "";
 
 		}
 		ConexaoBD.fecharConexao();
-		vendedor = new VendedorDAO();
-
+		
+		this.vendedor = new Vendedor();
 		return "";
 	}
 

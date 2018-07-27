@@ -12,7 +12,7 @@ public class RateioCR {
 	private Empresa empresa;
 	private PlanoContas planocontas;
 	private Estabelecimento estabelecimento;
-	private CentroResultados centroresultados;
+	private CentroResultado centroresultados;
 
 	public int getCodigo() {
 		return codigo;
@@ -86,11 +86,11 @@ public class RateioCR {
 		this.estabelecimento = estabelecimento;
 	}
 
-	public CentroResultados getCentroresultados() {
+	public CentroResultado getCentroresultados() {
 		return centroresultados;
 	}
 
-	public void setCentroresultados(CentroResultados centroresultados) {
+	public void setCentroresultados(CentroResultado centroresultados) {
 		this.centroresultados = centroresultados;
 	}
 

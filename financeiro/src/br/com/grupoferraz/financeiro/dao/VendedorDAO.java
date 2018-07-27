@@ -198,7 +198,7 @@ public class VendedorDAO {
 		Empresa empresa = new Empresa();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select cnpj, nome from empresas where cnpj = ?");
+		preparedStatement = conexao.prepareStatement("select cnpj, nome from empresa where cnpj = ?");
 		preparedStatement.setString(1, idEmpresa);
 		rs = preparedStatement.executeQuery();
 
@@ -214,7 +214,7 @@ public class VendedorDAO {
 		Estabelecimento grupo = new Estabelecimento();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from estabelecimentos where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from estabelecimento where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

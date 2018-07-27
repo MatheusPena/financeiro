@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.GrupoVendedorDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoVendedor;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -24,28 +24,29 @@ public class GrupoVendedorBean implements Serializable {
 		grupovendedor = new GrupoVendedor();
 		listargrupovendedor();
 	}
-	
-	//cadastra um grupo exibindo uma mensagem
+
+	// cadastra um grupo exibindo uma mensagem
 	public String cadastragrupovendedor() {
 
-		ConexaoBD.getConexao();
-		GrupoVendedorDAO grupovendedor = new GrupoVendedorDAO ();
+		//ConexaoBD.getConexao();
+		GrupoVendedorDAO grupovendedor = new GrupoVendedorDAO();
 		if (grupovendedor.insertGrupoVendedor(this.grupovendedor)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Grupo de Vendedores cadastrado com sucesso!", "Sucesso!"));
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Vendedores cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));
-
+			return "";
 		}
-		ConexaoBD.fecharConexao();
+		//ConexaoBD.fecharConexao();
 
+		this.grupovendedor = new GrupoVendedor();
 		return "";
+		
 	}
-	
-	//lista os grupos existentes na tabela
-	public void listargrupovendedor()  {
-		GrupoVendedorDAO grupovendedorDAO = new GrupoVendedorDAO ();
+
+	// lista os grupos existentes na tabela
+	public void listargrupovendedor() {
+		GrupoVendedorDAO grupovendedorDAO = new GrupoVendedorDAO();
 		listagrupovendedor = grupovendedorDAO.listGrupoVendedores();
 	}
 
@@ -65,6 +66,4 @@ public class GrupoVendedorBean implements Serializable {
 		this.listagrupovendedor = listagrupovendedor;
 	}
 
-
-	
 }

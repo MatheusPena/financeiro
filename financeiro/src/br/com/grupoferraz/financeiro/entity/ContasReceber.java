@@ -14,7 +14,7 @@ public class ContasReceber {
 	private String observacao;
 	private Integer centro_resultados;
 	private Estabelecimento estabelecimento;
-	private CentroResultados centroresultados;
+	private CentroResultado centroresultados;
 
 	public int getCodigo() {
 		return codigo;
@@ -104,11 +104,11 @@ public class ContasReceber {
 		this.estabelecimento = estabelecimento;
 	}
 
-	public CentroResultados getCentroresultados() {
+	public CentroResultado getCentroresultados() {
 		return centroresultados;
 	}
 
-	public void setCentroresultados(CentroResultados centroresultados) {
+	public void setCentroresultados(CentroResultado centroresultados) {
 		this.centroresultados = centroresultados;
 	}
 
