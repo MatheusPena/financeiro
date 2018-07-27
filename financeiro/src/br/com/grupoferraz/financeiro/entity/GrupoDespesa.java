@@ -1,17 +1,19 @@
 package br.com.grupoferraz.financeiro.entity;
 
 public class GrupoDespesa {
-	private int codigo;
+	private Integer codigo;
 	private String nomegrupodespesa;
+	private Integer grupodespesa_codigo;
+	private GrupoDespesa subgrupo;
 	
 	public GrupoDespesa() {
 		
 	}
 	
-	public int getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 	
@@ -21,6 +23,22 @@ public class GrupoDespesa {
 
 	public void setNomegrupodespesa(String nomegrupodespesa) {
 		this.nomegrupodespesa = nomegrupodespesa;
+	}
+
+	public Integer getGrupodespesa_codigo() {
+		return grupodespesa_codigo;
+	}
+
+	public void setGrupodespesa_codigo(Integer grupodespesa_codigo) {
+		this.grupodespesa_codigo = grupodespesa_codigo;
+	}
+
+	public GrupoDespesa getSubgrupo() {
+		return subgrupo;
+	}
+
+	public void setSubgrupo(GrupoDespesa subgrupo) {
+		this.subgrupo = subgrupo;
 	}
 
 	@Override

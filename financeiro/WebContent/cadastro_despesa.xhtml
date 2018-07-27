@@ -46,8 +46,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Despesas <small>Cadastre aqui os itens
-												referentes às despesas da empresa.</small>
+											Formulário de Despesas/Receitas <small>Cadastre aqui os itens
+												referentes às despesas e receitas da empresa.</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -90,7 +90,7 @@
 													<p:outputLabel for="grupo" value="Grupo do item: " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="grupo" required="true"
+													<h:selectOneMenu id="grupo" required="false"
 														value="#{despesaBean.despesa.grupodespesa_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
@@ -121,7 +121,7 @@
 											<div class="x_panel">
 												<div class="x_title">
 													<h2>
-														Tabela de Despesas <small>Exibe as despesas
+														Tabela de Despesas/Receitas <small>Exibe as despesas e receitas
 															cadastradas</small>
 													</h2>
 													<ul class="nav navbar-right panel_toolbox">

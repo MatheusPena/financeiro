@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.GrupoDespesa;
 import br.com.grupoferraz.financeiro.entity.GrupoPlanoContas;
 import br.com.grupoferraz.financeiro.entity.PlanoContas;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
@@ -25,11 +26,12 @@ public class PlanoContasDAO {
 
 			StringBuilder str = new StringBuilder();
 			str.append("insert into planocontas (codigo, nome, tipo, natureza, iss, conta_contabil, contabil_estoque, "
-					+ "inss, irpf, pis, conta, atividade, icms, observacao, grupoplanodecontas_codigo)"
-					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+					+ "inss, irpf, pis, conta, atividade, icms, observacao, grupoplanodecontas_codigo, grupodespesa_codigo)"
+					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?, tipo = ?, "
 					+ "natureza = ?, iss = ?, conta_contabil = ?, contabil_estoque = ?, inss = ?, irpf = ?, pis = ?, "
-					+ "conta = ?, atividade = ?, icms = ?, observacao = ?,  grupoplanodecontas_codigo = ? ");
+					+ "conta = ?, atividade = ?, icms = ?, observacao = ?,  "
+					+ "grupoplanodecontas_codigo = ?, grupodespesa_codigo = ? ");
 
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setString(1, PlanoContas.getCodigo());
@@ -51,26 +53,31 @@ public class PlanoContasDAO {
 			} else {
 				preparedStatement.setNull(15, Types.INTEGER);
 			}
-
-			preparedStatement.setString(16, PlanoContas.getCodigo());
-			preparedStatement.setInt(17, PlanoContas.getNome());
-			preparedStatement.setString(18, PlanoContas.getTipo());
-			preparedStatement.setString(19, PlanoContas.getNatureza());
-			preparedStatement.setString(20, PlanoContas.getIss());
-			preparedStatement.setString(21, PlanoContas.getConta_contabil());
-			preparedStatement.setString(22, PlanoContas.getContabil_estoque());
-			preparedStatement.setString(23, PlanoContas.getInss());
-			preparedStatement.setString(24, PlanoContas.getIrpf());
-			preparedStatement.setString(25, PlanoContas.getPis());
-			preparedStatement.setString(26, PlanoContas.getConta());
-			preparedStatement.setString(27, PlanoContas.getAtividade());
-			preparedStatement.setInt(28, PlanoContas.getIcms());
-			preparedStatement.setString(29, PlanoContas.getObservacao());
-			if (PlanoContas.getGrupoplanocontas_codigo() != null) {
-				preparedStatement.setInt(30, PlanoContas.getGrupoplanocontas_codigo());
+			if (PlanoContas.getGrupodespesa_codigo() != null) {
+			preparedStatement.setInt(16, PlanoContas.getGrupodespesa_codigo());
 			} else {
-				preparedStatement.setNull(30, Types.INTEGER);
+				preparedStatement.setNull(16, Types.INTEGER);
 			}
+			preparedStatement.setString(17, PlanoContas.getCodigo());
+			preparedStatement.setInt(18, PlanoContas.getNome());
+			preparedStatement.setString(19, PlanoContas.getTipo());
+			preparedStatement.setString(20, PlanoContas.getNatureza());
+			preparedStatement.setString(21, PlanoContas.getIss());
+			preparedStatement.setString(22, PlanoContas.getConta_contabil());
+			preparedStatement.setString(23, PlanoContas.getContabil_estoque());
+			preparedStatement.setString(24, PlanoContas.getInss());
+			preparedStatement.setString(25, PlanoContas.getIrpf());
+			preparedStatement.setString(26, PlanoContas.getPis());
+			preparedStatement.setString(27, PlanoContas.getConta());
+			preparedStatement.setString(28, PlanoContas.getAtividade());
+			preparedStatement.setInt(29, PlanoContas.getIcms());
+			preparedStatement.setString(30, PlanoContas.getObservacao());
+			if (PlanoContas.getGrupoplanocontas_codigo() != null) {
+				preparedStatement.setInt(31, PlanoContas.getGrupoplanocontas_codigo());
+			} else {
+				preparedStatement.setNull(31, Types.INTEGER);
+			}
+			preparedStatement.setInt(32, PlanoContas.getGrupodespesa_codigo());
 
 			preparedStatement.execute();
 			return true;
@@ -93,7 +100,8 @@ public class PlanoContasDAO {
 		try {
 			st = conexao.createStatement();
 			String sql = "select codigo, nome, tipo, natureza, iss, conta_contabil, contabil_estoque, inss, "
-					+ "irpf, pis, conta, atividade, icms, observacao, " + "grupoplanodecontas_codigo from planocontas";
+					+ "irpf, pis, conta, atividade, icms, "
+					+ "observacao, grupoplanodecontas_codigo, grupodespesa_codigo from planocontas";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -120,6 +128,10 @@ public class PlanoContasDAO {
 				int idGrupo = PlanoContas.getGrupoplanocontas_codigo();
 				GrupoPlanoContas grupoplanocontas = getGrupoPlanoContas(idGrupo);
 				PlanoContas.setGrupoplanocontas(grupoplanocontas);
+				PlanoContas.setGrupodespesa_codigo(rs.getInt(16));
+				int id = PlanoContas.getGrupodespesa_codigo();
+				GrupoDespesa grupodespesa = getGrupoDespesa(id);
+				PlanoContas.setGrupodespesa(grupodespesa);
 				lista.add(PlanoContas);
 			}
 
@@ -164,4 +176,21 @@ public class PlanoContasDAO {
 		}
 		return grupo;
 	}
+	
+	public GrupoDespesa getGrupoDespesa(int idGrupo) throws SQLException {
+		GrupoDespesa grupo = new GrupoDespesa();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement(
+				"select codigo, nomegrupodespesa from grupodespesa where codigo = ?");
+		preparedStatement.setInt(1, idGrupo);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			grupo.setCodigo(rs.getInt("codigo"));
+			grupo.setNomegrupodespesa(rs.getString("nomegrupodespesa"));
+		}
+		return grupo;
+	}
+
 }

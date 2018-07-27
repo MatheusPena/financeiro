@@ -32,7 +32,7 @@
 		<!-- Primeface DataTable Style -->
 		<h:outputStylesheet library="css" name="table-style.css" />
 		<!-- Custom Theme Style -->
-		<link href="build/css/custom.min.css" rel="stylesheet" />
+		<link href="build/css/custom.css" rel="stylesheet" />
 	</h:head>
 	<h:body>
 		<!-- /top navigation -->
@@ -74,19 +74,40 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="nome" value="Nome da Receita/Despesa: *" />
+													<p:outputLabel for="nome" value="Nome da Despesa/Receita: *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:outputPanel id="nome">
 														<p:autoComplete id="Despesa" minQueryLength="1"
 															converter="converter" required="true"
 															value="#{planoContasBean.planoContas.despesa}"
-															inputStyleClass="form-control" forceSelection="true"
-															inputStyle="padding-right:311px" var="d" itemLabel="#{d.nome}" itemValue="#{d}"
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest"
+															var="d" itemLabel="#{d.nome}" itemValue="#{d}"
 															completeMethod="#{planoContasBean.completeText}" effect="fade">
 															<p:ajax event="itemSelect" resetValues="true"
-																listener="#{planoContasBean.selecionar()}" />
+																listener="#{planoContasBean.selecionar()}"
+																update="@(.valor)" />
 														</p:autoComplete>
+													</p:outputPanel>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="subgrupo" value="Grupo da Despesa/Receita: " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel styleClass="valor">
+													<h:selectOneMenu id="subgrupo" required="false"
+														value="#{planoContasBean.planoContas.grupodespesa_codigo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+														<f:selectItems
+															value="#{grupoDespesaBean.listagrupodespesas}"
+															var="grupoDespesa" itemValue="#{grupoDespesa.codigo}"
+															itemLabel="#{grupoDespesa.nomegrupodespesa}" />
+													</h:selectOneMenu>
 													</p:outputPanel>
 												</div>
 											</div>
@@ -119,27 +140,7 @@
 														<f:selectItem itemLabel="Saída" itemValue="Saída" />
 													</h:selectOneMenu>
 												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="grupo"
-														value="Grupo das Receitas/Despesas: " />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="grupo"
-														value="#{planoContasBean.planoContas.grupoplanocontas_codigo}"
-														style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{grupoPlanoContasBean.listagrupoPlanoContas}"
-															var="grupoplanocontas" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{grupoplanocontas.nome}"
-																itemValue="#{grupoplanocontas.codigo}" />
-														</c:forEach>
-													</h:selectOneMenu>
-												</div>
-											</div>
+											</div>											 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="iss" value="Retém ISS:" />
@@ -313,9 +314,9 @@
 														<th>Código</th>
 														<th>Editar</th>
 														<th>Nome da Receita/Despesa</th>
+														<th>Grupo das Receitas/Despesas</th>
 														<th>Tipo</th>
 														<th>Natureza</th>
-														<th>Grupo das Receitas/Despesas</th>
 														<th>Retém ISS</th>
 														<th>Conta Contábil</th>
 														<th>Conta Contábil do Estoque</th>
@@ -343,9 +344,9 @@
 															</p:commandButton>
 															</td>
 															<td>#{plano.despesa}</td>
+															<td>#{plano.grupodespesa.nomegrupodespesa}</td>
 															<td>#{plano.tipo}</td>
 															<td>#{plano.natureza}</td>
-															<td>#{plano.grupoplanocontas}</td>
 															<td>#{plano.iss}</td>
 															<td>#{plano.conta_contabil}</td>
 															<td>#{plano.contabil_estoque}</td>

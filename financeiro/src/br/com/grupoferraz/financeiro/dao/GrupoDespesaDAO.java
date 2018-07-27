@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,14 +23,30 @@ public class GrupoDespesaDAO {
 		try {
 
 			StringBuilder str = new StringBuilder();
-			str.append("insert into grupodespesa (codigo, nomegrupodespesa) values (?,?)");
-			str.append("on duplicate key update codigo = ?, nomegrupodespesa = ?");
+			str.append("insert into grupodespesa (codigo, nomegrupodespesa, grupodespesa_codigo) values (?,?,?)");
+			str.append("on duplicate key update codigo = ?, nomegrupodespesa = ?, grupodespesa_codigo = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupodespesa.getCodigo());
 			preparedStatement.setString(2, grupodespesa.getNomegrupodespesa());
-
-			preparedStatement.setInt(3, grupodespesa.getCodigo());
-			preparedStatement.setString(4, grupodespesa.getNomegrupodespesa());
+			
+			Integer cod = grupodespesa.getGrupodespesa_codigo();
+			if(cod!=null) {
+				preparedStatement.setInt(3, cod);
+				preparedStatement.setInt(6, cod);
+			}else {
+				preparedStatement.setNull(3, Types.INTEGER);
+				preparedStatement.setInt(6, Types.INTEGER);
+			}
+			
+			
+			
+			
+			preparedStatement.setInt(4, grupodespesa.getCodigo());
+			preparedStatement.setString(5, grupodespesa.getNomegrupodespesa());
+			
+			
+			System.out.println("G D COD "+grupodespesa.getGrupodespesa_codigo());
+			
 			preparedStatement.execute();
 			return true;
 	
@@ -57,8 +74,12 @@ public class GrupoDespesaDAO {
 			while (rs.next()) {
 
 				GrupoDespesa grupodespesa = new GrupoDespesa();
-				grupodespesa.setCodigo(rs.getInt(1));
-				grupodespesa.setNomegrupodespesa(rs.getString(2));
+				grupodespesa.setCodigo(rs.getInt("codigo"));
+				grupodespesa.setNomegrupodespesa(rs.getString("nomegrupodespesa"));
+				grupodespesa.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
+				int idGrupo = grupodespesa.getGrupodespesa_codigo();		
+				GrupoDespesa grupoDespesa = getGrupoDespesa(idGrupo);
+				grupodespesa.setSubgrupo(grupoDespesa);		
 				lista.add(grupodespesa);
 			}
 
@@ -70,5 +91,22 @@ public class GrupoDespesaDAO {
 		}
 		return lista;
 	}
+	
+	//Listagem de Grupos
+		public GrupoDespesa getGrupoDespesa(int idGrupo) throws SQLException {
+			GrupoDespesa grupo = new GrupoDespesa();
+			PreparedStatement preparedStatement;
+			ResultSet rs = null;
+			preparedStatement = conexao.prepareStatement(
+					"select codigo, nomegrupodespesa from grupodespesa where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				grupo.setCodigo(rs.getInt("codigo"));
+				grupo.setNomegrupodespesa(rs.getString("nomegrupodespesa"));
+			}
+			return grupo;
+		}
 
 }

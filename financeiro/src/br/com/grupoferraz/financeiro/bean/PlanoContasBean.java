@@ -58,6 +58,7 @@ public class PlanoContasBean implements Serializable {
 		
 		if (despesa != null) {
 			planoContas.setNome(despesa.getCodigo());
+			planoContas.setGrupodespesa_codigo(despesa.getGrupodespesa_codigo());
 		}
 
 	}

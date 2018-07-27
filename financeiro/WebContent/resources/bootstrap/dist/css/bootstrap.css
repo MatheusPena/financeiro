@@ -142,7 +142,23 @@ input::-moz-focus-inner {
 }
 input {
   line-height: normal;
+  
 }
+.ui-autocomplete .inputTest {
+    background-color: white !important;
+}
+.panelTest  {
+    background-color: white !important;
+    color:black !important;
+}
+
+.panelTest .ui-autocomplete-items .ui-state-highlight {
+	background-color: #E3E3E3 !important;
+}
+
+
+
+
 input[type="checkbox"],
 input[type="radio"] {
   -webkit-box-sizing: border-box;

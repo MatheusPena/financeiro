@@ -47,8 +47,8 @@
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="x_panel">
 									<div class="x_title">
-										<h2>Formulário de Despesas 
-											<small>Cadastre aqui os grupos de Despesas</small>
+										<h2>Grupos de Despesas/Receitas
+											<small>Cadastre aqui os grupos de Despesas e Receitas</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -79,6 +79,23 @@
 													<p:inputText id="nome" required="true"
 													value="#{grupoDespesaBean.grupodespesa.nomegrupodespesa}" 
 													styleClass="form-control col-md-7 col-xs-12" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="subgrupo" value="Sub-Grupo ao qual pertence: " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<h:selectOneMenu id="subgrupo" required="false"
+														value="#{grupoDespesaBean.grupodespesa.grupodespesa_codigo}"
+														style="width:320px"
+														styleClass="form-control col-md-7 col-xs-12">
+														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+														<f:selectItems
+															value="#{grupoDespesaBean.listagrupodespesas}"
+															var="grupoDespesa" itemValue="#{grupoDespesa.codigo}"
+															itemLabel="#{grupoDespesa.nomegrupodespesa}" />
+													</h:selectOneMenu>
 												</div>
 											</div>
 											<div class="ln_solid" />
@@ -136,6 +153,7 @@
 														<th>Código</th>
 														<th>Editar</th>
 														<th>Nome do Grupo</th>
+														<th>Sub-Grupo</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -154,6 +172,7 @@
 																	target="#{grupoDespesaBean.grupodespesa}" />
 																</p:commandButton></td>
 															<td>#{grupodespesa.nomegrupodespesa}</td>
+															<td>#{grupodespesa.subgrupo}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

@@ -17,7 +17,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 @ViewScoped
 public class AdiantamentoBean implements Serializable {
 	private Adiantamento adiantamento;
-	private List<Adiantamento> listaAdiantamento;
+	private List<Adiantamento> listaAdiantamentos;
 
 	public AdiantamentoBean() {
 		adiantamento = new Adiantamento();
@@ -26,7 +26,7 @@ public class AdiantamentoBean implements Serializable {
 
 	private void listarAdiantamento() {
 		AdiantamentoDAO AdiantamentoDAO = new AdiantamentoDAO();
-		listaAdiantamento = AdiantamentoDAO.listAdiantamento();
+		listaAdiantamentos = AdiantamentoDAO.listAdiantamento();
 
 	}
 
@@ -56,11 +56,11 @@ public class AdiantamentoBean implements Serializable {
 	}
 
 	public List<Adiantamento> getListaAdiantamento() {
-		return listaAdiantamento;
+		return listaAdiantamentos;
 	}
 
 	public void setListaAdiantamento(List<Adiantamento> listaAdiantamento) {
-		this.listaAdiantamento = listaAdiantamento;
+		this.listaAdiantamentos = listaAdiantamento;
 	}
 
 }

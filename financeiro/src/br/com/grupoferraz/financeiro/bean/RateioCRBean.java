@@ -21,7 +21,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 @ViewScoped
 public class RateioCRBean implements Serializable {
 	private RateioCR Rateio, rateioSelecionado;
-	private List<RateioCR> listaRateio;
+	private List<RateioCR> listaRateios;
 	private List<Estabelecimento> estabelecimentos;
 	private String cnpj;
 
@@ -33,7 +33,7 @@ public class RateioCRBean implements Serializable {
 	// lista o rateio
 	private void listarRateio() {
 		RateioCRDAO RateioDAO = new RateioCRDAO();
-		listaRateio = RateioDAO.listRateio();
+		listaRateios = RateioDAO.listRateio();
 
 	}
 
@@ -118,11 +118,11 @@ public class RateioCRBean implements Serializable {
 	}
 
 	public List<RateioCR> getListaRateio() {
-		return listaRateio;
+		return listaRateios;
 	}
 
 	public void setListaRateio(List<RateioCR> listaRateio) {
-		this.listaRateio = listaRateio;
+		this.listaRateios = listaRateio;
 	}
 
 	public List<Estabelecimento> getEstabelecimentos() {
