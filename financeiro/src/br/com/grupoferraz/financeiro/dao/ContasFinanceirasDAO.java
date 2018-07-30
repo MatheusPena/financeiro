@@ -69,7 +69,7 @@ public class ContasFinanceirasDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from contasfinanceiras ";
+			String sql = "select * from contafinanceira ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -106,7 +106,7 @@ public class ContasFinanceirasDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao
-				.prepareStatement("select codigo, nome from grupocontasfinanceiras where codigo = ?");
+				.prepareStatement("select codigo, nome from grupocontafinanceira where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

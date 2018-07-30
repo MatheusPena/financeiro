@@ -25,11 +25,8 @@ public class AdiantamentoDAO {
 
 	public boolean insertAdiantamento(Adiantamento Adiantamento) {
 
-		// Statement st = null;
-		// ResultSet rs = null;
-
 		try {
-			// st = con.createStatement();
+
 			StringBuilder str = new StringBuilder();
 			str.append(
 					"insert into adiantamento (codigo,data,valor,observacao,estabelecimentos_codigo,fornecedores_cpf,contasfinanceiras_codigo,centroresultados_codigo,despesas_codigo,historico_codigo)"
@@ -107,13 +104,8 @@ public class AdiantamentoDAO {
 				Adiantamento.setContafinanceira_codigo(rs.getInt(7));
 				ContasFinanceiras obj2 = getContaFinanceira(Adiantamento.getContafinanceira_codigo());
 				Adiantamento.setContafinanceira(obj2);
-<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
-				Adiantamento.setCentroresultados_codigo(rs.getInt(8));
-				CentroResultado obj3 = getCentroResultados(Adiantamento.getCentroresultados_codigo());
-=======
 				Adiantamento.setCentroresultado_codigo(rs.getInt(8));
-				CentroResultados obj3 = getCentroResultados(Adiantamento.getCentroresultado_codigo());
->>>>>>> c27cb5e adiantamento editado
+				CentroResultado obj3 = getCentroResultados(Adiantamento.getCentroresultado_codigo());
 				Adiantamento.setCentroresultado(obj3);
 				Adiantamento.setDespesa_codigo(rs.getInt(9));
 				Despesa obj4 = getDespesa(Adiantamento.getDespesa_codigo());
@@ -157,7 +149,7 @@ public class AdiantamentoDAO {
 		Estabelecimento grupo = new Estabelecimento();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from estabelecimentos where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from estabelecimento where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -173,7 +165,7 @@ public class AdiantamentoDAO {
 		ContasFinanceiras grupo = new ContasFinanceiras();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from contasfinanceiras where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from contasfinanceira where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -196,7 +188,7 @@ public class AdiantamentoDAO {
 		CentroResultado grupo = new CentroResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from centroresultados where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from centroresultado where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
