@@ -46,11 +46,11 @@ public class AdiantamentoDAO {
 			preparedStatement.setDate(2, new java.sql.Date(t));
 			preparedStatement.setFloat(3, Adiantamento.getValor());
 			preparedStatement.setString(4, Adiantamento.getObservacao());
-			preparedStatement.setInt(5, Adiantamento.getEstabelecimentos_codigo());
-			preparedStatement.setString(6, Adiantamento.getFornecedores_cpf());
-			preparedStatement.setInt(7, Adiantamento.getContasfinanceiras_codigo());
-			preparedStatement.setInt(8, Adiantamento.getCentroresultados_codigo());
-			preparedStatement.setInt(9, Adiantamento.getDespesas_codigo());
+			preparedStatement.setInt(5, Adiantamento.getEstabelecimento_codigo());
+			preparedStatement.setString(6, Adiantamento.getFornecedorcpf());
+			preparedStatement.setInt(7, Adiantamento.getContafinanceira_codigo());
+			preparedStatement.setInt(8, Adiantamento.getCentroresultado_codigo());
+			preparedStatement.setInt(9, Adiantamento.getDespesa_codigo());
 			if (Adiantamento.getHistoricopadrao_codigo() != null) {
 				preparedStatement.setInt(10, Adiantamento.getHistoricopadrao_codigo());
 			} else {
@@ -61,11 +61,11 @@ public class AdiantamentoDAO {
 			preparedStatement.setDate(12, new java.sql.Date(t));
 			preparedStatement.setFloat(13, Adiantamento.getValor());
 			preparedStatement.setString(14, Adiantamento.getObservacao());
-			preparedStatement.setInt(15, Adiantamento.getEstabelecimentos_codigo());
-			preparedStatement.setString(16, Adiantamento.getFornecedores_cpf());
-			preparedStatement.setInt(17, Adiantamento.getContasfinanceiras_codigo());
-			preparedStatement.setInt(18, Adiantamento.getCentroresultados_codigo());
-			preparedStatement.setInt(19, Adiantamento.getDespesas_codigo());
+			preparedStatement.setInt(15, Adiantamento.getEstabelecimento_codigo());
+			preparedStatement.setString(16, Adiantamento.getFornecedorcpf());
+			preparedStatement.setInt(17, Adiantamento.getContafinanceira_codigo());
+			preparedStatement.setInt(18, Adiantamento.getCentroresultado_codigo());
+			preparedStatement.setInt(19, Adiantamento.getDespesa_codigo());
 			if (Adiantamento.getHistoricopadrao_codigo() != null) {
 				preparedStatement.setInt(20, Adiantamento.getHistoricopadrao_codigo());
 			} else {
@@ -99,19 +99,24 @@ public class AdiantamentoDAO {
 
 				Adiantamento Adiantamento = new Adiantamento();
 				Adiantamento.setCodigo(rs.getInt(1));
-				Adiantamento.setEstabelecimentos_codigo(rs.getInt(5));
-				Estabelecimento obj1 = getEstabelecimento(Adiantamento.getEstabelecimentos_codigo());
+				Adiantamento.setEstabelecimento_codigo(rs.getInt(5));
+				Estabelecimento obj1 = getEstabelecimento(Adiantamento.getEstabelecimento_codigo());
 				Adiantamento.setEstabelecimento(obj1);
 				Adiantamento.setData(rs.getDate(2));
-				Adiantamento.setFornecedores_cpf(rs.getString(6));
-				Adiantamento.setContasfinanceiras_codigo(rs.getInt(7));
-				ContasFinanceiras obj2 = getContaFinanceira(Adiantamento.getContasfinanceiras_codigo());
+				Adiantamento.setFornecedorcpf(rs.getString(6));
+				Adiantamento.setContafinanceira_codigo(rs.getInt(7));
+				ContasFinanceiras obj2 = getContaFinanceira(Adiantamento.getContafinanceira_codigo());
 				Adiantamento.setContafinanceira(obj2);
+<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
 				Adiantamento.setCentroresultados_codigo(rs.getInt(8));
 				CentroResultado obj3 = getCentroResultados(Adiantamento.getCentroresultados_codigo());
+=======
+				Adiantamento.setCentroresultado_codigo(rs.getInt(8));
+				CentroResultados obj3 = getCentroResultados(Adiantamento.getCentroresultado_codigo());
+>>>>>>> c27cb5e adiantamento editado
 				Adiantamento.setCentroresultado(obj3);
-				Adiantamento.setDespesas_codigo(rs.getInt(9));
-				Despesa obj4 = getDespesa(Adiantamento.getDespesas_codigo());
+				Adiantamento.setDespesa_codigo(rs.getInt(9));
+				Despesa obj4 = getDespesa(Adiantamento.getDespesa_codigo());
 				Adiantamento.setDespesa(obj4);
 				Adiantamento.setValor(rs.getFloat(3));
 				Adiantamento.setHistoricopadrao_codigo(rs.getInt(10));

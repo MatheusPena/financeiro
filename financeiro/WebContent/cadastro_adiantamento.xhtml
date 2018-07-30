@@ -16,31 +16,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Formulário | Adiantamento</title>
 		<!-- Bootstrap -->
-		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
-			rel="stylesheet" />
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 		<!-- Font Awesome -->
-		<link href="resources/font-awesome/css/font-awesome.min.css"
-			rel="stylesheet" />
+		<link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 		<!-- NProgress -->
 		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
 		<!-- iCheck -->
 		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
 		<!-- Datatables -->
-		<link
-			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-			rel="stylesheet" />
+		<link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet" />
+		<link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
 		<!-- Primeface DataTable Style -->
 		<h:outputStylesheet library="css" name="table-style.css" />
 		<!-- Custom Theme Style -->
@@ -81,7 +69,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="estabelecimento" required="true"
-														value="#{adiantamentoBean.adiantamento.estabelecimentos_codigo}"
+														value="#{adiantamentoBean.adiantamento.estabelecimento_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -113,7 +101,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="fornecedor" required="true"
-														value="#{adiantamentoBean.adiantamento.fornecedores_cpf}"
+														value="#{adiantamentoBean.adiantamento.fornecedorcpf}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -124,7 +112,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="contafinanceira" required="true"
-														value="#{adiantamentoBean.adiantamento.contasfinanceiras_codigo}"
+														value="#{adiantamentoBean.adiantamento.contafinanceira_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -144,12 +132,12 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="cr" required="true"
-														value="#{adiantamentoBean.adiantamento.centroresultados_codigo}"
+														value="#{adiantamentoBean.adiantamento.centroresultado_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{centroResultadosBean.centroResultadoss}"
+															items="#{centroResultadosBean.listacentroresultados}"
 															var="centroresultados" cellspacing="0" width="100%">
 															<f:selectItem itemLabel="#{centroresultados.nome}"
 																itemValue="#{centroresultados.codigo}" />
@@ -164,12 +152,12 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="despesa" required="true"
-														value="#{adiantamentoBean.adiantamento.despesas_codigo}"
+														value="#{adiantamentoBean.adiantamento.despesa_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="1" />
 														<c:forEach
-															items="#{despesasBean.listadespesa}"
+															items="#{despesaBean.listadespesas}"
 															var="despesas" cellspacing="0" width="100%">
 															<f:selectItem itemLabel="#{despesas.nome}"
 																itemValue="#{despesas.codigo}" />
@@ -200,13 +188,13 @@
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{historicoBean.listahistorico}"
-															var="historicopadrao" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{historciopadrao.nome}"
-																itemValue="#{historicopadrao.codigo}" />
+															items="#{historicoBean.listahistoricos}"
+															var="historico" cellspacing="0" width="100%">
+															<f:selectItem itemLabel="#{historico.descricao}"
+																itemValue="#{historico.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
-												</div>
+												</div> 
 											</div>
 										
 											<div class="form-group">
@@ -309,7 +297,7 @@
 															<td>#{adiantamento.centroresultado}</td>
 															<td>#{adiantamento.despesa}</td>
 															<td>#{adiantamento.valor}</td>
-															<td>#{adiantamento.historico}</td>
+															<td>#{adiantamento.historico.descricao}</td>
 															<td>#{adiantamento.observacao}</td>
 														</tr>
 													</c:forEach>

@@ -5,11 +5,11 @@ import java.util.Date;
 public class Adiantamento {
 	private int codigo;
 	private Date data;
-	private int estabelecimentos_codigo;
-	private String fornecedores_cpf;
-	private int contasfinanceiras_codigo;
-	private int centroresultados_codigo;
-	private int despesas_codigo;
+	private int estabelecimento_codigo;
+	private String fornecedorcpf;
+	private int contafinanceira_codigo;
+	private int centroresultado_codigo;
+	private int despesa_codigo;
 	private float valor;
 	private Integer historicopadrao_codigo;
 	private String observacao;
@@ -35,44 +35,45 @@ public class Adiantamento {
 		this.data = data;
 	}
 
-	public int getEstabelecimentos_codigo() {
-		return estabelecimentos_codigo;
+
+	public int getEstabelecimento_codigo() {
+		return estabelecimento_codigo;
 	}
 
-	public void setEstabelecimentos_codigo(int estabelecimentos_codigo) {
-		this.estabelecimentos_codigo = estabelecimentos_codigo;
+	public void setEstabelecimento_codigo(int estabelecimento_codigo) {
+		this.estabelecimento_codigo = estabelecimento_codigo;
 	}
 
-	public String getFornecedores_cpf() {
-		return fornecedores_cpf;
+	public String getFornecedorcpf() {
+		return fornecedorcpf;
 	}
 
-	public void setFornecedores_cpf(String fornecedores_cpf) {
-		this.fornecedores_cpf = fornecedores_cpf;
+	public void setFornecedorcpf(String fornecedorcpf) {
+		this.fornecedorcpf = fornecedorcpf;
 	}
 
-	public int getContasfinanceiras_codigo() {
-		return contasfinanceiras_codigo;
+	public int getContafinanceira_codigo() {
+		return contafinanceira_codigo;
 	}
 
-	public void setContasfinanceiras_codigo(int contasfinanceiras_codigo) {
-		this.contasfinanceiras_codigo = contasfinanceiras_codigo;
+	public void setContafinanceira_codigo(int contafinanceira_codigo) {
+		this.contafinanceira_codigo = contafinanceira_codigo;
 	}
 
-	public int getCentroresultados_codigo() {
-		return centroresultados_codigo;
+	public int getCentroresultado_codigo() {
+		return centroresultado_codigo;
 	}
 
-	public void setCentroresultados_codigo(int centroresultados_codigo) {
-		this.centroresultados_codigo = centroresultados_codigo;
+	public void setCentroresultado_codigo(int centroresultado_codigo) {
+		this.centroresultado_codigo = centroresultado_codigo;
 	}
 
-	public int getDespesas_codigo() {
-		return despesas_codigo;
+	public int getDespesa_codigo() {
+		return despesa_codigo;
 	}
 
-	public void setDespesas_codigo(int despesas_codigo) {
-		this.despesas_codigo = despesas_codigo;
+	public void setDespesa_codigo(int despesa_codigo) {
+		this.despesa_codigo = despesa_codigo;
 	}
 
 	public float getValor() {
