@@ -29,7 +29,8 @@ public class AdiantamentoDAO {
 
 			StringBuilder str = new StringBuilder();
 			str.append(
-					"insert into adiantamento (codigo,data,valor,observacao,estabelecimentos_codigo,fornecedores_cpf,contasfinanceiras_codigo,centroresultados_codigo,despesas_codigo,historico_codigo)"
+					"insert into adiantamento (codigo, data, valor, observacao, estabelecimento_codigo,"
+					+ "fornecedorcpf, contafinanceira_codigo, centroresultado_codigo, despesa_codigo, historico_codigo)"
 							+ "values (?,?,?,?,?,?,?,?,?,?)");
 			str.append(
 					"on duplicate key update codigo = ?,data = ?,valor = ?,observacao = ?,estabelecimentos_codigo = ?,fornecedores_cpf = ?,contasfinanceiras_codigo = ?,centroresultados_codigo = ?,despesas_codigo = ?,historico_codigo = ?");
