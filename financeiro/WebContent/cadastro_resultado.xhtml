@@ -79,12 +79,12 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="grupo"
-														value="#{centroResultadoBean.centroResultado.grupocentroresultados_codigo}"
+														value="#{centroResultadoBean.centroResultado.grupocentroresultado_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{grupoCResultadosBean.listagrupoCResultados}"
+															items="#{grupoCResultadoBean.listagrupoCResultados}"
 															var="grupocentroResultados" cellspacing="0" width="100%">
 															<f:selectItem itemLabel="#{grupocentroResultados.nome}"
 																itemValue="#{grupocentroResultados.codigo}" />
@@ -104,16 +104,6 @@
 															itemValue="Não" />
 													</h:selectOneRadio>
 												</label>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="crcontabil" value="CR Contábil:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="crcontabil" required="true"
-														value="#{centroResultadoBean.centroResultado.crcontabil}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -178,7 +168,6 @@
 														<th>Nome</th>
 														<th>Grupo do Centro de Resultados</th>
 														<th>Inativo</th>
-														<th>CR Contábil</th>
 														<th>Peso</th>
 													</tr>
 												</thead>
@@ -197,9 +186,8 @@
 															</p:commandButton>
 															</td>
 															<td>#{centroResultado.nome}</td>
-															<td>#{centroResultado.gruporesultados}</td>
+															<td>#{centroResultado.gruporesultado}</td>
 															<td>#{centroResultado.atividade}</td>
-															<td>#{centroResultado.crcontabil}</td>
 															<td>#{centroResultado.peso}</td>
 														</tr>
 													</c:forEach>

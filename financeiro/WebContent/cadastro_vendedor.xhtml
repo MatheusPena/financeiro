@@ -212,8 +212,9 @@
 														<p:autoComplete id="Estabelecimento" minQueryLength="1"
 															converter="converter" required="true"
 															value="#{vendedorBean.vendedor.estabelecimento}"
-															inputStyleClass="form-control" forceSelection="true"
-															inputStyle="padding-right:311px" var="d" itemLabel="#{d.nome}" itemValue="#{d}"
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest" 
+															var="d" itemLabel="#{d.nome}" itemValue="#{d}"
 															completeMethod="#{vendedorBean.completeText}" effect="fade">
 															<p:ajax event="itemSelect" resetValues="true"
 																listener="#{vendedorBean.selecionar}" />

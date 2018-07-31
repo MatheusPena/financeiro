@@ -18,39 +18,37 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class CentroResultadoDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertCentroResultadoss(CentroResultado CentroResultados) {
+	public boolean insertCentroResultadoss(CentroResultado CentroResultado) {
 
 		try {
 			
 			StringBuilder str = new StringBuilder();
-			str.append("insert into centroresultados (codigo, nome, atividade, crcontabil, peso, grupocentroresultados_codigo)"
-					+ "values (?,?,?,?,?,?)");
+			str.append("insert into centroresultado (codigo, nome, atividade, peso, grupocentroresultado_codigo)"
+					+ "values (?,?,?,?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?, atividade = ?, "
-					+ "crcontabil = ?, peso = ?, grupocentroresultados_codigo = ? ");
+					+ "peso = ?, grupocentroresultado_codigo = ? ");
 			
 			
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
-			preparedStatement.setInt(1, CentroResultados.getCodigo());
-			preparedStatement.setString(2, CentroResultados.getNome());
-			preparedStatement.setString(3, CentroResultados.getAtividade());
-			preparedStatement.setString(4, CentroResultados.getCrcontabil());
-			preparedStatement.setBigDecimal(5, CentroResultados.getPeso());
-			if (CentroResultados.getGrupocentroresultados_codigo() != null) {
-				preparedStatement.setInt(6, CentroResultados.getGrupocentroresultados_codigo());
+			preparedStatement.setInt(1, CentroResultado.getCodigo());
+			preparedStatement.setString(2, CentroResultado.getNome());
+			preparedStatement.setString(3, CentroResultado.getAtividade());
+			preparedStatement.setBigDecimal(4, CentroResultado.getPeso());
+			if (CentroResultado.getGrupocentroresultado_codigo() != null) {
+				preparedStatement.setInt(5, CentroResultado.getGrupocentroresultado_codigo());
 			}
 			else {
-				preparedStatement.setNull(6, Types.INTEGER);
+				preparedStatement.setNull(5, Types.INTEGER);
 			}
-			preparedStatement.setInt(7, CentroResultados.getCodigo());
-			preparedStatement.setString(8, CentroResultados.getNome());
-			preparedStatement.setString(9, CentroResultados.getAtividade());
-			preparedStatement.setString(10, CentroResultados.getCrcontabil());
-			preparedStatement.setBigDecimal(11, CentroResultados.getPeso());
-			if (CentroResultados.getGrupocentroresultados_codigo() != null) {
-				preparedStatement.setInt(12, CentroResultados.getGrupocentroresultados_codigo());
+			preparedStatement.setInt(6, CentroResultado.getCodigo());
+			preparedStatement.setString(7, CentroResultado.getNome());
+			preparedStatement.setString(8, CentroResultado.getAtividade());
+			preparedStatement.setBigDecimal(9, CentroResultado.getPeso());
+			if (CentroResultado.getGrupocentroresultado_codigo() != null) {
+				preparedStatement.setInt(10, CentroResultado.getGrupocentroresultado_codigo());
 			}
 			else {
-				preparedStatement.setNull(12, Types.INTEGER);
+				preparedStatement.setNull(10, Types.INTEGER);
 			}
 
 			preparedStatement.execute();
@@ -74,22 +72,21 @@ public class CentroResultadoDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select codigo, nome, atividade, crcontabil, peso, grupocentroresultados_codigo from centroresultados ";
+			String sql = "select codigo, nome, atividade, peso, grupocentroresultado_codigo from centroresultado ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
-				CentroResultado CentroResultados = new CentroResultado();
-				CentroResultados.setCodigo(rs.getInt("codigo"));
-				CentroResultados.setNome(rs.getString("nome"));
-				CentroResultados.setAtividade(rs.getString("atividade"));
-				CentroResultados.setCrcontabil(rs.getString("crcontabil"));
-				CentroResultados.setPeso(rs.getBigDecimal("peso"));
-				CentroResultados.setGrupocentroresultados_codigo(rs.getInt("grupocentroresultados_codigo"));
-				int idGrupo = CentroResultados.getGrupocentroresultados_codigo();
-				GrupoCResultado gcentroResultados = getGrupoCentroResultados(idGrupo);
-				CentroResultados.setGruporesultados(gcentroResultados);
-				lista.add(CentroResultados);
+				CentroResultado CentroResultado = new CentroResultado();
+				CentroResultado.setCodigo(rs.getInt("codigo"));
+				CentroResultado.setNome(rs.getString("nome"));
+				CentroResultado.setAtividade(rs.getString("atividade"));
+				CentroResultado.setPeso(rs.getBigDecimal("peso"));
+				CentroResultado.setGrupocentroresultado_codigo(rs.getInt("grupocentroresultado_codigo"));
+				int idGrupo = CentroResultado.getGrupocentroresultado_codigo();
+				GrupoCResultado gcentroResultados = getGrupoCentroResultado(idGrupo);
+				CentroResultado.setGruporesultado(gcentroResultados);
+				lista.add(CentroResultado);
 			}
 
 		} catch (SQLException ex) {
@@ -103,12 +100,12 @@ public class CentroResultadoDAO {
 	
 	
 	//exibe o nome do grupo do centro de resultados
-	public GrupoCResultado getGrupoCentroResultados(int idGrupo) throws SQLException {
+	public GrupoCResultado getGrupoCentroResultado(int idGrupo) throws SQLException {
 		GrupoCResultado grupo = new GrupoCResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select * from grupocentroresultados where codigo = ?");
+				"select * from grupocentroresultado where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

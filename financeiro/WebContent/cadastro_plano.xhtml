@@ -61,14 +61,14 @@
 										<br />
 										<h:form id="Campo" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
-											<p:messages id="messages" />
+											<p:messages id="messages" styleClass="messages"/>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="codigo" value="Código:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo" required="true"
-														value="#{planoContasBean.planoContas.codigo}"
+														value="#{planoContaBean.planoConta.codigo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -80,13 +80,13 @@
 													<p:outputPanel id="nome">
 														<p:autoComplete id="Despesa" minQueryLength="1"
 															converter="converter" required="true"
-															value="#{planoContasBean.planoContas.despesa}"
+															value="#{planoContaBean.planoConta.despesa}"
 															inputStyleClass="form-control inputTest" forceSelection="true"
 															inputStyle="padding-right:311px" panelStyleClass="panelTest"
 															var="d" itemLabel="#{d.nome}" itemValue="#{d}"
-															completeMethod="#{planoContasBean.completeText}" effect="fade">
+															completeMethod="#{planoContaBean.completeText}" effect="fade">
 															<p:ajax event="itemSelect" resetValues="true"
-																listener="#{planoContasBean.selecionar()}"
+																listener="#{planoContaBean.selecionar()}"
 																update="@(.valor)" />
 														</p:autoComplete>
 													</p:outputPanel>
@@ -94,12 +94,12 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="subgrupo" value="Grupo da Despesa/Receita: " />
+													<p:outputLabel for="subgrupo" value="Grupo da Receita/Despesa: " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:outputPanel styleClass="valor">
 													<h:selectOneMenu id="subgrupo" required="false"
-														value="#{planoContasBean.planoContas.grupodespesa_codigo}"
+														value="#{planoContaBean.planoConta.grupodespesa_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
@@ -113,11 +113,11 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="Tipo" value="Tipo: *" />
+													<p:outputLabel for="Tipo" value="Tipo:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="Tipo" required="true"
-														value="#{planoContasBean.planoContas.tipo}"
+														value="#{planoContaBean.planoConta.tipo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -128,11 +128,11 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="natureza" value="Natureza: " />
+													<p:outputLabel for="natureza" value="Natureza: " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="natureza"
-														value="#{planoContasBean.planoContas.natureza}"
+														value="#{planoContaBean.planoConta.natureza}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -146,7 +146,7 @@
 													<p:outputLabel for="iss" value="Retém ISS:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="iss" required="true"
-														value="#{planoContasBean.planoContas.iss}">
+														value="#{planoContaBean.planoConta.iss}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
 															itemValue="Sim" />
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
@@ -156,31 +156,10 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="contabil" value="Conta Contábil:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="contabil" required="true"
-														value="#{planoContasBean.planoContas.conta_contabil}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="contabilestoque"
-														value="Conta Contábil do Estoque:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="contabilestoque"
-														value="#{planoContasBean.planoContas.contabil_estoque}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="inss" value="Retém INSS:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="inss" required="true"
-														value="#{planoContasBean.planoContas.inss}">
+														value="#{planoContaBean.planoConta.inss}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
 															itemValue="Sim" />
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
@@ -193,7 +172,7 @@
 													<p:outputLabel for="irpf" value="Retém IRPF:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="irpf" required="true"
-														value="#{planoContasBean.planoContas.irpf}">
+														value="#{planoContaBean.planoConta.irpf}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
 															itemValue="Sim" />
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
@@ -206,7 +185,7 @@
 													<p:outputLabel for="pis" value="Retém PIS/COFINS/CSLL:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="pis" required="true"
-														value="#{planoContasBean.planoContas.pis}">
+														value="#{planoContaBean.planoConta.pis}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
 															itemValue="Sim" />
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
@@ -216,11 +195,11 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="tipo_conta" value="Tipo da Conta:" />
+													<p:outputLabel for="tipo_conta" value="Tipo da Conta:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="tipo_conta"
-														value="#{planoContasBean.planoContas.conta}"
+														value="#{planoContaBean.planoConta.conta}"
 														style="width:160px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -236,7 +215,7 @@
 													<p:outputLabel for="atividade" value="Inativo:" />
 												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:selectOneRadio id="atividade" required="true"
-														value="#{planoContasBean.planoContas.atividade}">
+														value="#{planoContaBean.planoConta.atividade}">
 														<f:selectItem itemLabel="&nbsp; Sim &nbsp;&nbsp;"
 															itemValue="Sim" />
 														<f:selectItem itemLabel="&nbsp; Não &nbsp;&nbsp;"
@@ -250,7 +229,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="icms" required="true"
-														value="#{planoContasBean.planoContas.icms}"
+														value="#{planoContaBean.planoConta.icms}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -260,7 +239,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputTextarea id="descricao"
-														value="#{planoContasBean.planoContas.observacao}"
+														value="#{planoContaBean.planoConta.observacao}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -269,9 +248,10 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{planoContasBean.cadastraPlanoContass}"
-														update="messages" styleClass="btn btn-success"
-														onclick="window.location='#Campo'">
+														action="#{planoContaBean.cadastraPlanoConta}"
+														update="messages @form" styleClass="btn btn-success"
+														onclick="window.location='#Campo'"
+														oncomplete="temp()">
 													</p:commandButton>
 													<script>
 													 function temp() {
@@ -314,12 +294,10 @@
 														<th>Código</th>
 														<th>Editar</th>
 														<th>Nome da Receita/Despesa</th>
-														<th>Grupo das Receitas/Despesas</th>
+														<th>Grupo da Receita/Despesa</th>
 														<th>Tipo</th>
 														<th>Natureza</th>
 														<th>Retém ISS</th>
-														<th>Conta Contábil</th>
-														<th>Conta Contábil do Estoque</th>
 														<th>Retém INSS</th>
 														<th>Retém IRPF</th>
 														<th>Retém PIS/COFINS/COFINS/CSLL</th>
@@ -330,7 +308,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{planoContasBean.planoContass}"
+													<c:forEach items="#{planoContaBean.planoContas}"
 														var="plano" cellspacing="0" width="100%">
 														<tr>
 															<td>#{plano.codigo}</td>
@@ -340,7 +318,7 @@
 															onclick="window.location='#Campo'"
 															update="@(.form-control) @(.rd) @(.calendar) Campo">
 															<f:setPropertyActionListener value="#{plano}" 
-															target="#{planoContasBean.planoContas}"/>
+															target="#{planoContaBean.planoConta}"/>
 															</p:commandButton>
 															</td>
 															<td>#{plano.despesa}</td>
@@ -348,8 +326,6 @@
 															<td>#{plano.tipo}</td>
 															<td>#{plano.natureza}</td>
 															<td>#{plano.iss}</td>
-															<td>#{plano.conta_contabil}</td>
-															<td>#{plano.contabil_estoque}</td>
 															<td>#{plano.inss}</td>
 															<td>#{plano.irpf}</td>
 															<td>#{plano.pis}</td>

@@ -151,7 +151,7 @@ public class ContasReceberDAO {
 			grupo.setAtividade(rs.getString("atividade"));
 			grupo.setCrcontabil(rs.getString("crcontabil"));
 			grupo.setPeso(rs.getBigDecimal("peso"));
-			grupo.setGrupocentroresultados_codigo(rs.getInt("grupocentroresultados_codigo"));
+			grupo.setGrupocentroresultado_codigo(rs.getInt("grupocentroresultado_codigo"));
 		}
 		return grupo;
 	}

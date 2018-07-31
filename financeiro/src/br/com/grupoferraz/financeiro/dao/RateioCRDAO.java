@@ -11,9 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.CentroResultado;
+import br.com.grupoferraz.financeiro.entity.Despesa;
 import br.com.grupoferraz.financeiro.entity.Empresa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
-import br.com.grupoferraz.financeiro.entity.PlanoContas;
+import br.com.grupoferraz.financeiro.entity.PlanoConta;
 import br.com.grupoferraz.financeiro.entity.RateioCR;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -29,23 +30,23 @@ public class RateioCRDAO {
 			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();
 			str.append(
-					"insert into rateiocr (codigo, percentual, planocontas_codigo, estabelecimento_codigo, centroresultados_codigo, empresa_cnpj)"
+					"insert into rateiocr (codigo, percentual, planoconta_codigo, estabelecimento_codigo, centroresultado_codigo, empresa_cnpj)"
 							+ "values (?,?,?,?,?,?)");
 			str.append(
-					"on duplicate key update codigo = ?, percentual = ?, planocontas_codigo = ?, estabelecimento_codigo = ?, centroresultados_codigo = ?, empresa_cnpj = ?");
+					"on duplicate key update codigo = ?, percentual = ?, planoconta_codigo = ?, estabelecimento_codigo = ?, centroresultado_codigo = ?, empresa_cnpj = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, Rateio.getCodigo());
 			preparedStatement.setBigDecimal(2, Rateio.getPercentual());
-			preparedStatement.setString(3, Rateio.getReceita());
+			preparedStatement.setString(3, Rateio.getPlanoconta_codigo());
 			preparedStatement.setInt(4, Rateio.getEstabelecimento_codigo());
-			preparedStatement.setInt(5, Rateio.getCentro_resultados());
+			preparedStatement.setInt(5, Rateio.getCentroresultado_codigo());
 			preparedStatement.setString(6, Rateio.getEmpresa_cnpj());
 
 			preparedStatement.setInt(7, Rateio.getCodigo());
 			preparedStatement.setBigDecimal(8, Rateio.getPercentual());
-			preparedStatement.setString(9, Rateio.getReceita());
+			preparedStatement.setString(9, Rateio.getPlanoconta_codigo());
 			preparedStatement.setInt(10, Rateio.getEstabelecimento_codigo());
-			preparedStatement.setInt(11, Rateio.getCentro_resultados());
+			preparedStatement.setInt(11, Rateio.getCentroresultado_codigo());
 			preparedStatement.setString(12, Rateio.getEmpresa_cnpj());
 			preparedStatement.execute();
 			return true;
@@ -75,19 +76,19 @@ public class RateioCRDAO {
 				RateioCR Rateio = new RateioCR();
 				Rateio.setCodigo(rs.getInt(1));
 				Rateio.setPercentual(rs.getBigDecimal(2));
-				Rateio.setReceita(rs.getString(3));
-				String idGrupo = Rateio.getReceita();
-				PlanoContas planocontas = getPlanoContas(idGrupo);
-				Rateio.setPlanocontas(planocontas);
+				Rateio.setPlanoconta_codigo(rs.getString(3));
+				String idGrupo = Rateio.getPlanoconta_codigo();
+				PlanoConta planocontas = getPlanoConta(idGrupo);
+				Rateio.setPlanoconta(planocontas);
 				Rateio.setEmpresa_cnpj(rs.getString(6));
 				Empresa emp = getEmpresa(Rateio.getEmpresa_cnpj());
 				Rateio.setEmpresa(emp);
 				Rateio.setEstabelecimento_codigo(rs.getInt(4));
 				Estabelecimento obj2 = getEstabelecimento(Rateio.getEstabelecimento_codigo());
 				Rateio.setEstabelecimento(obj2);
-				Rateio.setCentro_resultados(rs.getInt(5));
-				CentroResultado obj3 = getCentroResultados(Rateio.getCentro_resultados());
-				Rateio.setCentroresultados(obj3);
+				Rateio.setCentroresultado_codigo(rs.getInt(5));
+				CentroResultado obj3 = getCentroResultado(Rateio.getCentroresultado_codigo());
+				Rateio.setCentroresultado(obj3);
 				lista.add(Rateio);
 			}
 
@@ -101,32 +102,49 @@ public class RateioCRDAO {
 	}
 
 	// Exibe o nome do plano de contas
-	public PlanoContas getPlanoContas(String idGrupo) throws SQLException {
-		PlanoContas grupo = new PlanoContas();
+	public PlanoConta getPlanoConta(String idGrupo) throws SQLException {
+		PlanoConta grupo = new PlanoConta();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao
-				.prepareStatement("select codigo, nome, tipo, natureza, iss, conta_contabil, contabil_estoque, \"\r\n"
-						+ "					+ \"inss, irpf, pis, conta, atividade, icms, observacao, grupoplanodecontas_codigo from planocontas where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select codigo, nome, tipo, natureza, iss, \"\r\n"
+				+ "					+ \"inss, irpf, pis, conta, atividade, icms, observacao, grupodespesa_codigo from planoconta where codigo = ?");
 		preparedStatement.setString(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getString("codigo"));
 			grupo.setNome(rs.getInt("nome"));
+			int idGrup = grupo.getNome();
+			Despesa desp = getDespesa(idGrup);
+			grupo.setDespesa(desp);
 			grupo.setTipo(rs.getString("tipo"));
 			grupo.setNatureza(rs.getString("natureza"));
 			grupo.setInss(rs.getString("iss"));
-			grupo.setConta_contabil(rs.getString("conta_contabil"));
-			grupo.setContabil_estoque(rs.getString("contabil_estoque"));
 			grupo.setInss(rs.getString("inss"));
 			grupo.setIrpf(rs.getString("irpf"));
 			grupo.setPis(rs.getString("pis"));
 			grupo.setConta(rs.getString("conta"));
 			grupo.setAtividade(rs.getString("atividade"));
-			grupo.setIcms(rs.getInt("icms"));
+			grupo.setIcms(rs.getBigDecimal("icms"));
 			grupo.setObservacao(rs.getString("observacao"));
-			grupo.setGrupoplanocontas_codigo(rs.getInt("grupoplanodecontas_codigo"));
+			grupo.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
+		}
+		return grupo;
+	}
+
+	// lista todos as despesas cadastradas no banco de dados
+	public Despesa getDespesa(int idGrupo) throws SQLException {
+		Despesa grupo = new Despesa();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement("select * from despesa where codigo = ?");
+		preparedStatement.setInt(1, idGrupo);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			grupo.setCodigo(rs.getInt("codigo"));
+			grupo.setNome(rs.getString("nome"));
+			grupo.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
 		}
 		return grupo;
 	}
@@ -165,11 +183,11 @@ public class RateioCRDAO {
 	}
 
 	// Exibe o centro de resultados
-	public CentroResultado getCentroResultados(int idGrupo) throws SQLException {
+	public CentroResultado getCentroResultado(int idGrupo) throws SQLException {
 		CentroResultado grupo = new CentroResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from centroresultados where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from centroresultado where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -177,9 +195,8 @@ public class RateioCRDAO {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNome(rs.getString("nome"));
 			grupo.setAtividade(rs.getString("atividade"));
-			grupo.setCrcontabil(rs.getString("crcontabil"));
 			grupo.setPeso(rs.getBigDecimal("peso"));
-			grupo.setGrupocentroresultados_codigo(rs.getInt("grupocentroresultados_codigo"));
+			grupo.setGrupocentroresultado_codigo(rs.getInt("grupocentroresultado_codigo"));
 		}
 		return grupo;
 	}

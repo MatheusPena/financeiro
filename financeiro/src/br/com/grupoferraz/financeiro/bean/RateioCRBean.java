@@ -10,11 +10,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import br.com.grupoferraz.financeiro.dao.PlanoContaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.dao.RateioCRDAO;
+import br.com.grupoferraz.financeiro.entity.PlanoConta;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.RateioCR;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -43,15 +46,16 @@ public class RateioCRBean implements Serializable {
 		ConexaoBD.getConexao();
 		RateioCRDAO Rateio = new RateioCRDAO();
 		if (Rateio.insertRateio(this.Rateio)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Rateio cadastrado com sucesso!", "Sucesso!"));
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Rateio cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do Rateio!", "Erro!"));
+			return "";
 
 		}
 		ConexaoBD.fecharConexao();
 
+		this.Rateio = new RateioCR();
 		return "";
 	}
 
@@ -80,6 +84,24 @@ public class RateioCRBean implements Serializable {
 		}
 
 		// estabelecimentos = estabelecimentoDAO.listEstabelecimentos();
+	}
+
+	// lista a lista do autocomplete no campo plano de contas
+	public List<PlanoConta> completeText0(String query) {
+		PlanoContaDAO planoConta = new PlanoContaDAO();
+
+		return planoConta.listaplano(query);
+	}
+
+	// seleciona um dos objetos da lista no campo plano de contas
+	public void selecionar0() {
+
+		PlanoConta plano = Rateio.getPlanoconta();
+
+		if (plano != null) {
+			Rateio.setPlanoconta_codigo(plano.getCodigo());
+		}
+
 	}
 
 	// lista a lista do autocomplete no campo despesas
@@ -117,12 +139,12 @@ public class RateioCRBean implements Serializable {
 		this.rateioSelecionado = rateioSelecionado;
 	}
 
-	public List<RateioCR> getListaRateio() {
+	public List<RateioCR> getListaRateios() {
 		return listaRateios;
 	}
 
-	public void setListaRateio(List<RateioCR> listaRateio) {
-		this.listaRateios = listaRateio;
+	public void setListaRateios(List<RateioCR> listaRateios) {
+		this.listaRateios = listaRateios;
 	}
 
 	public List<Estabelecimento> getEstabelecimentos() {

@@ -1,26 +1,23 @@
 package br.com.grupoferraz.financeiro.entity;
 
-public class PlanoContas {
+import java.math.BigDecimal;
+
+public class PlanoConta {
 	private String codigo;
 	private int nome;
 	private String tipo;
 	private String natureza;
-	private String grupo;
 	private String iss;
-	private String conta_contabil;
-	private String contabil_estoque;
 	private String inss;
 	private String irpf;
 	private String pis;
 	private String conta;
 	private String atividade;
-	private int icms;
+	private BigDecimal icms;
 	private String observacao;
 	private Integer grupodespesa_codigo;
-	private Integer grupoplanocontas_codigo;
 	private GrupoDespesa grupodespesa;
 	private Despesa despesa;
-	private GrupoPlanoContas grupoplanocontas;
 
 	public String getCodigo() {
 		return codigo;
@@ -29,7 +26,6 @@ public class PlanoContas {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-
 
 	public int getNome() {
 		return nome;
@@ -55,36 +51,12 @@ public class PlanoContas {
 		this.natureza = natureza;
 	}
 
-	public String getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(String grupo) {
-		this.grupo = grupo;
-	}
-
 	public String getIss() {
 		return iss;
 	}
 
 	public void setIss(String iss) {
 		this.iss = iss;
-	}
-
-	public String getConta_contabil() {
-		return conta_contabil;
-	}
-
-	public void setConta_contabil(String conta_contabil) {
-		this.conta_contabil = conta_contabil;
-	}
-
-	public String getContabil_estoque() {
-		return contabil_estoque;
-	}
-
-	public void setContabil_estoque(String contabil_estoque) {
-		this.contabil_estoque = contabil_estoque;
 	}
 
 	public String getInss() {
@@ -127,11 +99,11 @@ public class PlanoContas {
 		this.atividade = atividade;
 	}
 
-	public int getIcms() {
+	public BigDecimal getIcms() {
 		return icms;
 	}
 
-	public void setIcms(int icms) {
+	public void setIcms(BigDecimal icms) {
 		this.icms = icms;
 	}
 
@@ -159,28 +131,12 @@ public class PlanoContas {
 		this.grupodespesa = grupodespesa;
 	}
 
-	public Integer getGrupoplanocontas_codigo() {
-		return grupoplanocontas_codigo;
-	}
-
-	public void setGrupoplanocontas_codigo(Integer grupoplanocontas_codigo) {
-		this.grupoplanocontas_codigo = grupoplanocontas_codigo;
-	}
-
 	public Despesa getDespesa() {
 		return despesa;
 	}
 
 	public void setDespesa(Despesa despesa) {
 		this.despesa = despesa;
-	}
-
-	public GrupoPlanoContas getGrupoplanocontas() {
-		return grupoplanocontas;
-	}
-
-	public void setGrupoplanocontas(GrupoPlanoContas grupoplanocontas) {
-		this.grupoplanocontas = grupoplanocontas;
 	}
 
 	@Override
@@ -199,10 +155,10 @@ public class PlanoContas {
 		if (obj == null) {
 			return false;
 		}
-		if (!(obj instanceof PlanoContas)) {
+		if (!(obj instanceof PlanoConta)) {
 			return false;
 		}
-		PlanoContas other = (PlanoContas) obj;
+		PlanoConta other = (PlanoConta) obj;
 		if (codigo == null) {
 			if (other.codigo != null) {
 				return false;
@@ -213,4 +169,11 @@ public class PlanoContas {
 		return true;
 	}
 	
+	@Override
+	public String toString() {
+		if (despesa != null) {
+			return despesa.getNome();
+		}
+		return "-";
+	}
 }

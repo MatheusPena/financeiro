@@ -72,22 +72,23 @@
 										<br />
 										<h:form id="Campo" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
-											<p:messages id="messages" />
+											<p:messages id="messages" styleClass="messages"/>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="receita" value="Receita/Despesa:" />
+													<p:outputLabel for="plano" value="Receita/Despesa: *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="receita" required="true"
-														value="#{rateioCRBean.rateio.receita}" style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach items="#{planoContasBean.planoContass}"
-															var="planocontas" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{planocontas.nome}"
-																itemValue="#{planocontas.codigo}" />
-														</c:forEach>
-													</h:selectOneMenu>
+													<p:outputPanel id="plano">
+														<p:autoComplete id="ReceitaDespesa" minQueryLength="1"
+															converter="converter" required="true"
+															value="#{rateioCRBean.rateio.planoconta}"
+															inputStyleClass="form-control inputTest" forceSelection="true" panelStyleClass="panelTest"
+															inputStyle="padding-right:311px" var="d" itemLabel="#{d.despesa}" itemValue="#{d}"
+															completeMethod="#{rateioCRBean.completeText0}" effect="fade">
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{rateioCRBean.selecionar0}" />
+														</p:autoComplete>
+													</p:outputPanel>
 												</div>
 											</div>
 											<div class="form-group">
@@ -121,7 +122,7 @@
 														<p:autoComplete id="Estabelecimento" minQueryLength="1"
 															converter="converter" required="true"
 															value="#{rateioCRBean.rateio.estabelecimento}"
-															inputStyleClass="form-control" forceSelection="true"
+															inputStyleClass="form-control inputTest" forceSelection="true" panelStyleClass="panelTest"
 															inputStyle="padding-right:311px" var="d" itemLabel="#{d.nome}" itemValue="#{d}"
 															completeMethod="#{rateioCRBean.completeText}" effect="fade">
 															<p:ajax event="itemSelect" resetValues="true"
@@ -130,38 +131,18 @@
 													</p:outputPanel>
 												</div>
 											</div>
-											  	<!--<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="estabelecimento"
-														value="Estabelecimento:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="estabelecimento" required="true"
-														value="#{rateioCRBean.rateio.estabelecimento}"
-														style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{estabelecimentoBean.estabelecimentos}"
-															var="estabelecimento" cellspacing="0" width="100%">
-															<f:selectItem itemLabel="#{estabelecimento.nome}"
-																itemValue="#{estabelecimento.codigo}" />
-														</c:forEach>
-													</h:selectOneMenu>
-												</div>
-											</div>-->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="cr" value="Centro de Resultado:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="cr" required="true"
-														value="#{rateioCRBean.rateio.centro_resultados}"
+														value="#{rateioCRBean.rateio.centroresultado_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{centroResultadosBean.centroResultadoss}"
+															items="#{centroResultadoBean.centroResultados}"
 															var="centroresultados" cellspacing="0" width="100%">
 															<f:selectItem itemLabel="#{centroresultados.nome}"
 																itemValue="#{centroresultados.codigo}" />
@@ -184,9 +165,10 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{rateioCRBean.cadastraRateio}" update="messages"
+														action="#{rateioCRBean.cadastraRateio}" update="messages @form"
 														styleClass="btn btn-success"
-														onclick="window.location='#Campo'">
+														onclick="window.location='#Campo'"
+														oncomplete="temp()">
 													</p:commandButton>
 													<script>
 														function temp() {
@@ -239,7 +221,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="#{rateioCRBean.listaRateio}" var="rateio"
+													<c:forEach items="#{rateioCRBean.listaRateios}" var="rateio"
 														cellspacing="0" width="100%">
 														<tr>
 															<td>#{rateio.codigo}</td>
@@ -251,10 +233,10 @@
 																	<f:setPropertyActionListener value="#{rateio}"
 																		target="#{rateioCRBean.rateio}" />
 																</p:commandButton></td>
-															<td>#{rateio.planocontas.nome}</td>
+															<td>#{rateio.planoconta}</td>
 															<td>#{rateio.empresa}</td>
 															<td>#{rateio.estabelecimento}</td>
-															<td>#{rateio.centroresultados}</td>
+															<td>#{rateio.centroresultado}</td>
 															<td>#{rateio.percentual}</td>
 														</tr>
 													</c:forEach>

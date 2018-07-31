@@ -10,11 +10,11 @@ import javax.faces.bean.ManagedBean;
 public class CentroResultado implements Serializable {
 	private int codigo;
 	private String nome;
-	private Integer grupocentroresultados_codigo;
+	private Integer grupocentroresultado_codigo;
 	private String atividade;
 	private String crcontabil;
 	private BigDecimal peso;
-	private GrupoCResultado gruporesultados;
+	private GrupoCResultado gruporesultado;
 
 	public int getCodigo() {
 		return codigo;
@@ -32,12 +32,12 @@ public class CentroResultado implements Serializable {
 		this.nome = nome;
 	}
 
-	public Integer getGrupocentroresultados_codigo() {
-		return grupocentroresultados_codigo;
+	public Integer getGrupocentroresultado_codigo() {
+		return grupocentroresultado_codigo;
 	}
 
-	public void setGrupocentroresultados_codigo(Integer grupocentroresultados_codigo) {
-		this.grupocentroresultados_codigo = grupocentroresultados_codigo;
+	public void setGrupocentroresultado_codigo(Integer grupocentroresultado_codigo) {
+		this.grupocentroresultado_codigo = grupocentroresultado_codigo;
 	}
 
 	public String getAtividade() {
@@ -64,12 +64,12 @@ public class CentroResultado implements Serializable {
 		this.peso = peso;
 	}
 
-	public GrupoCResultado getGruporesultados() {
-		return gruporesultados;
+	public GrupoCResultado getGruporesultado() {
+		return gruporesultado;
 	}
 
-	public void setGruporesultados(GrupoCResultado gruporesultados) {
-		this.gruporesultados = gruporesultados;
+	public void setGruporesultado(GrupoCResultado gruporesultado) {
+		this.gruporesultado = gruporesultado;
 	}
 
 	@Override

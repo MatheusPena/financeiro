@@ -4,15 +4,15 @@ import java.math.BigDecimal;
 
 public class RateioCR {
 	private int codigo;
-	private String receita;
+	private String planoconta_codigo;
 	private int estabelecimento_codigo;
-	private int centro_resultados;
+	private int centroresultado_codigo;
 	private BigDecimal percentual;
 	private String empresa_cnpj;
 	private Empresa empresa;
-	private PlanoContas planocontas;
+	private PlanoConta planoconta;
 	private Estabelecimento estabelecimento;
-	private CentroResultado centroresultados;
+	private CentroResultado centroresultado;
 
 	public int getCodigo() {
 		return codigo;
@@ -22,12 +22,12 @@ public class RateioCR {
 		this.codigo = codigo;
 	}
 
-	public String getReceita() {
-		return receita;
+	public String getPlanoconta_codigo() {
+		return planoconta_codigo;
 	}
 
-	public void setReceita(String receita) {
-		this.receita = receita;
+	public void setPlanoconta_codigo(String planoconta_codigo) {
+		this.planoconta_codigo = planoconta_codigo;
 	}
 
 	public int getEstabelecimento_codigo() {
@@ -38,12 +38,12 @@ public class RateioCR {
 		this.estabelecimento_codigo = estabelecimento_codigo;
 	}
 
-	public int getCentro_resultados() {
-		return centro_resultados;
+	public int getCentroresultado_codigo() {
+		return centroresultado_codigo;
 	}
 
-	public void setCentro_resultados(int centro_resultados) {
-		this.centro_resultados = centro_resultados;
+	public void setCentroresultado_codigo(int centroresultado_codigo) {
+		this.centroresultado_codigo = centroresultado_codigo;
 	}
 
 	public BigDecimal getPercentual() {
@@ -70,12 +70,12 @@ public class RateioCR {
 		this.empresa = empresa;
 	}
 
-	public PlanoContas getPlanocontas() {
-		return planocontas;
+	public PlanoConta getPlanoconta() {
+		return planoconta;
 	}
 
-	public void setPlanocontas(PlanoContas planocontas) {
-		this.planocontas = planocontas;
+	public void setPlanoconta(PlanoConta planoconta) {
+		this.planoconta = planoconta;
 	}
 
 	public Estabelecimento getEstabelecimento() {
@@ -86,12 +86,12 @@ public class RateioCR {
 		this.estabelecimento = estabelecimento;
 	}
 
-	public CentroResultado getCentroresultados() {
-		return centroresultados;
+	public CentroResultado getCentroresultado() {
+		return centroresultado;
 	}
 
-	public void setCentroresultados(CentroResultado centroresultados) {
-		this.centroresultados = centroresultados;
+	public void setCentroresultado(CentroResultado centroresultado) {
+		this.centroresultado = centroresultado;
 	}
 
 }
