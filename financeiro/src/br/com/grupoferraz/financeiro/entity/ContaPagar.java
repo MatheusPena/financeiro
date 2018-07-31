@@ -31,7 +31,7 @@ public class ContaPagar implements Serializable {
 	}
 
 	private Date validadedp;
-	private ContasFinanceiras contafinanceira;
+	private ContaFinanceira contafinanceira;
 	private int contafinanceira_codigo;
 	private String valor;
 	private CentroResultado centroresultados;
@@ -150,12 +150,12 @@ public class ContaPagar implements Serializable {
 	}
 
 
-	public ContasFinanceiras getContafinanceira() {
+	public ContaFinanceira getContafinanceira() {
 		return contafinanceira;
 	}
 
 
-	public void setContafinanceira(ContasFinanceiras contafinanceira) {
+	public void setContafinanceira(ContaFinanceira contafinanceira) {
 		this.contafinanceira = contafinanceira;
 	}
 

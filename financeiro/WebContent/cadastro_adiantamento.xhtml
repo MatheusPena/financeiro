@@ -62,7 +62,27 @@
 										<h:form id="demo-form2" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
 											<p:messages id="messages" />
-
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="empresa" value="Empresa: " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel styleClass="combo">
+														<h:selectOneMenu id="empresa" required="false"
+															converter="omnifaces.SelectItemsConverter"
+															value="#{adiantamentoBean.adiantamento.empresa_cnpj}"
+															style="width:320px"
+															styleClass="form-control col-md-7 col-xs-12">
+															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+															<f:selectItems value="#{empresaBean.empresas}"
+																var="empresa" itemValue="#{empresa.cnpj}"
+																itemLabel="#{empresa.nome}" />
+															<f:ajax render="Campo:estabelecimento_nome" execute="@this" />
+														</h:selectOneMenu>
+													</p:outputPanel>
+												</div>
+											</div> 
+										<!-- 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="estabelecimento" value="Estabelecimento:" />
@@ -81,8 +101,30 @@
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
-											</div>
-											
+											</div>	
+											  -->
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="estabelecimento_nome"
+														value="Nome do Estabelecimento: " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel id="estabelecimento_nome">
+														<p:autoComplete id="acMinLength2" minQueryLength="1"
+															dropdown="false" converter="converter"
+															value="#{adiantamentoBean.adiantamento.estabelecimento}"
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest"
+															completeMethod="#{adiantamentoBean.completeText2}" 
+															effect="fade" var="est" itemValue="#{est}" 
+															itemLabel="#{est.nome}">															
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{adiantamentoBean.selecionar()}"
+																update="@(.emissaodp) @(.valor) @this" process="@this" />
+														</p:autoComplete>																												
+													</p:outputPanel>
+												</div>
+											</div>										
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:outputText for="data" value="Data: *" />
@@ -93,8 +135,7 @@
 														id="data" required="true"
 														value="#{adiantamentoBean.adiantamento.data}" />
 												</div>
-											</div>
-											
+											</div>											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:outputText for="fornecedor" value="CPF/CNPJ do Fornecedor: *" />
@@ -104,8 +145,7 @@
 														value="#{adiantamentoBean.adiantamento.fornecedorcpf}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
-											</div>
-											
+											</div>											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="contafinanceira" value="Conta Financeira:" />
@@ -124,8 +164,7 @@
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
-											</div>
-											
+											</div>										
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="cr" value="Centro de Resultado:" />
@@ -137,7 +176,7 @@
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{centroResultadosBean.listacentroresultados}"
+															items="#{centroResultadoBean.centroResultados}"
 															var="centroresultados" cellspacing="0" width="100%">
 															<f:selectItem itemLabel="#{centroresultados.nome}"
 																itemValue="#{centroresultados.codigo}" />
@@ -145,8 +184,29 @@
 													</h:selectOneMenu>
 												</div>
 											</div>
-											
 											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="nomedp" value="Nome da Despesa:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel id="nomedp">
+														<p:autoComplete id="acMinLength" minQueryLength="1"
+															dropdown="false" converter="converter"
+															value="#{adiantamentoBean.adiantamento.despesa}"
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest"
+															completeMethod="#{adiantamentoBean.completeText}" 
+															effect="fade" var="est" itemValue="#{est}" 
+															itemLabel="#{est.nome}">															
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{adiantamentoBean.selecionarDespesa()}"
+																update="@(.emissaodp) @(.valor) @this" process="@this" />
+														</p:autoComplete>																												
+													</p:outputPanel>
+												</div>
+											</div>
+											
+										<!--	<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="despesa" value="Despesa:" />
 												</label>
@@ -164,7 +224,7 @@
 														</c:forEach>
 													</h:selectOneMenu>
 												</div>
-											</div>
+											</div>  -->
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -258,9 +318,9 @@
 												class="table table-striped table-bordered dt-responsive nowrap ">
 												<thead>
 													<tr>
-
 														<th>Código</th>
 														<th>Editar</th>
+														<th>Empresa</th>
 														<th>Estabelecimento</th>
 														<th>Data</th>
 														<th>Fornecedor</th>
@@ -270,7 +330,6 @@
 														<th>Valor</th>
 														<th>Histórico Padão</th>
 														<th>Observação</th>
-
 													</tr>
 												</thead>
 												<tbody>
@@ -287,12 +346,13 @@
 																	<f:setPropertyActionListener value="#{adiantamento}"
 																		target="#{adiantamentoBean.adiantamento}" />
 																</p:commandButton></td>
+															<td>#{adiantamento.empresa.nome}</td>	
 															<td>#{adiantamento.estabelecimento}</td>
 															<td><h:outputText value="#{adiantamento.data}">
 																	<f:convertDateTime pattern="dd/MM/yyyy"
 																		dateStyle="long" />
 																</h:outputText></td>
-															<td>#{adiantamento.fornecedores_cpf}</td>
+															<td>#{adiantamento.fornecedorcpf}</td>
 															<td>#{adiantamento.contafinanceira}</td>
 															<td>#{adiantamento.centroresultado}</td>
 															<td>#{adiantamento.despesa}</td>

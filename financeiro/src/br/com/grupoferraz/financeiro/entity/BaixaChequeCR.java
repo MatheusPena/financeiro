@@ -18,7 +18,7 @@ public class BaixaChequeCR {
 	private String contasreceber_cpf;
 	private int contasreceber_estabelecimentos_codigo;
 	private Integer vencimentosdiversoscr_codigo;
-	private ContasFinanceiras contasfinanceiras;
+	private ContaFinanceira contasfinanceiras;
 	private Estabelecimento estabelecimento;
 
 	public int getCodigo() {
@@ -141,11 +141,11 @@ public class BaixaChequeCR {
 		this.vencimentosdiversoscr_codigo = vencimentosdiversoscr_codigo;
 	}
 
-	public ContasFinanceiras getContasfinanceiras() {
+	public ContaFinanceira getContasfinanceiras() {
 		return contasfinanceiras;
 	}
 
-	public void setContasfinanceiras(ContasFinanceiras contasfinanceiras) {
+	public void setContasfinanceiras(ContaFinanceira contasfinanceiras) {
 		this.contasfinanceiras = contasfinanceiras;
 	}
 

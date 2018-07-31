@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.BaixaChequeCR;
-import br.com.grupoferraz.financeiro.entity.ContasFinanceiras;
+import br.com.grupoferraz.financeiro.entity.ContaFinanceira;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -130,7 +130,7 @@ public class BaixaChequeCRDAO {
 				BaixaChequeCR.setDesconto(rs.getFloat("desconto"));
 				BaixaChequeCR.setJuros(rs.getFloat("juros"));
 				int obj1 = BaixaChequeCR.getContasfinanceiras_codigo();
-				ContasFinanceiras contasfinanceiras = getContasFinanceiras(obj1);
+				ContaFinanceira contasfinanceiras = getContasFinanceiras(obj1);
 				BaixaChequeCR.setContasfinanceiras(contasfinanceiras);
 				int obj2 = BaixaChequeCR.getContasreceber_estabelecimentos_codigo();
 				Estabelecimento estabelecimento = getEstabelecimento(obj2);
@@ -153,7 +153,7 @@ public class BaixaChequeCRDAO {
 		Estabelecimento grupo = new Estabelecimento();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from estabelecimentos where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from estabelecimento where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -165,11 +165,11 @@ public class BaixaChequeCRDAO {
 		return grupo;
 	}
 
-	public ContasFinanceiras getContasFinanceiras(int idGrupo) throws SQLException {
-		ContasFinanceiras grupo = new ContasFinanceiras();
+	public ContaFinanceira getContasFinanceiras(int idGrupo) throws SQLException {
+		ContaFinanceira grupo = new ContaFinanceira();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from contasfinanceiras where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from contafinanceira where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -183,7 +183,7 @@ public class BaixaChequeCRDAO {
 			grupo.setDigconta(rs.getInt("digconta"));
 			grupo.setConta_contabil(rs.getString("conta_contabil"));
 			grupo.setObservacao(rs.getString("observacao"));
-			grupo.setGrupocontasfinanceiras_codigo(rs.getInt("grupocontasfinanceiras_codigo"));
+			grupo.setGrupocontafinanceira_codigo(rs.getInt("grupocontafinanceira_codigo"));
 		}
 		return grupo;
 	}

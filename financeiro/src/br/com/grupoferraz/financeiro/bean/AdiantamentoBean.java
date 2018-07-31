@@ -1,6 +1,7 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -9,7 +10,11 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.AdiantamentoDAO;
+import br.com.grupoferraz.financeiro.dao.DespesaDAO;
+import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.entity.Adiantamento;
+import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 @SuppressWarnings("serial")
@@ -47,6 +52,57 @@ public class AdiantamentoBean implements Serializable {
 		return "";
 	}
 
+	// Autocomplete referente ao estabelecimento
+		public List<Estabelecimento> completeText2(String query) {
+			
+			List<Estabelecimento> lista = new ArrayList<>();
+			String cnpj = null;
+			if (adiantamento != null) {
+				cnpj = adiantamento.getEmpresa_cnpj();
+				EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
+				lista.addAll(estabelecimentoDAO.listaestabelecimento(query, cnpj));
+			}
+
+	        return lista; 
+	    }
+		
+		public void selecionar() {
+			Estabelecimento estabelecimento = adiantamento.getEstabelecimento();
+			EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
+			if (estabelecimento != null) {
+				Estabelecimento estabelecimentos = estabelecimentoDAO.listaestabelecimento(estabelecimento.getCodigo());
+				if (estabelecimentos != null) {
+					adiantamento.setEstabelecimento_nome(estabelecimentos.getNome());
+					adiantamento.setEstabelecimento_codigo(estabelecimentos.getCodigo());
+				}
+			}
+
+		}	
+		
+//		Autocomplete referente à Despesas
+		public List<Despesa> completeText(String query) {
+			DespesaDAO despesasDAO = new DespesaDAO();
+
+			return despesasDAO.listadespesas(query);
+		}
+
+
+		public void selecionarDespesa() {
+			
+			Despesa despesa = adiantamento.getDespesa();
+			
+			if (despesa != null) {
+				adiantamento.setDespesa_codigo(despesa.getCodigo());
+				adiantamento.setDespesa_nome(despesa.getNome());
+			}
+			System.out.println("despesa "+despesa.getNome());
+		}
+		
+	
+	
+	
+	
+//	Getters e Setters do Adiantamento	
 	public Adiantamento getAdiantamento() {
 		return adiantamento;
 	}

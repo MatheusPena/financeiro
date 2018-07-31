@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.BaixaDiversosCR;
-import br.com.grupoferraz.financeiro.entity.ContasFinanceiras;
+import br.com.grupoferraz.financeiro.entity.ContaFinanceira;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class BaixaDiversosCRDAO {
@@ -137,7 +137,7 @@ public class BaixaDiversosCRDAO {
 				BaixaDiversosCR.setJuros(rs.getFloat("juros"));
 				BaixaDiversosCR.setMulta(rs.getFloat("multa"));
 				int obj1 = BaixaDiversosCR.getContasfinanceiras_codigo();
-				ContasFinanceiras contasfinanceiras = getContasFinanceiras(obj1);
+				ContaFinanceira contasfinanceiras = getContasFinanceiras(obj1);
 				BaixaDiversosCR.setContasfinanceiras(contasfinanceiras);
 				int obj2 = BaixaDiversosCR.getContasreceber_estabelecimentos_codigo();
 				Estabelecimento estabelecimento = getEstabelecimento(obj2);
@@ -173,12 +173,12 @@ public class BaixaDiversosCRDAO {
 		return grupo;
 	}
 	
-	public ContasFinanceiras getContasFinanceiras(int idGrupo) throws SQLException {
-		ContasFinanceiras grupo = new ContasFinanceiras();
+	public ContaFinanceira getContasFinanceiras(int idGrupo) throws SQLException {
+		ContaFinanceira grupo = new ContaFinanceira();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 			preparedStatement = conexao
-					.prepareStatement ("select * from contasfinanceiras where codigo = ?");
+					.prepareStatement ("select * from contafinanceira where codigo = ?");
 			preparedStatement.setInt(1, idGrupo);
 			rs = preparedStatement.executeQuery();
 
@@ -192,7 +192,7 @@ public class BaixaDiversosCRDAO {
 			grupo.setDigconta(rs.getInt("digconta"));
 			grupo.setConta_contabil(rs.getString("conta_contabil"));
 			grupo.setObservacao(rs.getString("observacao"));
-			grupo.setGrupocontasfinanceiras_codigo(rs.getInt("grupocontasfinanceiras_codigo"));
+			grupo.setGrupocontafinanceira_codigo(rs.getInt("grupocontafinanceira_codigo"));
 		}
 		return grupo;
 	}

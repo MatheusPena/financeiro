@@ -54,7 +54,11 @@ public class GrupoCResultadoDAO {
 
 		try {
 			st = conexao.createStatement();
+<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
 			String sql = "select *" + "from grupocentroresultado";
+=======
+			String sql = "select * from grupocentroresultado";
+>>>>>>> 3f93441 Grupo/cadastro contafinanceira, adiantamento, contapagar etc editados
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {

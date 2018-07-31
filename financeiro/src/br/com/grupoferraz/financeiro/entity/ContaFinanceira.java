@@ -1,6 +1,6 @@
 package br.com.grupoferraz.financeiro.entity;
 
-public class ContasFinanceiras {
+public class ContaFinanceira {
 	private int codigo;
 	private String nome;
 	private String banco;
@@ -10,8 +10,8 @@ public class ContasFinanceiras {
 	private int digconta;
 	private String conta_contabil;
 	private String observacao;
-	private int grupocontasfinanceiras_codigo;
-	private GrupoContasFinanceiras grupocontasfinanceiras;
+	private int grupocontafinanceira_codigo;
+	private GrupoContaFinanceira grupocontafinanceira;
 
 	public int getCodigo() {
 		return codigo;
@@ -61,6 +61,22 @@ public class ContasFinanceiras {
 		this.conta = conta;
 	}
 
+	public int getGrupocontafinanceira_codigo() {
+		return grupocontafinanceira_codigo;
+	}
+
+	public void setGrupocontafinanceira_codigo(int grupocontafinanceira_codigo) {
+		this.grupocontafinanceira_codigo = grupocontafinanceira_codigo;
+	}
+
+	public GrupoContaFinanceira getGrupocontafinanceira() {
+		return grupocontafinanceira;
+	}
+
+	public void setGrupocontafinanceira(GrupoContaFinanceira grupocontafinanceira) {
+		this.grupocontafinanceira = grupocontafinanceira;
+	}
+
 	public int getDigconta() {
 		return digconta;
 	}
@@ -83,22 +99,6 @@ public class ContasFinanceiras {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
-	}
-
-	public int getGrupocontasfinanceiras_codigo() {
-		return grupocontasfinanceiras_codigo;
-	}
-
-	public void setGrupocontasfinanceiras_codigo(int grupocontasfinanceiras_codigo) {
-		this.grupocontasfinanceiras_codigo = grupocontasfinanceiras_codigo;
-	}
-
-	public GrupoContasFinanceiras getGrupocontasfinanceiras() {
-		return grupocontasfinanceiras;
-	}
-
-	public void setGrupocontasfinanceiras(GrupoContasFinanceiras grupocontasfinanceiras) {
-		this.grupocontasfinanceiras = grupocontasfinanceiras;
 	}
 
 	@Override

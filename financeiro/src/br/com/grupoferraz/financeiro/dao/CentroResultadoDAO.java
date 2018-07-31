@@ -25,6 +25,8 @@ public class CentroResultadoDAO {
 			StringBuilder str = new StringBuilder();
 			str.append("insert into centroresultado (codigo, nome, atividade, peso, grupocentroresultado_codigo)"
 					+ "values (?,?,?,?,?)");
+			str.append("insert into centroresultado (codigo, nome, atividade, crcontabil, peso, grupocentroresultados_codigo)"
+					+ "values (?,?,?,?,?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?, atividade = ?, "
 					+ "peso = ?, grupocentroresultado_codigo = ? ");
 			
@@ -72,7 +74,11 @@ public class CentroResultadoDAO {
 
 		try {
 			st = conexao.createStatement();
+<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
 			String sql = "select codigo, nome, atividade, peso, grupocentroresultado_codigo from centroresultado ";
+=======
+			String sql = "select codigo, nome, atividade, crcontabil, peso, grupocentroresultados_codigo from centroresultado ";
+>>>>>>> 3f93441 Grupo/cadastro contafinanceira, adiantamento, contapagar etc editados
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {

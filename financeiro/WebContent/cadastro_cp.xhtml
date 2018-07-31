@@ -63,18 +63,7 @@
 											class="form-horizontal form-label-left">
 											<p:messages id="messages" />
 											<!-- Dados iniciais -->
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="codigocp" value="Código da conta:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigocp"
-														value="#{contaPagarBean.pagarconta.codigocp}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="false">
-													</p:inputText>
-												</div>
-											</div>
+										
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nomecp" value="Nome da Conta:" />
@@ -97,7 +86,6 @@
 															style="width:320px"
 															styleClass="form-control col-md-7 col-xs-12">
 															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
-
 															<f:selectItems value="#{empresaBean.empresas}"
 																var="empresa" itemValue="#{empresa.cnpj}"
 																itemLabel="#{empresa.nome}" />
@@ -116,8 +104,8 @@
 														<p:autoComplete id="acMinLength2" minQueryLength="1"
 															dropdown="false" converter="converter"
 															value="#{contaPagarBean.pagarconta.estabelecimento}"
-															inputStyleClass="form-control" forceSelection="true"
-															inputStyle="padding-right:311px" styleClass="autocomplete"
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest"
 															completeMethod="#{contaPagarBean.completeText2}" 
 															effect="fade" var="est" itemValue="#{est}" 
 															itemLabel="#{est.nome}">
@@ -165,15 +153,15 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="nomedp" value="Nome da Despesa:" />
+													<p:outputLabel for="nomedp" value="Nome da Despesa/Receita:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:outputPanel id="nomedp">
 														<p:autoComplete id="acMinLength" minQueryLength="1"
 															dropdown="false" converter="converter"
 															value="#{contaPagarBean.pagarconta.despesa}"
-															inputStyleClass="form-control" forceSelection="true"
-															inputStyle="padding-right:311px" styleClass="autocomplete"
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest"
 															completeMethod="#{contaPagarBean.completeText}" 
 															effect="fade" var="est" itemValue="#{est}" 
 															itemLabel="#{est.nome}">															
@@ -259,7 +247,7 @@
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 
 														<f:selectItems
-															value="#{centroResultadosBean.centroResultadoss}"
+															value="#{centroResultadoBean.centroResultados}"
 															var="centroResultados"
 															itemValue="#{centroResultados.codigo}"
 															itemLabel="#{centroResultados.nome}" />
@@ -314,18 +302,7 @@
 										class="form-horizontal form-label-left">
 									
 										<!-- Dados iniciais -->
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">
-												<h:outputLabel for="vencimento_codigo" value="Código do Vencimento:" />
-											</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p:inputText id="vencimento_codigo"
-													value="#{contaPagarBean.vencimentoPagar.vencimento_codigo}" 
-													styleClass="form-control col-md-7 col-xs-12"
-													required="false">
-												</p:inputText>
-											</div>
-										</div>
+										
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">
 												<p:outputLabel for="vencimento"
@@ -481,9 +458,9 @@
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
-													<p:commandButton value="cadastrar"
+													<p:commandButton value="cadastrar" onclick="window.location='#Campo'"
 														update="messages @(.form_control) Campo" styleClass="btn btn-success"
-														action="#{contaPagarBean.cadastraPagar()}">
+														action="#{contaPagarBean.cadastraPagar()}" >
 													</p:commandButton>
 												</div>
 											</div>																	

@@ -44,7 +44,7 @@ public class ContaPagarBean implements Serializable {
 		
 		ContaPagarDAO pagarconta = new ContaPagarDAO ();
 		if (pagarconta.insertContasPagar(contapagar)) {
-			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Conta cadastrado com sucesso!");
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Conta cadastrada com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da conta!", "Erro!"));
@@ -53,7 +53,7 @@ public class ContaPagarBean implements Serializable {
 		contapagar = new ContaPagar();
 		
 		cadastraVencimento();
-		return "";
+		return "cadastro_cp?faces-redirect=true";
 	}
 	
 	public void listapagar() {
@@ -87,8 +87,7 @@ public class ContaPagarBean implements Serializable {
 		}
 
 	}
-	
-	
+		
 //	Autocomplete referente à Despesas
 	public List<Despesa> completeText(String query) {
 		DespesaDAO despesasDAO = new DespesaDAO();
@@ -127,7 +126,7 @@ public class ContaPagarBean implements Serializable {
 	}
 
 
-//	Cadastro do Vencimento
+//	Cadastro do Vencimento da conta
 	public String cadastraVencimento() {
 
 		ConexaoBD.getConexao();
@@ -153,7 +152,7 @@ public class ContaPagarBean implements Serializable {
 	}
 
 	
-// 	Getters e Setters do Vencimento
+// 	Getters e Setters do Vencimento da conta
 	public VencimentoPagar getVencimentoPagar() {
 		return vencimento;
 	}

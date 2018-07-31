@@ -29,8 +29,8 @@ public class CentroResultadoBean implements Serializable {
 	public String cadastraCentroResultado() {
 
 		ConexaoBD.getConexao();
-		CentroResultadoDAO CentroResultadoss = new CentroResultadoDAO();
-		if (CentroResultadoss.insertCentroResultadoss(this.centroResultado)) {
+		CentroResultadoDAO CentroResultadoDAO = new CentroResultadoDAO();
+		if (CentroResultadoDAO.insertCentroResultadoss(this.centroResultado)) {
 			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Centro de Resultados cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,

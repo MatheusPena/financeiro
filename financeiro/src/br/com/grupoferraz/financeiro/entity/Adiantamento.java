@@ -6,6 +6,10 @@ public class Adiantamento {
 	private int codigo;
 	private Date data;
 	private int estabelecimento_codigo;
+	private Empresa empresa;
+	private String empresa_cnpj;
+	private String estabelecimento_nome;
+	private String despesa_nome;
 	private String fornecedorcpf;
 	private int contafinanceira_codigo;
 	private int centroresultado_codigo;
@@ -13,7 +17,7 @@ public class Adiantamento {
 	private float valor;
 	private Integer historicopadrao_codigo;
 	private String observacao;
-	private ContasFinanceiras contafinanceira;
+	private ContaFinanceira contafinanceira;
 	private Estabelecimento estabelecimento;
 	private CentroResultado centroresultado;
 	private Despesa despesa;
@@ -42,6 +46,30 @@ public class Adiantamento {
 
 	public void setEstabelecimento_codigo(int estabelecimento_codigo) {
 		this.estabelecimento_codigo = estabelecimento_codigo;
+	}
+
+	public String getEmpresa_cnpj() {
+		return empresa_cnpj;
+	}
+
+	public void setEmpresa_cnpj(String empresa_cnpj) {
+		this.empresa_cnpj = empresa_cnpj;
+	}
+
+	public String getEstabelecimento_nome() {
+		return estabelecimento_nome;
+	}
+
+	public void setEstabelecimento_nome(String estabelecimento_nome) {
+		this.estabelecimento_nome = estabelecimento_nome;
+	}
+
+	public String getDespesa_nome() {
+		return despesa_nome;
+	}
+
+	public void setDespesa_nome(String despesa_nome) {
+		this.despesa_nome = despesa_nome;
 	}
 
 	public String getFornecedorcpf() {
@@ -100,11 +128,11 @@ public class Adiantamento {
 		this.observacao = observacao;
 	}
 
-	public ContasFinanceiras getContafinanceira() {
+	public ContaFinanceira getContafinanceira() {
 		return contafinanceira;
 	}
 
-	public void setContafinanceira(ContasFinanceiras contafinanceira) {
+	public void setContafinanceira(ContaFinanceira contafinanceira) {
 		this.contafinanceira = contafinanceira;
 	}
 
@@ -138,6 +166,14 @@ public class Adiantamento {
 
 	public void setHistorico(Historico historico) {
 		this.historico = historico;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 }

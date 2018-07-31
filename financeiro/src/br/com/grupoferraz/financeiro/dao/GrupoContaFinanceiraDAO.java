@@ -10,21 +10,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.GrupoContasFinanceiras;
+import br.com.grupoferraz.financeiro.entity.GrupoContaFinanceira;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
-public class GrupoContasFinanceirasDAO {
+public class GrupoContaFinanceiraDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertGrupoContasFinanceiras(GrupoContasFinanceiras grupoContasFinanceiras) {
-
-		// Statement st = null;
-		// ResultSet rs = null;
+	public boolean insertGrupoContasFinanceiras(GrupoContaFinanceira grupoContasFinanceiras) {
 
 		try {
-			// st = con.createStatement();
+
 			StringBuilder str = new StringBuilder();
-			str.append("insert into grupocontasfinanceiras (codigo, nome)" + " values (?,?)");
+			str.append("insert into grupocontafinanceira (codigo, nome)" + " values (?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupoContasFinanceiras.getCodigo());
@@ -44,21 +41,21 @@ public class GrupoContasFinanceirasDAO {
 	}
 
 	// lista todos os usuarios cadastrados no banco de dados
-	public List<GrupoContasFinanceiras> listGrupoContasFinanceiras() {
+	public List<GrupoContaFinanceira> listGrupoContasFinanceiras() {
 
-		ArrayList<GrupoContasFinanceiras> lista = new ArrayList<GrupoContasFinanceiras>();
+		ArrayList<GrupoContaFinanceira> lista = new ArrayList<GrupoContaFinanceira>();
 
 		Statement st = null;
 		ResultSet rs = null;
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select *" + "from grupocontasfinanceiras";
+			String sql = "select * from grupocontafinanceira";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
-				GrupoContasFinanceiras grupoContasFinanceiras = new GrupoContasFinanceiras();
+				GrupoContaFinanceira grupoContasFinanceiras = new GrupoContaFinanceira();
 				grupoContasFinanceiras.setCodigo(rs.getInt(1));
 				grupoContasFinanceiras.setNome(rs.getString(2));
 				lista.add(grupoContasFinanceiras);

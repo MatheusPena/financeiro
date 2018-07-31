@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import br.com.grupoferraz.financeiro.entity.ContaPagar;
 import br.com.grupoferraz.financeiro.entity.CentroResultado;
-import br.com.grupoferraz.financeiro.entity.ContasFinanceiras;
+import br.com.grupoferraz.financeiro.entity.ContaFinanceira;
 import br.com.grupoferraz.financeiro.entity.Despesa;
 import br.com.grupoferraz.financeiro.entity.Documento;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
@@ -138,7 +138,7 @@ public class ContaPagarDAO {
 				pagarconta.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 				pagarconta.setValidadedp(rs.getDate("validadedp"));
 				pagarconta.setContafinanceira_codigo(rs.getInt("contafinanceira_codigo"));
-				ContasFinanceiras contafinanceira = getContafinanceira(pagarconta.getContafinanceira_codigo());
+				ContaFinanceira contafinanceira = getContafinanceira(pagarconta.getContafinanceira_codigo());
 				pagarconta.setContafinanceira(contafinanceira);
 				Despesa despesa = new DespesaDAO().listadespesa(pagarconta.getCodigodp());
 				pagarconta.setDespesa(despesa);
@@ -160,7 +160,7 @@ public class ContaPagarDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nome from centroresultados where codigo = ?");
+				"select codigo, nome from centroresultado where codigo = ?");
 		preparedStatement.setInt(1, idCentroresultados);
 		rs = preparedStatement.executeQuery();
 
@@ -172,12 +172,12 @@ public class ContaPagarDAO {
 	}
 	
 	//Lista as Contas Financeiras cadastradas e exibe-as na tela de Contas à Pagar.
-	public ContasFinanceiras getContafinanceira(int idContafinanceira) throws SQLException {
-		ContasFinanceiras contafinanceira = new ContasFinanceiras();
+	public ContaFinanceira getContafinanceira(int idContafinanceira) throws SQLException {
+		ContaFinanceira contafinanceira = new ContaFinanceira();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nome from contasfinanceiras where codigo = ?");
+				"select codigo, nome from contafinanceira where codigo = ?");
 		preparedStatement.setInt(1, idContafinanceira);
 		rs = preparedStatement.executeQuery();
 
