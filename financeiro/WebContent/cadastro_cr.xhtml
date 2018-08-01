@@ -58,101 +58,127 @@
 									<div class="x_content">
 										<br />
 										<h:form id="Campo" class="form-horizontal form-label-left">
-											<p:messages id="messages" />
+											<p:messages id="messages" styleClass="messages"/>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="estabelecimento"
-														value="Estabelecimento *" />
+													<p:outputLabel for="empresa" value="Empresa " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="estabelecimento"
-														value="#{contasReceberBean.contasreceber.estabelecimentos_codigo}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true"
-														style="width:320px">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{estabelecimentoBean.estabelecimentos}"
-															var="estabelecimento" cellspacing="0" width="100%">
-															<f:selectItem
-																itemLabel="#{estabelecimento.nome}"
-																itemValue="#{estabelecimento.codigo}" />
-														</c:forEach>
+													<p:outputPanel styleClass="combo">
+														<h:selectOneMenu id="empresa" required="true"
+															converter="omnifaces.SelectItemsConverter"
+															value="#{contaReceberBean.contaReceber.empresa_cnpj}"
+															style="width:320px"
+															styleClass="form-control col-md-7 col-xs-12">
+															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+															<f:selectItems value="#{empresaBean.empresas}"
+																var="empresa" itemValue="#{empresa.cnpj}"
+																itemLabel="#{empresa.nome}" />
+															<f:ajax render="Campo:estabelecimento" execute="@this"
+																listener="#{contaReceberBean.listarEstabelecimentos()}" />
 														</h:selectOneMenu>
+													</p:outputPanel>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="cpf" value="CPF/CNPJ do Cliente *" />
+													<p:outputLabel for="estabelecimento"
+														value="Estabelecimento *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel id="estabelecimento">
+														<p:autoComplete id="Estabelecimento" minQueryLength="1"
+															converter="converter" required="true"
+															value="#{contaReceberBean.contaReceber.estabelecimento}"
+															inputStyleClass="form-control inputTest" forceSelection="true" panelStyleClass="panelTest"
+															inputStyle="padding-right:311px" var="d" itemLabel="#{d.nome}" itemValue="#{d}"
+															completeMethod="#{contaReceberBean.completeText}" effect="fade">
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{contaReceberBean.selecionar}" />
+														</p:autoComplete>
+													</p:outputPanel>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="cpf" value="CPF/CNPJ do Cliente " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf"
-														value="#{contasReceberBean.contasreceber.cpf}"
+														value="#{contaReceberBean.contaReceber.cpf}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"></p:inputText>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="receita" value="Código da Receita" />
+													<p:outputLabel for="nomereceita" value="Nome da Despesa/Receita:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel id="nomereceita">
+														<p:autoComplete id="acMinLength" minQueryLength="1"
+															dropdown="false" converter="converter"
+															value="#{contaReceberBean.contaReceber.receita}"
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest"
+															completeMethod="#{contaReceberBean.completeReceita}" 
+															effect="fade" var="est" itemValue="#{est}" 
+															itemLabel="#{est.nome}">															
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{contaReceberBean.selecionarReceita()}"
+																update="@(.receita) @this" process="@this" />
+														</p:autoComplete>																												
+													</p:outputPanel>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="receita" value="Código da Receita" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="receita"
-														value="#{contasReceberBean.contasreceber.receita}"
-														styleClass="form-control col-md-7 col-xs-12" />
+														value="#{contaReceberBean.contaReceber.receita_codigo}"
+														styleClass="form-control col-md-7 col-xs-12 receita" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="documento" value="Número do Documento" />
+													<p:outputLabel for="documento" value="Número do Documento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="documento"
-														value="#{contasReceberBean.contasreceber.documento}"
+														value="#{contaReceberBean.contaReceber.documento}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data" value="Data de Emissão *" />
+													<p:outputLabel for="data" value="Data de Emissão" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="data" required="true"
-														value="#{contasReceberBean.contasreceber.emissao}" />
+														value="#{contaReceberBean.contaReceber.emissao}" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="valor" value="Valor *" />
+													<p:outputLabel for="valor" value="Valor" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valor" required="true"
-														value="#{contasReceberBean.contasreceber.valor}"
+														value="#{contaReceberBean.contaReceber.valor}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
-											</div>
+											</div>								
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="sexo"
-														value="Exporta para a Contabilidade" />
-												</label> <label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:selectOneRadio id="sexo"
-														value="#{contasReceberBean.contasreceber.contabilidade}">
-														<f:selectItem itemLabel="&nbsp;Sim&nbsp;&nbsp;"
-															itemValue="Sim" />
-														<f:selectItem itemLabel="&nbsp;Não" itemValue="Não" />
-													</h:selectOneRadio>
-												</label>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="resultados" value="Centro de Resultados" />
+													<p:outputLabel for="resultados" value="Centro de Resultados" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="resultados"
-														value="#{contasReceberBean.contasreceber.centro_resultados}"
+														value="#{contaReceberBean.contaReceber.centroresultado_codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														style="width:320px">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -172,7 +198,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputTextarea id="descricao"
-														value="#{contasReceberBean.contasreceber.observacao}"
+														value="#{contaReceberBean.contaReceber.observacao}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -182,9 +208,25 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														update="messages" class="btn btn-success"
-														action="#{contasReceberBean.cadastracontasreceber}"
-														onclick="window.location='#Campo'"></p:commandButton>
+														update="messages @form" class="btn btn-success"
+														action="#{contaReceberBean.cadastraContaReceber()}"
+														onclick="window.location='#Campo'"
+														oncomplete="temp()"></p:commandButton>
+													<script>
+														function temp() {
+
+															setTimeout(
+																	function() {
+
+																		$(
+																				'.messages')
+																				.html(
+																						'');
+
+																	}, 5000);
+
+														}
+													</script>
 												</div>
 											</div>
 										</h:form>
@@ -213,20 +255,21 @@
 															<tr>
 																<th>Código</th>
 																<th>Editar</th>
+																<th>Empresa</th>
 																<th>Estabelecimento</th>
 																<th>CPF/CNPJ do Cliente</th>
+																<th>Nome da Receita/Despesa</th>
 																<th>Cód. Receita</th>
 																<th>Número do Documento</th>
 																<th>Data de emissão</th>
 																<th>Valor</th>
-																<th>Exporta para Contabilidade</th>
 																<th>Centro de Resultados</th>
 																<th>Observação</th>
 
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach items="#{contasReceberBean.contasReceber}"
+															<c:forEach items="#{contaReceberBean.contasReceber}"
 																var="cr" cellspacing="0" width="100%">
 																<tr>
 																	<td>#{cr.codigo}</td>
@@ -236,19 +279,20 @@
 																			update="@(.form-control) @(.rd) @(.calendar) Campo"
 																			onclick="window.location='#Campo'">
 																			<f:setPropertyActionListener value="#{cr}"
-																				target="#{contasReceberBean.contasreceber}" />
+																				target="#{contaReceberBean.contaReceber}" />
 																		</p:commandButton></td>
+																	<td>#{cr.empresa}</td>
 																	<td>#{cr.estabelecimento}</td>
 																	<td>#{cr.cpf}</td>
 																	<td>#{cr.receita}</td>
+																	<td>#{cr.receita_codigo}</td>
 																	<td>#{cr.documento}</td>
 																	<td><h:outputText value="#{cr.emissao}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"
 																				dateStyle="long" />
 																		</h:outputText></td>
 																	<td>#{cr.valor}</td>
-																	<td>#{cr.contabilidade}</td>
-																	<td>#{cr.centroresultados}</td>
+																	<td>#{cr.centroresultado}</td>
 																	<td>#{cr.observacao}</td>
 																
 																</tr>

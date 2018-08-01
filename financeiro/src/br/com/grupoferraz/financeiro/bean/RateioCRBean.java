@@ -67,7 +67,7 @@ public class RateioCRBean implements Serializable {
 		this.Rateio.setEstabelecimento_codigo(rateioSelecionado.getEstabelecimento_codigo());
 	}
 
-	// lista a lista do autocomplete dos rateios existentes no banco
+	// lista a lista do autocomplete dos estabelecimentos existentes no banco
 	public void listarEstabelecimentos() {
 		EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
 		cnpj = Rateio.getEmpresa_cnpj();
@@ -104,7 +104,7 @@ public class RateioCRBean implements Serializable {
 
 	}
 
-	// lista a lista do autocomplete no campo despesas
+	// lista a lista do autocomplete no campo estabelecimento
 	public List<Estabelecimento> completeText(String query) {
 		EstabelecimentoDAO EstabelecimentoDAO = new EstabelecimentoDAO();
 
@@ -112,7 +112,7 @@ public class RateioCRBean implements Serializable {
 		return EstabelecimentoDAO.listaestabelecimento(query, cnpj);
 	}
 
-	// seleciona um dos objetos da lista no campo despesas
+	// seleciona um dos objetos da lista no campo estabelecimento
 	public void selecionar() {
 
 		Estabelecimento estabelecimento = Rateio.getEstabelecimento();
