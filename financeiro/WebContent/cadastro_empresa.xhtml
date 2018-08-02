@@ -283,7 +283,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<p:inputText id="nome" required="true"
-								value="#{grupoEstabelecimentoBean.grupoestabelecimento.nomegrupoestabelecimento}"
+								value="#{grupoEstabelecimentoBean.grupoestabelecimento.nome}"
 								styleClass="form-control col-md-7 col-xs-12" />
 						</div>
 					</div>
@@ -392,7 +392,7 @@
 									</p:commandButton>
 									
 									</td>
-								<td>#{grupoestabelecimento.nomegrupoestabelecimento}</td>
+								<td>#{grupoestabelecimento.nome}</td>
 								<td>#{grupoestabelecimento.emp}</td>
 								<td>#{grupoestabelecimento.unidade.nome}</td>
 							</tr>
@@ -458,7 +458,7 @@
 								items="#{grupoEstabelecimentoBean.listagrupoestabelecimentos}"
 								var="grupoestabelecimento" cellspacing="0" width="100%">
 								<f:selectItem
-									itemLabel="#{grupoestabelecimento.nomegrupoestabelecimento}
+									itemLabel="#{grupoestabelecimento.nome}
 									- #{grupoestabelecimento.unidade.nome}  - #{grupoestabelecimento.emp}" 
 									itemValue="#{grupoestabelecimento.codigo}" />
 							</c:forEach>

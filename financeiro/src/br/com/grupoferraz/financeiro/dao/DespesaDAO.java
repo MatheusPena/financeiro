@@ -55,7 +55,7 @@ public class DespesaDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select codigo, nome, grupodespesa_codigo from despesa";
+			String sql = "select codigo, nome, grupodespesa_codigo from despesa_receita";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -87,7 +87,7 @@ public class DespesaDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		String sql = "select codigo, nome, grupodespesa_codigo "
-				+ " from despesa where "
+				+ " from despesa_receita where "
 				+ "cast(codigo as char) like '%"+codigo+"%'";
 		
 
@@ -121,7 +121,7 @@ public class DespesaDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		String sql = "select codigo, nome, grupodespesa_codigo "
-				+ " from despesa where "
+				+ " from despesa_receita where "
 				+ "nome like '%"+codigo+"%'";
 		
 
@@ -156,7 +156,7 @@ public class DespesaDAO {
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		String sql = "select codigo, nome, grupodespesa_codigo from despesa where "
+		String sql = "select codigo, nome, grupodespesa_codigo from despesa_receita where "
 				+ "nome like '%"+nome+"%'";
 		
 
@@ -192,7 +192,7 @@ public class DespesaDAO {
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		String sql = "select codigo, nome, grupodespesa_codigo from despesa where codigo = ?";
+		String sql = "select codigo, nome, grupodespesa_codigo from despesa_receita where codigo = ?";
 		
 
 		try {
@@ -235,7 +235,7 @@ public class DespesaDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nomegrupodespesa from grupodespesa where codigo = ?");
+				"select codigo, nomegrupodespesa from grupo_despesa where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
