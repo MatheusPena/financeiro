@@ -87,7 +87,7 @@ public class EstabelecimentoDAO {
 		
 		StringBuilder str = new StringBuilder();
 		str.append("select e.codigo, e.nome, e.grupoestabelecimento_codigo from estabelecimento e");
-		str.append(" inner join grupoestabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
+		str.append(" inner join grupo_estabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
 		str.append(" inner join unidade u on ge.unidade_codigo = u.codigo");
 		str.append(" inner join empresa emp on emp.cnpj = u.empresa_cnpj");
 		str.append(" where u.empresa_cnpj = '"+cnpj+"'");
@@ -165,13 +165,13 @@ public class EstabelecimentoDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nomegrupoestabelecimento, unidade_codigo from grupoestabelecimento where codigo = ?");
+				"select codigo, nome, unidade_codigo from grupo_estabelecimento where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
-			grupo.setNomegrupoestabelecimento(rs.getString("nomegrupoestabelecimento"));
+			grupo.setNome(rs.getString("nome"));
 			grupo.setUnidade_codigo(rs.getInt("unidade_codigo"));
 			grupo.setUnidade(getUnidade(grupo.getUnidade_codigo()));
 		}
@@ -221,7 +221,7 @@ public class EstabelecimentoDAO {
 		
 		StringBuilder str = new StringBuilder();
 		str.append("select e.codigo, e.nome, e.grupoestabelecimento_codigo from estabelecimento e");
-		str.append(" inner join grupoestabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
+		str.append(" inner join grupo_estabelecimento ge on ge.codigo = e.grupoestabelecimento_codigo");
 		str.append(" inner join unidade u on ge.unidade_codigo = u.nome");
 		str.append(" inner join empresa emp on emp.cnpj = u.empresa_cnpj");
 		str.append(" and emp.cnpj = ?");

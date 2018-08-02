@@ -23,10 +23,8 @@ public class CentroResultadoDAO {
 		try {
 			
 			StringBuilder str = new StringBuilder();
-			str.append("insert into centroresultado (codigo, nome, atividade, peso, grupocentroresultado_codigo)"
+			str.append("insert into centro_resultado (codigo, nome, atividade, peso, grupocentroresultado_codigo)"
 					+ "values (?,?,?,?,?)");
-			str.append("insert into centroresultado (codigo, nome, atividade, crcontabil, peso, grupocentroresultados_codigo)"
-					+ "values (?,?,?,?,?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?, atividade = ?, "
 					+ "peso = ?, grupocentroresultado_codigo = ? ");
 			
@@ -74,7 +72,7 @@ public class CentroResultadoDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select codigo, nome, atividade, peso, grupocentroresultado_codigo from centroresultado ";
+			String sql = "select codigo, nome, atividade, peso, grupocentroresultado_codigo from centro_resultado ";
 
 			rs = st.executeQuery(sql);
 
@@ -108,7 +106,7 @@ public class CentroResultadoDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select * from grupocentroresultado where codigo = ?");
+				"select * from grupo_centro_resultado where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

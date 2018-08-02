@@ -4,7 +4,7 @@ public class GrupoEstabelecimento {
 	private int codigo;
 	private String empresa;
 	private Empresa emp;
-	private String nomegrupoestabelecimento;
+	private String nome;
 	private int unidade_codigo;
 	private Unidade unidade;
 	
@@ -21,18 +21,18 @@ public class GrupoEstabelecimento {
 	public void setUnidade_codigo(int unidade_codigo) {
 		this.unidade_codigo = unidade_codigo;
 	}
-	public String getNomegrupoestabelecimento() {
-		return nomegrupoestabelecimento;
-	}
-	public void setNomegrupoestabelecimento(String nomegrupoestabelecimento) {
-		this.nomegrupoestabelecimento = nomegrupoestabelecimento;
-	}
 	
 	public Empresa getEmp() {
 		return emp;
 	}
 	public void setEmp(Empresa emp) {
 		this.emp = emp;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public String getEmpresa() {
 		return empresa;
@@ -48,7 +48,7 @@ public class GrupoEstabelecimento {
 	}
 	@Override
 	public String toString() {
-		return nomegrupoestabelecimento;
+		return nome;
 	}
 	
 }
