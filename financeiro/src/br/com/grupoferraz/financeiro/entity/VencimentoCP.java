@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean
 @SuppressWarnings("serial")
-public class VencimentoPagar implements Serializable {
+public class VencimentoCP implements Serializable {
 	private int vencimento_codigo;
 	private Date vencimento;
 	private String titulo;
@@ -25,7 +25,7 @@ public class VencimentoPagar implements Serializable {
 
 	
 	
-	public VencimentoPagar() {
+	public VencimentoCP() {
 		
 	}
 

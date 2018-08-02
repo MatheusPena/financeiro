@@ -24,22 +24,22 @@ public class ContaPagarDAO {
 	public boolean insertContasPagar(ContaPagar pagarconta) {
 
 		try {
-			// st = con.createStatement();
+
 			StringBuilder str = new StringBuilder();
-			str.append("insert into contapagar (codigocp, estabelecimento_codigo, "
-					+ "cpf, codigodp, emissaocp, valor, "
-					+ "centroresultados_codigo, documento_codigo, emissaodp, nomecp, "
-					+ "estabelecimento_nome, nomedp, observacao, empresa_cnpj, validadedp, contafinanceira_codigo ) "
+			str.append("insert into conta_pagar (codigocp, estabelecimento_codigo, "
+					+ "cpf, despesa_codigo, emissaocp, valor, "
+					+ "centroresultado_codigo, documento_codigo, emissaodp, contapagar_nome, "
+					+ "estabelecimento_nome, despesa_nome, observacao, empresa_cnpj, validadedp, contafinanceira_codigo ) "
 					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			str.append("on duplicate key update codigocp = ?, estabelecimento_codigo = ?, cpf = ?, "
-					+ "codigodp = ?, emissaocp = ?, valor = ?, centroresultados_codigo = ?, "
-					+ "documento_codigo = ?, emissaodp = ?, nomecp = ?, estabelecimento_nome = ?, "
-					+ "nomedp = ?, observacao = ?, empresa_cnpj = ?, validadedp = ?, contafinanceira_codigo = ? ");
+					+ "despesa_codigo = ?, emissaocp = ?, valor = ?, centroresultados_codigo = ?, "
+					+ "documento_codigo = ?, emissaodp = ?, contapagar_nome = ?, estabelecimento_nome = ?, "
+					+ "despesa_nome = ?, observacao = ?, empresa_cnpj = ?, validadedp = ?, contafinanceira_codigo = ? ");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, pagarconta.getCodigocp());
 			preparedStatement.setInt(2, pagarconta.getEstabelecimento_codigo());
 			preparedStatement.setString(3, pagarconta.getCpf());
-			preparedStatement.setInt(4, pagarconta.getCodigodp());
+			preparedStatement.setInt(4, pagarconta.getDespesa_codigo());
 			Date dataEmissaocp = pagarconta.getEmissaocp();
 			long t = 0;
 			if (dataEmissaocp != null ) {
@@ -47,7 +47,7 @@ public class ContaPagarDAO {
 			}
 			preparedStatement.setDate(5, new java.sql.Date(t));
 			preparedStatement.setString(6, pagarconta.getValor());
-			preparedStatement.setInt(7, pagarconta.getCentroresultados_codigo());
+			preparedStatement.setInt(7, pagarconta.getCentroresultado_codigo());
 			preparedStatement.setInt(8, pagarconta.getDocumento_codigo());
 			Date dataEmissaodp = pagarconta.getEmissaodp();
 			long j = 0;
@@ -55,9 +55,9 @@ public class ContaPagarDAO {
 				j = dataEmissaodp.getTime();	
 			}
 			preparedStatement.setDate(9, new java.sql.Date(j));
-			preparedStatement.setString(10, pagarconta.getNomecp());
+			preparedStatement.setString(10, pagarconta.getContapagar_nome());
 			preparedStatement.setString(11, pagarconta.getEstabelecimento_nome());
-			preparedStatement.setString(12, pagarconta.getNomedp());
+			preparedStatement.setString(12, pagarconta.getDespesa_nome());
 			preparedStatement.setString(13, pagarconta.getObservacao());
 			preparedStatement.setString(14, pagarconta.getEmpresa_cnpj());
 			Date dataValidadedp = pagarconta.getValidadedp();
@@ -71,15 +71,15 @@ public class ContaPagarDAO {
 			preparedStatement.setInt(17, pagarconta.getCodigocp());
 			preparedStatement.setInt(18, pagarconta.getEstabelecimento_codigo());
 			preparedStatement.setString(19, pagarconta.getCpf());
-			preparedStatement.setInt(20, pagarconta.getCodigodp());
+			preparedStatement.setInt(20, pagarconta.getDespesa_codigo());
 			preparedStatement.setDate(21, new java.sql.Date(t));
 			preparedStatement.setString(22, pagarconta.getValor());
-			preparedStatement.setInt(23, pagarconta.getCentroresultados_codigo());
+			preparedStatement.setInt(23, pagarconta.getCentroresultado_codigo());
 			preparedStatement.setInt(24, pagarconta.getDocumento_codigo());
 			preparedStatement.setDate(25, new java.sql.Date(j));
-			preparedStatement.setString(26, pagarconta.getNomecp());
+			preparedStatement.setString(26, pagarconta.getContapagar_nome());
 			preparedStatement.setString(27, pagarconta.getEstabelecimento_nome());
-			preparedStatement.setString(28, pagarconta.getNomedp());
+			preparedStatement.setString(28, pagarconta.getDespesa_nome());
 			preparedStatement.setString(29, pagarconta.getObservacao());
 			preparedStatement.setString(30, pagarconta.getEmpresa_cnpj());
 			preparedStatement.setDate(31, new java.sql.Date(k));
@@ -106,10 +106,10 @@ public class ContaPagarDAO {
 		try {
 			st = conexao.createStatement();
 			String sql = "select codigocp, estabelecimento_codigo, "
-					+ "cpf, codigodp, emissaocp, valor, " 
-					+ "centroresultados_codigo, documento_codigo, emissaodp, "
-					+ "nomecp, estabelecimento_nome, nomedp, observacao, "
-					+ "empresa_cnpj, validadedp, contafinanceira_codigo from contapagar";
+					+ "cpf, despesa_codigo, emissaocp, valor, " 
+					+ "centroresultado_codigo, documento_codigo, emissaodp, "
+					+ "contapagar_nome, estabelecimento_nome, despesa_nome, observacao, "
+					+ "empresa_cnpj, validadedp, contafinanceira_codigo from conta_pagar";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -120,27 +120,27 @@ public class ContaPagarDAO {
 				Estabelecimento estabelecimento = getEstabelecimento(pagarconta.getEstabelecimento_codigo());
 				pagarconta.setEstabelecimento(estabelecimento);
 				pagarconta.setCpf(rs.getString("cpf"));
-				pagarconta.setCodigodp(rs.getInt("codigodp"));
+				pagarconta.setDespesa_codigo(rs.getInt("despesa_codigo"));
 				pagarconta.setEmissaocp(rs.getDate("emissaocp"));
 				pagarconta.setValor(rs.getString("valor"));
-				pagarconta.setCentroresultados_codigo(rs.getInt("centroresultados_codigo"));
-				CentroResultado centroresultados = getCentroresultados(pagarconta.getCentroresultados_codigo());
+				pagarconta.setCentroresultado_codigo(rs.getInt("centroresultado_codigo"));
+				CentroResultado centroresultados = getCentroresultados(pagarconta.getCentroresultado_codigo());
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setDocumento_codigo(rs.getInt("documento_codigo"));
 				Documento documento = getDocumentos(pagarconta.getDocumento_codigo());
 				pagarconta.setDocumento(documento);
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setEmissaodp(rs.getDate("emissaodp"));
-				pagarconta.setNomecp(rs.getString("nomecp"));
+				pagarconta.setContapagar_nome(rs.getString("contapagar_nome"));
 				pagarconta.setEstabelecimento_nome(rs.getString("estabelecimento_nome"));
-				pagarconta.setNomedp(rs.getString("nomedp"));
+				pagarconta.setDespesa_nome(rs.getString("despesa_nome"));
 				pagarconta.setObservacao(rs.getString("observacao"));
 				pagarconta.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 				pagarconta.setValidadedp(rs.getDate("validadedp"));
 				pagarconta.setContafinanceira_codigo(rs.getInt("contafinanceira_codigo"));
 				ContaFinanceira contafinanceira = getContafinanceira(pagarconta.getContafinanceira_codigo());
 				pagarconta.setContafinanceira(contafinanceira);
-				Despesa despesa = new DespesaDAO().listadespesa(pagarconta.getCodigodp());
+				Despesa despesa = new DespesaDAO().listadespesa(pagarconta.getDespesa_codigo());
 				pagarconta.setDespesa(despesa);
 				lista.add(pagarconta);
 			}
@@ -231,9 +231,9 @@ public class ContaPagarDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		String sql = "select codigocp, estabelecimento_codigo, "
-				+ "cpf, codigodp, emissaocp, valor, "
+				+ "cpf, despesa_codigo, emissaocp, valor, "
 				+ "centroresultados_codigo, documento_codigo, emissaodp, "
-				+ "nomecp, estabelecimento_nome, nomedp, observacao, empresa_cnpj from contapagar from contapagar where "
+				+ "contapagar_nome, estabelecimento_nome, despesa_nome, observacao, empresa_cnpj from conta_pagar where "
 				+ "cast(codigocp as char) like '%"+codigo+"%'";
 		
 		try {
@@ -245,7 +245,7 @@ public class ContaPagarDAO {
 			while (rs.next()) {
 
 				ContaPagar pagarconta = new ContaPagar();
-				pagarconta.setCodigodp(rs.getInt("codigodp"));
+				pagarconta.setDespesa_codigo(rs.getInt("despesa_codigo"));
 				lista.add(rs.getInt("codigo"));
 			}
 
@@ -265,9 +265,9 @@ public class ContaPagarDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		String sql = "select codigocp, estabelecimento_codigo, " + 
-				"cpf, codigodp, emissaocp, valor, " + 
+				"cpf, despesa_codigo, emissaocp, valor, " + 
 				"centroresultados_codigo, documento_codigo, emissaodp, " + 
-				"nomecp, estabelecimento_nome, nomedp, observacao, empresa_cnpj from contapagar from contapagar where " + 
+				"contapagar_nome, estabelecimento_nome, despesa_nome, observacao, empresa_cnpj from conta_pagar where " + 
 				"codigo = ?";
 		
 
@@ -284,20 +284,20 @@ public class ContaPagarDAO {
 				pagarconta.setCodigocp(rs.getInt("codigocp"));
 				pagarconta.setEstabelecimento_codigo(rs.getInt("estabelecimento_codigo"));
 				pagarconta.setCpf(rs.getString("cpf"));
-				pagarconta.setCodigodp(rs.getInt("codigodp"));
+				pagarconta.setDespesa_codigo(rs.getInt("despesa_codigo"));
 				pagarconta.setEmissaocp(rs.getDate("emissaocp"));
 				pagarconta.setValor(rs.getString("valor"));
-				pagarconta.setCentroresultados_codigo(rs.getInt("centroresultados_codigo"));
-				CentroResultado centroresultados = getCentroresultados(pagarconta.getCentroresultados_codigo());
+				pagarconta.setCentroresultado_codigo(rs.getInt("centroresultado_codigo"));
+				CentroResultado centroresultados = getCentroresultados(pagarconta.getCentroresultado_codigo());
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setDocumento_codigo(rs.getInt("documento_codigo"));
 				Documento documento = getDocumentos(pagarconta.getDocumento_codigo());
 				pagarconta.setDocumento(documento);
 				pagarconta.setCentroresultados(centroresultados);
 				pagarconta.setEmissaodp(rs.getDate("emissaodp"));
-				pagarconta.setNomecp(rs.getString("nomecp"));
+				pagarconta.setContapagar_nome(rs.getString("contapagar_nome"));
 				pagarconta.setEstabelecimento_nome(rs.getString("estabelecimento_nome"));
-				pagarconta.setNomedp(rs.getString("nomedp"));
+				pagarconta.setDespesa_nome(rs.getString("despesa_nome"));
 				pagarconta.setObservacao(rs.getString("observacao"));
 				pagarconta.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 				lista.add(pagarconta);

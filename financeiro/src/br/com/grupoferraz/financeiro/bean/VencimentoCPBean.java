@@ -6,28 +6,28 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import br.com.grupoferraz.financeiro.dao.VencimentoPagarDAO;
-import br.com.grupoferraz.financeiro.entity.VencimentoPagar;
+import br.com.grupoferraz.financeiro.dao.VencimentoCPDAO;
+import br.com.grupoferraz.financeiro.entity.VencimentoCP;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ViewScoped
 @ManagedBean
-public class VencimentoPagarBean implements Serializable {
+public class VencimentoCPBean implements Serializable {
 
-	private VencimentoPagar vencimento;
-	private List<VencimentoPagar> vencimentolista;
+	private VencimentoCP vencimento;
+	private List<VencimentoCP> vencimentolista;
 
-	public VencimentoPagarBean() {
-		vencimento = new VencimentoPagar();
+	public VencimentoCPBean() {
+		vencimento = new VencimentoCP();
 		listarVencimento();
 	}
 
 	public String cadastraVencimento() {
 
 		ConexaoBD.getConexao();
-		VencimentoPagarDAO vencimento = new VencimentoPagarDAO();
+		VencimentoCPDAO vencimento = new VencimentoCPDAO();
 		if (vencimento.insertVencimento(this.vencimento)) {
 
 			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Vencimento de conta cadastrado com sucesso!");
@@ -37,31 +37,31 @@ public class VencimentoPagarBean implements Serializable {
 
 		}
 		ConexaoBD.fecharConexao();
-		this.vencimento = new VencimentoPagar();
+		this.vencimento = new VencimentoCP();
 
 		return "";
 	}
 	
 	
 	public void listarVencimento() {
-		VencimentoPagarDAO vencimento = new VencimentoPagarDAO();
+		VencimentoCPDAO vencimento = new VencimentoCPDAO();
 		setVencimento(vencimento.listVencimento());
 	}
 
 	
-	public List<VencimentoPagar> getVencimento() {
+	public List<VencimentoCP> getVencimento() {
 		return vencimentolista;
 	}
 
-	public void setVencimento(List<VencimentoPagar> vencimento) {
+	public void setVencimento(List<VencimentoCP> vencimento) {
 		this.vencimentolista = vencimento;
 	}
 
-	public VencimentoPagar getVencimentoPagar() {
+	public VencimentoCP getVencimentoPagar() {
 		return vencimento;
 	}
 
-	public void setVencimentoPagar(VencimentoPagar vencimento) {
+	public void setVencimentoPagar(VencimentoCP vencimento) {
 		this.vencimento = vencimento;
 	}
 

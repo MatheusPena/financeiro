@@ -1,7 +1,7 @@
 package br.com.grupoferraz.financeiro.dao;
 
 
-import br.com.grupoferraz.financeiro.entity.VencimentoPagar;
+import br.com.grupoferraz.financeiro.entity.VencimentoCP;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class VencimentoPagarDAO {
+public class VencimentoCPDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertVencimento(VencimentoPagar vencimento) {
+	public boolean insertVencimento(VencimentoCP vencimento) {
 		try {
 			StringBuilder str = new StringBuilder();
-			str.append("INSERT INTO vencimento (vencimento_codigo, vencimento, titulo, valor, desconto,"
+			str.append("INSERT INTO vencimento_cp (vencimento_codigo, vencimento, titulo, valor, desconto,"
 					+ "codigoag, nomeag, lancamento, banco, agenciabanco,"
 					+ "digagencia, conta, digconta, agendar) "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -80,21 +80,21 @@ public class VencimentoPagarDAO {
 	}
 
 	// lista todos os vendedoress cadastrados no banco de dados
-	public List<VencimentoPagar> listVencimento() {
+	public List<VencimentoCP> listVencimento() {
 
-		ArrayList<VencimentoPagar> lista = new ArrayList<VencimentoPagar>();
+		ArrayList<VencimentoCP> lista = new ArrayList<VencimentoCP>();
 
 		Statement st = null;
 		ResultSet rs = null;
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from vencimento";
+			String sql = "select * from vencimento_cp";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
-				VencimentoPagar vencimento = new VencimentoPagar();
+				VencimentoCP vencimento = new VencimentoCP();
 				vencimento.setVencimento_codigo(rs.getInt("vencimento_codigo"));
 				vencimento.setVencimento(rs.getDate("vencimento"));
 				vencimento.setTitulo(rs.getString("titulo"));

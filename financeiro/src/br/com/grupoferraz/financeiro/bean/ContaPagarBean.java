@@ -12,11 +12,11 @@ import javax.faces.context.FacesContext;
 import br.com.grupoferraz.financeiro.dao.DespesaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.dao.ContaPagarDAO;
-import br.com.grupoferraz.financeiro.dao.VencimentoPagarDAO;
+import br.com.grupoferraz.financeiro.dao.VencimentoCPDAO;
 import br.com.grupoferraz.financeiro.entity.Despesa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.ContaPagar;
-import br.com.grupoferraz.financeiro.entity.VencimentoPagar;
+import br.com.grupoferraz.financeiro.entity.VencimentoCP;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
@@ -27,15 +27,15 @@ public class ContaPagarBean implements Serializable {
 
 	private ContaPagar contapagar;
 	private List<ContaPagar> listapagar;
-	private VencimentoPagar vencimento;
-	private List<VencimentoPagar> listavencimentos;
+	private VencimentoCP vencimento;
+	private List<VencimentoCP> listavencimentos;
 	
 
 	public ContaPagarBean() {
 		contapagar = new ContaPagar();
 		getListapagar();
 		listapagar();
-		vencimento = new VencimentoPagar();
+		vencimento = new VencimentoCP();
 		listarVencimento();
 	}
 
@@ -101,8 +101,8 @@ public class ContaPagarBean implements Serializable {
 		Despesa despesa = contapagar.getDespesa();
 		
 		if (despesa != null) {
-			contapagar.setCodigodp(despesa.getCodigo());
-			contapagar.setNomedp(despesa.getNome());
+			contapagar.setDespesa_codigo(despesa.getCodigo());
+			contapagar.setDespesa_nome(despesa.getNome());
 		}
 		System.out.println("despesa "+despesa.getNome());
 	}
@@ -130,7 +130,7 @@ public class ContaPagarBean implements Serializable {
 	public String cadastraVencimento() {
 
 		ConexaoBD.getConexao();
-		VencimentoPagarDAO vencimento = new VencimentoPagarDAO();
+		VencimentoCPDAO vencimento = new VencimentoCPDAO();
 		if (vencimento.insertVencimento(this.vencimento)) {
 
 			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Vencimento de conta cadastrado com sucesso!");
@@ -140,32 +140,32 @@ public class ContaPagarBean implements Serializable {
 
 		}
 		ConexaoBD.fecharConexao();
-		this.vencimento = new VencimentoPagar();
+		this.vencimento = new VencimentoCP();
 
 		return "";
 	}
 	
 	
 	public void listarVencimento() {
-		VencimentoPagarDAO vencimento = new VencimentoPagarDAO();
+		VencimentoCPDAO vencimento = new VencimentoCPDAO();
 		setListavencimento(vencimento.listVencimento());
 	}
 
 	
 // 	Getters e Setters do Vencimento da conta
-	public VencimentoPagar getVencimentoPagar() {
+	public VencimentoCP getVencimentoPagar() {
 		return vencimento;
 	}
 
-	public void setVencimentoPagar(VencimentoPagar vencimento) {
+	public void setVencimentoPagar(VencimentoCP vencimento) {
 		this.vencimento = vencimento;
 	}
 
-	public List<VencimentoPagar> getListavencimentos() {
+	public List<VencimentoCP> getListavencimentos() {
 		return listavencimentos;
 	}
 
-	public void setListavencimento(List<VencimentoPagar> listavencimento) {
+	public void setListavencimento(List<VencimentoCP> listavencimento) {
 		this.listavencimentos = listavencimento;
 	}
 

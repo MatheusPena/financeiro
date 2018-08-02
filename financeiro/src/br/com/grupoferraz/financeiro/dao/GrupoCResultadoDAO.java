@@ -18,11 +18,8 @@ public class GrupoCResultadoDAO {
 
 	public boolean insertGrupoCResultado(GrupoCResultado grupoCResultado) {
 
-		// Statement st = null;
-		// ResultSet rs = null;
-
 		try {
-			// st = con.createStatement();
+
 			StringBuilder str = new StringBuilder();	
 			str.append("insert into grupocentroresultado (codigo, nome)"
 					+ " values (?,?)");

@@ -66,11 +66,11 @@
 										
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="nomecp" value="Nome da Conta:" />
+													<p:outputLabel for="contapagar_nome" value="Nome da Conta:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="nomecp" required="false"
-														value="#{contaPagarBean.pagarconta.nomecp}"
+													<p:inputText id="contapagar_nome" required="false"
+														value="#{contaPagarBean.pagarconta.contapagar_nome}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -153,10 +153,10 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="nomedp" value="Nome da Despesa/Receita:" />
+													<p:outputLabel for="despesa_nome" value="Nome da Despesa/Receita:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:outputPanel id="nomedp">
+													<p:outputPanel id="despesa_nome">
 														<p:autoComplete id="acMinLength" minQueryLength="1"
 															dropdown="false" converter="converter"
 															value="#{contaPagarBean.pagarconta.despesa}"
@@ -174,11 +174,11 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigo" value="Código da Despesa:" />
+													<p:outputLabel for="despesa_codigo" value="Código da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigo" required="false"
-														value="#{contaPagarBean.pagarconta.codigodp}"
+													<p:inputText id="despesa_codigo" required="false"
+														value="#{contaPagarBean.pagarconta.despesa_codigo}"
 														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
 											</div>
@@ -241,7 +241,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="centroresultados" required="false"
-														value="#{contaPagarBean.pagarconta.centroresultados_codigo}"
+														value="#{contaPagarBean.pagarconta.centroresultado_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
@@ -518,12 +518,12 @@
 																		<f:setPropertyActionListener value="#{pagarconta}"
 																			target="#{contaPagarBean.pagarconta}" />
 																	</p:commandButton></td>
-																<td>#{pagarconta.nomecp}</td>
+																<td>#{pagarconta.contapagar_nome}</td>
 																<td>#{pagarconta.estabelecimento_codigo}</td>
 																<td>#{pagarconta.estabelecimento_nome}</td>
 																<td>#{pagarconta.cpf}</td>
-																<td>#{pagarconta.codigodp}</td>
-																<td>#{pagarconta.nomedp}</td>
+																<td>#{pagarconta.despesa_codigo}</td>
+																<td>#{pagarconta.despesa_nome}</td>
 																<td>#{pagarconta.emissaocp}</td>
 																<td>#{pagarconta.valor}</td>
 																<td>#{pagarconta.emissaodp}</td>
