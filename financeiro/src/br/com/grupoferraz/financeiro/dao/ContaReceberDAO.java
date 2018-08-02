@@ -26,10 +26,10 @@ public class ContaReceberDAO {
 		try {
 			StringBuilder str = new StringBuilder();
 			str.append(
-					"INSERT INTO financeiro.contareceber (codigo,cpf,receita_codigo,documento,emissao,valor,observacao,estabelecimento_codigo,centroresultado_codigo, empresa_cnpj, nomereceita)"
+					"INSERT INTO financeiro.contareceber (codigo,cliente_cpf,receita_codigo,documento,emissao,valor,observacao,estabelecimento_codigo,centroresultado_codigo, empresa_cnpj, nomereceita)"
 							+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 			str.append(
-					"on duplicate key update codigo = ?,cpf = ?,receita_codigo = ?,documento = ?,emissao = ?,valor = ?,observacao = ?,estabelecimento_codigo = ?,centroresultado_codigo = ?, empresa_cnpj = ?,nomereceita = ?");
+					"on duplicate key update codigo = ?,cliente_cpf = ?,receita_codigo = ?,documento = ?,emissao = ?,valor = ?,observacao = ?,estabelecimento_codigo = ?,centroresultado_codigo = ?, empresa_cnpj = ?,nomereceita = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, ContaReceber.getCodigo());
 			preparedStatement.setString(2, ContaReceber.getCpf());
@@ -104,7 +104,7 @@ public class ContaReceberDAO {
 				int obj1 = contareceber.getEstabelecimento_codigo();
 				Estabelecimento estabelecimento = getEstabelecimento(obj1);
 				contareceber.setEstabelecimento(estabelecimento);
-				contareceber.setCpf(rs.getString("cpf"));
+				contareceber.setCpf(rs.getString("cliente_cpf"));
 				contareceber.setNomereceita(rs.getString("nomereceita"));
 				contareceber.setReceita_codigo(rs.getInt("receita_codigo"));
 				int obj2 = contareceber.getReceita_codigo();

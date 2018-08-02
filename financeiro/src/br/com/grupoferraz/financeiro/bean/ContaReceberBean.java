@@ -48,7 +48,7 @@ public class ContaReceberBean implements Serializable {
 		ConexaoBD.fecharConexao();
 		contaReceber = new ContaReceber();
 
-		return "cadastro_cr?faces-redirect=true";
+		return "";
 	}
 
 	public void getcontaReceber() {
