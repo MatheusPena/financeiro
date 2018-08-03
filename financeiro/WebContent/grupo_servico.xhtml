@@ -14,33 +14,23 @@
 		<!-- Meta, title, CSS, favicons, etc. -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Formulário | Comissão dos Itens do Contas a Receber</title>
+		<title>Grupos | Serviços</title>
 		<!-- Bootstrap -->
-		<link href="resources/bootstrap/dist/css/bootstrap.min.css"
-			rel="stylesheet" />
+		<link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 		<!-- Font Awesome -->
-		<link href="resources/font-awesome/css/font-awesome.min.css"
-			rel="stylesheet" />
+		<link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 		<!-- NProgress -->
 		<link href="resources/nprogress/nprogress.css" rel="stylesheet" />
 		<!-- iCheck -->
 		<link href="resources/iCheck/skins/flat/green.css" rel="stylesheet" />
 		<!-- Datatables -->
-		<link
-			href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css"
-			rel="stylesheet" />
-		<link
-			href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-			rel="stylesheet" />
+		<link href="resources/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+		<link href="resources/datatables.net-responsive-bs/css/responsive.bootstrap.css" rel="stylesheet" />
+		<link href="resources/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />	
+		<!-- Primeface DataTable Style -->
+		<h:outputStylesheet library="css" name="table-style.css" />
 		<!-- Custom Theme Style -->
 		<link href="build/css/custom.min.css" rel="stylesheet" />
 	</h:head>
@@ -58,8 +48,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											Formulário de Comissão <small>Cadastre aqui
-												as comissões dos itens</small>
+											Formulário de Grupos de Serviços<small>Cadastre aqui os grupos
+												de serviços</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -69,97 +59,99 @@
 									</div>
 									<div class="x_content">
 										<br />
-										<h:form id="Campo" class="form-horizontal form-label-left">
-											<p:messages id="messages" />
+										<h:form id="demo-form2" data-parsley-validate=""
+											styleClass="form-horizontal form-label-left">
+											<p:messages id="messages" styleClass="messages"/>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="codigo" value="Codigo do Vendedor *" />
+													<p:outputLabel for="nome" value="Nome:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigo"
-														value="#{comissaoItemCRBean.comissaoItemCR.cpfcnpj}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true"></p:inputText>
+													<p:inputText id="nome" required="true"
+														value="#{grupoServicoBean.gruposervico.nome}"
+														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="comissao" value="Percent. de Comissão do Vendedor *" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="comissao"
-														value="#{comissaoItemCRBean.comissaoItemCR.comissao}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true"></p:inputText>
-												</div>
-											</div>
-
 											<div class="ln_solid" />
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														update="messages" class="btn btn-success"
-														action="#{comissaoItemCRBean.cadastraComissaoItemCR}"
-														onclick="window.location='#Campo'"></p:commandButton>
+														action="#{grupoServicoBean.cadastraGrupoServico}"
+														update="messages @form" styleClass="btn btn-success"
+														onclick="window.location='#demo-form2'"
+														oncomplete="temp()">
+													</p:commandButton>
+													<script>
+														function temp() {
+
+															setTimeout(
+																	function() {
+
+																		$(
+																				'.messages')
+																				.html(
+																						'');
+
+																	}, 5000);
+
+														}
+													</script>
 												</div>
 											</div>
 										</h:form>
 									</div>
 								</div>
-								<h:form>
-									<div class="row">
-										<div class="col-md-12 col-sm-12 col-xs-12">
-											<div class="x_panel">
-												<div class="x_title">
-													<h2>
-														Tabela de Comissão <small>Exibe as comissões
-															cadastradas</small>
-													</h2>
-													<ul class="nav navbar-right panel_toolbox">
-														<li><a class="collapse-link"><i
-																class="fa fa-chevron-up" /></a></li>
-													</ul>
-													<div class="clearfix" />
-												</div>
-												<div class="x_content">
-													<table id="datatable-responsive" cellspacing="0"
-														width="100%"
-														class="table table-striped table-bordered dt-responsive nowrap ">
-														<thead>
-															<tr>
-																<th>Código</th>
-																<th>Editar</th>
-																<th>Código do Vendedor</th>
-																<th>Percentual de comissão</th>
-
-															</tr>
-														</thead>
-														<tbody>
-															<c:forEach items="#{comissaoItemCRBean.listComissaoItemCR}"
-																var="comissaoitemcr" cellspacing="0" width="100%">
-																<tr>
-																	<td>#{comissaoitemcr.codigo}</td>
-																	<td class="text-center"><p:commandButton value=""
-																			style="font-size:10px;"
-																			styleClass="fas fa-edit btn btn-primary"
-																			update="@(.form-control) @(.rd) @(.calendar) Campo"
-																			onclick="window.location='#Campo'">
-																			<f:setPropertyActionListener value="#{comissaoitemcr}"
-																				target="#{comissaoItemCRBean.comissaoItemCR}" />
-																		</p:commandButton></td>
-																	<td>#{comissaoitemcr.cpfcnpj}</td>
-																	<td>#{comissaoitemcr.comissao}</td>
-																
-																</tr>
-															</c:forEach>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="x_panel">
+									<div class="x_title">
+										<h2>
+											Tabela de Grupos de Serviços <small>Exibe os grupos de serviços
+												cadastradas</small>
+										</h2>
+										<ul class="nav navbar-right panel_toolbox">
+											<li><a class="collapse-link"><i
+													class="fa fa-chevron-up" /></a></li>
+										</ul>
+										<div class="clearfix" />
 									</div>
-								</h:form>
+									<div class="x_content">
+										<h:form>
+											<table id="datatable-responsive" cellspacing="0" width="100%"
+												class="table table-striped table-bordered dt-responsive nowrap ">
+												<thead>
+													<tr>
+														<th>Código</th>
+														<th>Editar</th>
+														<th>Nome do Grupo</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="#{grupoServicoBean.listagruposervico}"
+														var="gruposervico" cellspacing="0" width="100%">
+														<tr>
+															<td>#{gruposervico.codigo}</td>
+															<td>
+															<p:commandButton value="" style="font-size:10px;"
+															styleClass="fas fa-edit btn btn-primary" 
+															update="@(.form-control) @(.rd) @(.calendar) demo-form2"
+															onclick="window.location='#demo-form2'">
+															<f:setPropertyActionListener value="#{gruposervico}" 
+															target="#{grupoServicoBean.gruposervico}"/>
+															</p:commandButton>
+															</td>
+															<td>#{gruposervico.nome}</td>	
+																		
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</h:form>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
