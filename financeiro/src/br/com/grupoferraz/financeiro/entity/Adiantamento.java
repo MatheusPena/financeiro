@@ -20,7 +20,7 @@ public class Adiantamento {
 	private ContaFinanceira contafinanceira;
 	private Estabelecimento estabelecimento;
 	private CentroResultado centroresultado;
-	private Despesa despesa;
+	private DespesaReceita despesa;
 	private Historico historico;
 
 	public int getCodigo() {
@@ -152,11 +152,11 @@ public class Adiantamento {
 		this.centroresultado = centroresultado;
 	}
 
-	public Despesa getDespesa() {
+	public DespesaReceita getDespesa() {
 		return despesa;
 	}
 
-	public void setDespesa(Despesa despesa) {
+	public void setDespesa(DespesaReceita despesa) {
 		this.despesa = despesa;
 	}
 

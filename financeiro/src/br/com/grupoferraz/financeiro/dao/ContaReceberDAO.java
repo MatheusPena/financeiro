@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.CentroResultado;
 import br.com.grupoferraz.financeiro.entity.ContaReceber;
-import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Empresa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
@@ -108,7 +108,7 @@ public class ContaReceberDAO {
 				contareceber.setNomereceita(rs.getString("nomereceita"));
 				contareceber.setReceita_codigo(rs.getInt("receita_codigo"));
 				int obj2 = contareceber.getReceita_codigo();
-				Despesa despesa = getReceita(obj2);
+				DespesaReceita despesa = getReceita(obj2);
 				contareceber.setReceita(despesa);
 				contareceber.setDocumento(rs.getInt("documento"));
 				contareceber.setEmissao(rs.getDate("emissao"));
@@ -130,8 +130,8 @@ public class ContaReceberDAO {
 	}
 
 	// lista todos as despesas/receitas cadastradas no banco de dados
-	public Despesa getReceita(int idGrupo) throws SQLException {
-		Despesa grupo = new Despesa();
+	public DespesaReceita getReceita(int idGrupo) throws SQLException {
+		DespesaReceita grupo = new DespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement("select * from despesa where codigo = ?");
@@ -141,7 +141,7 @@ public class ContaReceberDAO {
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNome(rs.getString("nome"));
-			grupo.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
+			grupo.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
 		}
 		return grupo;
 	}

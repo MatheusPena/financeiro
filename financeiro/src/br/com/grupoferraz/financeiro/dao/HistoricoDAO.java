@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.Historico;
-import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class HistoricoDAO {
@@ -62,7 +62,7 @@ public class HistoricoDAO {
 				historicos.setDescricao(rs.getString("descricao"));
 				historicos.setDespesa_codigo(rs.getInt("despesa_codigo"));
 				int idDespesa = historicos.getDespesa_codigo();
-				Despesa despesas = getDespesas(idDespesa);
+				DespesaReceita despesas = getDespesas(idDespesa);
 				historicos.setDespesa(despesas);
 				lista.add(historicos);
 			}
@@ -77,8 +77,8 @@ public class HistoricoDAO {
 	}
 
 	//Lista as despesas cadastradas na tela dos Históricos
-	public Despesa getDespesas(int idDespesa) throws SQLException {
-		Despesa despesa = new Despesa();
+	public DespesaReceita getDespesas(int idDespesa) throws SQLException {
+		DespesaReceita despesa = new DespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(

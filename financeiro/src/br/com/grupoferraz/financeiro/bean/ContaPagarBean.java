@@ -9,11 +9,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.grupoferraz.financeiro.dao.DespesaDAO;
+import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.dao.ContaPagarDAO;
 import br.com.grupoferraz.financeiro.dao.VencimentoCPDAO;
-import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.ContaPagar;
 import br.com.grupoferraz.financeiro.entity.VencimentoCP;
@@ -89,8 +89,8 @@ public class ContaPagarBean implements Serializable {
 	}
 		
 //	Autocomplete referente à Despesas
-	public List<Despesa> completeText(String query) {
-		DespesaDAO despesasDAO = new DespesaDAO();
+	public List<DespesaReceita> completeText(String query) {
+		DespesaReceitaDAO despesasDAO = new DespesaReceitaDAO();
 
 		return despesasDAO.listadespesas(query);
 	}
@@ -98,7 +98,7 @@ public class ContaPagarBean implements Serializable {
 
 	public void selecionarDespesa() {
 		
-		Despesa despesa = contapagar.getDespesa();
+		DespesaReceita despesa = contapagar.getDespesa();
 		
 		if (despesa != null) {
 			contapagar.setDespesa_codigo(despesa.getCodigo());

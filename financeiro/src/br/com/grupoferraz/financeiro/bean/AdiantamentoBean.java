@@ -10,10 +10,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.AdiantamentoDAO;
-import br.com.grupoferraz.financeiro.dao.DespesaDAO;
+import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.entity.Adiantamento;
-import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -80,8 +80,8 @@ public class AdiantamentoBean implements Serializable {
 		}	
 		
 //		Autocomplete referente à Despesas
-		public List<Despesa> completeText(String query) {
-			DespesaDAO despesasDAO = new DespesaDAO();
+		public List<DespesaReceita> completeText(String query) {
+			DespesaReceitaDAO despesasDAO = new DespesaReceitaDAO();
 
 			return despesasDAO.listadespesas(query);
 		}
@@ -89,7 +89,7 @@ public class AdiantamentoBean implements Serializable {
 
 		public void selecionarDespesa() {
 			
-			Despesa despesa = adiantamento.getDespesa();
+			DespesaReceita despesa = adiantamento.getDespesa();
 			
 			if (despesa != null) {
 				adiantamento.setDespesa_codigo(despesa.getCodigo());

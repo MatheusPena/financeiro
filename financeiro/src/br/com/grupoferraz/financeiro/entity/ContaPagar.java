@@ -30,7 +30,7 @@ public class ContaPagar implements Serializable {
 	private Documento documento;
 	private int documento_codigo;
 	private String observacao;
-	private Despesa despesa;
+	private DespesaReceita despesa;
 
 	public ContaPagar() {
 
@@ -182,11 +182,11 @@ public class ContaPagar implements Serializable {
 		this.observacao = observacao;
 	}
 
-	public Despesa getDespesa() {
+	public DespesaReceita getDespesa() {
 		return despesa;
 	}
 
-	public void setDespesa(Despesa despesa) {
+	public void setDespesa(DespesaReceita despesa) {
 		this.despesa = despesa;
 	}
 

@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.grupoferraz.financeiro.entity.Despesa;
-import br.com.grupoferraz.financeiro.entity.GrupoDespesa;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
+import br.com.grupoferraz.financeiro.entity.GrupoDespesaReceita;
 import br.com.grupoferraz.financeiro.entity.PlanoConta;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -93,7 +93,7 @@ public class PlanoContaDAO {
 				PlanoConta.setCodigo(rs.getString(1));
 				PlanoConta.setNome(rs.getInt(2));
 				int idGrupo0 = PlanoConta.getNome();
-				Despesa despesa = getDespesa(idGrupo0);
+				DespesaReceita despesa = getDespesa(idGrupo0);
 				PlanoConta.setDespesa(despesa);
 				PlanoConta.setTipo(rs.getString(3));
 				PlanoConta.setNatureza(rs.getString(4));
@@ -107,7 +107,7 @@ public class PlanoContaDAO {
 				PlanoConta.setObservacao(rs.getString(12));
 				PlanoConta.setGrupodespesa_codigo(rs.getInt(13));
 				int id = PlanoConta.getGrupodespesa_codigo();
-				GrupoDespesa grupodespesa = getGrupoDespesa(id);
+				GrupoDespesaReceita grupodespesa = getGrupoDespesa(id);
 				PlanoConta.setGrupodespesa(grupodespesa);
 				lista.add(PlanoConta);
 			}
@@ -143,7 +143,7 @@ public class PlanoContaDAO {
 				plano.setCodigo(rs.getString("codigo"));
 				plano.setNome(rs.getInt("nome"));
 				int idGrup = plano.getNome();
-				Despesa desp = getDespesa(idGrup);
+				DespesaReceita desp = getDespesa(idGrup);
 				plano.setDespesa(desp);
 				plano.setTipo(rs.getString("tipo"));
 				plano.setNatureza(rs.getString("natureza"));
@@ -169,8 +169,8 @@ public class PlanoContaDAO {
 	}
 
 	// lista todos as despesas cadastradas no banco de dados
-	public Despesa getDespesa(int idGrupo) throws SQLException {
-		Despesa grupo = new Despesa();
+	public DespesaReceita getDespesa(int idGrupo) throws SQLException {
+		DespesaReceita grupo = new DespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement("select * from despesa where codigo = ?");
@@ -180,14 +180,14 @@ public class PlanoContaDAO {
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNome(rs.getString("nome"));
-			grupo.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
+			grupo.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
 		}
 		return grupo;
 	}
 
 	// lista todos os grupo de despesas cadastradas no banco de dados
-	public GrupoDespesa getGrupoDespesa(int idGrupo) throws SQLException {
-		GrupoDespesa grupo = new GrupoDespesa();
+	public GrupoDespesaReceita getGrupoDespesa(int idGrupo) throws SQLException {
+		GrupoDespesaReceita grupo = new GrupoDespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao
@@ -197,7 +197,7 @@ public class PlanoContaDAO {
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
-			grupo.setNomegrupodespesa(rs.getString("nomegrupodespesa"));
+			grupo.setNome(rs.getString("nome"));
 		}
 		return grupo;
 	}

@@ -61,25 +61,25 @@
 											styleClass="form-horizontal form-label-left">
 											<p:messages id="messages" />
 											<!-- Dados iniciais -->
-										<!-- 	<div class="form-group">
+									<!-- 	<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:outputLabel for="codigo" value="Código do item:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo"
-														value="#{despesaBean.despesa.codigo}"
+														value="#{despesaReceitaBean.despesareceita.codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true">
 													</p:inputText>
 												</div>
-											</div>  -->
+											</div>   -->	
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<h:outputLabel for="nome" value="Nome do item: *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome"
-														value="#{despesaBean.despesa.nome}"
+														value="#{despesaReceitaBean.despesareceita.nome}" 
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true">
 													</p:inputText>
@@ -91,14 +91,14 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="grupo" required="false"
-														value="#{despesaBean.despesa.grupodespesa_codigo}"
+														value="#{despesaReceitaBean.despesareceita.grupodespesareceita_codigo}"
 														style="width:320px" 
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 														<f:selectItems
-															value="#{grupoDespesaBean.listagrupodespesas}"
-															var="grupoDespesa" itemValue="#{grupoDespesa.codigo}"
-															itemLabel="#{grupoDespesa.nomegrupodespesa}" />
+															value="#{grupoDespesaReceitaBean.listagrupodespesareceitas}"
+															var="grupoDespesaReceita" itemValue="#{grupoDespesaReceita.codigo}"
+															itemLabel="#{grupoDespesaReceita.nome}" />
 													</h:selectOneMenu>
 												</div>
 											</div>
@@ -108,7 +108,7 @@
 												<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar"
 														update="messages" class="btn btn-success"
-														action="#{despesaBean.cadastraDespesa()}">
+														action="#{despesaReceitaBean.cadastraDespesaReceita()}">
 													</p:commandButton>
 												</div>
 											</div>
@@ -137,28 +137,28 @@
 														<thead>
 															<tr>
 																<th>Código</th>
-																<th class="text-center">Editar</th>
+																<th>Editar</th>
 																<th>Nome</th>
 																<th>Grupo</th>
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach items="#{despesaBean.listadespesas}"
-																var="despesa" cellspacing="0" width="100%">
+															<c:forEach items="#{despesaReceitaBean.listadespesareceitas}"
+																var="despesareceita" cellspacing="0" width="100%"> 
 																<tr>
-																	<td>#{despesa.codigo}</td>										
+																	<td>#{despesareceita.codigo}</td>										
 																	<td>
 																	<p:commandButton value=""
 																	style="font-size:10px;"
 																	onclick="window.location='#Campo'"
 																	styleClass="fas fa-edit btn btn-primary" 
 																	update="@(.form-control) @(.calendar) Campo">
-																	<f:setPropertyActionListener value="#{despesa}" 
-																	target="#{despesaBean.despesa}"/>
+																	<f:setPropertyActionListener value="#{despesareceita}" 
+																	target="#{despesaReceitaBean.despesareceita}"/>
 																	</p:commandButton>
 																	</td>
-																	<td>#{despesa.nome}</td>
-																	<td>#{despesa.grupodespesa}</td>
+																	<td>#{despesareceita.nome}</td>
+																	<td>#{despesareceita.grupodespesareceita}</td>
 																</tr>
 															</c:forEach>
 														</tbody>
@@ -177,7 +177,6 @@
 		</ui:composition>
 
 		<!-- jQuery <script src="resources/jquery/dist/jquery.min.js"></script>-->
-
 		<!-- Bootstrap -->
 		<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
 		<!-- FastClick -->
@@ -188,25 +187,17 @@
 		<script src="resources/iCheck/icheck.min.js"></script>
 		<!-- Datatables -->
 		<script src="resources/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script
-			src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script
-			src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="resources/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="resources/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.flash.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.html5.min.js"></script>
 		<script src="resources/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script
-			src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script
-			src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script
-			src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script
-			src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="resources/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="resources/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="resources/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="resources/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="resources/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 		<script src="resources/jszip/dist/jszip.min.js"></script>
 		<script src="resources/pdfmake/build/pdfmake.min.js"></script>
 		<script src="resources/pdfmake/build/vfs_fonts.js"></script>

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.CentroResultado;
 import br.com.grupoferraz.financeiro.entity.ContaFinanceira;
-import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Empresa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.Historico;
@@ -124,7 +124,7 @@ public class AdiantamentoDAO {
 				CentroResultado obj3 = getCentroResultados(Adiantamento.getCentroresultado_codigo());
 				Adiantamento.setCentroresultado(obj3);
 				Adiantamento.setDespesa_codigo(rs.getInt("despesa_codigo"));
-				Despesa obj4 = getDespesa(Adiantamento.getDespesa_codigo());
+				DespesaReceita obj4 = getDespesa(Adiantamento.getDespesa_codigo());
 				Adiantamento.setDespesa(obj4);
 				Adiantamento.setValor(rs.getFloat("valor"));
 				Adiantamento.setHistoricopadrao_codigo(rs.getInt("historicopadrao_codigo"));
@@ -145,8 +145,8 @@ public class AdiantamentoDAO {
 	}
 	
 	//Método para mostrar o nome das despesas na tabela de Adiantamentos, ao invés do Código
-	public Despesa getDespesa(int idGrupo) throws SQLException {
-		Despesa grupo = new Despesa();
+	public DespesaReceita getDespesa(int idGrupo) throws SQLException {
+		DespesaReceita grupo = new DespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement("select * from despesa where codigo = ?");
@@ -156,7 +156,7 @@ public class AdiantamentoDAO {
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNome(rs.getString("nome"));
-			grupo.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
+			grupo.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
 		}
 		return grupo;
 	}

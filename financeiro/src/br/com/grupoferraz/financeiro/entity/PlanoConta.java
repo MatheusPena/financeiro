@@ -16,8 +16,8 @@ public class PlanoConta {
 	private BigDecimal icms;
 	private String observacao;
 	private Integer grupodespesa_codigo;
-	private GrupoDespesa grupodespesa;
-	private Despesa despesa;
+	private GrupoDespesaReceita grupodespesa;
+	private DespesaReceita despesa;
 
 	public String getCodigo() {
 		return codigo;
@@ -123,19 +123,19 @@ public class PlanoConta {
 		this.grupodespesa_codigo = grupodespesa_codigo;
 	}
 
-	public GrupoDespesa getGrupodespesa() {
+	public GrupoDespesaReceita getGrupodespesa() {
 		return grupodespesa;
 	}
 
-	public void setGrupodespesa(GrupoDespesa grupodespesa) {
+	public void setGrupodespesa(GrupoDespesaReceita grupodespesa) {
 		this.grupodespesa = grupodespesa;
 	}
 
-	public Despesa getDespesa() {
+	public DespesaReceita getDespesa() {
 		return despesa;
 	}
 
-	public void setDespesa(Despesa despesa) {
+	public void setDespesa(DespesaReceita despesa) {
 		this.despesa = despesa;
 	}
 

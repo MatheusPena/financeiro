@@ -61,23 +61,23 @@
 										<h:form id="demo-form2" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
 											<p:messages id="messages" />
-											<div class="form-group">
+								<!--  		<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="codigo" value="Código do grupo:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigo" required="true"
-													value="#{grupoDespesaBean.grupodespesa.codigo}"
+													value="#{grupoDespesaReceitaBean.grupodespesareceita.codigo}"
 													styleClass="form-control col-md-7 col-xs-12" />
 												</div>
-											</div>
+											</div> 		-->
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nome" value="Nome:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="nome" required="true"
-													value="#{grupoDespesaBean.grupodespesa.nomegrupodespesa}" 
+													value="#{grupoDespesaReceitaBean.grupodespesareceita.nome}" 
 													styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -87,14 +87,14 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="subgrupo" required="false"
-														value="#{grupoDespesaBean.grupodespesa.grupodespesa_codigo}"
+														value="#{grupoDespesaReceitaBean.grupodespesareceita.grupodespesareceita_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 														<f:selectItems
-															value="#{grupoDespesaBean.listagrupodespesas}"
-															var="grupoDespesa" itemValue="#{grupoDespesa.codigo}"
-															itemLabel="#{grupoDespesa.nomegrupodespesa}" />
+															value="#{grupoDespesaReceitaBean.listagrupodespesareceitas}"
+															var="grupoDespesaReceita" itemValue="#{grupoDespesaReceita.codigo}"
+															itemLabel="#{grupoDespesaReceita.nome}" />
 													</h:selectOneMenu>
 												</div>
 											</div>
@@ -103,7 +103,7 @@
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
-														action="#{grupoDespesaBean.cadastraGrupoDespesa}"
+														action="#{grupoDespesaReceitaBean.cadastraGrupoDespesaReceita}"
 														update="messages" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'"> 
 													</p:commandButton>
@@ -158,21 +158,21 @@
 												</thead>
 												<tbody>
 													<c:forEach
-														items="#{grupoDespesaBean.listagrupodespesas}"
-														var="grupodespesa" cellspacing="0" width="100%">
+														items="#{grupoDespesaReceitaBean.listagrupodespesareceitas}"
+														var="grupodespesareceita" cellspacing="0" width="100%">
 														<tr>
-															<td>#{grupodespesa.codigo}</td>
+															<td>#{grupodespesareceita.codigo}</td>
 															<td><p:commandButton value=""
 																	style="font-size:10px; "
 																	styleClass="fas fa-edit btn btn-primary"
 																	onclick="window.location='#demo-form2'"
 																	update="@(.form-control)">
 																	<f:setPropertyActionListener
-																	value="#{grupodespesa}"
-																	target="#{grupoDespesaBean.grupodespesa}" />
+																	value="#{grupodespesareceita}"
+																	target="#{grupoDespesaReceitaBean.grupodespesareceita}" />
 																</p:commandButton></td>
-															<td>#{grupodespesa.nomegrupodespesa}</td>
-															<td>#{grupodespesa.subgrupo}</td>
+															<td>#{grupodespesareceita.nome}</td>
+															<td>#{grupodespesareceita.subgrupo}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

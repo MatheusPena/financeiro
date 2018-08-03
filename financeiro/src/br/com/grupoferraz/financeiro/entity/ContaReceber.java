@@ -18,7 +18,7 @@ public class ContaReceber {
 	private Estabelecimento estabelecimento;
 	private CentroResultado centroresultado;
 	private Empresa empresa;
-	private Despesa receita;
+	private DespesaReceita receita;
 
 	public int getCodigo() {
 		return codigo;
@@ -132,11 +132,11 @@ public class ContaReceber {
 		this.empresa = empresa;
 	}
 
-	public Despesa getReceita() {
+	public DespesaReceita getReceita() {
 		return receita;
 	}
 
-	public void setReceita(Despesa receita) {
+	public void setReceita(DespesaReceita receita) {
 		this.receita = receita;
 	}
 

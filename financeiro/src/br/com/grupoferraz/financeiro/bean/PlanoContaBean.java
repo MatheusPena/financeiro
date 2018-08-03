@@ -8,9 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.grupoferraz.financeiro.dao.DespesaDAO;
+import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.PlanoContaDAO;
-import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.PlanoConta;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
@@ -46,21 +46,21 @@ public class PlanoContaBean implements Serializable {
 		return "";
 	}
 
-	// lista a lista do autocomplete no campo despesas
-	public List<Despesa> completeText(String query) {
-		DespesaDAO despesasDAO = new DespesaDAO();
+	// lista a lista do autocomplete no campo despesas/receitas
+	public List<DespesaReceita> completeText(String query) {
+		DespesaReceitaDAO despesareceitaDAO = new DespesaReceitaDAO();
 
-		return despesasDAO.listadespesas(query);
+		return despesareceitaDAO.listadespesas(query);
 	}
 
-	// seleciona um dos objetos da lista no campo despesas
+	// seleciona um dos objetos da lista no campo despesas/receitas
 	public void selecionar() {
 
-		Despesa despesa = planoConta.getDespesa();
+		DespesaReceita despesareceita = planoConta.getDespesa();
 
-		if (despesa != null) {
-			planoConta.setNome(despesa.getCodigo());
-			planoConta.setGrupodespesa_codigo(despesa.getGrupodespesa_codigo());
+		if (despesareceita != null) {
+			planoConta.setNome(despesareceita.getCodigo());
+			planoConta.setGrupodespesa_codigo(despesareceita.getGrupodespesareceita_codigo());
 		}
 
 	}

@@ -11,10 +11,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.ContaReceberDAO;
-import br.com.grupoferraz.financeiro.dao.DespesaDAO;
+import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.entity.ContaReceber;
-import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
@@ -95,8 +95,8 @@ public class ContaReceberBean implements Serializable {
 	}
 
 	// lista a lista do autocomplete no campo despesas
-	public List<Despesa> completeReceita(String query) {
-		DespesaDAO despesasDAO = new DespesaDAO();
+	public List<DespesaReceita> completeReceita(String query) {
+		DespesaReceitaDAO despesasDAO = new DespesaReceitaDAO();
 
 		return despesasDAO.listadespesas(query);
 	}
@@ -104,7 +104,7 @@ public class ContaReceberBean implements Serializable {
 	// seleciona um dos objetos da lista no campo despesas
 	public void selecionarReceita() {
 
-		Despesa despesa = contaReceber.getReceita();
+		DespesaReceita despesa = contaReceber.getReceita();
 
 		if (despesa != null) {
 			contaReceber.setReceita_codigo(despesa.getCodigo());

@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.CentroResultado;
-import br.com.grupoferraz.financeiro.entity.Despesa;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Empresa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.PlanoConta;
@@ -115,7 +115,7 @@ public class RateioCRDAO {
 			grupo.setCodigo(rs.getString("codigo"));
 			grupo.setNome(rs.getInt("nome"));
 			int idGrup = grupo.getNome();
-			Despesa desp = getDespesa(idGrup);
+			DespesaReceita desp = getDespesa(idGrup);
 			grupo.setDespesa(desp);
 			grupo.setTipo(rs.getString("tipo"));
 			grupo.setNatureza(rs.getString("natureza"));
@@ -133,8 +133,8 @@ public class RateioCRDAO {
 	}
 
 	// lista todos as despesas cadastradas no banco de dados
-	public Despesa getDespesa(int idGrupo) throws SQLException {
-		Despesa grupo = new Despesa();
+	public DespesaReceita getDespesa(int idGrupo) throws SQLException {
+		DespesaReceita grupo = new DespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement("select * from despesa where codigo = ?");
@@ -144,7 +144,7 @@ public class RateioCRDAO {
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNome(rs.getString("nome"));
-			grupo.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
+			grupo.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
 		}
 		return grupo;
 	}
