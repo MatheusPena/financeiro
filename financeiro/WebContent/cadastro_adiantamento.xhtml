@@ -142,7 +142,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="fornecedor" required="true"
-														value="#{adiantamentoBean.adiantamento.fornecedorcpf}"
+														value="#{adiantamentoBean.adiantamento.fornecedor_cpf}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>											
@@ -157,7 +157,7 @@
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{contasFinanceirasBean.listacontafinanceira}"
+															items="#{contaFinanceiraBean.listacontasfinanceiras}"
 															var="contasfinanceiras" cellspacing="0" width="100%">
 															<f:selectItem itemLabel="#{contasfinanceiras.nome}"
 																itemValue="#{contasfinanceiras.codigo}" />
@@ -192,7 +192,7 @@
 													<p:outputPanel id="nomedp">
 														<p:autoComplete id="acMinLength" minQueryLength="1"
 															dropdown="false" converter="converter"
-															value="#{adiantamentoBean.adiantamento.despesa}"
+															value="#{adiantamentoBean.adiantamento.despesareceita}"
 															inputStyleClass="form-control inputTest" forceSelection="true"
 															inputStyle="padding-right:311px" panelStyleClass="panelTest"
 															completeMethod="#{adiantamentoBean.completeText}" 

@@ -113,7 +113,7 @@ public class DespesaReceitaDAO {
 	}
 	
 	//Lista o auto complete de despesas na página do plano de contas (pelo objeto) 
-	public List<DespesaReceita> listadespesas(String codigo) {
+	public List<DespesaReceita> listadespesareceitas(String codigo) {
 
 		ArrayList<DespesaReceita> lista = new ArrayList<DespesaReceita>();
 

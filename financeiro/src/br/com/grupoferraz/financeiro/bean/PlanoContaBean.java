@@ -7,12 +7,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.PlanoContaDAO;
 import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.PlanoConta;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
@@ -30,9 +28,8 @@ public class PlanoContaBean implements Serializable {
 	// cadastro um plano de contas no banco exibindo uma mensagem
 	public String cadastraPlanoConta() {
 
-		ConexaoBD.getConexao();
-		PlanoContaDAO PlanoContass = new PlanoContaDAO();
-		if (PlanoContass.insertPlanoContas(this.planoConta)) {
+		PlanoContaDAO PlanoContaDAO = new PlanoContaDAO();
+		if (PlanoContaDAO.insertPlanoContas(this.planoConta)) {
 			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Plano de Conta cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -40,8 +37,7 @@ public class PlanoContaBean implements Serializable {
 			return "";
 
 		}
-		ConexaoBD.fecharConexao();
-
+		
 		this.planoConta = new PlanoConta();
 		return "";
 	}
@@ -50,17 +46,17 @@ public class PlanoContaBean implements Serializable {
 	public List<DespesaReceita> completeText(String query) {
 		DespesaReceitaDAO despesareceitaDAO = new DespesaReceitaDAO();
 
-		return despesareceitaDAO.listadespesas(query);
+		return despesareceitaDAO.listadespesareceitas(query);
 	}
 
 	// seleciona um dos objetos da lista no campo despesas/receitas
 	public void selecionar() {
 
-		DespesaReceita despesareceita = planoConta.getDespesa();
+		DespesaReceita despesareceita = planoConta.getDespesareceita();
 
 		if (despesareceita != null) {
 			planoConta.setNome(despesareceita.getCodigo());
-			planoConta.setGrupodespesa_codigo(despesareceita.getGrupodespesareceita_codigo());
+			planoConta.setGrupodespesareceita_codigo(despesareceita.getGrupodespesareceita_codigo());
 		}
 
 	}

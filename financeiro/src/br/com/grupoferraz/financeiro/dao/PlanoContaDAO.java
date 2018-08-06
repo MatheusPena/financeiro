@@ -5,12 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.GrupoDespesaReceita;
 import br.com.grupoferraz.financeiro.entity.PlanoConta;
@@ -24,12 +22,12 @@ public class PlanoContaDAO {
 		try {
 
 			StringBuilder str = new StringBuilder();
-			str.append("insert into planoconta (codigo, nome, tipo, natureza, iss,"
-					+ "inss, irpf, pis, conta, atividade, icms, observacao, grupodespesa_codigo)"
+			str.append("insert into plano_conta (codigo, nome, tipo, natureza, iss,"
+					+ "inss, irpf, pis, conta, atividade, icms, observacao, grupodespesareceita_codigo)"
 					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?, tipo = ?, "
 					+ "natureza = ?, iss = ?, inss = ?, irpf = ?, pis = ?, "
-					+ "conta = ?, atividade = ?, icms = ?, observacao = ?,  " + "grupodespesa_codigo = ? ");
+					+ "conta = ?, atividade = ?, icms = ?, observacao = ?, grupodespesareceita_codigo = ? ");
 
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setString(1, PlanoConta.getCodigo());
@@ -44,11 +42,8 @@ public class PlanoContaDAO {
 			preparedStatement.setString(10, PlanoConta.getAtividade());
 			preparedStatement.setBigDecimal(11, PlanoConta.getIcms());
 			preparedStatement.setString(12, PlanoConta.getObservacao());
-			if (PlanoConta.getGrupodespesa_codigo() != null) {
-				preparedStatement.setInt(13, PlanoConta.getGrupodespesa_codigo());
-			} else {
-				preparedStatement.setNull(13, Types.INTEGER);
-			}
+			preparedStatement.setInt(13, PlanoConta.getGrupodespesareceita_codigo());
+					
 			preparedStatement.setString(14, PlanoConta.getCodigo());
 			preparedStatement.setInt(15, PlanoConta.getNome());
 			preparedStatement.setString(16, PlanoConta.getTipo());
@@ -61,7 +56,7 @@ public class PlanoContaDAO {
 			preparedStatement.setString(23, PlanoConta.getAtividade());
 			preparedStatement.setBigDecimal(24, PlanoConta.getIcms());
 			preparedStatement.setString(25, PlanoConta.getObservacao());
-			preparedStatement.setInt(26, PlanoConta.getGrupodespesa_codigo());
+			preparedStatement.setInt(26, PlanoConta.getGrupodespesareceita_codigo());
 
 			preparedStatement.execute();
 			return true;
@@ -83,8 +78,8 @@ public class PlanoContaDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select codigo, nome, tipo, natureza, iss, inss, " + "irpf, pis, conta, atividade, icms, "
-					+ "observacao, grupodespesa_codigo from planoconta";
+			String sql = "select codigo, nome, tipo, natureza, iss, inss, irpf, pis, conta, atividade, icms, "
+					+ "observacao, grupodespesareceita_codigo from plano_conta";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -93,8 +88,8 @@ public class PlanoContaDAO {
 				PlanoConta.setCodigo(rs.getString(1));
 				PlanoConta.setNome(rs.getInt(2));
 				int idGrupo0 = PlanoConta.getNome();
-				DespesaReceita despesa = getDespesa(idGrupo0);
-				PlanoConta.setDespesa(despesa);
+				DespesaReceita despesareceita = getDespesareceita(idGrupo0);
+				PlanoConta.setDespesareceita(despesareceita);
 				PlanoConta.setTipo(rs.getString(3));
 				PlanoConta.setNatureza(rs.getString(4));
 				PlanoConta.setIss(rs.getString(5));
@@ -105,10 +100,10 @@ public class PlanoContaDAO {
 				PlanoConta.setAtividade(rs.getString(10));
 				PlanoConta.setIcms(rs.getBigDecimal(11));
 				PlanoConta.setObservacao(rs.getString(12));
-				PlanoConta.setGrupodespesa_codigo(rs.getInt(13));
-				int id = PlanoConta.getGrupodespesa_codigo();
-				GrupoDespesaReceita grupodespesa = getGrupoDespesa(id);
-				PlanoConta.setGrupodespesa(grupodespesa);
+				PlanoConta.setGrupodespesareceita_codigo(rs.getInt(13));
+				int id = PlanoConta.getGrupodespesareceita_codigo();
+				GrupoDespesaReceita grupodespesareceita = getGrupoDespesaReceita(id);
+				PlanoConta.setGrupodespesareceita(grupodespesareceita);
 				lista.add(PlanoConta);
 			}
 
@@ -121,15 +116,15 @@ public class PlanoContaDAO {
 		return lista;
 	}
 
-	// Lista o auto complete de plano de contas na página do plano de contas (pelo
-	// objeto)
-	public List<PlanoConta> listaplano(String nomeDespesa) {
+	// Lista o auto complete de plano de contas na página do plano de contas (pelo objeto)
+	public List<PlanoConta> listaplano(String nomeDespesaReceita) {
 
 		ArrayList<PlanoConta> lista = new ArrayList<PlanoConta>();
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		String sql = "select * from planoconta p join despesa d on p.nome = d.codigo where d.nome like '%" + nomeDespesa + "%'";
+		String sql = "select * from planoconta p join despesa_receita d on p.nome = d.codigo "
+				+ "where d.nome like '%" + nomeDespesaReceita + "%'";
 
 		try {
 
@@ -143,8 +138,8 @@ public class PlanoContaDAO {
 				plano.setCodigo(rs.getString("codigo"));
 				plano.setNome(rs.getInt("nome"));
 				int idGrup = plano.getNome();
-				DespesaReceita desp = getDespesa(idGrup);
-				plano.setDespesa(desp);
+				DespesaReceita desp = getDespesareceita(idGrup);
+				plano.setDespesareceita(desp);
 				plano.setTipo(rs.getString("tipo"));
 				plano.setNatureza(rs.getString("natureza"));
 				plano.setIss(rs.getString("iss"));
@@ -155,7 +150,7 @@ public class PlanoContaDAO {
 				plano.setAtividade(rs.getString("atividade"));
 				plano.setIcms(rs.getBigDecimal("icms"));
 				plano.setObservacao(rs.getString("observacao"));
-				plano.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
+				plano.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
 				lista.add(plano);
 			}
 
@@ -168,12 +163,12 @@ public class PlanoContaDAO {
 		return lista;
 	}
 
-	// lista todos as despesas cadastradas no banco de dados
-	public DespesaReceita getDespesa(int idGrupo) throws SQLException {
+	// lista todos as despesas/receitas cadastradas no banco de dados
+	public DespesaReceita getDespesareceita(int idGrupo) throws SQLException {
 		DespesaReceita grupo = new DespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from despesa where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from despesa_receita where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -185,13 +180,13 @@ public class PlanoContaDAO {
 		return grupo;
 	}
 
-	// lista todos os grupo de despesas cadastradas no banco de dados
-	public GrupoDespesaReceita getGrupoDespesa(int idGrupo) throws SQLException {
+	// lista todos os grupo de despesas/receitas cadastradas no banco de dados
+	public GrupoDespesaReceita getGrupoDespesaReceita(int idGrupo) throws SQLException {
 		GrupoDespesaReceita grupo = new GrupoDespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao
-				.prepareStatement("select codigo, nomegrupodespesa from grupodespesa where codigo = ?");
+				.prepareStatement("select codigo, nome from grupo_despesa_receita where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

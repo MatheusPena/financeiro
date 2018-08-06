@@ -15,9 +15,9 @@ public class PlanoConta {
 	private String atividade;
 	private BigDecimal icms;
 	private String observacao;
-	private Integer grupodespesa_codigo;
-	private GrupoDespesaReceita grupodespesa;
-	private DespesaReceita despesa;
+	private int grupodespesareceita_codigo;
+	private GrupoDespesaReceita grupodespesareceita;
+	private DespesaReceita despesareceita;
 
 	public String getCodigo() {
 		return codigo;
@@ -115,28 +115,29 @@ public class PlanoConta {
 		this.observacao = observacao;
 	}
 
-	public Integer getGrupodespesa_codigo() {
-		return grupodespesa_codigo;
+
+	public int getGrupodespesareceita_codigo() {
+		return grupodespesareceita_codigo;
 	}
 
-	public void setGrupodespesa_codigo(Integer grupodespesa_codigo) {
-		this.grupodespesa_codigo = grupodespesa_codigo;
+	public void setGrupodespesareceita_codigo(int grupodespesareceita_codigo) {
+		this.grupodespesareceita_codigo = grupodespesareceita_codigo;
 	}
 
-	public GrupoDespesaReceita getGrupodespesa() {
-		return grupodespesa;
+	public GrupoDespesaReceita getGrupodespesareceita() {
+		return grupodespesareceita;
 	}
 
-	public void setGrupodespesa(GrupoDespesaReceita grupodespesa) {
-		this.grupodespesa = grupodespesa;
+	public void setGrupodespesareceita(GrupoDespesaReceita grupodespesareceita) {
+		this.grupodespesareceita = grupodespesareceita;
 	}
 
-	public DespesaReceita getDespesa() {
-		return despesa;
+	public DespesaReceita getDespesareceita() {
+		return despesareceita;
 	}
 
-	public void setDespesa(DespesaReceita despesa) {
-		this.despesa = despesa;
+	public void setDespesareceita(DespesaReceita despesareceita) {
+		this.despesareceita = despesareceita;
 	}
 
 	@Override
@@ -168,11 +169,11 @@ public class PlanoConta {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		if (despesa != null) {
-			return despesa.getNome();
+		if (despesareceita != null) {
+			return despesareceita.getNome();
 		}
 		return "-";
 	}

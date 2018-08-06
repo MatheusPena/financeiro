@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,12 +30,12 @@ public class AdiantamentoDAO {
 			StringBuilder str = new StringBuilder();
 			str.append(
 					"insert into adiantamento (codigo, data, valor, observacao, estabelecimento_codigo, empresa_cnpj, "
-					+ "estabelecimento_nome, despesa_nome, fornecedorcpf, contafinanceira_codigo,"
+					+ "estabelecimento_nome, despesa_nome, fornecedor_cpf, contafinanceira_codigo,"
 					+ "centroresultado_codigo, despesa_codigo, historicopadrao_codigo)"
 					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			str.append(
 					"on duplicate key update codigo = ?, data = ?, valor = ?, observacao = ?, estabelecimento_codigo = ?, "
-					+ "empresa_cnpj = ?, estabelecimento_nome = ?, despesa_nome = ?, fornecedorcpf = ?, "
+					+ "empresa_cnpj = ?, estabelecimento_nome = ?, despesa_nome = ?, fornecedor_cpf = ?, "
 					+ "contafinanceira_codigo = ?, centroresultado_codigo = ?, despesa_codigo = ?, historicopadrao_codigo = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, Adiantamento.getCodigo());
@@ -52,15 +51,11 @@ public class AdiantamentoDAO {
 			preparedStatement.setString(6, Adiantamento.getEmpresa_cnpj());
 			preparedStatement.setString(7, Adiantamento.getEstabelecimento_nome());
 			preparedStatement.setString(8, Adiantamento.getDespesa_nome());
-			preparedStatement.setString(9, Adiantamento.getFornecedorcpf());
+			preparedStatement.setString(9, Adiantamento.getFornecedor_cpf());
 			preparedStatement.setInt(10, Adiantamento.getContafinanceira_codigo());
 			preparedStatement.setInt(11, Adiantamento.getCentroresultado_codigo());
 			preparedStatement.setInt(12, Adiantamento.getDespesa_codigo());
-			if (Adiantamento.getHistoricopadrao_codigo() != null) {
-				preparedStatement.setInt(13, Adiantamento.getHistoricopadrao_codigo());
-			} else {
-				preparedStatement.setNull(13, Types.INTEGER);
-			}
+			preparedStatement.setInt(13, Adiantamento.getHistoricopadrao_codigo());
 
 			preparedStatement.setInt(14, Adiantamento.getCodigo());
 			preparedStatement.setDate(15, new java.sql.Date(t));
@@ -70,15 +65,11 @@ public class AdiantamentoDAO {
 			preparedStatement.setString(19, Adiantamento.getEmpresa_cnpj());
 			preparedStatement.setString(20, Adiantamento.getEstabelecimento_nome());
 			preparedStatement.setString(21, Adiantamento.getDespesa_nome());
-			preparedStatement.setString(22, Adiantamento.getFornecedorcpf());
+			preparedStatement.setString(22, Adiantamento.getFornecedor_cpf());
 			preparedStatement.setInt(23, Adiantamento.getContafinanceira_codigo());
 			preparedStatement.setInt(24, Adiantamento.getCentroresultado_codigo());
 			preparedStatement.setInt(25, Adiantamento.getDespesa_codigo());
-			if (Adiantamento.getHistoricopadrao_codigo() != null) {
-				preparedStatement.setInt(26, Adiantamento.getHistoricopadrao_codigo());
-			} else {
-				preparedStatement.setNull(26, Types.INTEGER);
-			}
+			preparedStatement.setInt(26, Adiantamento.getHistoricopadrao_codigo());
 
 			preparedStatement.execute();
 			return true;
@@ -116,7 +107,7 @@ public class AdiantamentoDAO {
 				Adiantamento.setEmpresa(obj6);
 				Adiantamento.setEstabelecimento_nome(rs.getString("estabelecimento_nome"));
 				Adiantamento.setDespesa_nome(rs.getString("despesa_nome"));
-				Adiantamento.setFornecedorcpf(rs.getString("fornecedorcpf"));
+				Adiantamento.setFornecedor_cpf(rs.getString("fornecedor_cpf"));
 				Adiantamento.setContafinanceira_codigo(rs.getInt("contafinanceira_codigo"));
 				ContaFinanceira obj2 = getContaFinanceira(Adiantamento.getContafinanceira_codigo());
 				Adiantamento.setContafinanceira(obj2);
@@ -125,7 +116,7 @@ public class AdiantamentoDAO {
 				Adiantamento.setCentroresultado(obj3);
 				Adiantamento.setDespesa_codigo(rs.getInt("despesa_codigo"));
 				DespesaReceita obj4 = getDespesa(Adiantamento.getDespesa_codigo());
-				Adiantamento.setDespesa(obj4);
+				Adiantamento.setDespesareceita(obj4);
 				Adiantamento.setValor(rs.getFloat("valor"));
 				Adiantamento.setHistoricopadrao_codigo(rs.getInt("historicopadrao_codigo"));
 				Historico obj5 = getHistoricoPadrao(Adiantamento.getHistoricopadrao_codigo());
@@ -149,7 +140,7 @@ public class AdiantamentoDAO {
 		DespesaReceita grupo = new DespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from despesa where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from despesa_receita where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -183,7 +174,7 @@ public class AdiantamentoDAO {
 		ContaFinanceira grupo = new ContaFinanceira();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from contafinanceira where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from conta_financeira where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -195,7 +186,6 @@ public class AdiantamentoDAO {
 			grupo.setDigagencia(rs.getInt("digagencia"));
 			grupo.setConta(rs.getInt("conta"));
 			grupo.setDigconta(rs.getInt("digconta"));
-			grupo.setConta_contabil(rs.getString("conta_contabil"));
 			grupo.setObservacao(rs.getString("observacao"));
 			grupo.setGrupocontafinanceira_codigo(rs.getInt("grupocontafinanceira_codigo"));
 		}
@@ -207,7 +197,7 @@ public class AdiantamentoDAO {
 		CentroResultado grupo = new CentroResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from centroresultado where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from centro_resultado where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

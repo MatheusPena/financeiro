@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import br.com.grupoferraz.financeiro.entity.GrupoContaFinanceira;
 import br.com.grupoferraz.financeiro.entity.ContaFinanceira;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
@@ -20,11 +19,11 @@ public class ContaFinanceiraDAO {
 	public boolean insertContasFinanceiras(ContaFinanceira ContasFinanceiras) {
 		try {
 			StringBuilder str = new StringBuilder();
-			str.append("INSERT INTO financeiro.contafinanceira (codigo,nome,banco,agenciabanco,"
-					+ "digagencia,conta,digconta,conta_contabil,observacao,grupocontafinanceira_codigo) "
-					+ "values (?,?,?,?,?,?,?,?,?,?)");
+			str.append("INSERT INTO conta_financeira (codigo,nome,banco,agenciabanco,"
+					+ "digagencia,conta,digconta,observacao,grupocontafinanceira_codigo) "
+					+ "values (?,?,?,?,?,?,?,?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?, banco = ?, agenciabanco = ?, digagencia = ?,"
-					+ "conta = ?, digconta = ?, conta_contabil = ?, observacao = ?, grupocontafinanceira_codigo = ? ");
+					+ "conta = ?, digconta = ?, observacao = ?, grupocontafinanceira_codigo = ? ");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, ContasFinanceiras.getCodigo());
 			preparedStatement.setString(2, ContasFinanceiras.getNome());
@@ -33,20 +32,18 @@ public class ContaFinanceiraDAO {
 			preparedStatement.setInt(5, ContasFinanceiras.getDigagencia());
 			preparedStatement.setInt(6, ContasFinanceiras.getConta());
 			preparedStatement.setInt(7, ContasFinanceiras.getDigconta());
-			preparedStatement.setString(8, ContasFinanceiras.getConta_contabil());
-			preparedStatement.setString(9, ContasFinanceiras.getObservacao());
-			preparedStatement.setInt(10, ContasFinanceiras.getGrupocontafinanceira_codigo());
+			preparedStatement.setString(8, ContasFinanceiras.getObservacao());
+			preparedStatement.setInt(9, ContasFinanceiras.getGrupocontafinanceira_codigo());
 
-			preparedStatement.setInt(11, ContasFinanceiras.getCodigo());
-			preparedStatement.setString(12, ContasFinanceiras.getNome());
-			preparedStatement.setString(13, ContasFinanceiras.getBanco());
-			preparedStatement.setInt(14, ContasFinanceiras.getAgenciabanco());
-			preparedStatement.setInt(15, ContasFinanceiras.getDigagencia());
-			preparedStatement.setInt(16, ContasFinanceiras.getConta());
-			preparedStatement.setInt(17, ContasFinanceiras.getDigconta());
-			preparedStatement.setString(18, ContasFinanceiras.getConta_contabil());
-			preparedStatement.setString(19, ContasFinanceiras.getObservacao());
-			preparedStatement.setInt(20, ContasFinanceiras.getGrupocontafinanceira_codigo());
+			preparedStatement.setInt(10, ContasFinanceiras.getCodigo());
+			preparedStatement.setString(11, ContasFinanceiras.getNome());
+			preparedStatement.setString(12, ContasFinanceiras.getBanco());
+			preparedStatement.setInt(13, ContasFinanceiras.getAgenciabanco());
+			preparedStatement.setInt(14, ContasFinanceiras.getDigagencia());
+			preparedStatement.setInt(15, ContasFinanceiras.getConta());
+			preparedStatement.setInt(16, ContasFinanceiras.getDigconta());
+			preparedStatement.setString(17, ContasFinanceiras.getObservacao());
+			preparedStatement.setInt(18, ContasFinanceiras.getGrupocontafinanceira_codigo());
 
 			preparedStatement.execute();
 
@@ -69,7 +66,7 @@ public class ContaFinanceiraDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from contafinanceira ";
+			String sql = "select * from conta_financeira ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -85,7 +82,6 @@ public class ContaFinanceiraDAO {
 				ContasFinanceiras.setDigagencia(rs.getInt("digagencia"));
 				ContasFinanceiras.setConta(rs.getInt("conta"));
 				ContasFinanceiras.setDigconta(rs.getInt("digconta"));
-				ContasFinanceiras.setConta_contabil(rs.getString("conta_contabil"));
 				ContasFinanceiras.setObservacao(rs.getString("observacao"));
 
 				lista.add(ContasFinanceiras);
@@ -106,7 +102,7 @@ public class ContaFinanceiraDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao
-				.prepareStatement("select codigo, nome from grupocontafinanceira where codigo = ?");
+				.prepareStatement("select codigo, nome from grupo_conta_financeira where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

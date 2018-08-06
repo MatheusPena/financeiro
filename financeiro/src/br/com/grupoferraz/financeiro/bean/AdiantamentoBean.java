@@ -81,26 +81,22 @@ public class AdiantamentoBean implements Serializable {
 		
 //		Autocomplete referente à Despesas
 		public List<DespesaReceita> completeText(String query) {
-			DespesaReceitaDAO despesasDAO = new DespesaReceitaDAO();
+			DespesaReceitaDAO despesareceitaDAO = new DespesaReceitaDAO();
 
-			return despesasDAO.listadespesas(query);
+			return despesareceitaDAO.listadespesareceitas(query);
 		}
 
 
 		public void selecionarDespesa() {
 			
-			DespesaReceita despesa = adiantamento.getDespesa();
+			DespesaReceita despesa = adiantamento.getDespesareceita();
 			
 			if (despesa != null) {
 				adiantamento.setDespesa_codigo(despesa.getCodigo());
 				adiantamento.setDespesa_nome(despesa.getNome());
 			}
-			System.out.println("despesa "+despesa.getNome());
+	
 		}
-		
-	
-	
-	
 	
 //	Getters e Setters do Adiantamento	
 	public Adiantamento getAdiantamento() {

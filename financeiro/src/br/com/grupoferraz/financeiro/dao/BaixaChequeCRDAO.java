@@ -181,7 +181,6 @@ public class BaixaChequeCRDAO {
 			grupo.setDigagencia(rs.getInt("digagencia"));
 			grupo.setConta(rs.getInt("conta"));
 			grupo.setDigconta(rs.getInt("digconta"));
-			grupo.setConta_contabil(rs.getString("conta_contabil"));
 			grupo.setObservacao(rs.getString("observacao"));
 			grupo.setGrupocontafinanceira_codigo(rs.getInt("grupocontafinanceira_codigo"));
 		}

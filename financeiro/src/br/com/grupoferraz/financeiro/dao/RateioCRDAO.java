@@ -116,7 +116,7 @@ public class RateioCRDAO {
 			grupo.setNome(rs.getInt("nome"));
 			int idGrup = grupo.getNome();
 			DespesaReceita desp = getDespesa(idGrup);
-			grupo.setDespesa(desp);
+			grupo.setDespesareceita(desp);
 			grupo.setTipo(rs.getString("tipo"));
 			grupo.setNatureza(rs.getString("natureza"));
 			grupo.setInss(rs.getString("iss"));
@@ -127,7 +127,7 @@ public class RateioCRDAO {
 			grupo.setAtividade(rs.getString("atividade"));
 			grupo.setIcms(rs.getBigDecimal("icms"));
 			grupo.setObservacao(rs.getString("observacao"));
-			grupo.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
+			grupo.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
 		}
 		return grupo;
 	}

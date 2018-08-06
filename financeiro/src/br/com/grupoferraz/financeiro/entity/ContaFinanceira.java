@@ -8,7 +8,6 @@ public class ContaFinanceira {
 	private int digagencia;
 	private int conta;
 	private int digconta;
-	private String conta_contabil;
 	private String observacao;
 	private int grupocontafinanceira_codigo;
 	private GrupoContaFinanceira grupocontafinanceira;
@@ -83,14 +82,6 @@ public class ContaFinanceira {
 
 	public void setDigconta(int digconta) {
 		this.digconta = digconta;
-	}
-
-	public String getConta_contabil() {
-		return conta_contabil;
-	}
-
-	public void setConta_contabil(String conta_contabil) {
-		this.conta_contabil = conta_contabil;
 	}
 
 	public String getObservacao() {

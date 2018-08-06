@@ -80,7 +80,7 @@
 													<p:outputPanel id="nome">
 														<p:autoComplete id="Despesa" minQueryLength="1"
 															converter="converter" required="true"
-															value="#{planoContaBean.planoConta.despesa}"
+															value="#{planoContaBean.planoConta.despesareceita}"
 															inputStyleClass="form-control inputTest" forceSelection="true"
 															inputStyle="padding-right:311px" panelStyleClass="panelTest"
 															var="d" itemLabel="#{d.nome}" itemValue="#{d}"
@@ -99,14 +99,14 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:outputPanel styleClass="valor">
 													<h:selectOneMenu id="subgrupo" required="false"
-														value="#{planoContaBean.planoConta.grupodespesa_codigo}"
+														value="#{planoContaBean.planoConta.grupodespesareceita_codigo}"
 														style="width:320px"
 														styleClass="form-control col-md-7 col-xs-12">
 														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 														<f:selectItems
-															value="#{grupoDespesaBean.listagrupodespesas}"
-															var="grupoDespesa" itemValue="#{grupoDespesa.codigo}"
-															itemLabel="#{grupoDespesa.nomegrupodespesa}" />
+															value="#{grupoDespesaReceitaBean.listagrupodespesareceitas}"
+															var="grupoDespesaReceita" itemValue="#{grupoDespesaReceita.codigo}"
+															itemLabel="#{grupoDespesaReceita.nome}" />
 													</h:selectOneMenu>
 													</p:outputPanel>
 												</div>
@@ -321,8 +321,8 @@
 															target="#{planoContaBean.planoConta}"/>
 															</p:commandButton>
 															</td>
-															<td>#{plano.despesa}</td>
-															<td>#{plano.grupodespesa.nomegrupodespesa}</td>
+															<td>#{plano.despesareceita}</td>
+															<td>#{plano.grupodespesareceita.nome}</td>
 															<td>#{plano.tipo}</td>
 															<td>#{plano.natureza}</td>
 															<td>#{plano.iss}</td>

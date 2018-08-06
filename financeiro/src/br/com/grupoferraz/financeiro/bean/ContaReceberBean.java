@@ -98,7 +98,7 @@ public class ContaReceberBean implements Serializable {
 	public List<DespesaReceita> completeReceita(String query) {
 		DespesaReceitaDAO despesasDAO = new DespesaReceitaDAO();
 
-		return despesasDAO.listadespesas(query);
+		return despesasDAO.listadespesareceitas(query);
 	}
 
 	// seleciona um dos objetos da lista no campo despesas

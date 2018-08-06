@@ -21,8 +21,8 @@ public class GrupoContaFinanceiraDAO {
 		try {
 
 			StringBuilder str = new StringBuilder();
-			str.append("insert into grupocontafinanceira (codigo, nome)" + " values (?,?)");
-			str.append("on duplicate key update codigo = ?, nome = ?");
+			str.append("insert into grupo_conta_financeira (codigo, nome) values (?,?)");
+			str.append(" on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupoContasFinanceiras.getCodigo());
 			preparedStatement.setString(2, grupoContasFinanceiras.getNome());
@@ -50,7 +50,7 @@ public class GrupoContaFinanceiraDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from grupocontafinanceira";
+			String sql = "select * from grupo_conta_financeira";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {

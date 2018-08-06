@@ -10,17 +10,17 @@ public class Adiantamento {
 	private String empresa_cnpj;
 	private String estabelecimento_nome;
 	private String despesa_nome;
-	private String fornecedorcpf;
+	private String fornecedor_cpf;
 	private int contafinanceira_codigo;
 	private int centroresultado_codigo;
 	private int despesa_codigo;
 	private float valor;
-	private Integer historicopadrao_codigo;
+	private int historicopadrao_codigo;
 	private String observacao;
 	private ContaFinanceira contafinanceira;
 	private Estabelecimento estabelecimento;
 	private CentroResultado centroresultado;
-	private DespesaReceita despesa;
+	private DespesaReceita despesareceita;
 	private Historico historico;
 
 	public int getCodigo() {
@@ -72,13 +72,6 @@ public class Adiantamento {
 		this.despesa_nome = despesa_nome;
 	}
 
-	public String getFornecedorcpf() {
-		return fornecedorcpf;
-	}
-
-	public void setFornecedorcpf(String fornecedorcpf) {
-		this.fornecedorcpf = fornecedorcpf;
-	}
 
 	public int getContafinanceira_codigo() {
 		return contafinanceira_codigo;
@@ -112,11 +105,11 @@ public class Adiantamento {
 		this.valor = valor;
 	}
 
-	public Integer getHistoricopadrao_codigo() {
+	public int getHistoricopadrao_codigo() {
 		return historicopadrao_codigo;
 	}
 
-	public void setHistoricopadrao_codigo(Integer historicopadrao_codigo) {
+	public void setHistoricopadrao_codigo(int historicopadrao_codigo) {
 		this.historicopadrao_codigo = historicopadrao_codigo;
 	}
 
@@ -152,12 +145,21 @@ public class Adiantamento {
 		this.centroresultado = centroresultado;
 	}
 
-	public DespesaReceita getDespesa() {
-		return despesa;
+
+	public String getFornecedor_cpf() {
+		return fornecedor_cpf;
 	}
 
-	public void setDespesa(DespesaReceita despesa) {
-		this.despesa = despesa;
+	public void setFornecedor_cpf(String fornecedor_cpf) {
+		this.fornecedor_cpf = fornecedor_cpf;
+	}
+
+	public DespesaReceita getDespesareceita() {
+		return despesareceita;
+	}
+
+	public void setDespesareceita(DespesaReceita despesareceita) {
+		this.despesareceita = despesareceita;
 	}
 
 	public Historico getHistorico() {

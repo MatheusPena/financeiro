@@ -90,9 +90,9 @@ public class ContaPagarBean implements Serializable {
 		
 //	Autocomplete referente à Despesas
 	public List<DespesaReceita> completeText(String query) {
-		DespesaReceitaDAO despesasDAO = new DespesaReceitaDAO();
+		DespesaReceitaDAO despesareceitaDAO = new DespesaReceitaDAO();
 
-		return despesasDAO.listadespesas(query);
+		return despesareceitaDAO.listadespesareceitas(query);
 	}
 
 
@@ -104,7 +104,7 @@ public class ContaPagarBean implements Serializable {
 			contapagar.setDespesa_codigo(despesa.getCodigo());
 			contapagar.setDespesa_nome(despesa.getNome());
 		}
-		System.out.println("despesa "+despesa.getNome());
+
 	}
 	
 	
