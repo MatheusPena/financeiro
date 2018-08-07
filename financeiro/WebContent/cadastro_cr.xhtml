@@ -123,7 +123,7 @@
 															inputStyle="padding-right:311px" panelStyleClass="panelTest"
 															completeMethod="#{contaReceberBean.completeReceita}" 
 															effect="fade" var="est" itemValue="#{est}" 
-															itemLabel="#{est.nome}">															
+															itemLabel="#{est.despesareceita}">															
 															<p:ajax event="itemSelect" resetValues="true"
 																listener="#{contaReceberBean.selecionarReceita()}"
 																update="@(.receita) @this" process="@this" />
@@ -137,7 +137,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="receita"
-														value="#{contaReceberBean.contaReceber.nomereceita}"
+														value="#{contaReceberBean.contaReceber.receita_codigo}"
 														styleClass="form-control col-md-7 col-xs-12 receita" />
 												</div>
 											</div>

@@ -120,15 +120,9 @@ public class DespesaReceitaDAO {
 		}
 		return lista;
 	}
-<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
-	
-	//Lista o auto complete de despesas na página do plano de contas (pelo objeto) 
-	public List<DespesaReceita> listadespesareceitas(String codigo) {
-=======
 
 	// Lista o auto complete de despesas na página do plano de contas (pelo objeto)
-	public List<DespesaReceita> listadespesas(String codigo) {
->>>>>>> a2b7178 Atualizacao do contas a receber, receita/despesa e grupo cliente
+	public List<DespesaReceita> listadespesareceitas(String codigo) {
 
 		ArrayList<DespesaReceita> lista = new ArrayList<DespesaReceita>();
 

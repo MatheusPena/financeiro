@@ -27,10 +27,10 @@ public class ContaReceberDAO {
 		try {
 			StringBuilder str = new StringBuilder();
 			str.append(
-					"INSERT INTO financeiro.conta_receber (codigo,cliente_cpf,receita_codigo,documento,emissao,valor,observacao,estabelecimento_codigo,centroresultado_codigo, empresa_cnpj, nomereceita)"
-							+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+					"INSERT INTO financeiro.conta_receber (codigo,cliente_cpf,receita_codigo,documento,emissao,valor,observacao,estabelecimento_codigo,centroresultado_codigo, empresa_cnpj)"
+							+ "VALUES (?,?,?,?,?,?,?,?,?,?)");
 			str.append(
-					"on duplicate key update codigo = ?,cliente_cpf = ?,receita_codigo = ?,documento = ?,emissao = ?,valor = ?,observacao = ?,estabelecimento_codigo = ?,centroresultado_codigo = ?, empresa_cnpj = ?,nomereceita = ?");
+					"on duplicate key update codigo = ?,cliente_cpf = ?,receita_codigo = ?,documento = ?,emissao = ?,valor = ?,observacao = ?,estabelecimento_codigo = ?,centroresultado_codigo = ?, empresa_cnpj = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, ContaReceber.getCodigo());
 			preparedStatement.setString(2, ContaReceber.getCpf());
@@ -51,23 +51,21 @@ public class ContaReceberDAO {
 				preparedStatement.setNull(9, Types.INTEGER);
 			}
 			preparedStatement.setString(10, ContaReceber.getEmpresa_cnpj());
-			preparedStatement.setString(11, ContaReceber.getNomereceita());
 
-			preparedStatement.setInt(12, ContaReceber.getCodigo());
-			preparedStatement.setString(13, ContaReceber.getCpf());
-			preparedStatement.setString(14, ContaReceber.getReceita_codigo());
-			preparedStatement.setInt(15, ContaReceber.getDocumento());
-			preparedStatement.setDate(16, new java.sql.Date(t));
-			preparedStatement.setBigDecimal(17, ContaReceber.getValor());
-			preparedStatement.setString(18, ContaReceber.getObservacao());
-			preparedStatement.setInt(19, ContaReceber.getEstabelecimento_codigo());
+			preparedStatement.setInt(11, ContaReceber.getCodigo());
+			preparedStatement.setString(12, ContaReceber.getCpf());
+			preparedStatement.setString(13, ContaReceber.getReceita_codigo());
+			preparedStatement.setInt(14, ContaReceber.getDocumento());
+			preparedStatement.setDate(15, new java.sql.Date(t));
+			preparedStatement.setBigDecimal(16, ContaReceber.getValor());
+			preparedStatement.setString(17, ContaReceber.getObservacao());
+			preparedStatement.setInt(18, ContaReceber.getEstabelecimento_codigo());
 			if (ContaReceber.getCentroresultado_codigo() != null) {
-				preparedStatement.setInt(20, ContaReceber.getCentroresultado_codigo());
+				preparedStatement.setInt(19, ContaReceber.getCentroresultado_codigo());
 			} else {
-				preparedStatement.setNull(20, Types.INTEGER);
+				preparedStatement.setNull(19, Types.INTEGER);
 			}
-			preparedStatement.setString(21, ContaReceber.getEmpresa_cnpj());
-			preparedStatement.setString(22, ContaReceber.getNomereceita());
+			preparedStatement.setString(20, ContaReceber.getEmpresa_cnpj());
 
 			preparedStatement.execute();
 
@@ -106,7 +104,6 @@ public class ContaReceberDAO {
 				Estabelecimento estabelecimento = getEstabelecimento(obj1);
 				contareceber.setEstabelecimento(estabelecimento);
 				contareceber.setCpf(rs.getString("cliente_cpf"));
-				contareceber.setNomereceita(rs.getString("nomereceita"));
 				contareceber.setReceita_codigo(rs.getString("receita_codigo"));
 				String obj2 = contareceber.getReceita_codigo();
 				PlanoConta receita = getPlanoConta(obj2);
@@ -135,33 +132,32 @@ public class ContaReceberDAO {
 		PlanoConta grupo = new PlanoConta();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select codigo, nome, tipo, natureza, iss, \"\r\n"
-				+ "					+ \"inss, irpf, pis, conta, atividade, icms, observacao, grupodespesa_codigo from plano_conta where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from plano_conta where codigo = ?");
 		preparedStatement.setString(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
-			grupo.setCodigo(rs.getString("codigo"));
-			grupo.setNome(rs.getInt("nome"));
-			int idGrup = grupo.getNome();
-			DespesaReceita desp = getReceita(idGrup);
-			grupo.setDespesa(desp);
-			grupo.setTipo(rs.getString("tipo"));
-			grupo.setNatureza(rs.getString("natureza"));
-			grupo.setInss(rs.getString("iss"));
-			grupo.setInss(rs.getString("inss"));
-			grupo.setIrpf(rs.getString("irpf"));
-			grupo.setPis(rs.getString("pis"));
-			grupo.setConta(rs.getString("conta"));
-			grupo.setAtividade(rs.getString("atividade"));
-			grupo.setIcms(rs.getBigDecimal("icms"));
-			grupo.setObservacao(rs.getString("observacao"));
-			grupo.setGrupodespesa_codigo(rs.getInt("grupodespesa_codigo"));
+			grupo.setCodigo(rs.getString(1));
+			grupo.setNome(rs.getInt(2));
+			int idGrupo0 = grupo.getNome();
+			DespesaReceita despesareceita = getReceita(idGrupo0);
+			grupo.setDespesareceita(despesareceita);
+			grupo.setTipo(rs.getString(3));
+			grupo.setNatureza(rs.getString(4));
+			grupo.setIss(rs.getString(5));
+			grupo.setInss(rs.getString(6));
+			grupo.setIrpf(rs.getString(7));
+			grupo.setPis(rs.getString(8));
+			grupo.setConta(rs.getString(9));
+			grupo.setAtividade(rs.getString(10));
+			grupo.setIcms(rs.getBigDecimal(11));
+			grupo.setObservacao(rs.getString(12));
+			grupo.setGrupodespesareceita_codigo(rs.getInt(13));
 		}
 		return grupo;
 	}
 
-	// lista todos as despesas/receitas cadastradas no banco de dados
+	// lista todos as despesas cadastradas no banco de dados
 	public DespesaReceita getReceita(int idGrupo) throws SQLException {
 		DespesaReceita grupo = new DespesaReceita();
 		PreparedStatement preparedStatement;

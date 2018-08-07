@@ -43,7 +43,7 @@ public class PlanoContaDAO {
 			preparedStatement.setBigDecimal(11, PlanoConta.getIcms());
 			preparedStatement.setString(12, PlanoConta.getObservacao());
 			preparedStatement.setInt(13, PlanoConta.getGrupodespesareceita_codigo());
-					
+
 			preparedStatement.setString(14, PlanoConta.getCodigo());
 			preparedStatement.setInt(15, PlanoConta.getNome());
 			preparedStatement.setString(16, PlanoConta.getTipo());
@@ -116,19 +116,16 @@ public class PlanoContaDAO {
 		return lista;
 	}
 
-	// Lista o auto complete de plano de contas na página do plano de contas (pelo objeto)
+	// Lista o auto complete de plano de contas na página do plano de contas (pelo
+	// objeto)
 	public List<PlanoConta> listaplano(String nomeDespesaReceita) {
 
 		ArrayList<PlanoConta> lista = new ArrayList<PlanoConta>();
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
-		String sql = "select * from planoconta p join despesa_receita d on p.nome = d.codigo "
-				+ "where d.nome like '%" + nomeDespesaReceita + "%'";
-=======
-		String sql = "select * from plano_conta p join despesa_receita d on p.nome = d.codigo where d.nome like '%" + nomeDespesa + "%'";
->>>>>>> a2b7178 Atualizacao do contas a receber, receita/despesa e grupo cliente
+		String sql = "select * from plano_conta p join despesa_receita d on p.nome = d.codigo where d.nome like '%"
+				+ nomeDespesaReceita + "%'";
 
 		try {
 
@@ -189,8 +186,7 @@ public class PlanoContaDAO {
 		GrupoDespesaReceita grupo = new GrupoDespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao
-				.prepareStatement("select codigo, nome from grupo_despesa_receita where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select codigo, nome from grupo_despesa_receita where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

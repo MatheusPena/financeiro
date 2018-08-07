@@ -30,7 +30,7 @@ public class RateioCRDAO {
 			// st = con.createStatement();
 			StringBuilder str = new StringBuilder();
 			str.append(
-					"insert into rateiocr (codigo, percentual, planoconta_codigo, estabelecimento_codigo, centroresultado_codigo, empresa_cnpj)"
+					"insert into rateio_cr (codigo, percentual, planoconta_codigo, estabelecimento_codigo, centroresultado_codigo, empresa_cnpj)"
 							+ "values (?,?,?,?,?,?)");
 			str.append(
 					"on duplicate key update codigo = ?, percentual = ?, planoconta_codigo = ?, estabelecimento_codigo = ?, centroresultado_codigo = ?, empresa_cnpj = ?");
@@ -68,7 +68,7 @@ public class RateioCRDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select *" + "from rateiocr";
+			String sql = "select *" + "from rateio_cr";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -107,7 +107,7 @@ public class RateioCRDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement("select codigo, nome, tipo, natureza, iss, \"\r\n"
-				+ "					+ \"inss, irpf, pis, conta, atividade, icms, observacao, grupodespesa_codigo from planoconta where codigo = ?");
+				+ "					+ \"inss, irpf, pis, conta, atividade, icms, observacao, grupodespesareceita_codigo from plano_conta where codigo = ?");
 		preparedStatement.setString(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -137,7 +137,7 @@ public class RateioCRDAO {
 		DespesaReceita grupo = new DespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from despesa where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from despesa_receita where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
@@ -187,7 +187,7 @@ public class RateioCRDAO {
 		CentroResultado grupo = new CentroResultado();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from centroresultado where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select * from centro_resultado where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 

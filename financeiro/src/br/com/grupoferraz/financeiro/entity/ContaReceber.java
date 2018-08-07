@@ -14,7 +14,6 @@ public class ContaReceber {
 	private String observacao;
 	private String empresa_cnpj;
 	private Integer centroresultado_codigo;
-	private String nomereceita;
 	private Estabelecimento estabelecimento;
 	private CentroResultado centroresultado;
 	private Empresa empresa;
@@ -98,14 +97,6 @@ public class ContaReceber {
 
 	public void setCentroresultado_codigo(Integer centroresultado_codigo) {
 		this.centroresultado_codigo = centroresultado_codigo;
-	}
-
-	public String getNomereceita() {
-		return nomereceita;
-	}
-
-	public void setNomereceita(String nomereceita) {
-		this.nomereceita = nomereceita;
 	}
 
 	public Estabelecimento getEstabelecimento() {

@@ -98,11 +98,7 @@ public class ContaReceberBean implements Serializable {
 	public List<PlanoConta> completeReceita(String query) {
 		PlanoContaDAO planoConta = new PlanoContaDAO();
 
-<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
-		return despesasDAO.listadespesareceitas(query);
-=======
 		return planoConta.listaplano(query);
->>>>>>> a2b7178 Atualizacao do contas a receber, receita/despesa e grupo cliente
 	}
 
 	// seleciona um dos objetos da lista no campo despesas
