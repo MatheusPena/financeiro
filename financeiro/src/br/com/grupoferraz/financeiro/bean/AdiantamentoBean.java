@@ -3,19 +3,17 @@ package br.com.grupoferraz.financeiro.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import br.com.grupoferraz.financeiro.dao.AdiantamentoDAO;
 import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.entity.Adiantamento;
 import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -37,19 +35,17 @@ public class AdiantamentoBean implements Serializable {
 
 	public String cadastraAdiantamento() {
 
-		ConexaoBD.getConexao();
 		AdiantamentoDAO Adiantamento = new AdiantamentoDAO();
 		if (Adiantamento.insertAdiantamento(this.adiantamento)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Adiantamento cadastrado com sucesso!", "Sucesso!"));
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Adiantamento cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do Adiantamento!", "Erro!"));
-
-		}
-		ConexaoBD.fecharConexao();
-
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do adiantamento", "Erro!"));
 		return "";
+		}
+
+		this.adiantamento = new Adiantamento();
+		return "cadastro_adiantamento?faces-redirect=true";
 	}
 
 	// Autocomplete referente ao estabelecimento
@@ -87,7 +83,7 @@ public class AdiantamentoBean implements Serializable {
 		}
 
 
-		public void selecionarDespesa() {
+		public void selecionarDespesaReceita() {
 			
 			DespesaReceita despesa = adiantamento.getDespesareceita();
 			

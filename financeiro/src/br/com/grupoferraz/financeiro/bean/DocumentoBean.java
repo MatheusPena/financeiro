@@ -7,10 +7,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import br.com.grupoferraz.financeiro.dao.DocumentoDAO;
 import br.com.grupoferraz.financeiro.entity.Documento;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -26,20 +25,18 @@ public class DocumentoBean implements Serializable {
 
 	public String cadastraDocumentos() {
 
-		ConexaoBD.getConexao();
 		DocumentoDAO Documentos = new DocumentoDAO();
 		if (Documentos.insertDocumentos(this.getDocumento())) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Documento cadastrado com sucesso!", "Sucesso!"));
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Documento cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do Documento!", "Erro!"));
-
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do documento!", "Erro!"));
+			return "";
 		}
-		ConexaoBD.fecharConexao();
+
 		setDocumento(new Documento());
 
-		return "";
+		return "cadastro_documento?faces-redirect=true";
 	}
 
 	public void listarDocumentos() {

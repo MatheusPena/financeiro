@@ -1,7 +1,6 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -9,65 +8,57 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import br.com.grupoferraz.financeiro.dao.FornecedorDAO;
 import br.com.grupoferraz.financeiro.entity.Fornecedor;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
-
-
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ViewScoped
 @ManagedBean
 public class FornecedorBean implements Serializable {
-	private Fornecedor fornecedores = new Fornecedor();
-	private List<Fornecedor> fornecedor = new ArrayList<>();
-
-	public FornecedorBean() {
-		fornecedores = new Fornecedor();
-		getFornecedorr();
-	}
 	
-	public void editar(Fornecedor fornecedores) {
-		this.fornecedores = fornecedores;
-		System.out.println(fornecedores);
+	private Fornecedor fornecedor;
+	private List<Fornecedor> fornecedores;
+	
+	public FornecedorBean() {
+		listarfornecedores();
 	}
 	
 	public String cadastrar() {
-		fornecedor.add(fornecedores);
-		ConexaoBD.getConexao();
-		FornecedorDAO fornecedoresDAO = new FornecedorDAO();
-		if (fornecedoresDAO.insertFornecedores(fornecedores)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Fornecedor cadastrado com sucesso!", "Sucesso!"));
+		
+		
+		FornecedorDAO fornecedorDAO = new FornecedorDAO();
+		if (fornecedorDAO.insertFornecedores(fornecedor)) {
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Fornecedor cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do fornecedor !", "Erro!"));
-
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do fornecedor", "Erro!"));
+			return "";
 		}
-		ConexaoBD.fecharConexao();
 
-		return "";
+		this.fornecedor = new Fornecedor();
+
+		return "cadastro_fornecedor?faces-redirect=true";
 	}
 	
-	public void getFornecedorr()  {
-		FornecedorDAO vendedoresDAO = new FornecedorDAO ();
-		fornecedor = vendedoresDAO.listFornecedores();
+	public void listarfornecedores()  {
+		FornecedorDAO fornecedorDAO = new FornecedorDAO ();
+		fornecedores = fornecedorDAO.listFornecedores();
 	}
 
-	public Fornecedor getFornecedores() {
+	public List<Fornecedor> getFornecedores() {
 		return fornecedores;
 	}
 
-	public void setFornecedores(Fornecedor fornecedores) {
-		this.fornecedores = fornecedores;
-	}
-
-	public List<Fornecedor> getFornecedor() {
+	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
 
-	public void setFornecedor(List<Fornecedor> fornecedor) {
+	public void setFornecedores(List<Fornecedor> fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
-	
 	
 }
 	

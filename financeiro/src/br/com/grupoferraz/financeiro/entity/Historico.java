@@ -9,8 +9,9 @@ public class Historico implements Serializable {
 
 	private int codigo;
 	private String descricao;
-	private int despesa_codigo;
-	private DespesaReceita Despesa;
+	private int despesareceita_codigo;
+	private String despesareceita_nome;
+	private DespesaReceita despesareceita;
 
 	public int getCodigo() {
 		return codigo;
@@ -19,7 +20,6 @@ public class Historico implements Serializable {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	
 
 	public String getDescricao() {
 		return descricao;
@@ -29,21 +29,28 @@ public class Historico implements Serializable {
 		this.descricao = descricao;
 	}
 
-	
-	public int getDespesa_codigo() {
-		return despesa_codigo;
+	public int getDespesareceita_codigo() {
+		return despesareceita_codigo;
 	}
 
-	public void setDespesa_codigo(int despesa_codigo) {
-		this.despesa_codigo = despesa_codigo;
+	public void setDespesareceita_codigo(int despesareceita_codigo) {
+		this.despesareceita_codigo = despesareceita_codigo;
 	}
 
-	public DespesaReceita getDespesa() {
-		return Despesa;
+	public String getDespesareceita_nome() {
+		return despesareceita_nome;
 	}
 
-	public void setDespesa(DespesaReceita despesa) {
-		Despesa = despesa;
+	public void setDespesareceita_nome(String despesareceita_nome) {
+		this.despesareceita_nome = despesareceita_nome;
+	}
+
+	public DespesaReceita getDespesareceita() {
+		return despesareceita;
+	}
+
+	public void setDespesareceita(DespesaReceita despesareceita) {
+		this.despesareceita = despesareceita;
 	}
 
 	@Override

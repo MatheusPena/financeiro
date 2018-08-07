@@ -8,7 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.HistoricoDAO;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Historico;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -43,6 +45,28 @@ public class HistoricoBean implements Serializable {
 		return "";
 	}
 
+
+	//	Autocomplete referente à Despesas
+	public List<DespesaReceita> completeText(String query) {
+		DespesaReceitaDAO despesareceitaDAO = new DespesaReceitaDAO();
+
+		return despesareceitaDAO.listadespesareceitas(query);
+	}
+
+
+	public void selecionarDespesa() {
+		
+		DespesaReceita despesareceita = historico.getDespesareceita();
+		
+		if (despesareceita != null) {
+			historico.setDespesareceita_codigo(despesareceita.getCodigo());
+			historico.setDespesareceita_nome(despesareceita.getNome());
+		}
+
+	}
+	
+	
+	
 	public void listarHistoricos() {
 		HistoricoDAO historicos = new HistoricoDAO();
 		setListahistoricos(historicos.listHistoricos());

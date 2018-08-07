@@ -218,7 +218,7 @@ public class FornecedorDAO {
 		ResultSet rs = null;
 		try {
 			preparedStatement = conexao
-					.prepareStatement ("select codigo, nome from grupofornecedor where codigo = ?");
+					.prepareStatement ("select codigo, nome from grupo_fornecedor where codigo = ?");
 			preparedStatement.setInt(1, codigo);
 			rs = preparedStatement.executeQuery();
 			while (rs.next()) {

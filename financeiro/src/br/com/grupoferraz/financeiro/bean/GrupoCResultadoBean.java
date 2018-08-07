@@ -2,15 +2,12 @@ package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import br.com.grupoferraz.financeiro.dao.GrupoCResultadoDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoCResultado;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
@@ -35,16 +32,14 @@ public class GrupoCResultadoBean implements Serializable {
 	// cadastra os grupos de resultados exibindo uma mensagem
 	public String cadastraGrupoCResultado() {
 
-		ConexaoBD.getConexao();
 		GrupoCResultadoDAO grupoCResultados = new GrupoCResultadoDAO();
 		if (grupoCResultados.insertGrupoCResultado(this.grupoCResultado)) {
 			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Centro de Resultados cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da despesa/receita!", "Erro!"));
 			return "";
 		}
-		ConexaoBD.fecharConexao();
 
 		this.grupoCResultado = new GrupoCResultado();
 		return "";

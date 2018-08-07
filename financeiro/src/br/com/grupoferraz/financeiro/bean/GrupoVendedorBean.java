@@ -2,12 +2,10 @@ package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import br.com.grupoferraz.financeiro.dao.GrupoVendedorDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoVendedor;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
@@ -28,20 +26,19 @@ public class GrupoVendedorBean implements Serializable {
 	// cadastra um grupo exibindo uma mensagem
 	public String cadastragrupovendedor() {
 
-		//ConexaoBD.getConexao();
 		GrupoVendedorDAO grupovendedor = new GrupoVendedorDAO();
 		if (grupovendedor.insertGrupoVendedor(this.grupovendedor)) {
-			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Vendedores cadastrado com sucesso!");
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo vendedor cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));
 			return "";
 		}
-		//ConexaoBD.fecharConexao();
 
 		this.grupovendedor = new GrupoVendedor();
-		return "";
-		
+
+		return "grupo_vendedor?faces-redirect=true";
+
 	}
 
 	// lista os grupos existentes na tabela

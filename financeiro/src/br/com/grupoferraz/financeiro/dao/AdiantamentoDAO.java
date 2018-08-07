@@ -55,8 +55,15 @@ public class AdiantamentoDAO {
 			preparedStatement.setInt(10, Adiantamento.getContafinanceira_codigo());
 			preparedStatement.setInt(11, Adiantamento.getCentroresultado_codigo());
 			preparedStatement.setInt(12, Adiantamento.getDespesa_codigo());
-			preparedStatement.setInt(13, Adiantamento.getHistoricopadrao_codigo());
-
+			Integer cod = Adiantamento.getHistoricopadrao_codigo();
+			if (cod != 0) {
+			preparedStatement.setInt(13, cod);
+			preparedStatement.setInt(26, cod);
+			}
+			else {
+				preparedStatement.setNull(13, java.sql.Types.INTEGER);
+				preparedStatement.setNull(26, java.sql.Types.INTEGER);
+			}
 			preparedStatement.setInt(14, Adiantamento.getCodigo());
 			preparedStatement.setDate(15, new java.sql.Date(t));
 			preparedStatement.setFloat(16, Adiantamento.getValor());
@@ -69,7 +76,7 @@ public class AdiantamentoDAO {
 			preparedStatement.setInt(23, Adiantamento.getContafinanceira_codigo());
 			preparedStatement.setInt(24, Adiantamento.getCentroresultado_codigo());
 			preparedStatement.setInt(25, Adiantamento.getDespesa_codigo());
-			preparedStatement.setInt(26, Adiantamento.getHistoricopadrao_codigo());
+	
 
 			preparedStatement.execute();
 			return true;
@@ -205,9 +212,8 @@ public class AdiantamentoDAO {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setNome(rs.getString("nome"));
 			grupo.setAtividade(rs.getString("atividade"));
-			grupo.setCrcontabil(rs.getString("crcontabil"));
 			grupo.setPeso(rs.getBigDecimal("peso"));
-			grupo.setGrupocentroresultado_codigo(rs.getInt("grupocentroresultados_codigo"));
+			grupo.setGrupocentroresultado_codigo(rs.getInt("grupocentroresultado_codigo"));
 		}
 		return grupo;
 	}
@@ -224,7 +230,7 @@ public class AdiantamentoDAO {
 		while (rs.next()) {
 			grupo.setCodigo(rs.getInt("codigo"));
 			grupo.setDescricao(rs.getString("descricao"));
-			grupo.setDespesa_codigo(rs.getInt("despesa_codigo"));
+			grupo.setDespesareceita_codigo(rs.getInt("despesareceita_codigo"));
 		}
 		return grupo;
 	}

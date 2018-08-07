@@ -18,13 +18,10 @@ public class GrupoVendedorDAO {
 
 	public boolean insertGrupoVendedor(GrupoVendedor grupovendedor) {
 
-		// Statement st = null;
-		// ResultSet rs = null;
-
 		try {
-			// st = con.createStatement();
+
 			StringBuilder str = new StringBuilder();
-			str.append("insert into grupovendedor (codigo, nome)" + " values (?,?)");
+			str.append("insert into grupo_vendedor (codigo, nome) values (?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupovendedor.getCodigo());
@@ -53,7 +50,7 @@ public class GrupoVendedorDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select *" + "from grupovendedor";
+			String sql = "select * from grupo_vendedor";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {

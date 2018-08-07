@@ -68,48 +68,37 @@
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigo" value="Código:" />
+													<p:outputLabel for="despesa_nome" value="Nome da Despesa/Receita: *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigo" required="true"
-														value="#{historicoBean.historico.codigo}"
-														styleClass="form-control col-md-7 col-xs-12" />
+													<p:outputPanel id="despesa_nome">
+														<p:autoComplete id="acMinLength" minQueryLength="1"
+															dropdown="false" converter="converter" required="true"
+															value="#{historicoBean.historico.despesareceita}"
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest"
+															completeMethod="#{historicoBean.completeText}" 
+															effect="fade" var="est" itemValue="#{est}" 
+															itemLabel="#{est.nome}">															
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{historicoBean.selecionarDespesa()}"
+																update="@(.despesa_nome) @(.valor) @this" process="@this" />
+														</p:autoComplete>																												
+													</p:outputPanel>
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="nome" value="Descrição:" />
+													<p:outputLabel for="descricao" value="Descrição:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="nome" required="true"
+													<p:inputTextarea id="descricao" required="true"
 														value="#{historicoBean.historico.descricao}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="despesa"
-														value="Despesa:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="despesa" required="true"
-														value="#{historicoBean.historico.despesa_codigo}"
-														style="width:320px"
-														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{despesaBean.listadespesas}"
-															var="despesa" cellspacing="0" width="100%">
-															<f:selectItem
-																itemLabel="#{despesa.nome}"
-																itemValue="#{despesa.codigo}" />
-														</c:forEach>
-													</h:selectOneMenu>
-												</div>
-											</div>
-
+									
 											<div class="ln_solid" />
 											<div class="form-group">
 												<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -165,7 +154,7 @@
 														<th>Código</th>
 														<th>Editar</th>
 														<th>Descrição</th>
-														<th>Despesa</th>
+														<th>Despesa/Receita</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -183,7 +172,7 @@
 																		target="#{historicoBean.historico}" />
 																</p:commandButton></td>
 															<td>#{historico.descricao}</td>
-															<td>#{historico.despesa}</td>
+															<td>#{historico.despesareceita}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

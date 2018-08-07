@@ -22,16 +22,16 @@ public class HistoricoDAO {
 		try {
 
 			StringBuilder str = new StringBuilder();
-			str.append("insert into historico (codigo, descricao, despesa_codigo) values (?,?,?) ");
-			str.append("on duplicate key update codigo = ?, descricao = ?, despesa_codigo = ?");
+			str.append("insert into historico (codigo, descricao, despesareceita_codigo) values (?,?,?) ");
+			str.append("on duplicate key update codigo = ?, descricao = ?, despesareceita_codigo = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, historicos.getCodigo());
 			preparedStatement.setString(2, historicos.getDescricao());
-			preparedStatement.setInt(3, historicos.getDespesa_codigo());
+			preparedStatement.setInt(3, historicos.getDespesareceita_codigo());
 
 			preparedStatement.setInt(4, historicos.getCodigo());
 			preparedStatement.setString(5, historicos.getDescricao());
-			preparedStatement.setInt(6, historicos.getDespesa_codigo());
+			preparedStatement.setInt(6, historicos.getDespesareceita_codigo());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -52,7 +52,7 @@ public class HistoricoDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select codigo, descricao, despesa_codigo from historico ";
+			String sql = "select codigo, descricao, despesareceita_codigo from historico ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -60,10 +60,10 @@ public class HistoricoDAO {
 				Historico historicos = new Historico();
 				historicos.setCodigo(rs.getInt("codigo"));
 				historicos.setDescricao(rs.getString("descricao"));
-				historicos.setDespesa_codigo(rs.getInt("despesa_codigo"));
-				int idDespesa = historicos.getDespesa_codigo();
-				DespesaReceita despesas = getDespesas(idDespesa);
-				historicos.setDespesa(despesas);
+				historicos.setDespesareceita_codigo(rs.getInt("despesareceita_codigo"));
+				int idDespesareceita = historicos.getDespesareceita_codigo();
+				DespesaReceita despesareceitas = getDespesas(idDespesareceita);
+				historicos.setDespesareceita(despesareceitas);
 				lista.add(historicos);
 			}
 
@@ -77,19 +77,19 @@ public class HistoricoDAO {
 	}
 
 	//Lista as despesas cadastradas na tela dos Históricos
-	public DespesaReceita getDespesas(int idDespesa) throws SQLException {
-		DespesaReceita despesa = new DespesaReceita();
+	public DespesaReceita getDespesas(int idDespesareceita) throws SQLException {
+		DespesaReceita despesareceita = new DespesaReceita();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nome from despesa where codigo = ?");
-		preparedStatement.setInt(1, idDespesa);
+				"select codigo, nome from despesa_receita where codigo = ?");
+		preparedStatement.setInt(1, idDespesareceita);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
-			despesa.setCodigo(rs.getInt("codigo"));
-			despesa.setNome(rs.getString("nome"));
+			despesareceita.setCodigo(rs.getInt("codigo"));
+			despesareceita.setNome(rs.getString("nome"));
 		}
-		return despesa;
+		return despesareceita;
 	}
 }

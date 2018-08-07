@@ -4,17 +4,14 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
 import br.com.grupoferraz.financeiro.dao.VendedorDAO;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.Vendedor;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
@@ -34,20 +31,17 @@ public class VendedorBean implements Serializable {
 
 	// cadastra um vendedor exibindo uma mensagem na tela
 	public String cadastraVendedor() {
-		ConexaoBD.getConexao();
 		VendedorDAO vendedor = new VendedorDAO();
 		if (vendedor.insertVendedor(this.vendedor)) {
 			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Vendedor cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do Vendedor!", "Erro!"));
-			return "";
-
-		}
-		ConexaoBD.fecharConexao();
-		
-		this.vendedor = new Vendedor();
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do vendedor", "Erro!"));
 		return "";
+		}
+
+		this.vendedor = new Vendedor();
+		return "cadastro_vendedor?faces-redirect=true";
 	}
 
 	// seleciona o vendedor desejado

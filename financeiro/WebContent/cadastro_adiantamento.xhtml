@@ -186,7 +186,7 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="nomedp" value="Nome da Despesa:" />
+													<p:outputLabel for="nomedp" value="Nome da Despesa/Receita:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:outputPanel id="nomedp">
@@ -199,7 +199,7 @@
 															effect="fade" var="est" itemValue="#{est}" 
 															itemLabel="#{est.nome}">															
 															<p:ajax event="itemSelect" resetValues="true"
-																listener="#{adiantamentoBean.selecionarDespesa()}"
+																listener="#{adiantamentoBean.selecionarDespesaReceita()}"
 																update="@(.emissaodp) @(.valor) @this" process="@this" />
 														</p:autoComplete>																												
 													</p:outputPanel>
@@ -244,9 +244,9 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="historico"
 														value="#{adiantamentoBean.adiantamento.historicopadrao_codigo}"
-														style="width:320px"
+														style="width:320px" required="false"
 														styleClass="form-control col-md-7 col-xs-12">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
+														<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
 														<c:forEach
 															items="#{historicoBean.listahistoricos}"
 															var="historico" cellspacing="0" width="100%">
@@ -352,10 +352,10 @@
 																	<f:convertDateTime pattern="dd/MM/yyyy"
 																		dateStyle="long" />
 																</h:outputText></td>
-															<td>#{adiantamento.fornecedorcpf}</td>
+															<td>#{adiantamento.fornecedor_cpf}</td>
 															<td>#{adiantamento.contafinanceira}</td>
 															<td>#{adiantamento.centroresultado}</td>
-															<td>#{adiantamento.despesa}</td>
+															<td>#{adiantamento.despesareceita}</td>
 															<td>#{adiantamento.valor}</td>
 															<td>#{adiantamento.historico.descricao}</td>
 															<td>#{adiantamento.observacao}</td>

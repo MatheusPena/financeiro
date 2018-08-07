@@ -182,7 +182,7 @@ public class VendedorDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao
-				.prepareStatement("select codigo, nome from grupovendedor where codigo = ?");
+				.prepareStatement("select codigo, nome from grupo_vendedor where codigo = ?");
 		preparedStatement.setInt(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
