@@ -123,8 +123,12 @@ public class PlanoContaDAO {
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
+<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
 		String sql = "select * from planoconta p join despesa_receita d on p.nome = d.codigo "
 				+ "where d.nome like '%" + nomeDespesaReceita + "%'";
+=======
+		String sql = "select * from plano_conta p join despesa_receita d on p.nome = d.codigo where d.nome like '%" + nomeDespesa + "%'";
+>>>>>>> a2b7178 Atualizacao do contas a receber, receita/despesa e grupo cliente
 
 		try {
 

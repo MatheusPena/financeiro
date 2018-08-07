@@ -21,7 +21,7 @@ public class GrupoClienteDAO {
 		try {
 
 			StringBuilder str = new StringBuilder();	
-			str.append("insert into grupocliente (codigo, nome)"
+			str.append("insert into grupo_cliente (codigo, nome)"
 					+ " values (?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
@@ -51,7 +51,7 @@ public class GrupoClienteDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from grupocliente";
+			String sql = "select * from grupo_cliente";
 			
 			rs = st.executeQuery(sql);
 

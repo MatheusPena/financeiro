@@ -61,17 +61,7 @@
 										<br />
 										<h:form id="demo-form2" data-parsley-validate=""
 											styleClass="form-horizontal form-label-left">
-											<p:messages id="messages" />
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="codigo" value="Código:" />
-												</label>
-												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigo" required="true"
-														value="#{grupoClienteBean.grupocliente.codigo}"
-														styleClass="form-control col-md-7 col-xs-12" />
-												</div>
-											</div>
+											<p:messages id="messages" styleClass="messages"/>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="nome" value="Nome:" />
@@ -88,9 +78,25 @@
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														action="#{grupoClienteBean.cadastraGrupoCliente}"
-														update="messages" styleClass="btn btn-success"
-														onclick="window.location='#demo-form2'">
+														update="messages  @form" styleClass="btn btn-success"
+														onclick="window.location='#demo-form2'"
+														oncomplete="temp()">
 													</p:commandButton>
+													<script>
+														function temp() {
+
+															setTimeout(
+																	function() {
+
+																		$(
+																				'.messages')
+																				.html(
+																						'');
+
+																	}, 5000);
+
+														}
+													</script>
 												</div>
 											</div>
 										</h:form>
@@ -119,7 +125,7 @@
 												<thead>
 													<tr>
 														<th>Código</th>
-														<th class="text-center">Editar</th>
+														<th>Editar</th>
 														<th>Nome do Grupo</th>
 													</tr>
 												</thead>
@@ -128,10 +134,11 @@
 														var="grupocliente" cellspacing="0" width="100%">
 														<tr>
 															<td>#{grupocliente.codigo}</td>
-															<td class="text-center">
+															<td>
 															<p:commandButton value="" style="font-size:10px;"
 															styleClass="fas fa-edit btn btn-primary" 
-															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
+															update="@(.form-control) @(.rd) @(.calendar) demo-form2"
+															onclick="window.location='#demo-form2'">
 															<f:setPropertyActionListener value="#{grupocliente}" 
 															target="#{grupoClienteBean.grupocliente}"/>
 															</p:commandButton>

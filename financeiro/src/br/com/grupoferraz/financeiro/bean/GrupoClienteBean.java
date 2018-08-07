@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.GrupoClienteDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoCliente;
-import br.com.grupoferraz.financeiro.util.ConexaoBD;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -27,18 +27,17 @@ public class GrupoClienteBean implements Serializable {
 
 	public String cadastraGrupoCliente() {
 
-		ConexaoBD.getConexao();
+		//ConexaoBD.getConexao();
 		GrupoClienteDAO grupoclienteDAO = new GrupoClienteDAO ();
 		if (grupoclienteDAO.insertGrupoCliente(grupocliente)) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Grupo de Cliente cadastrado com sucesso", "Sucesso!"));
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Cliente cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));
-
+			return "";
 		}
-		ConexaoBD.fecharConexao();
-
+		//ConexaoBD.fecharConexao();
+		this.grupocliente = new GrupoCliente();
 		return "";
 	}
 

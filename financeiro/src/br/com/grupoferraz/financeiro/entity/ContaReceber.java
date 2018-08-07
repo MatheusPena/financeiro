@@ -7,7 +7,7 @@ public class ContaReceber {
 	private int codigo;
 	private int estabelecimento_codigo;
 	private String cpf;
-	private int receita_codigo;
+	private String receita_codigo;
 	private int documento;
 	private Date emissao;
 	private BigDecimal valor;
@@ -18,7 +18,7 @@ public class ContaReceber {
 	private Estabelecimento estabelecimento;
 	private CentroResultado centroresultado;
 	private Empresa empresa;
-	private DespesaReceita receita;
+	private PlanoConta planoconta;
 
 	public int getCodigo() {
 		return codigo;
@@ -44,11 +44,11 @@ public class ContaReceber {
 		this.cpf = cpf;
 	}
 
-	public int getReceita_codigo() {
+	public String getReceita_codigo() {
 		return receita_codigo;
 	}
 
-	public void setReceita_codigo(int receita_codigo) {
+	public void setReceita_codigo(String receita_codigo) {
 		this.receita_codigo = receita_codigo;
 	}
 
@@ -132,12 +132,12 @@ public class ContaReceber {
 		this.empresa = empresa;
 	}
 
-	public DespesaReceita getReceita() {
-		return receita;
+	public PlanoConta getPlanoconta() {
+		return planoconta;
 	}
 
-	public void setReceita(DespesaReceita receita) {
-		this.receita = receita;
+	public void setPlanoconta(PlanoConta planoconta) {
+		this.planoconta = planoconta;
 	}
 
 }

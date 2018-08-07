@@ -40,7 +40,7 @@ public class ServicoBean implements Serializable {
 
 		}
 		ConexaoBD.fecharConexao();
-
+		this.servico = new Servico();
 		return "";
 	}
 

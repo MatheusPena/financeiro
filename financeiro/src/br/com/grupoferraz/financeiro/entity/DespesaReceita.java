@@ -7,17 +7,9 @@ public class DespesaReceita implements Serializable {
 
 	private int codigo;
 	private String nome;
-	private int grupodespesareceita_codigo;
+	private Integer grupodespesareceita_codigo;
 	private GrupoDespesaReceita grupodespesareceita;
 	private String empresa_cnpj;
-
-	public DespesaReceita() {
-
-	}
-
-	public int getGrupodespesareceita_codigo() {
-		return grupodespesareceita_codigo;
-	}
 
 	public int getCodigo() {
 		return codigo;
@@ -27,7 +19,19 @@ public class DespesaReceita implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public void setGrupodespesareceita_codigo(int grupodespesareceita_codigo) {
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Integer getGrupodespesareceita_codigo() {
+		return grupodespesareceita_codigo;
+	}
+
+	public void setGrupodespesareceita_codigo(Integer grupodespesareceita_codigo) {
 		this.grupodespesareceita_codigo = grupodespesareceita_codigo;
 	}
 
@@ -39,15 +43,6 @@ public class DespesaReceita implements Serializable {
 		this.grupodespesareceita = grupodespesareceita;
 	}
 
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public String getEmpresa_cnpj() {
 		return empresa_cnpj;
 	}
@@ -55,8 +50,6 @@ public class DespesaReceita implements Serializable {
 	public void setEmpresa_cnpj(String empresa_cnpj) {
 		this.empresa_cnpj = empresa_cnpj;
 	}
-
-	
 
 	@Override
 	public String toString() {

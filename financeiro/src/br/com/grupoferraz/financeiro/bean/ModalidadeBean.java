@@ -40,7 +40,7 @@ public class ModalidadeBean implements Serializable {
 
 		}
 		ConexaoBD.fecharConexao();
-
+		this.modalidade = new Modalidade();
 		return "";
 	}
 

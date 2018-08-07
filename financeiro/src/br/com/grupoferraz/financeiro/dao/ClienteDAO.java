@@ -212,7 +212,7 @@ public class ClienteDAO {
 		ResultSet rs = null;
 		try {
 			preparedStatement = conexao
-					.prepareStatement ("select codigo, nome from grupocliente where codigo = ?");
+					.prepareStatement ("select codigo, nome from grupo_cliente where codigo = ?");
 			preparedStatement.setInt(1, codigo);
 			rs = preparedStatement.executeQuery();
 			while (rs.next()) {
