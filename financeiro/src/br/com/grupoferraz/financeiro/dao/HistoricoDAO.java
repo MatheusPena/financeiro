@@ -92,4 +92,56 @@ public class HistoricoDAO {
 		}
 		return despesareceita;
 	}
+	
+	// Método do autocomplete na tela de Adiantamentos
+		public Historico historico(DespesaReceita despesareceita) {
+			
+			if (despesareceita == null) {
+				return null;
+			}
+			ArrayList<Historico> lista = new ArrayList<Historico>();
+
+			PreparedStatement preparedStatement = null;
+			Integer idDespesareceita = despesareceita.getCodigo();
+			ResultSet rs = null;
+
+			try {
+				String sql = "select codigo, descricao, despesareceita_codigo from historico where despesareceita_codigo = ?";
+				preparedStatement = conexao.prepareStatement(
+					sql);
+				System.out.println("ID DESPESA RECEITA "+idDespesareceita);
+				
+				if(idDespesareceita==0) {
+					preparedStatement.setNull(1, java.sql.Types.INTEGER);
+				}else {
+					preparedStatement.setInt(1, idDespesareceita);
+				}
+				
+				rs = preparedStatement.executeQuery();
+				
+				while (rs.next()) {
+
+					Historico historico = new Historico();
+					historico.setCodigo(rs.getInt("codigo"));
+					historico.setDescricao(rs.getString("descricao"));
+					historico.setDespesareceita_codigo(rs.getInt("despesareceita_codigo"));
+					int id = historico.getDespesareceita_codigo();
+					DespesaReceita despesareceitas = getDespesas(id);
+					historico.setDespesareceita(despesareceitas);
+					lista.add(historico);
+				}
+
+			} catch (SQLException ex) {
+				Logger lgr = Logger.getLogger(Connection.class.getName());
+				lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+			} finally {
+			}
+			
+			if (lista != null && !lista.isEmpty()) {
+				return lista.get(0);
+			}
+			return null;
+		}
+
 }

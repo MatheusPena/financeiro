@@ -15,6 +15,7 @@ public class Adiantamento {
 	private int centroresultado_codigo;
 	private int despesa_codigo;
 	private float valor;
+	private String historico_nome;
 	private int historicopadrao_codigo;
 	private String observacao;
 	private ContaFinanceira contafinanceira;
@@ -103,6 +104,14 @@ public class Adiantamento {
 
 	public void setValor(float valor) {
 		this.valor = valor;
+	}
+
+	public String getHistorico_nome() {
+		return historico_nome;
+	}
+
+	public void setHistorico_nome(String historico_nome) {
+		this.historico_nome = historico_nome;
 	}
 
 	public int getHistoricopadrao_codigo() {

@@ -10,9 +10,11 @@ import javax.faces.context.FacesContext;
 import br.com.grupoferraz.financeiro.dao.AdiantamentoDAO;
 import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
+import br.com.grupoferraz.financeiro.dao.HistoricoDAO;
 import br.com.grupoferraz.financeiro.entity.Adiantamento;
 import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
+import br.com.grupoferraz.financeiro.entity.Historico;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
@@ -88,6 +90,12 @@ public class AdiantamentoBean implements Serializable {
 			DespesaReceita despesa = adiantamento.getDespesareceita();
 			
 			if (despesa != null) {
+				HistoricoDAO historicoDAO = new HistoricoDAO();
+				Historico historico = historicoDAO.historico(despesa);
+				if (historico != null) {
+					adiantamento.setHistoricopadrao_codigo(historico.getCodigo());
+				}
+				
 				adiantamento.setDespesa_codigo(despesa.getCodigo());
 				adiantamento.setDespesa_nome(despesa.getNome());
 			}

@@ -200,7 +200,8 @@
 															itemLabel="#{est.nome}">															
 															<p:ajax event="itemSelect" resetValues="true"
 																listener="#{adiantamentoBean.selecionarDespesaReceita()}"
-																update="@(.emissaodp) @(.valor) @this" process="@this" />
+																update="@(.emissaodp) @(.valor) @(.historicoselect)
+																 @this" process="@this" />
 														</p:autoComplete>																												
 													</p:outputPanel>
 												</div>
@@ -242,6 +243,7 @@
 													<p:outputLabel for="historico" value="Histórico Padrão:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
+												<p:outputPanel styleClass="historicoselect">
 													<h:selectOneMenu id="historico"
 														value="#{adiantamentoBean.adiantamento.historicopadrao_codigo}"
 														style="width:320px" required="false"
@@ -254,6 +256,7 @@
 																itemValue="#{historico.codigo}" />
 														</c:forEach>
 													</h:selectOneMenu>
+												</p:outputPanel>
 												</div> 
 											</div>
 										
