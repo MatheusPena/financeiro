@@ -1,4 +1,5 @@
 package br.com.grupoferraz.financeiro.entity;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -7,8 +8,8 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 @SuppressWarnings("serial")
 public class Cliente implements Serializable {
- 
-	//private int id;
+
+	// private int id;
 	private String nome;
 	private String cpf;
 	private Date dataCadastro;
@@ -28,7 +29,8 @@ public class Cliente implements Serializable {
 	private String email;
 	private String site;
 	private String contato;
-	private String codigorec;
+	private int codigorec;
+	private String nomerec;
 	private Integer grupocliente_codigo;
 	private String codigorep;
 	private String codigoac;
@@ -36,7 +38,7 @@ public class Cliente implements Serializable {
 	private String rg;
 	private String cpfcp;
 	private String exterior;
-	private String contabil; 
+	private String contabil;
 	private String debito;
 	private String nf;
 	private String ident;
@@ -49,15 +51,15 @@ public class Cliente implements Serializable {
 	private BigDecimal aliquota;
 	private String indicadorie;
 	private GrupoCliente grupoCliente;
-	
+	private DespesaReceita receita;
 
 	public String getExterior() {
-        return exterior;
-    }
- 
-    public void setExterior(String exterior) {
-        this.exterior = exterior;
-    }
+		return exterior;
+	}
+
+	public void setExterior(String exterior) {
+		this.exterior = exterior;
+	}
 
 	public String getNome() {
 		return nome;
@@ -203,16 +205,6 @@ public class Cliente implements Serializable {
 		this.contato = contato;
 	}
 
-	public String getCodigorec() {
-		return codigorec;
-	}
-
-	public void setCodigorec(String codigorec) {
-		this.codigorec = codigorec;
-	}
-
-	
-
 	public String getCodigorep() {
 		return codigorep;
 	}
@@ -356,7 +348,7 @@ public class Cliente implements Serializable {
 	public void setIndicadorie(String indicadorie) {
 		this.indicadorie = indicadorie;
 	}
-	
+
 	public Date getNascimento() {
 		return nascimento;
 	}
@@ -373,8 +365,28 @@ public class Cliente implements Serializable {
 		this.grupoCliente = grupoCliente;
 	}
 
-	
+	public DespesaReceita getReceita() {
+		return receita;
+	}
 
-	
+	public void setReceita(DespesaReceita receita) {
+		this.receita = receita;
+	}
+
+	public int getCodigorec() {
+		return codigorec;
+	}
+
+	public void setCodigorec(int codigorec) {
+		this.codigorec = codigorec;
+	}
+
+	public String getNomerec() {
+		return nomerec;
+	}
+
+	public void setNomerec(String nomerec) {
+		this.nomerec = nomerec;
+	}
 
 }

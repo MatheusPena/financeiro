@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Empresa;
+import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.GrupoDespesaReceita;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -127,7 +128,7 @@ public class DespesaReceitaDAO {
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		String sql = "select codigo, nome, grupodespesareceita_codigo " + " from despesa_receita where "
+		String sql = "select codigo, nome, grupodespesareceita_codigo from despesa_receita where "
 				+ "nome like '%" + codigo + "%'";
 
 		try {
@@ -227,12 +228,7 @@ public class DespesaReceitaDAO {
 		return despesareceita;
 	}
 
-<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
-	// Listagem de Grupos
-=======
-
 //	Listagem de métodos que fazem aparecer o nome dos grupos ao invés dos códigos na tela
->>>>>>> 2701eb6 Adiantamento revisado e automatizado
 	public GrupoDespesaReceita getGrupoDespesa(int idGrupo) throws SQLException {
 		GrupoDespesaReceita grupo = new GrupoDespesaReceita();
 		PreparedStatement preparedStatement;
@@ -262,15 +258,15 @@ public class DespesaReceitaDAO {
 		}
 		return empresa;
 	}
-<<<<<<< Upstream, based on branch 'master' of https://github.com/MatheusPena/financeiro.git
+
 
 	public Estabelecimento getEstabelecimento(int idEstabelecimento) throws SQLException {
 		Estabelecimento estabelecimento = new Estabelecimento();
-=======
+
 	
-	public DespesaReceita getEstabelecimento(int idEstabelecimento) throws SQLException {
-		DespesaReceita estabelecimento = new DespesaReceita();
->>>>>>> 2701eb6 Adiantamento revisado e automatizado
+//	public DespesaReceita getEstabelecimento(int idEstabelecimento) throws SQLException {
+//		DespesaReceita estabelecimento = new DespesaReceita();
+
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement("select codigo, nome from estabelecimento where codigo = ?");

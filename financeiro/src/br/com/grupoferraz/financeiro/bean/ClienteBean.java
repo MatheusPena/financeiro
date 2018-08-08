@@ -9,7 +9,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.ClienteDAO;
+import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.entity.Cliente;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
@@ -43,6 +45,26 @@ public class ClienteBean implements Serializable {
 		return "";
 	}
 
+//	Autocomplete referente à Receitas
+	public List<DespesaReceita> completeText(String query) {
+		DespesaReceitaDAO despesareceitaDAO = new DespesaReceitaDAO();
+
+		return despesareceitaDAO.listadespesareceitas(query);
+	}
+
+
+	public void selecionarReceita() {
+		
+		DespesaReceita receita = cliente.getReceita(); 
+		
+		if (receita != null) {
+			cliente.setCodigorec(receita.getCodigo());
+			cliente.setNomerec(receita.getNome()); 
+		}
+
+	}
+	
+//	Getters e Setters
 	public void getClientesDAO()  {
 		ClienteDAO clientesDAO = new ClienteDAO ();
 		listaclientes = clientesDAO.listClientes();

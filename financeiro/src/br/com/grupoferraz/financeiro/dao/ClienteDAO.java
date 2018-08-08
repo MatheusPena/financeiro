@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.com.grupoferraz.financeiro.entity.Cliente;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.GrupoCliente;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
@@ -25,12 +26,14 @@ public class ClienteDAO {
 			StringBuilder str = new StringBuilder();
 			str.append("insert into cliente (nome, cpf, nascimento, descricao, data_cadastro, logradouro, num, com, bairro, cep,"
 					+ "cidade, estado, ie, telefone, celular, fax, email, "
-					+ "site, contato, codigorec, grupocliente_codigo, codigoac, codigorep, nomefantasia, rg, cpfcp, exterior,  "
-					+ "contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, inss, iss, aliquota, indicadorie) "
+					+ "site, contato, codigorec, grupocliente_codigo, codigoac, codigorep, nomefantasia, rg, cpfcp, "
+					+ "exterior, contabil, debito, nf, ident, docidex, insc, codigopais, iseninscr, "
+					+ "inss, iss, aliquota, indicadorie)"
 					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			str.append("on duplicate key update nome = ?, cpf = ?, nascimento = ?, descricao = ?, data_cadastro = ?, "
 					+ "logradouro = ?, num = ?, com = ?, bairro = ?, cep = ?, cidade = ?, estado = ?, ie = ?, "
-					+ "telefone = ?, celular = ?, fax = ?, email = ?, site = ?, contato = ?, codigorec = ?, grupocliente_codigo = ?, "
+					+ "telefone = ?, celular = ?, fax = ?, email = ?, site = ?, contato = ?, codigorec = ?, "
+					+ "grupocliente_codigo = ?, "
 					+ "codigoac = ?, codigorep = ?, nomefantasia = ?, rg = ?, cpfcp = ?, exterior = ?, contabil = ?, "
 					+ "debito = ?, nf = ?, ident = ?, docidex = ?, insc = ?, codigopais = ?, iseninscr = ?, "
 					+ "inss = ?, iss = ?, aliquota = ?, indicadorie = ?");
@@ -59,7 +62,7 @@ public class ClienteDAO {
 			preparedStatement.setString(17, cliente.getEmail());
 			preparedStatement.setString(18, cliente.getSite());
 			preparedStatement.setString(19, cliente.getContato());
-			preparedStatement.setString(20, cliente.getCodigorec());
+			preparedStatement.setInt(20, cliente.getCodigorec());
 			preparedStatement.setInt(21, cliente.getGrupocliente_codigo());
 			preparedStatement.setString(22, cliente.getCodigoac());
 			preparedStatement.setString(23, cliente.getCodigorep());
@@ -99,7 +102,7 @@ public class ClienteDAO {
 			preparedStatement.setString(56, cliente.getEmail());
 			preparedStatement.setString(57, cliente.getSite());
 			preparedStatement.setString(58, cliente.getContato());
-			preparedStatement.setString(59, cliente.getCodigorec());
+			preparedStatement.setInt(59, cliente.getCodigorec());
 			preparedStatement.setInt(60, cliente.getGrupocliente_codigo());
 			preparedStatement.setString(61, cliente.getCodigoac());
 			preparedStatement.setString(62, cliente.getCodigorep());
@@ -169,7 +172,9 @@ public class ClienteDAO {
 				cliente.setEmail(rs.getString("email"));
 				cliente.setSite(rs.getString("site"));
 				cliente.setContato(rs.getString("contato"));
-				cliente.setCodigorec(rs.getString("codigorec"));
+				cliente.setCodigorec(rs.getInt("codigorec"));
+				DespesaReceita receita = new DespesaReceitaDAO().listadespesa(cliente.getCodigorec());
+				cliente.setReceita(receita);
 				cliente.setGrupocliente_codigo(rs.getInt("grupocliente_codigo"));
 				Integer codigo = cliente.getGrupocliente_codigo();
 				cliente.setGrupoCliente(getGrupoCliente(codigo)); 

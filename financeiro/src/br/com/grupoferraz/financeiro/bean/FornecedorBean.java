@@ -6,7 +6,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.FornecedorDAO;
+import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Fornecedor;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
@@ -20,6 +23,7 @@ public class FornecedorBean implements Serializable {
 	
 	public FornecedorBean() {
 		listarfornecedores();
+		fornecedor = new Fornecedor();
 	}
 	
 	public String cadastrar() {
@@ -39,6 +43,26 @@ public class FornecedorBean implements Serializable {
 		return "cadastro_fornecedor?faces-redirect=true";
 	}
 	
+//	Autocomplete referente à Despesas
+	public List<DespesaReceita> completeText(String query) {
+		DespesaReceitaDAO despesareceitaDAO = new DespesaReceitaDAO();
+
+		return despesareceitaDAO.listadespesareceitas(query);
+	}
+
+
+	public void selecionarDespesa() {
+		
+		DespesaReceita despesa = fornecedor.getDespesa(); 
+		
+		if (despesa != null) {
+			fornecedor.setCodigodes(despesa.getCodigo());
+			fornecedor.setNomedes(despesa.getNome());
+		}
+
+	}
+	
+//	Getters e Setters	
 	public void listarfornecedores()  {
 		FornecedorDAO fornecedorDAO = new FornecedorDAO ();
 		fornecedores = fornecedorDAO.listFornecedores();

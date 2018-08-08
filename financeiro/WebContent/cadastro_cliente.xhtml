@@ -245,7 +245,29 @@
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
-
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="nomerec" value="Nome da Despesa/Receita: *" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel id="nomerec">
+														<p:autoComplete id="acMinLength" minQueryLength="1"
+															dropdown="false" converter="converter"
+															value="#{clienteBean.cliente.receita}" 
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest"
+															completeMethod="#{clienteBean.completeText}" 
+															effect="fade" var="est" itemValue="#{est}" 
+															itemLabel="#{est.nome}" required="true">															
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{clienteBean.selecionarReceita()}"
+																update="@(.emissaodp) @(.valor) @this" process="@this" />
+														</p:autoComplete>																												
+													</p:outputPanel>
+												</div>
+											</div>	
+	
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="codigorec" value="Código da Receita:" />
@@ -253,10 +275,10 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="codigorec" required="true"
 														value="#{clienteBean.cliente.codigorec}"
-														styleClass="form-control col-md-7 col-xs-12" />
+														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
 											</div>
-
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="grupocliente_codigo"
@@ -566,7 +588,7 @@
 												<thead>
 													<tr>
 														<th>Nome</th>
-														<th class="text-center">Editar</th>
+														<th>Editar</th>
 														<th>CPF/CNPJ</th>
 														<th>Data de Nascimento</th>
 														<th>Logradouro</th>
@@ -583,6 +605,7 @@
 														<th>E-mail</th>
 														<th>Site</th>
 														<th>Contato</th>
+														<th>Nome da Receita</th>
 														<th>Código da Receita</th>
 														<th>Grupo do Cliente</th>
 														<th>Código do Agente Colaborador</th>
@@ -611,7 +634,7 @@
 														cellspacing="0" width="100%">
 														<tr>
 															<td>#{cliente.nome}</td>
-															<td class="text-center"><p:commandButton value=""
+															<td><p:commandButton value=""
 															style="font-size:10px;"
 															styleClass="fas fa-edit btn btn-primary" 
 															update="@(.form-control) @(.rd) @(.calendar) demo-form2">
@@ -639,6 +662,7 @@
 															<td>#{cliente.email}</td>
 															<td>#{cliente.site}</td>
 															<td>#{cliente.contato}</td>
+															<td>#{cliente.receita.nome}</td>
 															<td>#{cliente.codigorec}</td>	
 															<td>#{cliente.grupoCliente}</td>
 															<td>#{cliente.codigoac}</td>

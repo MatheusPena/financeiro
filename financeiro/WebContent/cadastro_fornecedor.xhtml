@@ -236,12 +236,33 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="nomedes" value="Nome da Despesa/Receita:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel id="nomedes">
+														<p:autoComplete id="acMinLength" minQueryLength="1"
+															dropdown="false" converter="converter"
+															value="#{fornecedorBean.fornecedor.despesa}"
+															inputStyleClass="form-control inputTest" forceSelection="true"
+															inputStyle="padding-right:311px" panelStyleClass="panelTest"
+															completeMethod="#{fornecedorBean.completeText}" 
+															effect="fade" var="est" itemValue="#{est}" 
+															itemLabel="#{est.nome}" required="true">															
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{fornecedorBean.selecionarDespesa()}"
+																update="@(.emissaodp) @(.valor) @this" process="@this" />
+														</p:autoComplete>																												
+													</p:outputPanel>
+												</div>
+											</div>	
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="codigodes" value="Código da Despesa:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="codigodes"
+													<p:inputText id="codigodes" required="true"
 														value="#{fornecedorBean.fornecedor.codigodes}"
-														styleClass="form-control col-md-7 col-xs-12" />
+														styleClass="form-control col-md-7 col-xs-12 valor" />
 												</div>
 											</div>					
 											<div class="form-group">
@@ -535,6 +556,7 @@
 														<th>E-mail</th>
 														<th>Site</th>
 														<th>Contato</th>
+														<th>Nome da Despesa</th>
 														<th>Código da Despesa</th>
 														<th>Grupo do Fornecedor</th>
 														<th>RG</th>
@@ -590,6 +612,7 @@
 															<td>#{fornecedor.email}</td>
 															<td>#{fornecedor.site}</td>
 															<td>#{fornecedor.contato}</td>
+															<td>#{fornecedor.despesa.nome}</td>
 															<td>#{fornecedor.codigodes}</td>
 															<td>#{fornecedor.grupofornecedor}</td>
 															<td>#{fornecedor.rg}</td>
