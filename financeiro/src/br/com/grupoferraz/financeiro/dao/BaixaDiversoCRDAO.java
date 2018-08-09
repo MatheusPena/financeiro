@@ -44,17 +44,17 @@ public class BaixaDiversoCRDAO {
 				t2 = data2.getTime();
 			}
 			preparedStatement.setDate(4, new java.sql.Date(t2));
-			preparedStatement.setFloat(5, BaixaDiversoCR.getValor());
+			preparedStatement.setBigDecimal(5, BaixaDiversoCR.getValor());
 			Date data3 = BaixaDiversoCR.getVencimentobaixa();
 			long t3 = 0;
 			if (data3 != null) {
 				t3 = data3.getTime();
 			}
 			preparedStatement.setDate(6, new java.sql.Date(t3));
-			preparedStatement.setFloat(7, BaixaDiversoCR.getValorbaixa());
-			preparedStatement.setFloat(8, BaixaDiversoCR.getDesconto());
-			preparedStatement.setFloat(9, BaixaDiversoCR.getJuros());
-			preparedStatement.setFloat(10, BaixaDiversoCR.getMulta());
+			preparedStatement.setBigDecimal(7, BaixaDiversoCR.getValorbaixa());
+			preparedStatement.setBigDecimal(8, BaixaDiversoCR.getDesconto());
+			preparedStatement.setBigDecimal(9, BaixaDiversoCR.getJuros());
+			preparedStatement.setBigDecimal(10, BaixaDiversoCR.getMulta());
 			preparedStatement.setString(11, BaixaDiversoCR.getHistorico());
 			preparedStatement.setInt(12, BaixaDiversoCR.getContafinanceira_codigo());
 			if (BaixaDiversoCR.getContareceber_codigo() != null) {
@@ -75,12 +75,12 @@ public class BaixaDiversoCRDAO {
 			preparedStatement.setInt(19, BaixaDiversoCR.getDocumento());
 			preparedStatement.setDate(20, new java.sql.Date(t));
 			preparedStatement.setDate(21, new java.sql.Date(t2));
-			preparedStatement.setFloat(22, BaixaDiversoCR.getValor());
+			preparedStatement.setBigDecimal(22, BaixaDiversoCR.getValor());
 			preparedStatement.setDate(23, new java.sql.Date(t3));
-			preparedStatement.setFloat(24, BaixaDiversoCR.getValorbaixa());
-			preparedStatement.setFloat(25, BaixaDiversoCR.getDesconto());
-			preparedStatement.setFloat(26, BaixaDiversoCR.getJuros());
-			preparedStatement.setFloat(27, BaixaDiversoCR.getMulta());
+			preparedStatement.setBigDecimal(24, BaixaDiversoCR.getValorbaixa());
+			preparedStatement.setBigDecimal(25, BaixaDiversoCR.getDesconto());
+			preparedStatement.setBigDecimal(26, BaixaDiversoCR.getJuros());
+			preparedStatement.setBigDecimal(27, BaixaDiversoCR.getMulta());
 			preparedStatement.setString(28, BaixaDiversoCR.getHistorico());
 			preparedStatement.setInt(29, BaixaDiversoCR.getContafinanceira_codigo());
 			if (BaixaDiversoCR.getContareceber_codigo() != null) {
@@ -130,12 +130,12 @@ public class BaixaDiversoCRDAO {
 				BaixaDiversoCR.setEmissao(rs.getDate("emissao"));
 				BaixaDiversoCR.setVencimento(rs.getDate("vencimento"));
 				BaixaDiversoCR.setContareceber_codigo(rs.getInt("contareceber_codigo"));
-				BaixaDiversoCR.setValor(rs.getFloat("valor"));
+				BaixaDiversoCR.setValor(rs.getBigDecimal("valor"));
 				BaixaDiversoCR.setVencimentobaixa(rs.getDate("vencimentobaixa"));
-				BaixaDiversoCR.setValorbaixa(rs.getFloat("valorbaixa"));
-				BaixaDiversoCR.setDesconto(rs.getFloat("desconto"));
-				BaixaDiversoCR.setJuros(rs.getFloat("juros"));
-				BaixaDiversoCR.setMulta(rs.getFloat("multa"));
+				BaixaDiversoCR.setValorbaixa(rs.getBigDecimal("valorbaixa"));
+				BaixaDiversoCR.setDesconto(rs.getBigDecimal("desconto"));
+				BaixaDiversoCR.setJuros(rs.getBigDecimal("juros"));
+				BaixaDiversoCR.setMulta(rs.getBigDecimal("multa"));
 				int obj1 = BaixaDiversoCR.getContafinanceira_codigo();
 				ContaFinanceira contafinanceira = getContaFinanceira(obj1);
 				BaixaDiversoCR.setContafinanceira(contafinanceira);

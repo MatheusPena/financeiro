@@ -1,5 +1,6 @@
 package br.com.grupoferraz.financeiro.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class BaixaDiversoCR {
@@ -7,12 +8,12 @@ public class BaixaDiversoCR {
 	private int documento;
 	private Date emissao;
 	private Date vencimento;
-	private float valor;
+	private BigDecimal valor;
 	private Date vencimentobaixa;
-	private float valorbaixa;
-	private float desconto;
-	private float juros;
-	private float multa;
+	private BigDecimal valorbaixa;
+	private BigDecimal desconto;
+	private BigDecimal juros;
+	private BigDecimal multa;
 	private String historico;
 	private int contafinanceira_codigo;
 	private Integer contareceber_codigo;
@@ -56,11 +57,11 @@ public class BaixaDiversoCR {
 		this.vencimento = vencimento;
 	}
 
-	public float getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(float valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 
@@ -72,35 +73,35 @@ public class BaixaDiversoCR {
 		this.vencimentobaixa = vencimentobaixa;
 	}
 
-	public float getValorbaixa() {
+	public BigDecimal getValorbaixa() {
 		return valorbaixa;
 	}
 
-	public void setValorbaixa(float valorbaixa) {
+	public void setValorbaixa(BigDecimal valorbaixa) {
 		this.valorbaixa = valorbaixa;
 	}
 
-	public float getDesconto() {
+	public BigDecimal getDesconto() {
 		return desconto;
 	}
 
-	public void setDesconto(float desconto) {
+	public void setDesconto(BigDecimal desconto) {
 		this.desconto = desconto;
 	}
 
-	public float getJuros() {
+	public BigDecimal getJuros() {
 		return juros;
 	}
 
-	public void setJuros(float juros) {
+	public void setJuros(BigDecimal juros) {
 		this.juros = juros;
 	}
 
-	public float getMulta() {
+	public BigDecimal getMulta() {
 		return multa;
 	}
 
-	public void setMulta(float multa) {
+	public void setMulta(BigDecimal multa) {
 		this.multa = multa;
 	}
 

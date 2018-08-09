@@ -214,11 +214,11 @@
 														style="width:320px">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{contasFinanceirasBean.listacontafinanceira}"
-															var="contasfinanceiras" cellspacing="0" width="100%">
+															items="#{contaFinanceiraBean.listacontasfinanceiras}"
+															var="contafinanceira" cellspacing="0" width="100%">
 															<f:selectItem
-																itemLabel="#{contasfinanceiras.nome}"
-																itemValue="#{contasfinanceiras.codigo}" />
+																itemLabel="#{contafinanceira.nome}"
+																itemValue="#{contafinanceira.codigo}" />
 														</c:forEach>
 														</h:selectOneMenu>
 												</div>
@@ -340,7 +340,7 @@
 																			<f:setPropertyActionListener value="#{baixadiversos}"
 																				target="#{baixaDiversoCRBean.baixaDiversoCR}" />
 																		</p:commandButton></td>
-																	<td>#{baixadiversos.contasreceber_cpf}</td>
+																	<td>#{baixadiversos.contareceber_cpf}</td>
 																	<td>#{baixadiversos.documento}</td>
 																	<td><h:outputText value="#{baixadiversos.emissao}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"
@@ -350,7 +350,7 @@
 																			<f:convertDateTime pattern="dd/MM/yyyy"
 																				dateStyle="long" />
 																		</h:outputText></td>	
-																	<td>#{baixadiversos.contasreceber_codigo}</td>
+																	<td>#{baixadiversos.contareceber_codigo}</td>
 																	<td>#{baixadiversos.valor}</td>
 																	<td><h:outputText value="#{baixadiversos.vencimentobaixa}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"

@@ -73,18 +73,18 @@
 											<p:messages id="messages" />
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="cpf" value="CPF/CNPJ do Cliente *" />
+													<p:outputLabel for="cpf" value="CPF/CNPJ do Cliente" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf"
-														value="#{baixaChequeCRBean.baixaChequeCR.contasreceber_cpf}"
+														value="#{baixaChequeCRBean.baixaChequeCR.contareceber_cpf}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"></p:inputText>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="documento"
+													<p:outputLabel for="documento"
 														value="Número do Documento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
@@ -105,7 +105,7 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data" value="Data de Emissão *" />
+													<p:outputLabel for="data" value="Data de Emissão" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
@@ -116,7 +116,7 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data2" value="Data de Vencimento *" />
+													<p:outputLabel for="data2" value="Data de Vencimento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
@@ -127,17 +127,17 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="titulo" value="Número do Título" />
+													<p:outputLabel for="titulo" value="Número do Título" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="titulo"
-														value="#{baixaChequeCRBean.baixaChequeCR.contasreceber_codigo}"
+														value="#{baixaChequeCRBean.baixaChequeCR.contareceber_codigo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="valor" value="Valor do Vencimento *" />
+													<p:outputLabel for="valor" value="Valor do Vencimento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valor"
@@ -148,7 +148,7 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data3" value="Data da Baixa do Vencimento *" />
+													<p:outputLabel for="data3" value="Data da Baixa do Vencimento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
@@ -159,7 +159,7 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="valorbaixa" value="Valor da Baixa do Vencimento *" />
+													<p:outputLabel for="valorbaixa" value="Valor da Baixa do Vencimento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valorbaixa"
@@ -170,68 +170,85 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="desconto" value="Valor do Desconto da Baixa" />
+													<p:outputLabel for="desconto" value="Valor do Desconto da Baixa" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="desconto"
 														value="#{baixaChequeCRBean.baixaChequeCR.desconto}"
 														styleClass="form-control col-md-7 col-xs-12"
-														 required="true" />
+														 required="false" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="juros" value="Valor do Juros da Baixa" />
+													<p:outputLabel for="juros" value="Valor do Juros da Baixa" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="juros"
 														value="#{baixaChequeCRBean.baixaChequeCR.juros}"
 														styleClass="form-control col-md-7 col-xs-12"
-														 required="true" />
+														 required="false" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="contafinanceira"
-														value="Conta Financeira *" />
+													<p:outputLabel for="contafinanceira"
+														value="Conta Financeira" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="contafinanceira"
-														value="#{baixaChequeCRBean.baixaChequeCR.contasfinanceiras_codigo}"
+														value="#{baixaChequeCRBean.baixaChequeCR.contafinanceira_codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"
 														style="width:320px">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{contasFinanceirasBean.listacontafinanceira}"
-															var="contasfinanceiras" cellspacing="0" width="100%">
+															items="#{contaFinanceiraBean.listacontasfinanceiras}"
+															var="contafinanceira" cellspacing="0" width="100%">
 															<f:selectItem
-																itemLabel="#{contasfinanceiras.nome}"
-																itemValue="#{contasfinanceiras.codigo}" />
+																itemLabel="#{contafinanceira.nome}"
+																itemValue="#{contafinanceira.codigo}" />
 														</c:forEach>
 														</h:selectOneMenu>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="estabelecimento"
+													<p:outputLabel for="empresa" value="Empresa " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel styleClass="combo">
+														<h:selectOneMenu id="empresa" required="true"
+															converter="omnifaces.SelectItemsConverter"
+															value="#{baixaChequeCRBean.baixaChequeCR.empresa_cnpj}"
+															style="width:320px"
+															styleClass="form-control col-md-7 col-xs-12">
+															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+															<f:selectItems value="#{empresaBean.empresas}"
+																var="empresa" itemValue="#{empresa.cnpj}"
+																itemLabel="#{empresa.nome}" />
+															<f:ajax render="Campo:estabelecimento" execute="@this" />
+														</h:selectOneMenu>
+													</p:outputPanel>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="estabelecimento"
 														value="Estabelecimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="estabelecimento"
-														value="#{baixaChequeCRBean.baixaChequeCR.contasreceber_estabelecimentos_codigo}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true"
-														style="width:320px">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{estabelecimentoBean.estabelecimentos}"
-															var="estabelecimento" cellspacing="0" width="100%">
-															<f:selectItem
-																itemLabel="#{estabelecimento.nome}"
-																itemValue="#{estabelecimento.codigo}" />
-														</c:forEach>
-														</h:selectOneMenu>
+													<p:outputPanel id="estabelecimento">
+														<p:autoComplete id="Estabelecimento" minQueryLength="1"
+															converter="converter" required="true"
+															value="#{baixaChequeCRBean.baixaChequeCR.estabelecimento}"
+															inputStyleClass="form-control inputTest" forceSelection="true" panelStyleClass="panelTest"
+															inputStyle="padding-right:311px" var="d" itemLabel="#{d.nome}" itemValue="#{d}"
+															completeMethod="#{baixaChequeCRBean.completeText}" effect="fade">
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{baixaChequeCRBean.selecionar}" />
+														</p:autoComplete>
+													</p:outputPanel>
 												</div>
 											</div>
 											<div class="form-group">
@@ -292,6 +309,7 @@
 																<th>Valor do desconto</th>
 																<th>Valor do juros</th>
 																<th>Conta financeira</th>
+																<th>Empresa</th>
 																<th>Estabelecimento</th>
 																<th>Histórico</th>
 
@@ -310,7 +328,7 @@
 																			<f:setPropertyActionListener value="#{baixacheque}"
 																				target="#{baixaChequeCRBean.baixaChequeCR}" />
 																		</p:commandButton></td>
-																	<td>#{baixacheque.contasreceber_cpf}</td>
+																	<td>#{baixacheque.contareceber_cpf}</td>
 																	<td>#{baixacheque.documento}</td>
 																	<td><h:outputText value="#{baixacheque.emissao}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"
@@ -320,7 +338,7 @@
 																			<f:convertDateTime pattern="dd/MM/yyyy"
 																				dateStyle="long" />
 																		</h:outputText></td>	
-																	<td>#{baixacheque.contasreceber_codigo}</td>
+																	<td>#{baixacheque.contareceber_codigo}</td>
 																	<td>#{baixacheque.valor}</td>
 																	<td><h:outputText value="#{baixacheque.vencimentobaixa}">
 																			<f:convertDateTime pattern="dd/MM/yyyy"
@@ -329,7 +347,8 @@
 																	<td>#{baixacheque.valorbaixa}</td>
 																	<td>#{baixacheque.desconto}</td>
 																	<td>#{baixacheque.juros}</td>
-																	<td>#{baixacheque.contasfinanceiras}</td>
+																	<td>#{baixacheque.contafinanceira}</td>
+																	<td>#{baixacheque.empresa}</td>
 																	<td>#{baixacheque.estabelecimento}</td>
 																	<td>#{baixacheque.historico}</td>
 																
