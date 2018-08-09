@@ -21,7 +21,7 @@ public class VencimentoChequeCRDAO{
 		try {
 			StringBuilder str = new StringBuilder();
 			str.append(
-					"INSERT INTO financeiro.vencimentochequecr  (codigo,vencimento,valor,banco,tipoconta,agenciabanco,digagencia,conta,digconta,cheque,titular,febraban)"
+					"INSERT INTO financeiro.vencimento_cheque_cr  (codigo,vencimento,valor,banco,tipoconta,agenciabanco,digagencia,conta,digconta,cheque,titular,febraban)"
 							+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 			str.append(
 					"on duplicate key update codigo = ?,vencimento = ?,valor = ?,banco = ?,tipoconta = ?,agenciabanco = ?,digagencia = ?,conta = ?,digconta = ?,cheque = ?,titular = ?,febraban = ?");
@@ -33,10 +33,10 @@ public class VencimentoChequeCRDAO{
 				t = data.getTime();
 			}
 			preparedStatement.setDate(2, new java.sql.Date(t));
-			preparedStatement.setFloat(3, VencimentoChequeCRDAO.getValor());
+			preparedStatement.setBigDecimal(3, VencimentoChequeCRDAO.getValor());
 			preparedStatement.setString(4, VencimentoChequeCRDAO.getBanco());
 			preparedStatement.setString(5, VencimentoChequeCRDAO.getTipoconta());
-			preparedStatement.setFloat(6, VencimentoChequeCRDAO.getAgencia());
+			preparedStatement.setInt(6, VencimentoChequeCRDAO.getAgencia());
 			preparedStatement.setInt(7, VencimentoChequeCRDAO.getDigagencia());
 			preparedStatement.setInt(8, VencimentoChequeCRDAO.getConta());
 			preparedStatement.setInt(9, VencimentoChequeCRDAO.getDigconta());
@@ -46,10 +46,10 @@ public class VencimentoChequeCRDAO{
 			
 			preparedStatement.setInt(13, VencimentoChequeCRDAO.getCodigo());
 			preparedStatement.setDate(14, new java.sql.Date(t));
-			preparedStatement.setFloat(15, VencimentoChequeCRDAO.getValor());
+			preparedStatement.setBigDecimal(15, VencimentoChequeCRDAO.getValor());
 			preparedStatement.setString(16, VencimentoChequeCRDAO.getBanco());
 			preparedStatement.setString(17, VencimentoChequeCRDAO.getTipoconta());
-			preparedStatement.setFloat(18, VencimentoChequeCRDAO.getAgencia());
+			preparedStatement.setInt(18, VencimentoChequeCRDAO.getAgencia());
 			preparedStatement.setInt(19, VencimentoChequeCRDAO.getDigagencia());
 			preparedStatement.setInt(20, VencimentoChequeCRDAO.getConta());
 			preparedStatement.setInt(21, VencimentoChequeCRDAO.getDigconta());
@@ -78,7 +78,7 @@ public class VencimentoChequeCRDAO{
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from vencimentochequecr";
+			String sql = "select * from vencimento_cheque_cr";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -86,7 +86,7 @@ public class VencimentoChequeCRDAO{
 				VencimentoChequeCR VencimentoChequeCRDAO = new VencimentoChequeCR();
 				VencimentoChequeCRDAO.setCodigo(rs.getInt("codigo"));
 				VencimentoChequeCRDAO.setVencimento(rs.getDate("vencimento"));
-				VencimentoChequeCRDAO.setValor(rs.getFloat("valor"));
+				VencimentoChequeCRDAO.setValor(rs.getBigDecimal("valor"));
 				VencimentoChequeCRDAO.setBanco(rs.getString("banco"));
 				VencimentoChequeCRDAO.setTipoconta(rs.getString("tipoconta"));
 				VencimentoChequeCRDAO.setAgencia(rs.getInt("agenciabanco"));

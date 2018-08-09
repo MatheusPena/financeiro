@@ -1,11 +1,12 @@
 package br.com.grupoferraz.financeiro.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class VencimentoChequeCR {
 	private int codigo;
 	private Date vencimento;
-	private float valor;
+	private BigDecimal valor;
 	private String banco;
 	private String tipoconta;
 	private int agencia;
@@ -32,11 +33,11 @@ public class VencimentoChequeCR {
 		this.vencimento = vencimento;
 	}
 
-	public float getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(float valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 

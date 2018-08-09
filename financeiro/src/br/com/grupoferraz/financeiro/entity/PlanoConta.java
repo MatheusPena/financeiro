@@ -15,7 +15,7 @@ public class PlanoConta {
 	private String atividade;
 	private BigDecimal icms;
 	private String observacao;
-	private int grupodespesareceita_codigo;
+	private Integer grupodespesareceita_codigo;
 	private GrupoDespesaReceita grupodespesareceita;
 	private DespesaReceita despesareceita;
 
@@ -115,12 +115,11 @@ public class PlanoConta {
 		this.observacao = observacao;
 	}
 
-
-	public int getGrupodespesareceita_codigo() {
+	public Integer getGrupodespesareceita_codigo() {
 		return grupodespesareceita_codigo;
 	}
 
-	public void setGrupodespesareceita_codigo(int grupodespesareceita_codigo) {
+	public void setGrupodespesareceita_codigo(Integer grupodespesareceita_codigo) {
 		this.grupodespesareceita_codigo = grupodespesareceita_codigo;
 	}
 
@@ -175,6 +174,6 @@ public class PlanoConta {
 		if (despesareceita != null) {
 			return despesareceita.getNome();
 		}
-		return "-";
+		return null;
 	}
 }

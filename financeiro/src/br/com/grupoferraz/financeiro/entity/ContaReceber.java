@@ -7,6 +7,7 @@ public class ContaReceber {
 	private int codigo;
 	private int estabelecimento_codigo;
 	private String cpf;
+	private Integer receita_nome;
 	private String receita_codigo;
 	private int documento;
 	private Date emissao;
@@ -41,6 +42,14 @@ public class ContaReceber {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Integer getReceita_nome() {
+		return receita_nome;
+	}
+
+	public void setReceita_nome(Integer receita_nome) {
+		this.receita_nome = receita_nome;
 	}
 
 	public String getReceita_codigo() {

@@ -73,23 +73,23 @@
 											<p:messages id="messages" />
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="cpf" value="CPF/CNPJ do Cliente *" />
+													<p:outputLabel for="cpf" value="CPF/CNPJ do Cliente" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="cpf"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.contasreceber_cpf}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.contareceber_cpf}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"></p:inputText>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="documento"
+													<p:outputLabel for="documento"
 														value="Número do Documento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="documento"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.documento}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.documento}"
 														styleClass="form-control col-md-7 col-xs-12"
 														style="width:320px">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -105,110 +105,110 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data" value="Data de Emissão *" />
+													<p:outputLabel for="data" value="Data de Emissão" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="data" required="true"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.emissao}" />
+														value="#{baixaDiversoCRBean.baixaDiversoCR.emissao}" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data2" value="Data de Vencimento *" />
+													<p:outputLabel for="data2" value="Data de Vencimento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="data2" required="true"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.vencimento}" />
+														value="#{baixaDiversoCRBean.baixaDiversoCR.vencimento}" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="titulo" value="Número do Título" />
+													<p:outputLabel for="titulo" value="Número do Título" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="titulo"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.contasreceber_codigo}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.contareceber_codigo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="valor" value="Valor do Vencimento *" />
+													<p:outputLabel for="valor" value="Valor do Vencimento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valor"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.valor}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.valor}"
 														styleClass="form-control col-md-7 col-xs-12"
 														 required="true" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data3" value="Data da Baixa do Vencimento *" />
+													<p:outputLabel for="data3" value="Data da Baixa do Vencimento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="data3" required="true"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.vencimentobaixa}" />
+														value="#{baixaDiversoCRBean.baixaDiversoCR.vencimentobaixa}" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="valorbaixa" value="Valor da Baixa do Vencimento *" />
+													<p:outputLabel for="valorbaixa" value="Valor da Baixa do Vencimento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valorbaixa"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.valorbaixa}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.valorbaixa}"
 														styleClass="form-control col-md-7 col-xs-12"
 														 required="true" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="desconto" value="Valor do Desconto da Baixa" />
+													<p:outputLabel for="desconto" value="Valor do Desconto da Baixa" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="desconto"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.desconto}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.desconto}"
 														styleClass="form-control col-md-7 col-xs-12"
 														 required="true" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="juros" value="Valor do Juros da Baixa" />
+													<p:outputLabel for="juros" value="Valor do Juros da Baixa" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="juros"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.juros}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.juros}"
 														styleClass="form-control col-md-7 col-xs-12"
 														 required="true" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="multa" value="Valor da Multa da Baixa" />
+													<p:outputLabel for="multa" value="Valor da Multa da Baixa" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="multa"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.multa}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.multa}"
 														styleClass="form-control col-md-7 col-xs-12"
 														 required="true" />
 												</div>											
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="contafinanceira"
-														value="Conta Financeira *" />
+													<p:outputLabel for="contafinanceira"
+														value="Conta Financeira" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="contafinanceira"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.contasfinanceiras_codigo}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.contafinanceira_codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"
 														style="width:320px">
@@ -225,24 +225,41 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="estabelecimento"
+													<p:outputLabel for="empresa" value="Empresa " />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:outputPanel styleClass="combo">
+														<h:selectOneMenu id="empresa" required="true"
+															converter="omnifaces.SelectItemsConverter"
+															value="#{baixaDiversoCRBean.baixaDiversoCR.empresa_cnpj}"
+															style="width:320px"
+															styleClass="form-control col-md-7 col-xs-12">
+															<f:selectItem itemLabel="Selecione" itemValue="#{null}" />
+															<f:selectItems value="#{empresaBean.empresas}"
+																var="empresa" itemValue="#{empresa.cnpj}"
+																itemLabel="#{empresa.nome}" />
+															<f:ajax render="Campo:estabelecimento"  execute="@this" />
+														</h:selectOneMenu>
+													</p:outputPanel>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="estabelecimento"
 														value="Estabelecimento *" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<h:selectOneMenu id="estabelecimento"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.contasreceber_estabelecimentos_codigo}"
-														styleClass="form-control col-md-7 col-xs-12"
-														required="true"
-														style="width:320px">
-														<f:selectItem itemLabel="Selecione" itemValue="" />
-														<c:forEach
-															items="#{estabelecimentoBean.estabelecimentos}"
-															var="estabelecimento" cellspacing="0" width="100%">
-															<f:selectItem
-																itemLabel="#{estabelecimento.nome}"
-																itemValue="#{estabelecimento.codigo}" />
-														</c:forEach>
-														</h:selectOneMenu>
+													<p:outputPanel id="estabelecimento">
+														<p:autoComplete id="Estabelecimento" minQueryLength="1"
+															converter="converter" required="true"
+															value="#{baixaDiversoCRBean.baixaDiversoCR.estabelecimento}"
+															inputStyleClass="form-control inputTest" forceSelection="true" panelStyleClass="panelTest"
+															inputStyle="padding-right:311px" var="d" itemLabel="#{d.nome}" itemValue="#{d}"
+															completeMethod="#{baixaDiversoCRBean.completeText}" effect="fade">
+															<p:ajax event="itemSelect" resetValues="true"
+																listener="#{baixaDiversoCRBean.selecionar}" />
+														</p:autoComplete>
+													</p:outputPanel>
 												</div>
 											</div>
 											<div class="form-group">
@@ -251,7 +268,7 @@
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputTextarea id="historico"
-														value="#{baixaDiversosCRBean.baixaDiversosCR.historico}"
+														value="#{baixaDiversoCRBean.baixaDiversoCR.historico}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -262,7 +279,7 @@
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
-														action="#{baixaDiversosCRBean.cadastraBaixaDiversosCR()}"
+														action="#{baixaDiversoCRBean.cadastraBaixaDiversoCR()}"
 														onclick="window.location='#Campo'"></p:commandButton>
 												</div>
 											</div>
@@ -304,13 +321,14 @@
 																<th>Valor do juros</th>
 																<th>Valor da multa</th>
 																<th>Conta financeira</th>
+																<th>Empresa</th>
 																<th>Estabelecimento</th>
 																<th>Histórico</th>
 
 															</tr>
 														</thead>
 														<tbody>
-															<c:forEach items="#{baixaDiversosCRBean.listaBaixaDiversosCR}"
+															<c:forEach items="#{baixaDiversoCRBean.listaBaixaDiversosCR}"
 																var="baixadiversos" cellspacing="0" width="100%">
 																<tr>
 																	<td>#{baixadiversos.codigo}</td>
@@ -320,7 +338,7 @@
 																			update="@(.form-control) @(.rd) @(.calendar) Campo"
 																			onclick="window.location='#Campo'">
 																			<f:setPropertyActionListener value="#{baixadiversos}"
-																				target="#{baixaDiversosCRBean.baixaDiversosCR}" />
+																				target="#{baixaDiversoCRBean.baixaDiversoCR}" />
 																		</p:commandButton></td>
 																	<td>#{baixadiversos.contasreceber_cpf}</td>
 																	<td>#{baixadiversos.documento}</td>
@@ -342,7 +360,8 @@
 																	<td>#{baixadiversos.desconto}</td>
 																	<td>#{baixadiversos.juros}</td>
 																	<td>#{baixadiversos.multa}</td>
-																	<td>#{baixadiversos.contasfinanceiras}</td>
+																	<td>#{baixadiversos.contafinanceira}</td>
+																	<td>#{baixadiversos.empresa}</td>
 																	<td>#{baixadiversos.estabelecimento}</td>
 																	<td>#{baixadiversos.historico}</td>
 																

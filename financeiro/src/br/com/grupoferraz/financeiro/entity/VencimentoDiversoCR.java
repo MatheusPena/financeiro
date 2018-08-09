@@ -1,15 +1,16 @@
 package br.com.grupoferraz.financeiro.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class VencimentoDiversosCR {
+public class VencimentoDiversoCR {
 	private int codigo;
 	private Date vencimento;
-	private float valor;
+	private BigDecimal valor;
 	private int titulo;
 	private int boleto;
-	private float desconto;
-	private String empresas_cnpj;
+	private BigDecimal desconto;
+	private String empresa_cnpj;
 	private int documento_codigo;
 	private Empresa empresa;
 	private Documento documento;
@@ -30,12 +31,16 @@ public class VencimentoDiversosCR {
 		this.vencimento = vencimento;
 	}
 
-	public float getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(float valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	public void setDesconto(BigDecimal desconto) {
+		this.desconto = desconto;
 	}
 
 	public int getTitulo() {
@@ -54,20 +59,16 @@ public class VencimentoDiversosCR {
 		this.boleto = boleto;
 	}
 
-	public float getDesconto() {
+	public BigDecimal getDesconto() {
 		return desconto;
 	}
 
-	public void setDesconto(float desconto) {
-		this.desconto = desconto;
+	public String getEmpresa_cnpj() {
+		return empresa_cnpj;
 	}
 
-	public String getEmpresas_cnpj() {
-		return empresas_cnpj;
-	}
-
-	public void setEmpresas_cnpj(String empresas_cnpj) {
-		this.empresas_cnpj = empresas_cnpj;
+	public void setEmpresa_cnpj(String empresa_cnpj) {
+		this.empresa_cnpj = empresa_cnpj;
 	}
 
 	public int getDocumento_codigo() {

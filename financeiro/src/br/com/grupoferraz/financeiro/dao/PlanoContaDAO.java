@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -42,8 +43,13 @@ public class PlanoContaDAO {
 			preparedStatement.setString(10, PlanoConta.getAtividade());
 			preparedStatement.setBigDecimal(11, PlanoConta.getIcms());
 			preparedStatement.setString(12, PlanoConta.getObservacao());
-			preparedStatement.setInt(13, PlanoConta.getGrupodespesareceita_codigo());
-
+			if (PlanoConta.getGrupodespesareceita_codigo() != null) {
+				preparedStatement.setInt(13, PlanoConta.getGrupodespesareceita_codigo());
+			}
+			else {
+				preparedStatement.setNull(13, Types.INTEGER);
+			}
+			
 			preparedStatement.setString(14, PlanoConta.getCodigo());
 			preparedStatement.setInt(15, PlanoConta.getNome());
 			preparedStatement.setString(16, PlanoConta.getTipo());
@@ -56,7 +62,12 @@ public class PlanoContaDAO {
 			preparedStatement.setString(23, PlanoConta.getAtividade());
 			preparedStatement.setBigDecimal(24, PlanoConta.getIcms());
 			preparedStatement.setString(25, PlanoConta.getObservacao());
-			preparedStatement.setInt(26, PlanoConta.getGrupodespesareceita_codigo());
+			if (PlanoConta.getGrupodespesareceita_codigo() != null) {
+				preparedStatement.setInt(26, PlanoConta.getGrupodespesareceita_codigo());
+			}
+			else {
+				preparedStatement.setNull(26, Types.INTEGER);
+			}
 
 			preparedStatement.execute();
 			return true;

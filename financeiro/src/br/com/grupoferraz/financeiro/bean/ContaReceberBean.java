@@ -1,8 +1,6 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -25,8 +23,6 @@ import br.com.grupoferraz.financeiro.util.JSFUtil;
 public class ContaReceberBean implements Serializable {
 	private ContaReceber contaReceber;
 	private List<ContaReceber> ContasReceber;
-	private List<Estabelecimento> estabelecimentos;
-	private String cnpj;
 
 	public ContaReceberBean() {
 		contaReceber = new ContaReceber();
@@ -54,25 +50,6 @@ public class ContaReceberBean implements Serializable {
 	public void getcontaReceber() {
 		ContaReceberDAO contareceber = new ContaReceberDAO();
 		ContasReceber = contareceber.listContasReceber();
-	}
-
-	// lista a lista do autocomplete dos estabelecimentos existentes no banco
-	public void listarEstabelecimentos() {
-		EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
-		cnpj = contaReceber.getEmpresa_cnpj();
-		if (cnpj != null) {
-			try {
-				estabelecimentos = estabelecimentoDAO.getEstabelecimento(cnpj);
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			estabelecimentos = new ArrayList<>();
-		}
-
-		// estabelecimentos = estabelecimentoDAO.listEstabelecimentos();
 	}
 
 	// lista a lista do autocomplete no campo estabelecimento
@@ -106,6 +83,7 @@ public class ContaReceberBean implements Serializable {
 		PlanoConta plano = contaReceber.getPlanoconta();
 
 		if (plano != null) {
+			contaReceber.setReceita_nome(plano.getNome());
 			contaReceber.setReceita_codigo(plano.getCodigo());
 		}
 
@@ -125,22 +103,6 @@ public class ContaReceberBean implements Serializable {
 
 	public void setContasReceber(List<ContaReceber> contasReceber) {
 		ContasReceber = contasReceber;
-	}
-
-	public List<Estabelecimento> getEstabelecimentos() {
-		return estabelecimentos;
-	}
-
-	public void setEstabelecimentos(List<Estabelecimento> estabelecimentos) {
-		this.estabelecimentos = estabelecimentos;
-	}
-
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
 	}
 
 }

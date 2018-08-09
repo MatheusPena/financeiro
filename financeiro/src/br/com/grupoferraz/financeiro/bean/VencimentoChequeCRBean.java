@@ -25,19 +25,20 @@ public class VencimentoChequeCRBean implements Serializable{
 		getVencimentoChequeCRs();
 	}
 
+	//cadastra os vencimentos dos cheques no banco de dados
 	public String cadastraVencimentoChequeCR() {
 
 		ConexaoBD.getConexao();
 		VencimentoChequeCRDAO VencimentoChequeCRs = new VencimentoChequeCRDAO();
 		if (VencimentoChequeCRs.insertVencimentoChequeCR(VencimentoChequeCR)) {
-			JSFUtil.mostraMensagemSemFlash(FacesMessage.SEVERITY_INFO, "Vencimento cadastrado com sucesso!");
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Vencimento cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do vencimento!", "Erro!"));
-
+			return "";
 		}
 		ConexaoBD.fecharConexao();
-		VencimentoChequeCR = new VencimentoChequeCR();
+		this.VencimentoChequeCR = new VencimentoChequeCR();
 
 		return "";
 	}

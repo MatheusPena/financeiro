@@ -61,40 +61,40 @@
 											<p:messages id="messages" />
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="data" value="Data de Vencimento *" />
+													<p:outputLabel for="data" value="Data de Vencimento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:calendar mask="true" pattern="dd/MM/yyyy" showOn="false"
 														inputStyleClass="form-control col-md-7 col-xs-12"
 														id="data" required="true"
-														value="#{vencimentoDiversosCRBean.vencimentoDiversosCR.vencimento}" />
+														value="#{vencimentoDiversoCRBean.vencimentoDiversoCR.vencimento}" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="valor" value="Valor *" />
+													<p:outputLabel for="valor" value="Valor" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="valor"
-														value="#{vencimentoDiversosCRBean.vencimentoDiversosCR.valor}"
+														value="#{vencimentoDiversoCRBean.vencimentoDiversoCR.valor}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"></p:inputText>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="documento"
-														value="Tipo de Documento *" />
+													<p:outputLabel for="documento"
+														value="Tipo de Documento" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="documento"
-														value="#{vencimentoDiversosCRBean.vencimentoDiversosCR.documento_codigo}"
+														value="#{vencimentoDiversoCRBean.vencimentoDiversoCR.documento_codigo}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"
 														style="width:320px">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<c:forEach
-															items="#{documentosBean.documentos}"
+															items="#{documentoBean.documentos}"
 															var="documento" cellspacing="0" width="100%">
 															<f:selectItem
 																itemLabel="#{documento.nome}"
@@ -105,22 +105,22 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="titulo" value="Número do Título" />
+													<p:outputLabel for="titulo" value="Número do Título" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="titulo"
-														value="#{vencimentoDiversosCRBean.vencimentoDiversosCR.titulo}"
+														value="#{vencimentoDiversoCRBean.vencimentoDiversoCR.titulo}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputLabel for="empresa"
-														value="Agente Cobrador *" />
+													<p:outputLabel for="empresa"
+														value="Agente Cobrador" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<h:selectOneMenu id="empresa"
-														value="#{vencimentoDiversosCRBean.vencimentoDiversosCR.empresas_cnpj}"
+														value="#{vencimentoDiversoCRBean.vencimentoDiversoCR.empresa_cnpj}"
 														styleClass="form-control col-md-7 col-xs-12"
 														required="true"
 														style="width:320px">
@@ -137,21 +137,21 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="boleto" value="Número do Boleto Impresso" />
+													<p:outputLabel for="boleto" value="Número do Boleto Impresso" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="boleto"
-														value="#{vencimentoDiversosCRBean.vencimentoDiversosCR.boleto}"
+														value="#{vencimentoDiversoCRBean.vencimentoDiversoCR.boleto}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<h:outputText for="desconto" value="Desconto" />
+													<p:outputLabel for="desconto" value="Desconto" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="desconto"
-														value="#{vencimentoDiversosCRBean.vencimentoDiversosCR.desconto}"
+														value="#{vencimentoDiversoCRBean.vencimentoDiversoCR.desconto}"
 														styleClass="form-control col-md-7 col-xs-12" />
 												</div>
 											</div>
@@ -162,7 +162,7 @@
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														update="messages" class="btn btn-success"
-														action="#{vencimentoDiversosCRBean.cadastraVencimentoDiversosCR}"
+														action="#{vencimentoDiversoCRBean.cadastraVencimentoDiversoCR}"
 														onclick="window.location='#Campo'"></p:commandButton>
 												</div>
 											</div>
@@ -202,7 +202,7 @@
 														</tr>
 													</thead>
 												<tbody>
-											<c:forEach items="#{vencimentoDiversosCRBean.listaVencimentoDiversosCR}"
+											<c:forEach items="#{vencimentoDiversoCRBean.listaVencimentoDiversosCR}"
 												var="vencimentosdiversos" cellspacing="0" width="100%">
 												<tr>
 													<td>#{vencimentosdiversos.codigo}</td>
@@ -212,7 +212,7 @@
 															update="@(.form-control) @(.rd) @(.calendar) Campo"
 															onclick="window.location='#Campo'">
 															<f:setPropertyActionListener value="#{vencimentosdiversos}"
-																target="#{vencimentoDiversosCRBean.vencimentoDiversosCR}" />
+																target="#{vencimentoDiversoCRBean.vencimentoDiversoCR}" />
 														</p:commandButton></td>
 													<td><h:outputText value="#{vencimentosdiversos.vencimento}">
 															<f:convertDateTime pattern="dd/MM/yyyy"
