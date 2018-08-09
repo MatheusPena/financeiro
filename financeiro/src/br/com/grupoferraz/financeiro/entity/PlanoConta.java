@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class PlanoConta {
 	private String codigo;
-	private int nome;
+	private int despesareceita_codigo;
 	private String tipo;
 	private String natureza;
 	private String iss;
@@ -25,14 +25,6 @@ public class PlanoConta {
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}
-
-	public int getNome() {
-		return nome;
-	}
-
-	public void setNome(int nome) {
-		this.nome = nome;
 	}
 
 	public String getTipo() {
@@ -93,6 +85,14 @@ public class PlanoConta {
 
 	public String getAtividade() {
 		return atividade;
+	}
+
+	public int getDespesareceita_codigo() {
+		return despesareceita_codigo;
+	}
+
+	public void setDespesareceita_codigo(int despesareceita_codigo) {
+		this.despesareceita_codigo = despesareceita_codigo;
 	}
 
 	public void setAtividade(String atividade) {
