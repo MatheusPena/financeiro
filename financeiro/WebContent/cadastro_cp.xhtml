@@ -159,22 +159,22 @@
 													<p:outputPanel id="despesa_nome">
 														<p:autoComplete id="acMinLength" minQueryLength="1"
 															dropdown="false" converter="converter"
-															value="#{contaPagarBean.pagarconta.despesa}"
+															value="#{contaPagarBean.pagarconta.planoconta}"
 															inputStyleClass="form-control inputTest" forceSelection="true"
 															inputStyle="padding-right:311px" panelStyleClass="panelTest"
-															completeMethod="#{contaPagarBean.completeText}" 
+															completeMethod="#{contaPagarBean.completeDespesa}" 
 															effect="fade" var="est" itemValue="#{est}" 
-															itemLabel="#{est.nome}">															
+															itemLabel="#{est.despesareceita}">							 								
 															<p:ajax event="itemSelect" resetValues="true"
 																listener="#{contaPagarBean.selecionarDespesa()}"
-																update="@(.emissaodp) @(.valor) @this" process="@this" />
+																update="@(.despesa_codigo) @(.valor) @this" process="@this" />
 														</p:autoComplete>																												
 													</p:outputPanel>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
-													<p:outputLabel for="despesa_codigo" value="Código da Despesa:" />
+													<p:outputLabel for="despesa_codigo" value="Código da Conta:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:inputText id="despesa_codigo" required="false"
@@ -523,11 +523,11 @@
 																<td>#{pagarconta.estabelecimento_nome}</td>
 																<td>#{pagarconta.cpf}</td>
 																<td>#{pagarconta.despesa_codigo}</td>
-																<td>#{pagarconta.despesa_nome}</td>
+																<td>#{pagarconta.despesa.nome}</td>
 																<td>#{pagarconta.emissaocp}</td>
 																<td>#{pagarconta.valor}</td>
 																<td>#{pagarconta.emissaodp}</td>
-																<td>#{pagarconta.centroresultados.nome}</td>
+																<td>#{pagarconta.centroresultados}</td>
 																<td>#{pagarconta.documento.nome}</td>
 																<td>#{pagarconta.observacao}</td>
 															</tr>

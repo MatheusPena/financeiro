@@ -106,15 +106,15 @@ public class RateioCRDAO {
 		PlanoConta grupo = new PlanoConta();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select codigo, nome, tipo, natureza, iss, \"\r\n"
-				+ "					+ \"inss, irpf, pis, conta, atividade, icms, observacao, grupodespesareceita_codigo from plano_conta where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select codigo, despesareceita_codigo, tipo, natureza, iss, "
+				+ "inss, irpf, pis, conta, atividade, icms, observacao, grupodespesareceita_codigo from plano_conta where codigo = ?");
 		preparedStatement.setString(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getString("codigo"));
-			grupo.setNome(rs.getInt("nome"));
-			int idGrup = grupo.getNome();
+			grupo.setDespesareceita_codigo(rs.getInt("nome"));
+			int idGrup = grupo.getDespesareceita_codigo();
 			DespesaReceita desp = getDespesa(idGrup);
 			grupo.setDespesareceita(desp);
 			grupo.setTipo(rs.getString("tipo"));

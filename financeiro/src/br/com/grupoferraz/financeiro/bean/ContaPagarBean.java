@@ -3,18 +3,16 @@ package br.com.grupoferraz.financeiro.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
-import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
+import br.com.grupoferraz.financeiro.dao.PlanoContaDAO;
 import br.com.grupoferraz.financeiro.dao.ContaPagarDAO;
 import br.com.grupoferraz.financeiro.dao.VencimentoCPDAO;
-import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
+import br.com.grupoferraz.financeiro.entity.PlanoConta;
 import br.com.grupoferraz.financeiro.entity.ContaPagar;
 import br.com.grupoferraz.financeiro.entity.VencimentoCP;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
@@ -89,23 +87,44 @@ public class ContaPagarBean implements Serializable {
 	}
 		
 //	Autocomplete referente à Despesas
-	public List<DespesaReceita> completeText(String query) {
-		DespesaReceitaDAO despesareceitaDAO = new DespesaReceitaDAO();
+//	public List<DespesaReceita> completeText(String query) {
+//		DespesaReceitaDAO despesareceitaDAO = new DespesaReceitaDAO();
+//
+//		return despesareceitaDAO.listadespesareceitas(query);
+//	}
+//
+//
+//	public void selecionarDespesa() {
+//		
+//		DespesaReceita despesa = contapagar.getDespesa();
+//		
+//		if (despesa != null) {
+//			contapagar.setDespesa_codigo(despesa.getCodigo());
+//			contapagar.setDespesa_nome(despesa.getNome());
+//		}
+//
+//	}
+//	
+	
+	// lista a lista do autocomplete no campo despesas
+	public List<PlanoConta> completeDespesa(String query) {
+		PlanoContaDAO planoConta = new PlanoContaDAO();
 
-		return despesareceitaDAO.listadespesareceitas(query);
+		return planoConta.listaplano(query);
 	}
 
-
+	// seleciona um dos objetos da lista no campo despesas
 	public void selecionarDespesa() {
-		
-		DespesaReceita despesa = contapagar.getDespesa();
-		
-		if (despesa != null) {
-			contapagar.setDespesa_codigo(despesa.getCodigo());
-			contapagar.setDespesa_nome(despesa.getNome());
+		PlanoConta plano = contapagar.getPlanoconta();
+
+		if (plano != null) {
+			contapagar.setDespesa_codigo(plano.getDespesareceita_codigo());
+			contapagar.setDespesa_plano(plano.getCodigo());
 		}
 
 	}
+
+	
 	
 	
 // 	Getters e Setters do Conta a Pagar

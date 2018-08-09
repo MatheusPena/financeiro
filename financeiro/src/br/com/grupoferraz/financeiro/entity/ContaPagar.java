@@ -18,7 +18,7 @@ public class ContaPagar implements Serializable {
 	private Empresa empresa;
 	private String cpf;
 	private int despesa_codigo;
-	private String despesa_nome;
+	private String despesa_plano;
 	private Date emissaocp;
 	private Date emissaodp;
 	private Date validadedp;
@@ -31,6 +31,7 @@ public class ContaPagar implements Serializable {
 	private int documento_codigo;
 	private String observacao;
 	private DespesaReceita despesa;
+	private PlanoConta planoconta;
 
 	public ContaPagar() {
 
@@ -206,12 +207,21 @@ public class ContaPagar implements Serializable {
 		this.despesa_codigo = despesa_codigo;
 	}
 
-	public String getDespesa_nome() {
-		return despesa_nome;
+
+	public String getDespesa_plano() {
+		return despesa_plano;
 	}
 
-	public void setDespesa_nome(String despesa_nome) {
-		this.despesa_nome = despesa_nome;
+	public void setDespesa_plano(String despesa_plano) {
+		this.despesa_plano = despesa_plano;
+	}
+
+	public PlanoConta getPlanoconta() {
+		return planoconta;
+	}
+
+	public void setPlanoconta(PlanoConta planoconta) {
+		this.planoconta = planoconta;
 	}
 
 	/*

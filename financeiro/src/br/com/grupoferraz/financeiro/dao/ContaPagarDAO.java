@@ -16,6 +16,7 @@ import br.com.grupoferraz.financeiro.entity.ContaFinanceira;
 import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Documento;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
+import br.com.grupoferraz.financeiro.entity.PlanoConta;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class ContaPagarDAO { 
@@ -29,12 +30,12 @@ public class ContaPagarDAO {
 			str.append("insert into conta_pagar (codigocp, estabelecimento_codigo, "
 					+ "cpf, despesa_codigo, emissaocp, valor, "
 					+ "centroresultado_codigo, documento_codigo, emissaodp, contapagar_nome, "
-					+ "estabelecimento_nome, despesa_nome, observacao, empresa_cnpj, validadedp, contafinanceira_codigo ) "
+					+ "estabelecimento_nome, despesa_plano, observacao, empresa_cnpj, validadedp, contafinanceira_codigo ) "
 					+ "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			str.append("on duplicate key update codigocp = ?, estabelecimento_codigo = ?, cpf = ?, "
-					+ "despesa_codigo = ?, emissaocp = ?, valor = ?, centroresultados_codigo = ?, "
+					+ "despesa_codigo = ?, emissaocp = ?, valor = ?, centroresultado_codigo = ?, "
 					+ "documento_codigo = ?, emissaodp = ?, contapagar_nome = ?, estabelecimento_nome = ?, "
-					+ "despesa_nome = ?, observacao = ?, empresa_cnpj = ?, validadedp = ?, contafinanceira_codigo = ? ");
+					+ "despesa_plano = ?, observacao = ?, empresa_cnpj = ?, validadedp = ?, contafinanceira_codigo = ? ");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, pagarconta.getCodigocp());
 			preparedStatement.setInt(2, pagarconta.getEstabelecimento_codigo());
@@ -57,7 +58,7 @@ public class ContaPagarDAO {
 			preparedStatement.setDate(9, new java.sql.Date(j));
 			preparedStatement.setString(10, pagarconta.getContapagar_nome());
 			preparedStatement.setString(11, pagarconta.getEstabelecimento_nome());
-			preparedStatement.setString(12, pagarconta.getDespesa_nome());
+			preparedStatement.setString(12, pagarconta.getDespesa_plano());
 			preparedStatement.setString(13, pagarconta.getObservacao());
 			preparedStatement.setString(14, pagarconta.getEmpresa_cnpj());
 			Date dataValidadedp = pagarconta.getValidadedp();
@@ -79,7 +80,7 @@ public class ContaPagarDAO {
 			preparedStatement.setDate(25, new java.sql.Date(j));
 			preparedStatement.setString(26, pagarconta.getContapagar_nome());
 			preparedStatement.setString(27, pagarconta.getEstabelecimento_nome());
-			preparedStatement.setString(28, pagarconta.getDespesa_nome());
+			preparedStatement.setString(28, pagarconta.getDespesa_plano());
 			preparedStatement.setString(29, pagarconta.getObservacao());
 			preparedStatement.setString(30, pagarconta.getEmpresa_cnpj());
 			preparedStatement.setDate(31, new java.sql.Date(k));
@@ -95,7 +96,7 @@ public class ContaPagarDAO {
 		}
 	}
 
-	// lista todos os usuarios cadastrados no banco de dados
+	// lista todas as contas cadastrados no banco de dados
 	public List<ContaPagar> listapagar() {
 
 		ArrayList<ContaPagar> lista = new ArrayList<ContaPagar>();
@@ -108,7 +109,7 @@ public class ContaPagarDAO {
 			String sql = "select codigocp, estabelecimento_codigo, "
 					+ "cpf, despesa_codigo, emissaocp, valor, " 
 					+ "centroresultado_codigo, documento_codigo, emissaodp, "
-					+ "contapagar_nome, estabelecimento_nome, despesa_nome, observacao, "
+					+ "contapagar_nome, estabelecimento_nome, despesa_plano, observacao, "
 					+ "empresa_cnpj, validadedp, contafinanceira_codigo from conta_pagar";
 			rs = st.executeQuery(sql);
 
@@ -133,7 +134,9 @@ public class ContaPagarDAO {
 				pagarconta.setEmissaodp(rs.getDate("emissaodp"));
 				pagarconta.setContapagar_nome(rs.getString("contapagar_nome"));
 				pagarconta.setEstabelecimento_nome(rs.getString("estabelecimento_nome"));
-				pagarconta.setDespesa_nome(rs.getString("despesa_nome"));
+				pagarconta.setDespesa_plano(rs.getString("despesa_plano"));
+				PlanoConta planoconta = getPlanoConta(pagarconta.getDespesa_codigo());
+				pagarconta.setPlanoconta(planoconta);
 				pagarconta.setObservacao(rs.getString("observacao"));
 				pagarconta.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 				pagarconta.setValidadedp(rs.getDate("validadedp"));
@@ -160,7 +163,7 @@ public class ContaPagarDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nome from centroresultado where codigo = ?");
+				"select codigo, nome from centro_resultado where codigo = ?");
 		preparedStatement.setInt(1, idCentroresultados);
 		rs = preparedStatement.executeQuery();
 
@@ -177,7 +180,7 @@ public class ContaPagarDAO {
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
 		preparedStatement = conexao.prepareStatement(
-				"select codigo, nome from contafinanceira where codigo = ?");
+				"select codigo, nome from conta_financeira where codigo = ?");
 		preparedStatement.setInt(1, idContafinanceira);
 		rs = preparedStatement.executeQuery();
 
@@ -232,8 +235,8 @@ public class ContaPagarDAO {
 		ResultSet rs = null;
 		String sql = "select codigocp, estabelecimento_codigo, "
 				+ "cpf, despesa_codigo, emissaocp, valor, "
-				+ "centroresultados_codigo, documento_codigo, emissaodp, "
-				+ "contapagar_nome, estabelecimento_nome, despesa_nome, observacao, empresa_cnpj from conta_pagar where "
+				+ "centroresultado_codigo, documento_codigo, emissaodp, "
+				+ "contapagar_nome, estabelecimento_nome, despesa_plano, observacao, empresa_cnpj from conta_pagar where "
 				+ "cast(codigocp as char) like '%"+codigo+"%'";
 		
 		try {
@@ -266,8 +269,8 @@ public class ContaPagarDAO {
 		ResultSet rs = null;
 		String sql = "select codigocp, estabelecimento_codigo, " + 
 				"cpf, despesa_codigo, emissaocp, valor, " + 
-				"centroresultados_codigo, documento_codigo, emissaodp, " + 
-				"contapagar_nome, estabelecimento_nome, despesa_nome, observacao, empresa_cnpj from conta_pagar where " + 
+				"centroresultado_codigo, documento_codigo, emissaodp, " + 
+				"contapagar_nome, estabelecimento_nome, despesa_plano, observacao, empresa_cnpj from conta_pagar where " + 
 				"codigo = ?";
 		
 
@@ -297,7 +300,7 @@ public class ContaPagarDAO {
 				pagarconta.setEmissaodp(rs.getDate("emissaodp"));
 				pagarconta.setContapagar_nome(rs.getString("contapagar_nome"));
 				pagarconta.setEstabelecimento_nome(rs.getString("estabelecimento_nome"));
-				pagarconta.setDespesa_nome(rs.getString("despesa_nome"));
+				pagarconta.setDespesa_plano(rs.getString("despesa_plano"));
 				pagarconta.setObservacao(rs.getString("observacao"));
 				pagarconta.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 				lista.add(pagarconta);
@@ -316,4 +319,50 @@ public class ContaPagarDAO {
 		return pagarconta;
 	}
 	
+	// Exibe o nome do plano de contas
+		public PlanoConta getPlanoConta(int idGrupo) throws SQLException {
+			PlanoConta grupo = new PlanoConta();
+			PreparedStatement preparedStatement;
+			ResultSet rs = null;
+			preparedStatement = conexao.prepareStatement("select * from plano_conta where despesareceita_codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				grupo.setCodigo(rs.getString(1));
+				grupo.setDespesareceita_codigo(rs.getInt(2));
+				int idGrupo0 = grupo.getDespesareceita_codigo();
+				DespesaReceita despesareceita = getReceita(idGrupo0);
+				grupo.setDespesareceita(despesareceita);
+				grupo.setTipo(rs.getString(3));
+				grupo.setNatureza(rs.getString(4));
+				grupo.setIss(rs.getString(5));
+				grupo.setInss(rs.getString(6));
+				grupo.setIrpf(rs.getString(7));
+				grupo.setPis(rs.getString(8));
+				grupo.setConta(rs.getString(9));
+				grupo.setAtividade(rs.getString(10));
+				grupo.setIcms(rs.getBigDecimal(11));
+				grupo.setObservacao(rs.getString(12));
+				grupo.setGrupodespesareceita_codigo(rs.getInt(13));
+			}
+			return grupo;
+		}
+
+		// lista todos as despesas cadastradas no banco de dados
+		public DespesaReceita getReceita(int idGrupo) throws SQLException {
+			DespesaReceita grupo = new DespesaReceita();
+			PreparedStatement preparedStatement;
+			ResultSet rs = null;
+			preparedStatement = conexao.prepareStatement("select * from despesa_receita where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				grupo.setCodigo(rs.getInt("codigo"));
+				grupo.setNome(rs.getString("nome"));
+				grupo.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
+			}
+			return grupo;
+		}
 }

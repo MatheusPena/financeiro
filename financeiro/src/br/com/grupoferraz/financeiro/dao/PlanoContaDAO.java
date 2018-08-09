@@ -186,7 +186,8 @@ public class PlanoContaDAO {
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		String sql = "select * from plano_conta p join despesa_receita d on p.nome = d.codigo where d.nome like '%"
+		String sql = "select * from plano_conta p join despesa_receita d on p.despesareceita_codigo = d.codigo "
+				+ "where d.nome like '%"
 				+ nomeDespesaReceita + "%'";
 
 		try {
@@ -199,7 +200,7 @@ public class PlanoContaDAO {
 
 				PlanoConta plano = new PlanoConta();
 				plano.setCodigo(rs.getString("codigo"));
-				plano.setDespesareceita_codigo(rs.getInt("nome"));
+				plano.setDespesareceita_codigo(rs.getInt("despesareceita_codigo"));
 				int idGrup = plano.getDespesareceita_codigo();
 				DespesaReceita desp = getDespesareceita(idGrup);
 				plano.setDespesareceita(desp);

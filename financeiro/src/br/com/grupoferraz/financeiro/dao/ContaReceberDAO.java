@@ -148,8 +148,8 @@ public class ContaReceberDAO {
 
 		while (rs.next()) {
 			grupo.setCodigo(rs.getString(1));
-			grupo.setNome(rs.getInt(2));
-			int idGrupo0 = grupo.getNome();
+			grupo.setDespesareceita_codigo(rs.getInt(2));
+			int idGrupo0 = grupo.getDespesareceita_codigo();
 			DespesaReceita despesareceita = getReceita(idGrupo0);
 			grupo.setDespesareceita(despesareceita);
 			grupo.setTipo(rs.getString(3));
