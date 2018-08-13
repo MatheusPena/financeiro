@@ -104,16 +104,16 @@ public class ContaPagarBean implements Serializable {
 //		}
 //
 //	}
-//	
 	
-	// lista a lista do autocomplete no campo despesas
+	
+// 	lista a lista do autocomplete no campo despesas
 	public List<PlanoConta> completeDespesa(String query) {
 		PlanoContaDAO planoConta = new PlanoContaDAO();
 
 		return planoConta.listaplano(query);
 	}
 
-	// seleciona um dos objetos da lista no campo despesas
+// 	seleciona um dos objetos da lista no campo despesas
 	public void selecionarDespesa() {
 		PlanoConta plano = contapagar.getPlanoconta();
 
@@ -123,9 +123,6 @@ public class ContaPagarBean implements Serializable {
 		}
 
 	}
-
-	
-	
 	
 // 	Getters e Setters do Conta a Pagar
 	public ContaPagar getPagarconta() {

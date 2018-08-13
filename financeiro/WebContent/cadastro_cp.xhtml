@@ -274,6 +274,36 @@
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="numdocumento" value="Número do Documento:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="numdocumento" required="false"
+														value="#{contaPagarBean.pagarconta.numdocumento}"
+														styleClass="form-control col-md-7 col-xs-12 valor" />
+												</div>
+											</div>											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="valoriss" value="Valor do Iss:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="valoriss" required="false"
+														value="#{contaPagarBean.pagarconta.valoriss}"
+														styleClass="form-control col-md-7 col-xs-12 valor" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="baseiss" value="Base do Iss:" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="baseiss" required="false"
+														value="#{contaPagarBean.pagarconta.baseiss}"
+														styleClass="form-control col-md-7 col-xs-12 valor" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="observacao" value="Observação:" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
@@ -502,6 +532,9 @@
 															<th>Emissão da Despesa</th>
 															<th>Centro de Resultados</th>
 															<th>Tipo de Documento</th>
+															<th>Número do Documento</th>
+															<th>Base Iss</th>
+															<th>Valor Iss</th>
 															<th>Observação</th>
 														</tr>
 													</thead>
@@ -529,6 +562,9 @@
 																<td>#{pagarconta.emissaodp}</td>
 																<td>#{pagarconta.centroresultados}</td>
 																<td>#{pagarconta.documento.nome}</td>
+																<td>#{pagarconta.numdocumento}</td>
+																<td>#{pagarconta.baseiss}</td>
+																<td>#{pagarconta.valoriss}</td>
 																<td>#{pagarconta.observacao}</td>
 															</tr>
 														</c:forEach>

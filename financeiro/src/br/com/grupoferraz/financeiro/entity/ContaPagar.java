@@ -30,8 +30,12 @@ public class ContaPagar implements Serializable {
 	private Documento documento;
 	private int documento_codigo;
 	private String observacao;
+	private String numdocumento;
+	private String baseiss;
+	private String valoriss;
 	private DespesaReceita despesa;
 	private PlanoConta planoconta;
+	private VencimentoCP vencimento;
 
 	public ContaPagar() {
 
@@ -141,7 +145,6 @@ public class ContaPagar implements Serializable {
 		this.centroresultados = centroresultados;
 	}
 
-
 	public int getCentroresultado_codigo() {
 		return centroresultado_codigo;
 	}
@@ -173,7 +176,6 @@ public class ContaPagar implements Serializable {
 	public void setEstabelecimento_nome(String estabelecimento_nome) {
 		this.estabelecimento_nome = estabelecimento_nome;
 	}
-
 
 	public String getObservacao() {
 		return observacao;
@@ -207,13 +209,36 @@ public class ContaPagar implements Serializable {
 		this.despesa_codigo = despesa_codigo;
 	}
 
-
 	public String getDespesa_plano() {
 		return despesa_plano;
 	}
 
 	public void setDespesa_plano(String despesa_plano) {
 		this.despesa_plano = despesa_plano;
+	}
+
+	public String getNumdocumento() {
+		return numdocumento;
+	}
+
+	public void setNumdocumento(String numdocumento) {
+		this.numdocumento = numdocumento;
+	}
+
+	public String getBaseiss() {
+		return baseiss;
+	}
+
+	public void setBaseiss(String baseiss) {
+		this.baseiss = baseiss;
+	}
+
+	public String getValoriss() {
+		return valoriss;
+	}
+
+	public void setValoriss(String valoriss) {
+		this.valoriss = valoriss;
 	}
 
 	public PlanoConta getPlanoconta() {
@@ -224,11 +249,14 @@ public class ContaPagar implements Serializable {
 		this.planoconta = planoconta;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
+	public VencimentoCP getVencimento() {
+		return vencimento;
+	}
+	
+	public void setVencimento(VencimentoCP vencimento) {
+		this.vencimento = vencimento;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

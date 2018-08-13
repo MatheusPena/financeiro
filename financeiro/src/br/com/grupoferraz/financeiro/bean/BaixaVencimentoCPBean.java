@@ -7,9 +7,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import br.com.grupoferraz.financeiro.dao.BaixaVencimentoCPDAO;
+import br.com.grupoferraz.financeiro.dao.ContaPagarDAO;
 import br.com.grupoferraz.financeiro.entity.BaixaVencimentoCP;
+import br.com.grupoferraz.financeiro.entity.ContaPagar;
+import br.com.grupoferraz.financeiro.util.JSFUtil;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -27,18 +29,42 @@ public class BaixaVencimentoCPBean implements Serializable {
 
 		BaixaVencimentoCPDAO BaixaCPDAO = new BaixaVencimentoCPDAO();
 		if (BaixaCPDAO.insertBaixaCP(Baixa)) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-					"Baixa de conta cadastrada com sucesso!", "Sucesso!"));
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Baixa cadastrada com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da Baixa!", "Erro!"));
-
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro da baixa!", "Erro!"));
+		return "";
 		}
 		Baixa = new BaixaVencimentoCP();
 
-		return "";
+		return "cadastro_baixavencimentocp?faces-redirect=true";
+	}
+	
+//	Autocomplete referente à Conta Pagar
+	public List<ContaPagar> completeConta(String query) {
+		ContaPagarDAO contapagarDAO = new ContaPagarDAO();
+
+		return contapagarDAO.listapagar(query);
 	}
 
+	public void selecionarConta() {
+		
+		ContaPagar contapagar = Baixa.getContapagar(); 
+		
+		if (contapagar != null) {
+			Baixa.setConta_codigo(contapagar.getCodigocp());
+			Baixa.setConta_nome(contapagar.getContapagar_nome());
+			Baixa.setCpf(contapagar.getCpf());
+			Baixa.setEmissaocp(contapagar.getEmissaocp());
+			Baixa.setContafinanceira_codigo(contapagar.getContafinanceira_codigo());
+			Baixa.setEstfinanceira(contapagar.getEstabelecimento_nome());	
+			Baixa.setVencimentocp(contapagar.getVencimento().getVencimento());
+			Baixa.setVencimentovalor(contapagar.getVencimento().getValor());
+			Baixa.setNumerotitulo(contapagar.getVencimento().getTitulo());
+		}
+	}
+	
+//	Getters e Setters	
 	public void listarBaixa() {
 		BaixaVencimentoCPDAO BaixaCPDAO = new BaixaVencimentoCPDAO();
 		setListabaixas(BaixaCPDAO.listBaixa());

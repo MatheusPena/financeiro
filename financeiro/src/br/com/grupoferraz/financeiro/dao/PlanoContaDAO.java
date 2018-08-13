@@ -178,8 +178,7 @@ public class PlanoContaDAO {
 		return lista;
 	}
 
-	// Lista o auto complete de plano de contas na página do plano de contas (pelo
-	// objeto)
+	// Lista o auto complete de plano de contas na página do plano de contas (pelo objeto)
 	public List<PlanoConta> listaplano(String nomeDespesaReceita) {
 
 		ArrayList<PlanoConta> lista = new ArrayList<PlanoConta>();

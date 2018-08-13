@@ -89,15 +89,14 @@ public class DespesaReceitaDAO {
 		return lista;
 	}
 
-	// Lista o auto complete de despesas na página do conta a pagar (pela chave
-	// primária)
+	// Lista o auto complete de despesas na página do conta a pagar (pela chave primária)
 	public List<Integer> listadespesa(String codigo) {
 
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		String sql = "select codigo, nome, grupodespesareceita_codigo " + " from despesa_receita where "
+		String sql = "select codigo, nome, grupodespesareceita_codigo from despesa_receita where "
 				+ "cast(codigo as char) like '%" + codigo + "%'";
 
 		try {
