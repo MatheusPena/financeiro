@@ -43,7 +43,7 @@ public class EstabelecimentoDAO {
 		}
 	}
 
-	// lista todos os usuarios cadastrados no banco de dados
+	// lista todos os estabelecimentos cadastrados no banco de dados
 	public List<Estabelecimento> listEstabelecimentos() {
 
 		ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
@@ -119,6 +119,7 @@ public class EstabelecimentoDAO {
 		return lista;
 	}
 
+	
 	public Estabelecimento listaestabelecimento(Integer codigo) {
 
 		ArrayList<Estabelecimento> lista = new ArrayList<Estabelecimento>();
@@ -160,6 +161,7 @@ public class EstabelecimentoDAO {
 		return estabelecimentos;
 	}
 
+//	Exibe o nome do grupo do estabelecimento ao invés do código na página de estabelecimento
 	public GrupoEstabelecimento getGrupoEstabelecimento(int idGrupo) throws SQLException {
 		GrupoEstabelecimento grupo = new GrupoEstabelecimento();
 		PreparedStatement preparedStatement;
@@ -178,7 +180,7 @@ public class EstabelecimentoDAO {
 		return grupo;
 	}
 	
-	
+//	Exibe o nome da unidade ao invés do código na página de estabelecimento	
 	public Unidade getUnidade(int idUnidade) throws SQLException {
 
 		PreparedStatement preparedStatement;
@@ -213,7 +215,7 @@ public class EstabelecimentoDAO {
 		return null;
 	}
 	
-	
+//	Inner join do grupo do estabelecimento, unidade e empresa com estabelecimento na página de estabelecimento	
 	public List<Estabelecimento> getEstabelecimento(String idEmpresa) throws SQLException {
 
 		PreparedStatement preparedStatement;
