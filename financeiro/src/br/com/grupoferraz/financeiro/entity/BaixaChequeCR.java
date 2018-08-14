@@ -15,14 +15,15 @@ public class BaixaChequeCR {
 	private BigDecimal juros;
 	private String historico;
 	private int contafinanceira_codigo;
-	private Integer contareceber_codigo;
+	private int contareceber_codigo;
 	private String contareceber_cpf;
 	private int contareceber_estabelecimento_codigo;
-	private Integer vencimentodiversocr_codigo;
 	private String empresa_cnpj;
+	private int cheque;
 	private ContaFinanceira contafinanceira;
 	private Estabelecimento estabelecimento;
 	private Empresa empresa;
+	private ContaReceber conta;
 
 	public int getCodigo() {
 		return codigo;
@@ -112,11 +113,11 @@ public class BaixaChequeCR {
 		this.contafinanceira_codigo = contafinanceira_codigo;
 	}
 
-	public Integer getContareceber_codigo() {
+	public int getContareceber_codigo() {
 		return contareceber_codigo;
 	}
 
-	public void setContareceber_codigo(Integer contareceber_codigo) {
+	public void setContareceber_codigo(int contareceber_codigo) {
 		this.contareceber_codigo = contareceber_codigo;
 	}
 
@@ -136,20 +137,20 @@ public class BaixaChequeCR {
 		this.contareceber_estabelecimento_codigo = contareceber_estabelecimento_codigo;
 	}
 
-	public Integer getVencimentodiversocr_codigo() {
-		return vencimentodiversocr_codigo;
-	}
-
-	public void setVencimentodiversocr_codigo(Integer vencimentodiversocr_codigo) {
-		this.vencimentodiversocr_codigo = vencimentodiversocr_codigo;
-	}
-
 	public String getEmpresa_cnpj() {
 		return empresa_cnpj;
 	}
 
 	public void setEmpresa_cnpj(String empresa_cnpj) {
 		this.empresa_cnpj = empresa_cnpj;
+	}
+
+	public int getCheque() {
+		return cheque;
+	}
+
+	public void setCheque(int cheque) {
+		this.cheque = cheque;
 	}
 
 	public ContaFinanceira getContafinanceira() {
@@ -174,6 +175,14 @@ public class BaixaChequeCR {
 
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
+	}
+
+	public ContaReceber getConta() {
+		return conta;
+	}
+
+	public void setConta(ContaReceber conta) {
+		this.conta = conta;
 	}
 
 }

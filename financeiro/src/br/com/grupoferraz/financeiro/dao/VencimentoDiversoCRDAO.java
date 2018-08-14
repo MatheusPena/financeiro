@@ -41,7 +41,7 @@ public class VencimentoDiversoCRDAO {
 			preparedStatement.setBigDecimal(6, VencimentoDiversoCR.getDesconto());
 			preparedStatement.setString(7, VencimentoDiversoCR.getEmpresa_cnpj());
 			preparedStatement.setInt(8, VencimentoDiversoCR.getDocumento_codigo());
-			
+
 			preparedStatement.setInt(9, VencimentoDiversoCR.getCodigo());
 			preparedStatement.setDate(10, new java.sql.Date(t));
 			preparedStatement.setBigDecimal(11, VencimentoDiversoCR.getValor());
@@ -50,7 +50,7 @@ public class VencimentoDiversoCRDAO {
 			preparedStatement.setBigDecimal(14, VencimentoDiversoCR.getDesconto());
 			preparedStatement.setString(15, VencimentoDiversoCR.getEmpresa_cnpj());
 			preparedStatement.setInt(16, VencimentoDiversoCR.getDocumento_codigo());
-			
+
 			preparedStatement.execute();
 
 			return true;
@@ -83,7 +83,7 @@ public class VencimentoDiversoCRDAO {
 				VencimentoDiversoCR.setValor(rs.getBigDecimal("valor"));
 				VencimentoDiversoCR.setDocumento_codigo(rs.getInt("documento_codigo"));
 				int obj1 = VencimentoDiversoCR.getDocumento_codigo();
-				Documento documento = getDocumentos(obj1);
+				Documento documento = getDocumento(obj1);
 				VencimentoDiversoCR.setDocumento(documento);
 				VencimentoDiversoCR.setTitulo(rs.getInt("titulo"));
 				VencimentoDiversoCR.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
@@ -103,16 +103,15 @@ public class VencimentoDiversoCRDAO {
 		}
 		return lista;
 	}
-	
-	//lista as empresas cadastradas no banco de dados
+
+	// lista as empresas cadastradas no banco de dados
 	public Empresa getEmpresa(String idGrupo) throws SQLException {
 		Empresa grupo = new Empresa();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-			preparedStatement = conexao
-					.prepareStatement ("select * from empresa where cnpj = ?");
-			preparedStatement.setString(1, idGrupo);
-			rs = preparedStatement.executeQuery();
+		preparedStatement = conexao.prepareStatement("select * from empresa where cnpj = ?");
+		preparedStatement.setString(1, idGrupo);
+		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {
 			grupo.setCnpj(rs.getString("cnpj"));
@@ -120,14 +119,13 @@ public class VencimentoDiversoCRDAO {
 		}
 		return grupo;
 	}
-	
-	//lista os documentos cadastrados no banco de dados
-	public Documento getDocumentos(int idDocumentos) throws SQLException {
+
+	// lista os documentos cadastrados no banco de dados
+	public Documento getDocumento(int idDocumentos) throws SQLException {
 		Documento documento = new Documento();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement(
-				"select codigo, nome from documento where codigo = ?");
+		preparedStatement = conexao.prepareStatement("select codigo, nome from documento where codigo = ?");
 		preparedStatement.setInt(1, idDocumentos);
 		rs = preparedStatement.executeQuery();
 

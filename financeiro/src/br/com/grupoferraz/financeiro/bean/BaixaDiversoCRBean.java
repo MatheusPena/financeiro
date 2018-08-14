@@ -1,7 +1,6 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -10,9 +9,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.grupoferraz.financeiro.dao.BaixaDiversoCRDAO;
-import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
+import br.com.grupoferraz.financeiro.dao.ContaReceberDAO;
 import br.com.grupoferraz.financeiro.entity.BaixaDiversoCR;
-import br.com.grupoferraz.financeiro.entity.Estabelecimento;
+import br.com.grupoferraz.financeiro.entity.ContaReceber;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
@@ -51,27 +50,27 @@ public class BaixaDiversoCRBean implements Serializable {
 		listaBaixaDiversosCR = BaixaDiversosCRs.listBaixaDiversoCR();
 	}
 
-	// lista a lista do autocomplete no campo estabelecimento
-	public List<Estabelecimento> completeText(String query) {
+	// lista a lista do autocomplete no campo despesas
+	public List<ContaReceber> complete(String query) {
+		ContaReceberDAO conta = new ContaReceberDAO();
 
-		List<Estabelecimento> lista = new ArrayList<>();
-		String cnpj = BaixaDiversoCR.getEmpresa_cnpj();
-		System.out.println(cnpj);
-		if (cnpj != null) {
-			EstabelecimentoDAO estabelecimentoDAO = new EstabelecimentoDAO();
-			lista.addAll(estabelecimentoDAO.listaestabelecimento(query, cnpj));
-		}
-
-		return lista;
+		return conta.listContasReceber(query);
 	}
 
-	// seleciona um dos objetos da lista no campo estabelecimento
-	public void selecionar() {
+	// seleciona um dos objetos da lista no campo despesas
+	public void selecionarNome() {
+		ContaReceber conta = BaixaDiversoCR.getConta();
 
-		Estabelecimento estabelecimento = BaixaDiversoCR.getEstabelecimento();
-
-		if (estabelecimento != null) {
-			BaixaDiversoCR.setContareceber_estabelecimento_codigo(estabelecimento.getCodigo());
+		if (conta != null) {
+			BaixaDiversoCR.setContareceber_codigo(conta.getCodigo());
+			BaixaDiversoCR.setContareceber_cpf(conta.getCpf());
+			BaixaDiversoCR.setEmissao(conta.getEmissao());
+			BaixaDiversoCR.setEmpresa_cnpj(conta.getEmpresa_cnpj());
+			BaixaDiversoCR.setContareceber_estabelecimento_codigo(conta.getEstabelecimento_codigo());
+			BaixaDiversoCR.setDocumento(conta.getDocumento());
+			BaixaDiversoCR.setVencimento(conta.getVencimentodiverso().getVencimento());
+			BaixaDiversoCR.setTitulo(conta.getVencimentodiverso().getTitulo());
+			BaixaDiversoCR.setValor(conta.getVencimentodiverso().getValor());
 		}
 
 	}

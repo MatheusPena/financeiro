@@ -83,7 +83,6 @@ public class ContaReceberBean implements Serializable {
 		PlanoConta plano = contaReceber.getPlanoconta();
 
 		if (plano != null) {
-			contaReceber.setReceita_nome(plano.getDespesareceita_codigo());
 			contaReceber.setReceita_codigo(plano.getCodigo());
 		}
 

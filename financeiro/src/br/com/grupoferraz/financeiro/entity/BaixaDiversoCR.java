@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class BaixaDiversoCR {
 	private int codigo;
+	private String nome;
 	private int documento;
 	private Date emissao;
 	private Date vencimento;
@@ -16,14 +17,15 @@ public class BaixaDiversoCR {
 	private BigDecimal multa;
 	private String historico;
 	private int contafinanceira_codigo;
-	private Integer contareceber_codigo;
+	private int contareceber_codigo;
 	private String contareceber_cpf;
 	private int contareceber_estabelecimento_codigo;
-	private Integer vencimentodiversocr_codigo;
 	private String empresa_cnpj;
+	private int titulo;
 	private Empresa empresa;
 	private ContaFinanceira contafinanceira;
 	private Estabelecimento estabelecimento;
+	private ContaReceber conta;
 
 	public int getCodigo() {
 		return codigo;
@@ -31,6 +33,14 @@ public class BaixaDiversoCR {
 
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public int getDocumento() {
@@ -121,11 +131,11 @@ public class BaixaDiversoCR {
 		this.contafinanceira_codigo = contafinanceira_codigo;
 	}
 
-	public Integer getContareceber_codigo() {
+	public int getContareceber_codigo() {
 		return contareceber_codigo;
 	}
 
-	public void setContareceber_codigo(Integer contareceber_codigo) {
+	public void setContareceber_codigo(int contareceber_codigo) {
 		this.contareceber_codigo = contareceber_codigo;
 	}
 
@@ -145,20 +155,20 @@ public class BaixaDiversoCR {
 		this.contareceber_estabelecimento_codigo = contareceber_estabelecimento_codigo;
 	}
 
-	public Integer getVencimentodiversocr_codigo() {
-		return vencimentodiversocr_codigo;
-	}
-
-	public void setVencimentodiversocr_codigo(Integer vencimentodiversocr_codigo) {
-		this.vencimentodiversocr_codigo = vencimentodiversocr_codigo;
-	}
-
 	public String getEmpresa_cnpj() {
 		return empresa_cnpj;
 	}
 
 	public void setEmpresa_cnpj(String empresa_cnpj) {
 		this.empresa_cnpj = empresa_cnpj;
+	}
+
+	public int getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(int titulo) {
+		this.titulo = titulo;
 	}
 
 	public Empresa getEmpresa() {
@@ -183,6 +193,14 @@ public class BaixaDiversoCR {
 
 	public void setEstabelecimento(Estabelecimento estabelecimento) {
 		this.estabelecimento = estabelecimento;
+	}
+
+	public ContaReceber getConta() {
+		return conta;
+	}
+
+	public void setConta(ContaReceber conta) {
+		this.conta = conta;
 	}
 
 }

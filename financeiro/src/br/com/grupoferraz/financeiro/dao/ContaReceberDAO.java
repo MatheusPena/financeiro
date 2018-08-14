@@ -18,6 +18,8 @@ import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Empresa;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
 import br.com.grupoferraz.financeiro.entity.PlanoConta;
+import br.com.grupoferraz.financeiro.entity.VencimentoChequeCR;
+import br.com.grupoferraz.financeiro.entity.VencimentoDiversoCR;
 import br.com.grupoferraz.financeiro.util.ConexaoBD;
 
 public class ContaReceberDAO {
@@ -27,55 +29,55 @@ public class ContaReceberDAO {
 		try {
 			StringBuilder str = new StringBuilder();
 			str.append(
-					"INSERT INTO financeiro.conta_receber (codigo,cliente_cpf,receita_codigo,documento,emissao,valor,observacao,estabelecimento_codigo,centroresultado_codigo, empresa_cnpj, receita_nome)"
+					"INSERT INTO financeiro.conta_receber (codigo,cliente_cpf,documento,emissao,valor,observacao,estabelecimento_codigo,centroresultado_codigo, empresa_cnpj, receita_codigo, nome)"
 							+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 			str.append(
-					"on duplicate key update codigo = ?,cliente_cpf = ?,receita_codigo = ?,documento = ?,emissao = ?,valor = ?,observacao = ?,estabelecimento_codigo = ?,centroresultado_codigo = ?, empresa_cnpj = ?, receita_nome = ?");
+					"on duplicate key update codigo = ?,cliente_cpf = ?,documento = ?,emissao = ?,valor = ?,observacao = ?,estabelecimento_codigo = ?,centroresultado_codigo = ?, empresa_cnpj = ?, receita_codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, ContaReceber.getCodigo());
 			preparedStatement.setString(2, ContaReceber.getCpf());
-			preparedStatement.setString(3, ContaReceber.getReceita_codigo());
-			preparedStatement.setInt(4, ContaReceber.getDocumento());
+			preparedStatement.setInt(3, ContaReceber.getDocumento());
 			Date data = ContaReceber.getEmissao();
 			long t = 0;
 			if (data != null) {
 				t = data.getTime();
 			}
-			preparedStatement.setDate(5, new java.sql.Date(t));
-			preparedStatement.setBigDecimal(6, ContaReceber.getValor());
-			preparedStatement.setString(7, ContaReceber.getObservacao());
-			preparedStatement.setInt(8, ContaReceber.getEstabelecimento_codigo());
+			preparedStatement.setDate(4, new java.sql.Date(t));
+			preparedStatement.setBigDecimal(5, ContaReceber.getValor());
+			preparedStatement.setString(6, ContaReceber.getObservacao());
+			preparedStatement.setInt(7, ContaReceber.getEstabelecimento_codigo());
 			if (ContaReceber.getCentroresultado_codigo() != null) {
-				preparedStatement.setInt(9, ContaReceber.getCentroresultado_codigo());
+				preparedStatement.setInt(8, ContaReceber.getCentroresultado_codigo());
 			} else {
-				preparedStatement.setNull(9, Types.INTEGER);
+				preparedStatement.setNull(8, Types.INTEGER);
 			}
-			preparedStatement.setString(10, ContaReceber.getEmpresa_cnpj());
-			if (ContaReceber.getReceita_nome() != null) {
-				preparedStatement.setInt(11, ContaReceber.getReceita_nome());
+			preparedStatement.setString(9, ContaReceber.getEmpresa_cnpj());
+			if (ContaReceber.getReceita_codigo() != null) {
+				preparedStatement.setString(10, ContaReceber.getReceita_codigo());
 			} else {
-				preparedStatement.setNull(11, Types.INTEGER);
+				preparedStatement.setString(10, null);
 			}
+			preparedStatement.setString(11, ContaReceber.getNome());
 
 			preparedStatement.setInt(12, ContaReceber.getCodigo());
 			preparedStatement.setString(13, ContaReceber.getCpf());
-			preparedStatement.setString(14, ContaReceber.getReceita_codigo());
-			preparedStatement.setInt(15, ContaReceber.getDocumento());
-			preparedStatement.setDate(16, new java.sql.Date(t));
-			preparedStatement.setBigDecimal(17, ContaReceber.getValor());
-			preparedStatement.setString(18, ContaReceber.getObservacao());
-			preparedStatement.setInt(19, ContaReceber.getEstabelecimento_codigo());
+			preparedStatement.setInt(14, ContaReceber.getDocumento());
+			preparedStatement.setDate(15, new java.sql.Date(t));
+			preparedStatement.setBigDecimal(16, ContaReceber.getValor());
+			preparedStatement.setString(17, ContaReceber.getObservacao());
+			preparedStatement.setInt(18, ContaReceber.getEstabelecimento_codigo());
 			if (ContaReceber.getCentroresultado_codigo() != null) {
-				preparedStatement.setInt(20, ContaReceber.getCentroresultado_codigo());
+				preparedStatement.setInt(19, ContaReceber.getCentroresultado_codigo());
 			} else {
-				preparedStatement.setNull(20, Types.INTEGER);
+				preparedStatement.setNull(19, Types.INTEGER);
 			}
-			preparedStatement.setString(21, ContaReceber.getEmpresa_cnpj());
-			if (ContaReceber.getReceita_nome() != null) {
-				preparedStatement.setInt(22, ContaReceber.getReceita_nome());
+			preparedStatement.setString(20, ContaReceber.getEmpresa_cnpj());
+			if (ContaReceber.getReceita_codigo() != null) {
+				preparedStatement.setString(21, ContaReceber.getReceita_codigo());
 			} else {
-				preparedStatement.setNull(22, Types.INTEGER);
+				preparedStatement.setString(21, null);
 			}
+			preparedStatement.setString(22, ContaReceber.getNome());
 
 			preparedStatement.execute();
 
@@ -98,13 +100,14 @@ public class ContaReceberDAO {
 
 		try {
 			st = conexao.createStatement();
-			String sql = "select * from conta_receber ";
+			String sql = "select * from conta_receber";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
 
 				ContaReceber contareceber = new ContaReceber();
 				contareceber.setCodigo(rs.getInt("codigo"));
+				contareceber.setNome(rs.getString("nome"));
 				contareceber.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
 				String obj = contareceber.getEmpresa_cnpj();
 				Empresa empresa = getEmpresa(obj);
@@ -114,10 +117,9 @@ public class ContaReceberDAO {
 				Estabelecimento estabelecimento = getEstabelecimento(obj1);
 				contareceber.setEstabelecimento(estabelecimento);
 				contareceber.setCpf(rs.getString("cliente_cpf"));
-				contareceber.setReceita_nome(rs.getInt("receita_nome"));
-				PlanoConta obj2 = getPlanoConta(contareceber.getReceita_nome());
-				contareceber.setPlanoconta(obj2);
 				contareceber.setReceita_codigo(rs.getString("receita_codigo"));
+				PlanoConta obj2 = getPlanoConta(contareceber.getReceita_codigo());
+				contareceber.setPlanoconta(obj2);
 				contareceber.setDocumento(rs.getInt("documento"));
 				contareceber.setEmissao(rs.getDate("emissao"));
 				contareceber.setValor(rs.getBigDecimal("valor"));
@@ -137,13 +139,112 @@ public class ContaReceberDAO {
 		return lista;
 	}
 
+	// lista todas as contas cadastradas do autcomplete no banco de dados
+	public List<ContaReceber> listContasReceber(String query) {
+
+		ArrayList<ContaReceber> lista = new ArrayList<ContaReceber>();
+
+		Statement st = null;
+		ResultSet rs = null;
+
+		try {
+			st = conexao.createStatement();
+			String sql = "select * from conta_receber where nome like '%" + query + "%'";
+			rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				ContaReceber contareceber = new ContaReceber();
+				contareceber.setCodigo(rs.getInt("codigo"));
+				contareceber.setNome(rs.getString("nome"));
+				contareceber.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
+				String obj = contareceber.getEmpresa_cnpj();
+				Empresa empresa = getEmpresa(obj);
+				contareceber.setEmpresa(empresa);
+				contareceber.setEstabelecimento_codigo(rs.getInt("estabelecimento_codigo"));
+				int obj1 = contareceber.getEstabelecimento_codigo();
+				Estabelecimento estabelecimento = getEstabelecimento(obj1);
+				contareceber.setEstabelecimento(estabelecimento);
+				contareceber.setCpf(rs.getString("cliente_cpf"));
+				contareceber.setReceita_codigo(rs.getString("receita_codigo"));
+				PlanoConta obj2 = getPlanoConta(contareceber.getReceita_codigo());
+				contareceber.setPlanoconta(obj2);
+				contareceber.setDocumento(rs.getInt("documento"));
+				contareceber.setEmissao(rs.getDate("emissao"));
+				contareceber.setValor(rs.getBigDecimal("valor"));
+				contareceber.setCentroresultado_codigo(rs.getInt("centroresultado_codigo"));
+				CentroResultado obj3 = getCentroResultado(contareceber.getCentroresultado_codigo());
+				contareceber.setCentroresultado(obj3);
+				contareceber.setObservacao(rs.getString("observacao"));
+				contareceber.setVencimentodiverso(getVencimentoDiverso(contareceber.getCodigo()));
+				contareceber.setVencimentocheque(getVencimentoCheque(contareceber.getCodigo()));
+				lista.add(contareceber);
+			}
+
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Connection.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
+		} finally {
+		}
+		return lista;
+	}
+
+	// exibe os vencimentos diversos do Contas a Receber
+	public VencimentoDiversoCR getVencimentoDiverso(int idGrupo) throws SQLException {
+		VencimentoDiversoCR grupo = new VencimentoDiversoCR();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement("select * from vencimento_diverso_cr where codigo = ?");
+		preparedStatement.setInt(1, idGrupo);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			grupo.setCodigo(rs.getInt("codigo"));
+			grupo.setVencimento(rs.getDate("vencimento"));
+			grupo.setValor(rs.getBigDecimal("valor"));
+			grupo.setDocumento_codigo(rs.getInt("documento_codigo"));
+			grupo.setTitulo(rs.getInt("titulo"));
+			grupo.setEmpresa_cnpj(rs.getString("empresa_cnpj"));
+			grupo.setBoleto(rs.getInt("boleto"));
+			grupo.setDesconto(rs.getBigDecimal("desconto"));
+		}
+		return grupo;
+	}
+
+	// exibe os vencimentos cheque do Contas a Receber
+	public VencimentoChequeCR getVencimentoCheque(int idGrupo) throws SQLException {
+		VencimentoChequeCR grupo = new VencimentoChequeCR();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement("select * from vencimento_cheque_cr where codigo = ?");
+		preparedStatement.setInt(1, idGrupo);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			grupo.setCodigo(rs.getInt("codigo"));
+			grupo.setVencimento(rs.getDate("vencimento"));
+			grupo.setValor(rs.getBigDecimal("valor"));
+			grupo.setBanco(rs.getString("banco"));
+			grupo.setTipoconta(rs.getString("tipoconta"));
+			grupo.setAgencia(rs.getInt("agenciabanco"));
+			grupo.setDigagencia(rs.getInt("digagencia"));
+			grupo.setConta(rs.getInt("conta"));
+			grupo.setDigconta(rs.getInt("digconta"));
+			grupo.setCheque(rs.getInt("cheque"));
+			grupo.setTitular(rs.getString("titular"));
+			grupo.setFebraban(rs.getInt("febraban"));
+		}
+		return grupo;
+	}
+
 	// Exibe o nome do plano de contas
-	public PlanoConta getPlanoConta(int idGrupo) throws SQLException {
+	public PlanoConta getPlanoConta(String idGrupo) throws SQLException {
 		PlanoConta grupo = new PlanoConta();
 		PreparedStatement preparedStatement;
 		ResultSet rs = null;
-		preparedStatement = conexao.prepareStatement("select * from plano_conta where nome = ?");
-		preparedStatement.setInt(1, idGrupo);
+		preparedStatement = conexao.prepareStatement("select * from plano_conta where codigo = ?");
+		preparedStatement.setString(1, idGrupo);
 		rs = preparedStatement.executeQuery();
 
 		while (rs.next()) {

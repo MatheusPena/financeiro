@@ -61,6 +61,16 @@
 											<p:messages id="messages" styleClass="messages"/>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">
+													<p:outputLabel for="nome" value="Nome" />
+												</label>
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<p:inputText id="nome" required="true"
+														value="#{contaReceberBean.contaReceber.nome}"
+														styleClass="form-control col-md-7 col-xs-12 receita" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">
 													<p:outputLabel for="empresa" value="Empresa " />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
@@ -116,16 +126,16 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<p:outputPanel id="nomereceita">
 														<p:autoComplete id="acMinLength" minQueryLength="1"
-															dropdown="false" converter="converter"
+															dropdown="false" converter="converter" required="false"
 															value="#{contaReceberBean.contaReceber.planoconta}"
-															inputStyleClass="form-control inputTest"
+															inputStyleClass="form-control inputTest" forceSelection="false"  
 															inputStyle="padding-right:311px" panelStyleClass="panelTest"
 															completeMethod="#{contaReceberBean.completeReceita}" 
 															effect="fade" var="est" itemValue="#{est}" 
 															itemLabel="#{est.despesareceita}">															
 															<p:ajax event="itemSelect" resetValues="true"
 																listener="#{contaReceberBean.selecionarReceita()}"
-																update="@(.receita) @this" process="@this" />
+																update="@(.rec) @this" process="@this" />
 														</p:autoComplete>																												
 													</p:outputPanel>
 												</div>
@@ -135,9 +145,9 @@
 													<p:outputLabel for="receita" value="Código da Receita" />
 												</label>
 												<div class="col-md-6 col-sm-6 col-xs-12">
-													<p:inputText id="receita"
+													<p:inputText id="receita" required="false"
 														value="#{contaReceberBean.contaReceber.receita_codigo}"
-														styleClass="form-control col-md-7 col-xs-12 receita" />
+														styleClass="form-control col-md-7 col-xs-12 rec" />
 												</div>
 											</div>
 											<div class="form-group">
@@ -254,6 +264,7 @@
 															<tr>
 																<th>Código</th>
 																<th>Editar</th>
+																<th>Nome</th>
 																<th>Empresa</th>
 																<th>Estabelecimento</th>
 																<th>CPF/CNPJ do Cliente</th>
@@ -280,6 +291,7 @@
 																			<f:setPropertyActionListener value="#{cr}"
 																				target="#{contaReceberBean.contaReceber}" />
 																		</p:commandButton></td>
+																	<td>#{cr.nome}</td>	
 																	<td>#{cr.empresa}</td>
 																	<td>#{cr.estabelecimento}</td>
 																	<td>#{cr.cpf}</td>

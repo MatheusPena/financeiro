@@ -5,9 +5,9 @@ import java.util.Date;
 
 public class ContaReceber {
 	private int codigo;
+	private String nome;
 	private int estabelecimento_codigo;
 	private String cpf;
-	private Integer receita_nome;
 	private String receita_codigo;
 	private int documento;
 	private Date emissao;
@@ -19,6 +19,8 @@ public class ContaReceber {
 	private CentroResultado centroresultado;
 	private Empresa empresa;
 	private PlanoConta planoconta;
+	private VencimentoDiversoCR vencimentodiverso;
+	private VencimentoChequeCR vencimentocheque;
 
 	public int getCodigo() {
 		return codigo;
@@ -26,6 +28,14 @@ public class ContaReceber {
 
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public int getEstabelecimento_codigo() {
@@ -42,14 +52,6 @@ public class ContaReceber {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	public Integer getReceita_nome() {
-		return receita_nome;
-	}
-
-	public void setReceita_nome(Integer receita_nome) {
-		this.receita_nome = receita_nome;
 	}
 
 	public String getReceita_codigo() {
@@ -138,6 +140,27 @@ public class ContaReceber {
 
 	public void setPlanoconta(PlanoConta planoconta) {
 		this.planoconta = planoconta;
+	}
+
+	public VencimentoDiversoCR getVencimentodiverso() {
+		return vencimentodiverso;
+	}
+
+	public void setVencimentodiverso(VencimentoDiversoCR vencimentodiverso) {
+		this.vencimentodiverso = vencimentodiverso;
+	}
+
+	public VencimentoChequeCR getVencimentocheque() {
+		return vencimentocheque;
+	}
+
+	public void setVencimentocheque(VencimentoChequeCR vencimentocheque) {
+		this.vencimentocheque = vencimentocheque;
+	}
+
+	@Override
+	public String toString() {
+		return nome;
 	}
 
 }
