@@ -21,15 +21,26 @@ public class GrupoDespesaReceitaDAO {
 		try {
 			StringBuilder str = new StringBuilder();
 			str.append("insert into grupo_despesa_receita (codigo, nome, grupodespesareceita_codigo) values (?,?,?)");
-			str.append("on duplicate key update codigo = ?, nome = ?, grupodespesareceita_codigo = ?");
+			str.append(" on duplicate key update codigo = ?, nome = ?, grupodespesareceita_codigo = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupodespesareceita.getCodigo());
 			preparedStatement.setString(2, grupodespesareceita.getNome());
-			preparedStatement.setInt(3, grupodespesareceita.getGrupodespesareceita_codigo()); 
+			
+			Integer ce = grupodespesareceita.getGrupodespesareceita_codigo();
+			System.out.println("CE "+ce);
+			if(ce!=0) {
+				preparedStatement.setInt(3, ce); 
+				preparedStatement.setInt(6, ce);
+			}else {
+				preparedStatement.setNull(3, java.sql.Types.INTEGER); 
+				preparedStatement.setNull(6, java.sql.Types.INTEGER);
+			}
+			
+			//preparedStatement.setInt(3, grupodespesareceita.getGrupodespesareceita_codigo()); 
 			
 			preparedStatement.setInt(4, grupodespesareceita.getCodigo());
 			preparedStatement.setString(5, grupodespesareceita.getNome());
-			preparedStatement.setInt(6, grupodespesareceita.getGrupodespesareceita_codigo());
+			//preparedStatement.setInt(6, grupodespesareceita.getGrupodespesareceita_codigo());
 			
 			preparedStatement.execute();
 			
@@ -64,7 +75,7 @@ public class GrupoDespesaReceitaDAO {
 				grupodespesareceita.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
 				int idGrupo = grupodespesareceita.getGrupodespesareceita_codigo();		
 				GrupoDespesaReceita grupoDespesa = getGrupoDespesa(idGrupo);
-				grupodespesareceita.setSubgrupo(grupoDespesa);		
+				grupodespesareceita.setGrupopai(grupoDespesa);		
 				lista.add(grupodespesareceita);
 			}
 
@@ -92,6 +103,20 @@ public class GrupoDespesaReceitaDAO {
 				grupo.setNome(rs.getString("nome"));
 			}
 			return grupo;
+		}
+		
+		public Integer getMax() throws SQLException {
+			Integer m = null;
+			PreparedStatement preparedStatement;
+			ResultSet rs = null;
+			preparedStatement = conexao.prepareStatement(
+					"SELECT max(g.codigo) as maximum FROM grupo_despesa_receita g;");
+			rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				m = rs.getInt("maximum");
+			}
+			return m;
 		}
 
 }
