@@ -75,7 +75,7 @@ public class GrupoDespesaReceitaDAO {
 				grupodespesareceita.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
 				int idGrupo = grupodespesareceita.getGrupodespesareceita_codigo();		
 				GrupoDespesaReceita grupoDespesa = getGrupoDespesa(idGrupo);
-				grupodespesareceita.setGrupopai(grupoDespesa);		
+				grupodespesareceita.setSubgrupo(grupoDespesa);		
 				lista.add(grupodespesareceita);
 			}
 
@@ -103,20 +103,6 @@ public class GrupoDespesaReceitaDAO {
 				grupo.setNome(rs.getString("nome"));
 			}
 			return grupo;
-		}
-		
-		public Integer getMax() throws SQLException {
-			Integer m = null;
-			PreparedStatement preparedStatement;
-			ResultSet rs = null;
-			preparedStatement = conexao.prepareStatement(
-					"SELECT max(g.codigo) as maximum FROM grupo_despesa_receita g;");
-			rs = preparedStatement.executeQuery();
-
-			while (rs.next()) {
-				m = rs.getInt("maximum");
-			}
-			return m;
 		}
 
 }
