@@ -28,7 +28,10 @@ public class LoginDAO {
 				return false;
 			}
 			String senhaUsuario = loginAux.getSenha();
-			ok = senhaUsuario.equals(senhaAux);
+			if(org.apache.commons.lang.StringUtils.isNotEmpty(senhaUsuario)) {
+				ok = senhaUsuario.equals(senhaAux);
+			}
+		
 		} catch (Exception ex) {
 			conexao = ConexaoBD.getConexao();
 			//ok = ok(login);

@@ -78,7 +78,7 @@
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														action="#{grupoClienteBean.cadastraGrupoCliente}"
-														update="messages  @form" styleClass="btn btn-success"
+														update="messages @form @(.table) formularioTabela" styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'"
 														oncomplete="temp()">
 													</p:commandButton>
@@ -93,7 +93,7 @@
 																				.html(
 																						'');
 
-																	}, 5000);
+																	}, 4000);
 
 														}
 													</script>
@@ -119,13 +119,15 @@
 										<div class="clearfix" />
 									</div>
 									<div class="x_content">
-										<h:form>
+										<h:form id="formularioTabela">
+											<p:outputPanel styleClass="table">
 											<table id="datatable-responsive" cellspacing="0" width="100%"
 												class="table table-striped table-bordered dt-responsive nowrap ">
 												<thead>
 													<tr>
 														<th>Código</th>
 														<th>Editar</th>
+														<th>Excluir</th>
 														<th>Nome do Grupo</th>
 													</tr>
 												</thead>
@@ -143,12 +145,26 @@
 															target="#{grupoClienteBean.grupocliente}"/>
 															</p:commandButton>
 															</td>
-															<td>#{grupocliente.nome}</td>	
-																		
+															<td>
+															<p:commandButton value="" style="font-size:10px;"
+															styleClass="fas fa-trash btn btn-primary" oncomplete="PF('dialogo').show()"
+															update="@(.form-control) @(.rd) @(.calendar) demo-form2 @(.confirm)">
+															<f:setPropertyActionListener value="#{grupocliente}" 
+															target="#{grupoClienteBean.grupocliente}"/>
+															</p:commandButton>
+    														<p:dialog widgetVar="dialogo" dynamic="true" styleClass="confirm" header="Confirmação" showEffect="fade" hideEffect="fade">    														 
+    															<h:outputText value="Você tem certeza?" />
+    														 	<br /><br />
+    														 	<p:commandButton value="" action="#{grupoClienteBean.deletaGrupoCliente()}" styleClass="ui-confirmdialog-yes fas fa-check btn btn-primary" update="@form @(.table) demo-form2" style="font-size:10px;" oncomplete="PF('dialogo').hide()" />
+        													 	<p:commandButton value="" styleClass="ui-confirmdialog-no fas fa-times btn btn-primary" style="font-size:10px;" oncomplete="PF('dialogo').hide()" />    														
+    														</p:dialog>
+															</td>
+															<td>#{grupocliente.nome}</td>			
 														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
+											</p:outputPanel>
 										</h:form>
 									</div>
 								</div>

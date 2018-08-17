@@ -16,18 +16,18 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class GrupoClienteDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
+	// método que insere um grupo de cliente
 	public boolean insertGrupoCliente(GrupoCliente grupocliente) {
 
 		try {
 
-			StringBuilder str = new StringBuilder();	
-			str.append("insert into grupo_cliente (codigo, nome)"
-					+ " values (?,?)");
+			StringBuilder str = new StringBuilder();
+			str.append("insert into grupo_cliente (codigo, nome)" + " values (?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupocliente.getCodigo());
 			preparedStatement.setString(2, grupocliente.getNome());
-			
+
 			preparedStatement.setInt(3, grupocliente.getCodigo());
 			preparedStatement.setString(4, grupocliente.getNome());
 
@@ -41,7 +41,7 @@ public class GrupoClienteDAO {
 		}
 	}
 
-	// lista todos os usuarios cadastrados no banco de dados
+	// método que lista os grupo(s) de cliente(s) cadastrado(s) no banco na tabela
 	public List<GrupoCliente> listGrupoCliente() {
 
 		ArrayList<GrupoCliente> lista = new ArrayList<GrupoCliente>();
@@ -52,7 +52,7 @@ public class GrupoClienteDAO {
 		try {
 			st = conexao.createStatement();
 			String sql = "select * from grupo_cliente";
-			
+
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -62,7 +62,6 @@ public class GrupoClienteDAO {
 				grupocliente.setNome(rs.getString(2));
 				lista.add(grupocliente);
 			}
-			
 
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());
@@ -71,6 +70,23 @@ public class GrupoClienteDAO {
 		} finally {
 		}
 		return lista;
+	}
+
+	// método que deleta um grupo de cliente na tabela
+	public boolean deleteGrupoCliente(int idGrupo) throws SQLException {
+		boolean resposta;
+
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = conexao.prepareStatement("delete from grupo_cliente where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			preparedStatement.executeUpdate();
+			resposta = true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			resposta = false;
+		}
+		return resposta;
 	}
 
 }
