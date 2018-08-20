@@ -22,7 +22,7 @@ public class GrupoClienteDAO {
 		try {
 
 			StringBuilder str = new StringBuilder();
-			str.append("insert into grupo_cliente (codigo, nome)" + " values (?,?)");
+			str.append("insert into grupo_cliente (codigo, nome) values (?,?) ");
 			str.append("on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupocliente.getCodigo());

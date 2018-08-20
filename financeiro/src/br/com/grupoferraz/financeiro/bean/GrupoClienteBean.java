@@ -55,7 +55,8 @@ public class GrupoClienteBean implements Serializable {
 				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Cliente deletado com sucesso!");
 			} else {
 				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na deleção do grupo!", "Erro!"));
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+						"Erro ao deletar, esse grupo pode estar vinculado à um cliente.", "Erro!"));
 				return "";
 			}
 		} catch (SQLException e) {

@@ -78,7 +78,8 @@
 													<button class="btn btn-primary" type="reset">Resetar</button>
 													<p:commandButton value="Cadastrar" type="submit"
 														action="#{grupoClienteBean.cadastraGrupoCliente}"
-														update="messages @form @(.table) formularioTabela" styleClass="btn btn-success"
+														update="messages @form @(.table) formularioTabela" 
+														styleClass="btn btn-success"
 														onclick="window.location='#demo-form2'"
 														oncomplete="temp()">
 													</p:commandButton>
@@ -138,26 +139,40 @@
 															<td>#{grupocliente.codigo}</td>
 															<td>
 															<p:commandButton value="" style="font-size:10px;"
-															styleClass="fas fa-edit btn btn-primary" 
-															update="@(.form-control) @(.rd) @(.calendar) demo-form2"
-															onclick="window.location='#demo-form2'">
+																styleClass="fas fa-edit btn btn-primary" 
+																update="@(.form-control) @(.rd) @(.calendar) demo-form2"
+																onclick="window.location='#demo-form2'">
 															<f:setPropertyActionListener value="#{grupocliente}" 
-															target="#{grupoClienteBean.grupocliente}"/>
+																target="#{grupoClienteBean.grupocliente}"/>
 															</p:commandButton>
 															</td>
 															<td>
 															<p:commandButton value="" style="font-size:10px;"
-															styleClass="fas fa-trash btn btn-primary" oncomplete="PF('dialogo').show()"
-															update="@(.form-control) @(.rd) @(.calendar) demo-form2 @(.confirm)">
+																styleClass="fas fa-trash btn btn-danger" 
+																oncomplete="PF('dialogo').show()"
+																
+																inputStyleClass="form-control"
+																update="@(.form-control) @(.rd) @(.calendar) 
+																demo-form2 @(.confirm)">
 															<f:setPropertyActionListener value="#{grupocliente}" 
-															target="#{grupoClienteBean.grupocliente}"/>
+																target="#{grupoClienteBean.grupocliente}"/>
 															</p:commandButton>
-    														<p:dialog widgetVar="dialogo" dynamic="true" styleClass="confirm" header="Confirmação" showEffect="fade" hideEffect="fade">    														 
-    															<h:outputText value="Você tem certeza?" />
+    														<p:dialog widgetVar="dialogo" dynamic="true"
+    															 	styleClass="confirm inputTest excluir"
+    															 	showEffect="fade"
+    															 	hideEffect="fade" style="background-color:white;">    														 
+    															<h:outputText value="Você tem certeza?"
+    															style="text-align:center;color:black;font-weight:bold" />
     														 	<br /><br />
-    														 	<p:commandButton value="" action="#{grupoClienteBean.deletaGrupoCliente()}" styleClass="ui-confirmdialog-yes fas fa-check btn btn-primary" update="@form @(.table) demo-form2" style="font-size:10px;" oncomplete="PF('dialogo').hide()" />
-        													 	<p:commandButton value="" styleClass="ui-confirmdialog-no fas fa-times btn btn-primary" style="font-size:10px;" oncomplete="PF('dialogo').hide()" />    														
-    														</p:dialog>
+    														 	<p:commandButton value=""
+    														 	 	action="#{grupoClienteBean.deletaGrupoCliente()}" 
+    														 	 	styleClass="ui-confirmdialog-yes fas fa-check btn btn-success"
+    														 	  	update="@form @(.table) demo-form2" style="font-size:10px;"
+    														 	  	oncomplete="PF('dialogo').hide()" />
+        													 	<p:commandButton value="" 
+        													 	 	styleClass="ui-confirmdialog-no fas fa-times btn btn-danger"
+        													 	  	style="font-size:10px;" oncomplete="PF('dialogo').hide()" />
+        													</p:dialog>
 															</td>
 															<td>#{grupocliente.nome}</td>			
 														</tr>
