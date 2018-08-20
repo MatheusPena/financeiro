@@ -132,16 +132,16 @@
 																</p:commandButton></td>
 															<td>
 															<p:commandButton value="" style="font-size:10px;"
-															styleClass="fas fa-trash btn btn-primary" oncomplete="PF('dialogo').show()"
+															styleClass="fas fa-trash btn btn-danger" oncomplete="PF('dialogo').show()"
 															update="@(.form-control) @(.rd) @(.calendar) demo-form2 @(.confirm)">
 															<f:setPropertyActionListener value="#{grupoContasFinanceiras}" 
 															target="#{grupoContaFinanceiraBean.grupoContaFinanceira}"/>
 															</p:commandButton>
-    														<p:dialog widgetVar="dialogo" dynamic="true" styleClass="confirm" header="Confirmação" showEffect="fade" hideEffect="fade">    														 
-    															<h:outputText value="Você tem certeza?" />
+    														<p:dialog widgetVar="dialogo" dynamic="true" styleClass="confirm" showEffect="fade" hideEffect="fade" style="background-color:white;">    														 
+    															<h:outputText value="Você tem certeza?" style="text-align:center;color:black;font-weight:bold" />
     														 	<br /><br />
     														 	<p:commandButton value="" action="#{grupoContaFinanceiraBean.deletaGrupoContaFinanceira}" styleClass="ui-confirmdialog-yes fas fa-check btn btn-primary" update="@form @(.table) demo-form2" style="font-size:10px;" oncomplete="PF('dialogo').hide()" onclick="window.location='#demo-form2'" />
-        													 	<p:commandButton value="" styleClass="ui-confirmdialog-no fas fa-times btn btn-primary" style="font-size:10px;" oncomplete="PF('dialogo').hide()" />    														
+        													 	<p:commandButton value="" styleClass="ui-confirmdialog-no fas fa-times btn btn-danger" style="font-size:10px;" oncomplete="PF('dialogo').hide()" />    														
     														</p:dialog>
 															</td>
 															<td>#{grupoContasFinanceiras.nome}</td>

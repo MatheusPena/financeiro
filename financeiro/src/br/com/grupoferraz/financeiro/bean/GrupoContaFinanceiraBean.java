@@ -56,11 +56,10 @@ public class GrupoContaFinanceiraBean implements Serializable {
 		try {
 			if (grupocontafinanceiraDAO.deleteGrupoContaFinanceira(grupoContaFinanceira.getCodigo())) {
 				listaGrupoContasFinanceiras.remove(grupoContaFinanceira);
-				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO,
-						"Grupo de Conta Financeira deletado com sucesso!");
+				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Conta Financeira deletado com sucesso!");
 			} else {
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na deleção do grupo!", "Erro!"));
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Erro ao deletar, esse grupo pode estar vinculado à uma conta financeira.", "Erro!"));
 				return "";
 			}
 		} catch (SQLException e) {

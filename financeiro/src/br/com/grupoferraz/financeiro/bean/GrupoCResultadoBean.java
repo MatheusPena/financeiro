@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
 import br.com.grupoferraz.financeiro.dao.GrupoCResultadoDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoCResultado;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
@@ -58,8 +59,8 @@ public class GrupoCResultadoBean implements Serializable {
 				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO,
 						"Grupo de Centro de Resultados deletado com sucesso!");
 			} else {
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na deleção do grupo!", "Erro!"));
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Erro ao deletar, esse grupo pode estar vinculado à um cliente.", "Erro!"));
 				return "";
 			}
 		} catch (SQLException e) {

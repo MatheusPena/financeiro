@@ -42,7 +42,7 @@ public class GrupoFornecedorBean implements Serializable {
 		return "";
 	}
 
-	// método que lista os grupos de fornecedores	
+	// método que lista os grupos de fornecedores
 	public void listaGrupoFornecedores() {
 		GrupoFornecedorDAO grupofornecedoresDAO = new GrupoFornecedorDAO();
 		grupofornecedores = grupofornecedoresDAO.listGrupoFornecedores();
@@ -56,11 +56,10 @@ public class GrupoFornecedorBean implements Serializable {
 		try {
 			if (grupoFornecedorDAO.deleteGrupoFornecedor(grupofornecedor.getCodigo())) {
 				grupofornecedores.remove(grupofornecedor);
-				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO,
-						"Grupo de Fornecedor deletado com sucesso!");
+				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Fornecedor deletado com sucesso!");
 			} else {
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na deleção do grupo!", "Erro!"));
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Erro ao deletar, esse grupo pode estar vinculado à um fornecedor.", "Erro!"));
 				return "";
 			}
 		} catch (SQLException e) {
