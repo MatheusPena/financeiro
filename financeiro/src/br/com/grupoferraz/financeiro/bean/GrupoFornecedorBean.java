@@ -1,11 +1,13 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
 import br.com.grupoferraz.financeiro.dao.GrupoFornecedorDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoFornecedor;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
@@ -20,13 +22,14 @@ public class GrupoFornecedorBean implements Serializable {
 
 	public GrupoFornecedorBean() {
 		grupofornecedor = new GrupoFornecedor();
-		getGrupoFornecedores();
+		listaGrupoFornecedores();
 	}
 
+	// método que cadastra os grupos de fornecedores
 	public String cadastraGrupofornecedor() {
 
-		GrupoFornecedorDAO grupofornecedores = new GrupoFornecedorDAO ();
-		if (grupofornecedores.insertGrupoFornecedores(grupofornecedor)) {
+		GrupoFornecedorDAO grupofornecedores = new GrupoFornecedorDAO();
+		if (grupofornecedores.insertGrupoFornecedor(grupofornecedor)) {
 			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo fornecedor cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -35,15 +38,40 @@ public class GrupoFornecedorBean implements Serializable {
 		}
 
 		this.grupofornecedor = new GrupoFornecedor();
-
-		return "grupo_fornecedor?faces-redirect=true";
+		listaGrupoFornecedores();
+		return "";
 	}
 
-	public void getGrupoFornecedores()  {
-		GrupoFornecedorDAO grupofornecedoresDAO = new GrupoFornecedorDAO ();
+	// método que lista os grupos de fornecedores	
+	public void listaGrupoFornecedores() {
+		GrupoFornecedorDAO grupofornecedoresDAO = new GrupoFornecedorDAO();
 		grupofornecedores = grupofornecedoresDAO.listGrupoFornecedores();
 	}
 
+	// método que deleta os grupos de fornecedores
+	public String deletaGrupoFornecedor() {
+
+		// ConexaoBD.getConexao();
+		GrupoFornecedorDAO grupoFornecedorDAO = new GrupoFornecedorDAO();
+		try {
+			if (grupoFornecedorDAO.deleteGrupoFornecedor(grupofornecedor.getCodigo())) {
+				grupofornecedores.remove(grupofornecedor);
+				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO,
+						"Grupo de Fornecedor deletado com sucesso!");
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na deleção do grupo!", "Erro!"));
+				return "";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// ConexaoBD.fecharConexao();
+		this.grupofornecedor = new GrupoFornecedor();
+		listaGrupoFornecedores();
+		return "";
+	}
 
 	public GrupoFornecedor getGrupofornecedor() {
 		return grupofornecedor;

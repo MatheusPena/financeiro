@@ -1,6 +1,7 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,17 +20,17 @@ public class GrupoCResultadoBean implements Serializable {
 
 	public GrupoCResultadoBean() {
 		grupoCResultado = new GrupoCResultado();
-		listarGrupoCResultados();
+		listaGrupoCResultados();
 	}
 
-	// lista os grupos de centro de resultados na tabela
-	private void listarGrupoCResultados() {
+	// método que lista os grupos de centro de resultados
+	private void listaGrupoCResultados() {
 		GrupoCResultadoDAO grupoCResultadosDAO = new GrupoCResultadoDAO();
 		listagrupoCResultados = grupoCResultadosDAO.listGrupoCResultado();
 
 	}
 
-	// cadastra os grupos de resultados exibindo uma mensagem
+	// método que cadastra os grupos de centro de resultados
 	public String cadastraGrupoCResultado() {
 
 		GrupoCResultadoDAO grupoCResultados = new GrupoCResultadoDAO();
@@ -42,6 +43,32 @@ public class GrupoCResultadoBean implements Serializable {
 		}
 
 		this.grupoCResultado = new GrupoCResultado();
+		listaGrupoCResultados();
+		return "";
+	}
+
+	// método que deleta os grupos de centro de resultados
+	public String deletaGrupoCResultado() {
+
+		// ConexaoBD.getConexao();
+		GrupoCResultadoDAO grupocresultadoDAO = new GrupoCResultadoDAO();
+		try {
+			if (grupocresultadoDAO.deleteGrupoCResultado(grupoCResultado.getCodigo())) {
+				listagrupoCResultados.remove(grupoCResultado);
+				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO,
+						"Grupo de Centro de Resultados deletado com sucesso!");
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro na deleção do grupo!", "Erro!"));
+				return "";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// ConexaoBD.fecharConexao();
+		this.grupoCResultado = new GrupoCResultado();
+		listaGrupoCResultados();
 		return "";
 	}
 

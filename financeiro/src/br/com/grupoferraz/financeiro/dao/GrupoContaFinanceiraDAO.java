@@ -16,7 +16,8 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class GrupoContaFinanceiraDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertGrupoContasFinanceiras(GrupoContaFinanceira grupoContasFinanceiras) {
+	// método que insere um grupo de conta financeira
+	public boolean insertGrupoContaFinanceira(GrupoContaFinanceira grupoContaFinanceira) {
 
 		try {
 
@@ -24,11 +25,11 @@ public class GrupoContaFinanceiraDAO {
 			str.append("insert into grupo_conta_financeira (codigo, nome) values (?,?)");
 			str.append(" on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
-			preparedStatement.setInt(1, grupoContasFinanceiras.getCodigo());
-			preparedStatement.setString(2, grupoContasFinanceiras.getNome());
+			preparedStatement.setInt(1, grupoContaFinanceira.getCodigo());
+			preparedStatement.setString(2, grupoContaFinanceira.getNome());
 
-			preparedStatement.setInt(3, grupoContasFinanceiras.getCodigo());
-			preparedStatement.setString(4, grupoContasFinanceiras.getNome());
+			preparedStatement.setInt(3, grupoContaFinanceira.getCodigo());
+			preparedStatement.setString(4, grupoContaFinanceira.getNome());
 
 			preparedStatement.execute();
 			return true;
@@ -40,7 +41,8 @@ public class GrupoContaFinanceiraDAO {
 		}
 	}
 
-	// lista todos os usuarios cadastrados no banco de dados
+	// método que lista os grupo(s) de conta(s) financeira(s) cadastrada(s) no banco
+	// na tabela
 	public List<GrupoContaFinanceira> listGrupoContasFinanceiras() {
 
 		ArrayList<GrupoContaFinanceira> lista = new ArrayList<GrupoContaFinanceira>();
@@ -68,6 +70,23 @@ public class GrupoContaFinanceiraDAO {
 		} finally {
 		}
 		return lista;
+	}
+
+	// método que deleta um grupo de resultado na tabela
+	public boolean deleteGrupoContaFinanceira(int idGrupo) throws SQLException {
+		boolean resposta;
+
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = conexao.prepareStatement("delete from grupo_conta_financeira where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			preparedStatement.executeUpdate();
+			resposta = true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			resposta = false;
+		}
+		return resposta;
 	}
 
 }

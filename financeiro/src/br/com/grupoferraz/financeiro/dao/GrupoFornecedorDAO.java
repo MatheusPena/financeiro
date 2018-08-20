@@ -16,21 +16,21 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class GrupoFornecedorDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
-	public boolean insertGrupoFornecedores(GrupoFornecedor grupofornecedor) {
+	// método que insere um grupo de fornecedores
+	public boolean insertGrupoFornecedor(GrupoFornecedor grupofornecedor) {
 
 		try {
-			
-			StringBuilder str = new StringBuilder();	
-			str.append("insert into grupo_fornecedor (codigo, nome)"
-					+ " values (?,?)");
+
+			StringBuilder str = new StringBuilder();
+			str.append("insert into grupo_fornecedor (codigo, nome)" + " values (?,?)");
 			str.append("on duplicate key update codigo = ?, nome = ?");
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupofornecedor.getCodigo());
 			preparedStatement.setString(2, grupofornecedor.getNome());
-			
+
 			preparedStatement.setInt(3, grupofornecedor.getCodigo());
 			preparedStatement.setString(4, grupofornecedor.getNome());
-			
+
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -41,7 +41,7 @@ public class GrupoFornecedorDAO {
 		}
 	}
 
-	// lista todos os usuarios cadastrados no banco de dados
+	// método que lista o(s) grupo(s) de fornecedor(es) cadastrado(s) no banco na tabela
 	public List<GrupoFornecedor> listGrupoFornecedores() {
 
 		ArrayList<GrupoFornecedor> lista = new ArrayList<GrupoFornecedor>();
@@ -52,7 +52,7 @@ public class GrupoFornecedorDAO {
 		try {
 			st = conexao.createStatement();
 			String sql = "select * from grupo_fornecedor";
-			
+
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
@@ -62,7 +62,6 @@ public class GrupoFornecedorDAO {
 				grupofornecedor.setNome(rs.getString(2));
 				lista.add(grupofornecedor);
 			}
-			
 
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());
@@ -71,6 +70,23 @@ public class GrupoFornecedorDAO {
 		} finally {
 		}
 		return lista;
+	}
+
+	// método que deleta um grupo de fornecedor(es) na tabela
+	public boolean deleteGrupoFornecedor(int idGrupo) throws SQLException {
+		boolean resposta;
+
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = conexao.prepareStatement("delete from grupo_fornecedor where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			preparedStatement.executeUpdate();
+			resposta = true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			resposta = false;
+		}
+		return resposta;
 	}
 
 }
