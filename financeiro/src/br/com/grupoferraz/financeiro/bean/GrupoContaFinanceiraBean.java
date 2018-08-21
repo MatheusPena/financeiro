@@ -30,7 +30,7 @@ public class GrupoContaFinanceiraBean implements Serializable {
 
 		GrupoContaFinanceiraDAO GrupoContasFinanceiras = new GrupoContaFinanceiraDAO();
 		if (GrupoContasFinanceiras.insertGrupoContaFinanceira(this.grupoContaFinanceira)) {
-			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo cadastrado com sucesso!");
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Conta Financeira cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));

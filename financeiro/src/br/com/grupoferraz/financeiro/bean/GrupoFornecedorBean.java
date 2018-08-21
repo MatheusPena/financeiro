@@ -30,7 +30,7 @@ public class GrupoFornecedorBean implements Serializable {
 
 		GrupoFornecedorDAO grupofornecedores = new GrupoFornecedorDAO();
 		if (grupofornecedores.insertGrupoFornecedor(grupofornecedor)) {
-			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo fornecedor cadastrado com sucesso!");
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Fornecedor cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo", "Erro!"));
