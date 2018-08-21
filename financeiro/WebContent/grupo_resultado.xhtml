@@ -89,7 +89,7 @@
 
                                                         	$('.messages').html('');
 
-                                                        }, 5000);
+                                                        }, 4000);
 
                                                   	}
 													</script>
@@ -152,7 +152,7 @@
     														<p:dialog widgetVar="dialogo" dynamic="true" styleClass="confirm" showEffect="fade" hideEffect="fade" style="background-color:white;">    														 
     															<h:outputText value="Você tem certeza?" style="text-align:center;color:black;font-weight:bold" />
     														 	<br /><br />
-    														 	<p:commandButton value="" action="#{grupoCResultadoBean.deletaGrupoCResultado}" styleClass="ui-confirmdialog-yes fas fa-check btn btn-primary" update="@form @(.table) demo-form2" style="font-size:10px;" oncomplete="PF('dialogo').hide()" onclick="window.location='#demo-form2'" />
+    														 	<p:commandButton value="" action="#{grupoCResultadoBean.deletaGrupoCResultado}" styleClass="ui-confirmdialog-yes fas fa-check btn btn-primary" update="@form @(.table) demo-form2" style="font-size:10px;" oncomplete="PF('dialogo').hide(); temp();" onclick="window.location='#demo-form2'" />
         													 	<p:commandButton value="" styleClass="ui-confirmdialog-no fas fa-times btn btn-danger" style="font-size:10px;" oncomplete="PF('dialogo').hide()" />    														
     														</p:dialog>
 															</td>
