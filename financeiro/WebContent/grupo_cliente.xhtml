@@ -97,7 +97,7 @@
 																	}, 4000);
 
 														}
-													</script>
+													</script>	
 												</div>
 											</div>
 										</h:form>
@@ -168,8 +168,23 @@
     														 	 	action="#{grupoClienteBean.deletaGrupoCliente()}" 
     														 	 	styleClass="ui-confirmdialog-yes fas fa-check btn btn-success"
     														 	  	update="@form @(.table) demo-form2" style="font-size:10px;"
-    														 	  	oncomplete="PF('dialogo').hide()" 
+    														 	  	oncomplete="PF('dialogo').hide(); temp2();" 
     														 	  	onclick="window.location='#demo-form2'" />
+    														 	  	<script>
+																		function temp2() {
+				
+																			setTimeout(
+																					function() {
+				
+																						$(
+																								'.messages')
+																								.html(
+																										'');
+				
+																					}, 4000);
+				
+																		}
+																	</script>
         													 	<p:commandButton value="" 
         													 	 	styleClass="ui-confirmdialog-no fas fa-times btn btn-danger"
         													 	  	style="font-size:10px;" oncomplete="PF('dialogo').hide()" />

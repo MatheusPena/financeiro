@@ -142,6 +142,24 @@ public class AdiantamentoDAO {
 		return lista;
 	}
 	
+	// método que deleta um grupo de cliente na tabela
+		public boolean deleteAdiantamento(int idGrupo) throws SQLException {
+			boolean resposta;
+
+			PreparedStatement preparedStatement;
+			try {
+				preparedStatement = conexao.prepareStatement("delete from adiantamento where codigo = ?");
+				preparedStatement.setInt(1, idGrupo);
+				preparedStatement.executeUpdate();
+				resposta = true;
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				resposta = false;
+			}
+			return resposta;
+		}
+
+	
 	//Método para mostrar o nome das despesas na tabela de Adiantamentos, ao invés do Código
 	public DespesaReceita getDespesa(int idGrupo) throws SQLException {
 		DespesaReceita grupo = new DespesaReceita();

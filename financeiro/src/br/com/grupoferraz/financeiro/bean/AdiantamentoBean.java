@@ -1,6 +1,7 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -10,10 +11,12 @@ import javax.faces.context.FacesContext;
 import br.com.grupoferraz.financeiro.dao.AdiantamentoDAO;
 import br.com.grupoferraz.financeiro.dao.DespesaReceitaDAO;
 import br.com.grupoferraz.financeiro.dao.EstabelecimentoDAO;
+import br.com.grupoferraz.financeiro.dao.GrupoClienteDAO;
 import br.com.grupoferraz.financeiro.dao.HistoricoDAO;
 import br.com.grupoferraz.financeiro.entity.Adiantamento;
 import br.com.grupoferraz.financeiro.entity.DespesaReceita;
 import br.com.grupoferraz.financeiro.entity.Estabelecimento;
+import br.com.grupoferraz.financeiro.entity.GrupoCliente;
 import br.com.grupoferraz.financeiro.entity.Historico;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
 
@@ -47,8 +50,34 @@ public class AdiantamentoBean implements Serializable {
 		}
 
 		this.adiantamento = new Adiantamento();
-		return "cadastro_adiantamento?faces-redirect=true";
+		listarAdiantamento();
+		return "";
 	}
+	
+	// método que deleta os adiantamentos
+		public String deletaAdiantamento() {
+
+			// ConexaoBD.getConexao();
+			AdiantamentoDAO Adiantamento = new AdiantamentoDAO();
+			try {
+				if (Adiantamento.deleteAdiantamento(adiantamento.getCodigo())) {
+					listaAdiantamentos.remove(adiantamento);
+					JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Adiantamento deletado com sucesso!");
+				} else {
+					FacesContext.getCurrentInstance().addMessage(null,
+							new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+							"Erro ao deletar adiantamento, ele pode estar vinculado à outro formulário.", "Erro!"));
+					return "";
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// ConexaoBD.fecharConexao();
+			this.adiantamento = new Adiantamento();
+			listarAdiantamento();
+			return "";
+		}
 
 	// Autocomplete referente ao estabelecimento
 		public List<Estabelecimento> completeText2(String query) {
