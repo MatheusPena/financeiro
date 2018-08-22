@@ -16,6 +16,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class GrupoDespesaReceitaDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
+	// método que insere um grupo de despesa/receita
 	public boolean insertGrupoDespesaReceita(GrupoDespesaReceita grupodespesareceita) {
 
 		try {
@@ -25,27 +26,29 @@ public class GrupoDespesaReceitaDAO {
 			PreparedStatement preparedStatement = conexao.prepareStatement(str.toString());
 			preparedStatement.setInt(1, grupodespesareceita.getCodigo());
 			preparedStatement.setString(2, grupodespesareceita.getNome());
-			
+
 			Integer ce = grupodespesareceita.getGrupodespesareceita_codigo();
-			System.out.println("CE "+ce);
-			if(ce!=0) {
-				preparedStatement.setInt(3, ce); 
+			System.out.println("CE " + ce);
+			if (ce != 0) {
+				preparedStatement.setInt(3, ce);
 				preparedStatement.setInt(6, ce);
-			}else {
-				preparedStatement.setNull(3, java.sql.Types.INTEGER); 
+			} else {
+				preparedStatement.setNull(3, java.sql.Types.INTEGER);
 				preparedStatement.setNull(6, java.sql.Types.INTEGER);
 			}
-			
-			//preparedStatement.setInt(3, grupodespesareceita.getGrupodespesareceita_codigo()); 
-			
+
+			// preparedStatement.setInt(3,
+			// grupodespesareceita.getGrupodespesareceita_codigo());
+
 			preparedStatement.setInt(4, grupodespesareceita.getCodigo());
 			preparedStatement.setString(5, grupodespesareceita.getNome());
-			//preparedStatement.setInt(6, grupodespesareceita.getGrupodespesareceita_codigo());
-			
+			// preparedStatement.setInt(6,
+			// grupodespesareceita.getGrupodespesareceita_codigo());
+
 			preparedStatement.execute();
-			
+
 			return true;
-	
+
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Connection.class.getName());
 			lgr.log(Level.SEVERE, ex.getMessage(), ex);
@@ -54,7 +57,8 @@ public class GrupoDespesaReceitaDAO {
 		}
 	}
 
-	// lista todos os usuarios cadastrados no banco de dados
+	// método que lista os grupo(s) de receita/despesa(s) cadastrado(s) no banco na
+	// tabela
 	public List<GrupoDespesaReceita> listGrupoDespesaReceita() {
 
 		ArrayList<GrupoDespesaReceita> lista = new ArrayList<GrupoDespesaReceita>();
@@ -73,9 +77,9 @@ public class GrupoDespesaReceitaDAO {
 				grupodespesareceita.setCodigo(rs.getInt("codigo"));
 				grupodespesareceita.setNome(rs.getString("nome"));
 				grupodespesareceita.setGrupodespesareceita_codigo(rs.getInt("grupodespesareceita_codigo"));
-				int idGrupo = grupodespesareceita.getGrupodespesareceita_codigo();		
-				GrupoDespesaReceita grupoDespesa = getGrupoDespesa(idGrupo);
-				grupodespesareceita.setSubgrupo(grupoDespesa);		
+				int idGrupo = grupodespesareceita.getGrupodespesareceita_codigo();
+				GrupoDespesaReceita grupoDespesa = getGrupoDespesaReceita(idGrupo);
+				grupodespesareceita.setSubgrupo(grupoDespesa);
 				lista.add(grupodespesareceita);
 			}
 
@@ -87,22 +91,39 @@ public class GrupoDespesaReceitaDAO {
 		}
 		return lista;
 	}
-	
-	//Listagem de Grupos
-		public GrupoDespesaReceita getGrupoDespesa(int idGrupo) throws SQLException {
-			GrupoDespesaReceita grupo = new GrupoDespesaReceita();
-			PreparedStatement preparedStatement;
-			ResultSet rs = null;
-			preparedStatement = conexao.prepareStatement(
-					"select codigo, nome from grupo_despesa_receita where codigo = ?");
-			preparedStatement.setInt(1, idGrupo);
-			rs = preparedStatement.executeQuery();
 
-			while (rs.next()) {
-				grupo.setCodigo(rs.getInt("codigo"));
-				grupo.setNome(rs.getString("nome"));
-			}
-			return grupo;
+	// método que procura uma despesa/receita no banco de dados pelo identificador,
+	// atribuindo uma varíavel à ela.
+	public GrupoDespesaReceita getGrupoDespesaReceita(int idGrupo) throws SQLException {
+		GrupoDespesaReceita grupo = new GrupoDespesaReceita();
+		PreparedStatement preparedStatement;
+		ResultSet rs = null;
+		preparedStatement = conexao.prepareStatement("select codigo, nome from grupo_despesa_receita where codigo = ?");
+		preparedStatement.setInt(1, idGrupo);
+		rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			grupo.setCodigo(rs.getInt("codigo"));
+			grupo.setNome(rs.getString("nome"));
 		}
+		return grupo;
+	}
+
+	// método que deleta um grupo de despesa/receita na tabela
+	public boolean deleteGrupoDespesaReceita(int idGrupo) throws SQLException {
+		boolean resposta;
+
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = conexao.prepareStatement("delete from grupo_despesa_receita where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			preparedStatement.executeUpdate();
+			resposta = true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			resposta = false;
+		}
+		return resposta;
+	}
 
 }
