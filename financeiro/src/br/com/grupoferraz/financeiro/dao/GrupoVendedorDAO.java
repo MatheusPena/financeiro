@@ -16,6 +16,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class GrupoVendedorDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
+	// método que insere um grupo de vendedor
 	public boolean insertGrupoVendedor(GrupoVendedor grupovendedor) {
 
 		try {
@@ -40,7 +41,8 @@ public class GrupoVendedorDAO {
 		}
 	}
 
-	// lista todos os grupos cadastrados no banco de dados
+	// método que lista o(s) grupo(s) de vendedor(es) cadastrado(s) no banco na
+	// tabela
 	public List<GrupoVendedor> listGrupoVendedores() {
 
 		ArrayList<GrupoVendedor> lista = new ArrayList<GrupoVendedor>();
@@ -70,4 +72,20 @@ public class GrupoVendedorDAO {
 		return lista;
 	}
 
+	// método que deleta um grupo de vendedor(es) na tabela
+	public boolean deleteGrupoVendedor(int idGrupo) throws SQLException {
+		boolean resposta;
+
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = conexao.prepareStatement("delete from grupo_vendedor where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			preparedStatement.executeUpdate();
+			resposta = true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			resposta = false;
+		}
+		return resposta;
+	}
 }

@@ -1,11 +1,13 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
 import br.com.grupoferraz.financeiro.dao.GrupoVendedorDAO;
 import br.com.grupoferraz.financeiro.entity.GrupoVendedor;
 import br.com.grupoferraz.financeiro.util.JSFUtil;
@@ -20,15 +22,15 @@ public class GrupoVendedorBean implements Serializable {
 
 	public GrupoVendedorBean() {
 		grupovendedor = new GrupoVendedor();
-		listargrupovendedor();
+		listagrupovendedor();
 	}
 
-	// cadastra um grupo exibindo uma mensagem
+	// método que cadastra os grupos de vendedores
 	public String cadastragrupovendedor() {
 
 		GrupoVendedorDAO grupovendedor = new GrupoVendedorDAO();
 		if (grupovendedor.insertGrupoVendedor(this.grupovendedor)) {
-			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo vendedor cadastrado com sucesso!");
+			JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Vendedor cadastrado com sucesso!");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro no cadastro do grupo!", "Erro!"));
@@ -36,15 +38,39 @@ public class GrupoVendedorBean implements Serializable {
 		}
 
 		this.grupovendedor = new GrupoVendedor();
-
-		return "grupo_vendedor?faces-redirect=true";
+		listagrupovendedor();
+		return "";
 
 	}
 
-	// lista os grupos existentes na tabela
-	public void listargrupovendedor() {
+	// método que lista os grupos de vendedores
+	public void listagrupovendedor() {
 		GrupoVendedorDAO grupovendedorDAO = new GrupoVendedorDAO();
 		listagrupovendedor = grupovendedorDAO.listGrupoVendedores();
+	}
+
+	// método que deleta os grupos de vendedores
+	public String deletaGrupoVendedor() {
+
+		// ConexaoBD.getConexao();
+		GrupoVendedorDAO grupoVendedor = new GrupoVendedorDAO();
+		try {
+			if (grupoVendedor.deleteGrupoVendedor(grupovendedor.getCodigo())) {
+				listagrupovendedor.remove(grupovendedor);
+				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Vendedor deletado com sucesso!");
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Erro ao deletar, esse grupo pode estar vinculado à um vendedor.", "Erro!"));
+				return "";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// ConexaoBD.fecharConexao();
+		this.grupovendedor = new GrupoVendedor();
+		listagrupovendedor();
+		return "";
 	}
 
 	public GrupoVendedor getgrupovendedor() {

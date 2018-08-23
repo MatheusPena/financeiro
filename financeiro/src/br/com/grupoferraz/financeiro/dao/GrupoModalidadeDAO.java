@@ -16,6 +16,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class GrupoModalidadeDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
+	// método que insere um grupo de modalidade
 	public boolean insertGrupoModalidade(GrupoModalidade grupoModalidade) {
 
 		try {
@@ -40,7 +41,8 @@ public class GrupoModalidadeDAO {
 		}
 	}
 
-	// lista todos os grupos cadastrados no banco de dados
+	// método que lista o(s) grupo(s) de modalidade(s) cadastrado(s) no banco na
+	// tabela
 	public List<GrupoModalidade> listGrupoModalidade() {
 
 		ArrayList<GrupoModalidade> lista = new ArrayList<GrupoModalidade>();
@@ -69,6 +71,23 @@ public class GrupoModalidadeDAO {
 		} finally {
 		}
 		return lista;
+	}
+
+	// método que deleta um grupo de modalidade(s) na tabela
+	public boolean deleteGrupoModalidade(int idGrupo) throws SQLException {
+		boolean resposta;
+
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = conexao.prepareStatement("delete from grupo_modalidade where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			preparedStatement.executeUpdate();
+			resposta = true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			resposta = false;
+		}
+		return resposta;
 	}
 
 }

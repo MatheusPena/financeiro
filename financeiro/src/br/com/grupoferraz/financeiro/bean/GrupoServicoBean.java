@@ -1,6 +1,7 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -23,10 +24,10 @@ public class GrupoServicoBean implements Serializable {
 
 	public GrupoServicoBean() {
 		gruposervico = new GrupoServico();
-		getGrupoServicoDAO();
+		listaGrupoServico();
 	}
 
-	// cadastra o grupo de servico
+	// método que cadastra os grupos de serviços
 	public String cadastraGrupoServico() {
 
 		ConexaoBD.getConexao();
@@ -40,13 +41,39 @@ public class GrupoServicoBean implements Serializable {
 
 		}
 		ConexaoBD.fecharConexao();
-
+		this.gruposervico = new GrupoServico();
+		listaGrupoServico();
 		return "";
 	}
 
-	public void getGrupoServicoDAO() {
+	// método que lista os grupos de serviços
+	public void listaGrupoServico() {
 		GrupoServicoDAO grupomodalidade = new GrupoServicoDAO();
 		listagruposervico = grupomodalidade.listGrupoServico();
+	}
+
+	// método que deleta os grupos de serviços
+	public String deletaGrupoServico() {
+
+		// ConexaoBD.getConexao();
+		GrupoServicoDAO grupoServico = new GrupoServicoDAO();
+		try {
+			if (grupoServico.deleteGrupoServico(gruposervico.getCodigo())) {
+				listagruposervico.remove(gruposervico);
+				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Serviço deletado com sucesso!");
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Erro ao deletar, esse grupo pode estar vinculado à um serviço.", "Erro!"));
+				return "";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// ConexaoBD.fecharConexao();
+		this.gruposervico = new GrupoServico();
+		listaGrupoServico();
+		return "";
 	}
 
 	public GrupoServico getGruposervico() {

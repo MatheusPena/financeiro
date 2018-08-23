@@ -1,6 +1,7 @@
 package br.com.grupoferraz.financeiro.bean;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -23,10 +24,10 @@ public class GrupoModalidadeBean implements Serializable {
 
 	public GrupoModalidadeBean() {
 		grupomodalidade = new GrupoModalidade();
-		getGrupoModalidadeDAO();
+		listaGrupoModalidade();
 	}
 
-	//cadastra o grupo da modalidade
+	// método que cadastra os grupos das modalidades
 	public String cadastraGrupoModalidade() {
 
 		ConexaoBD.getConexao();
@@ -40,13 +41,39 @@ public class GrupoModalidadeBean implements Serializable {
 
 		}
 		ConexaoBD.fecharConexao();
-
+		this.grupomodalidade = new GrupoModalidade();
+		listaGrupoModalidade();
 		return "";
 	}
 
-	public void getGrupoModalidadeDAO() {
+	// método que lista os grupos de modalidades
+	public void listaGrupoModalidade() {
 		GrupoModalidadeDAO grupomodalidade = new GrupoModalidadeDAO();
 		listagrupomodalidade = grupomodalidade.listGrupoModalidade();
+	}
+
+	// método que deleta os grupos de modalidades
+	public String deletaGrupoModalidade() {
+
+		// ConexaoBD.getConexao();
+		GrupoModalidadeDAO grupoModalidadeDAO = new GrupoModalidadeDAO();
+		try {
+			if (grupoModalidadeDAO.deleteGrupoModalidade(grupomodalidade.getCodigo())) {
+				listagrupomodalidade.remove(grupomodalidade);
+				JSFUtil.mostraMensagem(FacesMessage.SEVERITY_INFO, "Grupo de Modalidade deletado com sucesso!");
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"Erro ao deletar, esse grupo pode estar vinculado à uma modalidade.", "Erro!"));
+				return "";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// ConexaoBD.fecharConexao();
+		this.grupomodalidade = new GrupoModalidade();
+		listaGrupoModalidade();
+		return "";
 	}
 
 	public GrupoModalidade getGrupomodalidade() {

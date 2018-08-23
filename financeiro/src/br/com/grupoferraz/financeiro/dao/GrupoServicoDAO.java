@@ -16,6 +16,7 @@ import br.com.grupoferraz.financeiro.util.ConexaoBD;
 public class GrupoServicoDAO {
 	Connection conexao = ConexaoBD.getConexao();
 
+	// método que insere um grupo de serviço
 	public boolean insertGrupoServico(GrupoServico grupoServico) {
 
 		try {
@@ -40,7 +41,8 @@ public class GrupoServicoDAO {
 		}
 	}
 
-	// lista todos os grupos cadastrados no banco de dados
+	// método que lista o(s) grupo(s) de serviço(s) cadastrado(s) no banco na
+	// tabela
 	public List<GrupoServico> listGrupoServico() {
 
 		ArrayList<GrupoServico> lista = new ArrayList<GrupoServico>();
@@ -69,5 +71,22 @@ public class GrupoServicoDAO {
 		} finally {
 		}
 		return lista;
+	}
+
+	// método que deleta um grupo de serviço(s) na tabela
+	public boolean deleteGrupoServico(int idGrupo) throws SQLException {
+		boolean resposta;
+
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = conexao.prepareStatement("delete from grupo_servico where codigo = ?");
+			preparedStatement.setInt(1, idGrupo);
+			preparedStatement.executeUpdate();
+			resposta = true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			resposta = false;
+		}
+		return resposta;
 	}
 }
